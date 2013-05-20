@@ -1,0 +1,12 @@
+%html
+  %p Enter Username and Password
+  %FORM{:action => "file:///android_asset/www/Browse.html", :method => "post"}
+    %P
+      %LABEL{:for => "firstname"} Username
+      %INPUT#Username{:type => "text"}
+        %BR
+          %LABEL{:for => "lastname"} Password
+          %INPUT#Password{:type => "password"}
+            %BR
+              %INPUT{:type => "submit", :value => "Send"}
+                %INPUT{:type => "reset"}
