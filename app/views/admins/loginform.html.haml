@@ -1,8 +1,11 @@
+= flash[:notice]
 %h1 Enter Login and Password
+= @error[:error]
 = form_tag login_path do
   = label_tag 'login', 'Username'
   = text_field_tag "login"
   %br
   =label_tag 'password', "Password"
   = password_field_tag "password"
+  %br
   = submit_tag "Login"
