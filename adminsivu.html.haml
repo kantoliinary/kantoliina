@@ -1,0 +1,9 @@
+%html
+  %p Lisää käyttäjä
+  %FORM{:action => "file:///android_asset/www/Browse.html", :method => "post"}
+    %P
+      %LABEL{:for => "username"} Kayttajan nimi
+      %INPUT#Username{:type => "text"}
+        %BR
+        %INPUT{:type => "submit", :value => "Send"}
+        %INPUT{:type => "reset"}
