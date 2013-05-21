@@ -27,5 +27,6 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
+gem 'bcrypt-ruby'
 gem 'jquery-rails', '2.0.2'
 gem 'haml'
