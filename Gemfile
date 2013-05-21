@@ -10,6 +10,14 @@ group :production do
   gem 'pg'
 end
 
+group :development, :test do
+  gem "rspec-rails", ">= 2.0.1"
+  gem "cucumber-rails"
+  gem 'database_cleaner'
+  gem 'cucumber-rails-training-wheels'
+  gem 'capybara'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
