@@ -8,7 +8,8 @@ Kantoliina::Application.routes.draw do
 
   get 'login' => 'admins#loginform'
   post 'login' => 'admins#login'
-  #get 'userpage'=> 'users'
+  resources :members
+  #get 'userpage'=> 'members'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
@@ -17,7 +18,7 @@ Kantoliina::Application.routes.draw do
   #   resources :products
   # Sample resource route with options:
   #   resources :products do
-  #     member do
+  #     members do
   #       get 'short'
   #       post 'toggle'
   #     end
