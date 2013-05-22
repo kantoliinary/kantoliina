@@ -2,8 +2,11 @@
 =link_to "Kirjaudu ulos", logout_path
 
 %br
-
+  %br
+  = flash[:notice]
+  %br
   %h3 Lisää jäsen
+
 
   = form_tag members_path do
     = label_tag 'firstnames', 'Etunimet:'

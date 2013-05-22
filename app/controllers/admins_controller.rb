@@ -3,11 +3,10 @@ class AdminsController < ApplicationController
     @error = Hash.new
   end
   def login
-    member = Admin.find_by_login(params[:login]).try(:authenticate, params[:password])
+    admin = Admin.find_by_login(params[:login]).try(:authenticate, params[:password])
     @error = Hash.new
-    if  member
-      session[:id] = member.id
-      flash[:notice] = "Kirjauduttu"
+    if  admin
+      session[:id] = admin.id
       redirect_to new_member_path and return
     end
     @error[:error] = "Virheellinen kayttajatunnus tai salasana"
