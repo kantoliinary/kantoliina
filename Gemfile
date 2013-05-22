@@ -11,13 +11,22 @@ group :production do
 end
 
 group :development, :test do
-  gem "rspec-rails", ">= 2.0.1"
+  gem "rspec-rails"
   gem "cucumber-rails", :require => false
   gem 'database_cleaner'
   gem 'cucumber-rails-training-wheels'
   gem 'capybara'
   gem 'rake'
   gem 'simplecov'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 # Gems used only for assets and not required
