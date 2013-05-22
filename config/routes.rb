@@ -10,6 +10,7 @@ Kantoliina::Application.routes.draw do
   post 'login' => 'admins#login'
   get 'logout' => 'admins#logout'
   resources :members
+
   #get 'userpage'=> 'members'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

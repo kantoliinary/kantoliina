@@ -1,1 +1,69 @@
-%h1 lisää jäsen
+%h1 Ylläpitäjän sivu
+=link_to "Kirjaudu ulos", logout_path
+
+%br
+
+  %h3 Lisää jäsen
+
+  = form_tag members_path do
+    = label_tag 'firstnames', 'Etunimet:'
+    = text_field_tag "firstnames"
+
+    %br
+
+    = label_tag 'surname', 'Sukunimi:'
+    = text_field_tag "surname"
+
+    %br
+
+    = label_tag 'municipality', 'Kunta:'
+    = text_field_tag "municipality"
+
+    %br
+
+    = label_tag 'address', 'Katuosoite:'
+    = text_field_tag "address"
+
+    %br
+
+    = label_tag 'zipcode', 'Postinumero:'
+    = text_field_tag "zipcode"
+
+    %br
+
+    = label_tag 'email', 'Sähköpostiosoite:'
+    = text_field_tag "email"
+
+    %br
+
+    = label_tag 'membergroup', 'Jäsenryhmä:'
+
+    %select{:name => 'membergroup'}
+      %option{:value=> 'actualm§ember'} Varsinainen jäsen
+      %option{:value=>'familymember'} Perhejäsen
+      %option{:value=>'permanentmember'} Ainaisjäsen
+      %option{:value=>'supportmember'} Kannatusjäsen
+      %option{:value=>'communitymember'} Yhteisöjäsen
+
+    -#= select_tag ("membergroup",
+    -#"<option value='actualmember'>Varsinainen jäsen</option>
+    -#<option value='familymember'>Perhejäsen</option>
+    -#<option value='permanentmember'>Ainaisjäsen</option>
+    -#<option value='supportmember'>Kannatusjäsen</option>
+    -#<option value='communitymember'>Yhteisöjäsen</option>".html_safe
+
+    %br
+
+    = label_tag 'membernumber', 'Jäsennumero:'
+    = text_field_tag "membernumber"
+
+    %br
+    = label_tag 'payday', 'Viimeisin laskun maksupäivä:'
+    = text_field_tag "day", "PP"
+    = text_field_tag "month", "KK"
+    = text_field_tag "year", "VVVV"
+
+    %br
+    %br
+
+    = submit_tag "Lisää"
