@@ -12,7 +12,7 @@ end
 
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
-  gem "cucumber-rails"
+  gem "cucumber-rails", :require => false
   gem 'database_cleaner'
   gem 'cucumber-rails-training-wheels'
   gem 'capybara'
