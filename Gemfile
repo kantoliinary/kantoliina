@@ -16,6 +16,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cucumber-rails-training-wheels'
   gem 'capybara'
+  gem 'rake'
 end
 
 # Gems used only for assets and not required
