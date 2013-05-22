@@ -13,4 +13,9 @@ class AdminsController < ApplicationController
     @error[:error] = "Virheellinen kayttajatunnus tai salasana"
     render "loginform"
   end
+  def logout
+    reset_session
+    flash[:notice] = "Kirjauduttu ulos"
+    redirect_to login_path
+  end
 end
