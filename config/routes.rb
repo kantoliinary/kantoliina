@@ -8,6 +8,7 @@ Kantoliina::Application.routes.draw do
 
   get 'login' => 'admins#loginform'
   post 'login' => 'admins#login'
+  get 'logout' => 'admins#logout'
   resources :members
   #get 'userpage'=> 'members'
   # Sample of named route:
