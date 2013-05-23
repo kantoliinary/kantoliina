@@ -4,7 +4,7 @@ Kantoliina::Application.routes.draw do
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
+  # Keep in mind you can assign values other than :controllers and :action
 
   get 'login' => 'admins#loginform'
   post 'login' => 'admins#login'
@@ -16,7 +16,7 @@ Kantoliina::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  # Sample resource route (maps HTTP verbs to controllers actions automatically):
   #   resources :products
   # Sample resource route with options:
   #   resources :products do
@@ -56,7 +56,7 @@ Kantoliina::Application.routes.draw do
   # root :to => 'welcome#index'
   # See how all your routes lay out with "rake routes"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+  # This is a legacy wild controllers route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controllers accessible via GET requests.
+  # match ':controllers(/:action(/:id))(.:format)'
 end

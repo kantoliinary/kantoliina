@@ -1,11 +1,12 @@
 class MembersController < ApplicationController
   def new
-
+     @member = Member.new
   end
 
   def create
+
     flash[:notice] = "Jasen lisatty!"
-    Member.create!(params[:member])
+    @member = Member.create!(params[:member])
 
 
     redirect_to new_member_path

@@ -83,5 +83,9 @@ describe Member do
     FactoryGirl.build(:member, payday: "40/6/2008").should_not be_valid
   end
 
+  it "is invalid with a wrong form payday" do
+    FactoryGirl.build(:member, payday: "40/6/2008").should_not be_valid
+  end
+
 
 end

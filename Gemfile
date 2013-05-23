@@ -41,4 +41,5 @@ end
 gem 'bcrypt-ruby'
 gem 'jquery-rails', '2.0.2'
 gem 'haml'
-gem "dynamic_form"
+gem 'dynamic_form'
+gem 'simple_form'
