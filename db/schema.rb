@@ -22,8 +22,17 @@ ActiveRecord::Schema.define(:version => 20130521105651) do
 
   create_table "members", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "surname"
+    t.string   "municipality"
+    t.string   "address"
+    t.string   "zipcode"
+    t.string   "postoffice"
+    t.string   "email"
+    t.string   "membergroup"
+    t.integer  "membernumber"
+    t.date     "payday"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end
