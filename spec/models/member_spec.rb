@@ -27,11 +27,11 @@ describe Member do
   end
 
 
-  it "is invalid with wrong lenght zipcode" do
+  it "is invalid with wrong length zipcode" do
     FactoryGirl.build(:member, zipcode: "6666").should_not be_valid
   end
 
-  it "is valid with right lenght zipcode" do
+  it "is valid with right length zipcode" do
     FactoryGirl.build(:member, zipcode: "66666").should be_valid
   end
 
@@ -81,6 +81,10 @@ describe Member do
 
   it "is valid with a right form payday" do
     FactoryGirl.build(:member, payday: "27/6/2008").should be_valid
+  end
+
+  it "is invalid with a wrong form payday" do
+    FactoryGirl.build(:member, payday: "40/6/2008").should_not be_valid
   end
 
 
