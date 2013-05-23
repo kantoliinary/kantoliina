@@ -1,12 +1,11 @@
 %h1 Ylläpitäjän sivu
 =link_to "Kirjaudu ulos", logout_path
+%br
 =link_to "Listaa jäsenet", members_path
 
 %br
-  %br
   = flash[:notice]
-  %br
-  %h3 Lisää jäsen
+  %h2 Lisää jäsen
 
 
   = simple_form_for @member do |f|
@@ -30,28 +29,18 @@
     = f.input :zipcode, label: 'Postinumero'
 
     = f.input :postoffice, label: 'Postitoimipaikka'
-
     %br
 
     = f.input :email, label: 'Sähköposti'
 
     %br
 
-    -#%select{:name => 'membergroup'}
-    -#  %option{:value=> 'actualm§ember'} Varsinainen jäsen
-    -#  %option{:value=>'familymember'} Perhejäsen
-    -#  %option{:value=>'permanentmember'} Ainaisjäsen
-    -#  %option{:value=>'supportmember'} Kannatusjäsen
-    -#  %option{:value=>'communitymember'} Yhteisöjäsen
-
-    = f.label :membergroup, 'Jäsenryhmä'
-    = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],['Perhejäsen', 'familymember']]
-
-    -#<option value='actualmember'>Varsinainen jäsen</option>
-    -#<option value='familymember'>Perhejäsen</option>
-    -#<option value='permanentmember'>Ainaisjäsen</option>
-    -#<option value='supportmember'>Kannatusjäsen</option>
-    -#<option value='communitymember'>Yhteisöjäsen</option>".html_safe
+    = f.label :membergroup, 'Jäsenryhmä:'
+    = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],
+    ['Perhejäsen', 'familymember'],
+    ['Ainaisjäsen', 'permanentmember'],
+    ['Kannatusjäsen', 'supportmember'],
+    ['Yhteisöjäsen', 'communitymember']]
 
     %br
 
