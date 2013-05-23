@@ -1,0 +1,9 @@
+%h1 Ylläpitäjän sivu
+=link_to "Kirjaudu ulos", logout_path
+
+= flash[:notice]
+- @members.each do | member|
+ %br
+ = member.name
+ = member.surname
+ %br

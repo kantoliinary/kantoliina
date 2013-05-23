@@ -15,4 +15,8 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
+  def index
+    @members = Member.all
+  end
+
 end
