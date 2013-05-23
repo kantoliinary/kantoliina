@@ -1,6 +1,6 @@
 class Member < ActiveRecord::Base
   attr_accessible :name, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup, :membernumber, :payday
-  validates :name, :presence => true
+  validates :name, :presence => {:message => "etunimi puuttuu"}
   validates :surname, :presence => true
   validates :municipality, :presence => true
   validates :address, :presence => true

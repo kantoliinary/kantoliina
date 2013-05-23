@@ -11,11 +11,13 @@
   = form_tag members_path do
     = label :member, :name, 'Etunimet:'
     = text_field :member, "name"
+    = error_messages_for :name
 
     %br
 
     = label :member, :surname, 'Sukunimi:'
     = text_field :member, "surname"
+    = error_messages_for :surname
 
     %br
 
