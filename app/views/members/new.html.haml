@@ -1,5 +1,6 @@
 %h1 Ylläpitäjän sivu
 =link_to "Kirjaudu ulos", logout_path
+=link_to "Listaa jäsenet", logout_path
 
 %br
   %br
@@ -8,39 +9,38 @@
   %h3 Lisää jäsen
 
 
-  = form_tag members_path do
-    = label :member, :name, 'Etunimet:'
-    = text_field :member, "name"
-    = error_messages_for :name
+  = form_for @member do |f|
+    = f.label :name, 'Etunimet'
+    = f.text_field :name
+
 
     %br
 
-    = label :member, :surname, 'Sukunimi:'
-    = text_field :member, "surname"
-    = error_messages_for :surname
+    = f.label :surname, 'Sukunimi:'
+    = f.text_field :surname
 
     %br
 
-    = label :member, :municipality, 'Kunta:'
-    = text_field :member, "municipality"
+    = f.label :municipality, 'Kunta:'
+    = f.text_field :municipality
 
     %br
 
-    = label :member, :address, 'Katuosoite:'
-    = text_field :member, "address"
+    = f.label :address, 'Katuosoite:'
+    = f.text_field :address
 
     %br
 
-    = label :member, :zipcode, 'Postinumero:'
-    = text_field :member, "zipcode"
+    = f.label :zipcode, 'Postinumero:'
+    = f.text_field :zipcode
 
-    = label :member, :postoffice
-    = text_field :member, "postoffice"
+    = f.label :postoffice
+    = f.text_field :postoffice
 
     %br
 
-    = label :member, :email, 'Sähköpostiosoite:'
-    = text_field :member, "email"
+    = f.label :email, 'Sähköpostiosoite:'
+    = f.text_field :email
 
     %br
 
@@ -51,8 +51,8 @@
     -#  %option{:value=>'supportmember'} Kannatusjäsen
     -#  %option{:value=>'communitymember'} Yhteisöjäsen
 
-    = label :member, :membergroup, 'Jäsenryhmä:'
-    = select :member, :membergroup, [['Varsinainen jäsen', 'actualmember'],['Perhejäsen', 'familymember']]
+    = f.label :membergroup, 'Jäsenryhmä:'
+    = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],['Perhejäsen', 'familymember']]
 
     -#<option value='actualmember'>Varsinainen jäsen</option>
     -#<option value='familymember'>Perhejäsen</option>
@@ -62,14 +62,14 @@
 
     %br
 
-    = label :member, :membernumber, 'Jäsennumero:'
-    = text_field :member, "membernumber"
+    = f.label :membernumber, 'Jäsennumero:'
+    = f.text_field :membernumber
 
     %br
-    = label :member, :payday, 'Viimeisin laskun maksupäivä:'
-    = text_field :member, "payday"
+    = f.label :payday, 'Viimeisin laskun maksupäivä:'
+    = f.text_field  :payday
 
     %br
     %br
 
-    = submit_tag "Lisää"
+    = f.submit "Lisää"
