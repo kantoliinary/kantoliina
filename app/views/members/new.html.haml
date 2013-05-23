@@ -44,7 +44,7 @@
     -#  %option{:value=>'supportmember'} Kannatusjäsen
     -#  %option{:value=>'communitymember'} Yhteisöjäsen
 
-    = f.label :membergroup, 'Jäsenryhmä:'
+    = f.label :membergroup, 'Jäsenryhmä'
     = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],['Perhejäsen', 'familymember']]
 
     -#<option value='actualmember'>Varsinainen jäsen</option>
@@ -58,7 +58,7 @@
     = f.input :membernumber, label: 'Jäsennumero'
 
     %br
-    = f.input :payday, label: 'Viimeisin laskun maksupäivä:'
+    = f.input :payday, label: 'Viimeisin laskun maksupäivä'
 
     %br
     %br
