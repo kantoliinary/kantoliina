@@ -1,14 +1,17 @@
 class MembersController < ApplicationController
   def new
-     @member = Member.new
+     @member = flash[:member] || Member.new
   end
 
   def create
 
-    flash[:notice] = "Jasen lisatty!"
-    @member = Member.create!(params[:member])
+    @member = Member.new(params[:member])
 
-
+    if @member.save
+      flash[:notice] = "Jasen lisatty!"
+    else
+      flash[:member] = @member
+    end
     redirect_to new_member_path
   end
 

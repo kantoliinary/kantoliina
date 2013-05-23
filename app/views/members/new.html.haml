@@ -1,46 +1,37 @@
 %h1 Ylläpitäjän sivu
 =link_to "Kirjaudu ulos", logout_path
-=link_to "Listaa jäsenet", logout_path
+%br
+=link_to "Listaa jäsenet", members_path
 
 %br
-  %br
   = flash[:notice]
-  %br
-  %h3 Lisää jäsen
+  %h2 Lisää jäsen
 
 
-  = form_for @member do |f|
-    = f.label :name, 'Etunimet'
-    = f.text_field :name
-
+  = simple_form_for @member do |f|
+    -#= f.error_messages
+    = f.input :name,  label: 'Etunimet'
 
     %br
 
-    = f.label :surname, 'Sukunimi:'
-    = f.text_field :surname
+    = f.input :surname, label: 'Sukunimi'
 
     %br
 
-    = f.label :municipality, 'Kunta:'
-    = f.text_field :municipality
+    = f.input :municipality, label: 'Kunta'
 
     %br
 
-    = f.label :address, 'Katuosoite:'
-    = f.text_field :address
+    = f.input :address, label: 'Katuosoite'
 
     %br
 
-    = f.label :zipcode, 'Postinumero:'
-    = f.text_field :zipcode
+    = f.input :zipcode, label: 'Postinumero'
 
-    = f.label :postoffice, 'Postitoimipaikka:'
-    = f.text_field :postoffice
-
+    = f.input :postoffice, label: 'Postitoimipaikka'
     %br
 
-    = f.label :email, 'Sähköpostiosoite:'
-    = f.text_field :email
+    = f.input :email, label: 'Sähköposti'
 
     %br
 
@@ -52,7 +43,11 @@
     -#  %option{:value=>'communitymember'} Yhteisöjäsen
 
     = f.label :membergroup, 'Jäsenryhmä:'
-    = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],['Perhejäsen', 'familymember']]
+    = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],
+    ['Perhejäsen', 'familymember'],
+    ['Ainaisjäsen', 'permanentmember'],
+    ['Kannatusjäsen', 'supportmember'],
+    ['Yhteisöjäsen', 'communitymember']]
 
     -#<option value='actualmember'>Varsinainen jäsen</option>
     -#<option value='familymember'>Perhejäsen</option>
@@ -62,12 +57,10 @@
 
     %br
 
-    = f.label :membernumber, 'Jäsennumero:'
-    = f.text_field :membernumber
+    = f.input :membernumber, label: 'Jäsennumero'
 
     %br
-    = f.label :payday, 'Viimeisin laskun maksupäivä:'
-    = f.text_field  :payday
+    = f.input :payday, label: 'Viimeisin laskun maksupäivä:'
 
     %br
     %br
