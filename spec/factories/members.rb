@@ -8,10 +8,10 @@ FactoryGirl.define do
     f.zipcode "00540"
     f.address "Street 7"
     f.postoffice "Helsinki"
-    f.email "john@doe.com"
+    f.email "sadasdsa@com.cocm"
     f.membergroup "varsinaisjasen"
     f.membernumber "333"
-    f.payday "21/12/12"
+    f.payday "12.02.2011"
 
   end
 end
