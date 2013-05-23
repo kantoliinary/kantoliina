@@ -22,6 +22,10 @@ describe Member do
     FactoryGirl.build(:member, zipcode: nil).should_not be_valid
   end
 
+  it "is invalid without a address" do
+    FactoryGirl.build(:member, address: nil).should_not be_valid
+  end
+
   it "is invalid without a postoffice" do
     FactoryGirl.build(:member, postoffice: nil).should_not be_valid
   end

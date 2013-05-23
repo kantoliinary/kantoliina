@@ -6,6 +6,7 @@ FactoryGirl.define do
     f.surname "Doe"
     f.municipality "f"
     f.zipcode "00540"
+    f.address "Street 7"
     f.postoffice "Helsinki"
     f.email "john@doe.com"
     f.membergroup "varsinaisjasen"
