@@ -9,48 +9,50 @@
 
 
   = form_tag members_path do
-    = label_tag 'firstnames', 'Etunimet:'
-    = text_field_tag "firstnames"
+    = label :member, :name, 'Etunimet:'
+    = text_field :member, "name"
 
     %br
 
-    = label_tag 'surname', 'Sukunimi:'
-    = text_field_tag "surname"
+    = label :member, :surname, 'Sukunimi:'
+    = text_field :member, "surname"
 
     %br
 
-    = label_tag 'municipality', 'Kunta:'
-    = text_field_tag "municipality"
+    = label :member, :municipality, 'Kunta:'
+    = text_field :member, "municipality"
 
     %br
 
-    = label_tag 'address', 'Katuosoite:'
-    = text_field_tag "address"
+    = label :member, :address, 'Katuosoite:'
+    = text_field :member, "address"
 
     %br
 
-    = label_tag 'zipcode', 'Postinumero:'
-    = text_field_tag "zipcode" ,"posti nro."
-    = text_field_tag "postoffice" ,"postitoimipaikka"
+    = label :member, :zipcode, 'Postinumero:'
+    = text_field :member, "zipcode"
+
+    = label :member, :postoffice
+    = text_field :member, "postoffice"
 
     %br
 
-    = label_tag 'email', 'Sähköpostiosoite:'
-    = text_field_tag "email"
+    = label :member, :email, 'Sähköpostiosoite:'
+    = text_field :member, "email"
 
     %br
 
-    = label_tag 'membergroup', 'Jäsenryhmä:'
+    -#%select{:name => 'membergroup'}
+    -#  %option{:value=> 'actualm§ember'} Varsinainen jäsen
+    -#  %option{:value=>'familymember'} Perhejäsen
+    -#  %option{:value=>'permanentmember'} Ainaisjäsen
+    -#  %option{:value=>'supportmember'} Kannatusjäsen
+    -#  %option{:value=>'communitymember'} Yhteisöjäsen
 
-    %select{:name => 'membergroup'}
-      %option{:value=> 'actualm§ember'} Varsinainen jäsen
-      %option{:value=>'familymember'} Perhejäsen
-      %option{:value=>'permanentmember'} Ainaisjäsen
-      %option{:value=>'supportmember'} Kannatusjäsen
-      %option{:value=>'communitymember'} Yhteisöjäsen
+    = label :member, :membergroup, 'Jäsenryhmä:'
+    = select :member, :membergroup, [['Varsinainen jäsen', 'actualmember'],['Perhejäsen', 'familymember']]
 
-    -#= select_tag ("membergroup",
-    -#"<option value='actualmember'>Varsinainen jäsen</option>
+    -#<option value='actualmember'>Varsinainen jäsen</option>
     -#<option value='familymember'>Perhejäsen</option>
     -#<option value='permanentmember'>Ainaisjäsen</option>
     -#<option value='supportmember'>Kannatusjäsen</option>
@@ -58,14 +60,12 @@
 
     %br
 
-    = label_tag 'membernumber', 'Jäsennumero:'
-    = text_field_tag "membernumber"
+    = label :member, :membernumber, 'Jäsennumero:'
+    = text_field :member, "membernumber"
 
     %br
-    = label_tag 'payday', 'Viimeisin laskun maksupäivä:'
-    = text_field_tag "day", "PP"
-    = text_field_tag "month", "KK"
-    = text_field_tag "year", "VVVV"
+    = label :member, :payday, 'Viimeisin laskun maksupäivä:'
+    = text_field :member, "payday"
 
     %br
     %br
