@@ -1,6 +1,6 @@
 %h1 Ylläpitäjän sivu
 =link_to "Kirjaudu ulos", logout_path
-=link_to "Listaa jäsenet", logout_path
+=link_to "Listaa jäsenet", members_path
 
 %br
   %br
@@ -9,38 +9,31 @@
   %h3 Lisää jäsen
 
 
-  = form_for @member do |f|
-    = f.label :name, 'Etunimet'
-    = f.text_field :name
-
-
-    %br
-
-    = f.label :surname, 'Sukunimi:'
-    = f.text_field :surname
+  = simple_form_for @member do |f|
+    -#= f.error_messages
+    = f.input :name,  label: 'Etunimet'
 
     %br
 
-    = f.label :municipality, 'Kunta:'
-    = f.text_field :municipality
+    = f.input :surname, label: 'Sukunimi'
 
     %br
 
-    = f.label :address, 'Katuosoite:'
-    = f.text_field :address
+    = f.input :municipality, label: 'Kunta'
 
     %br
 
-    = f.label :zipcode, 'Postinumero:'
-    = f.text_field :zipcode
-
-    = f.label :postoffice
-    = f.text_field :postoffice
+    = f.input :address, label: 'Katuosoite'
 
     %br
 
-    = f.label :email, 'Sähköpostiosoite:'
-    = f.text_field :email
+    = f.input :zipcode, label: 'Postinumero'
+
+    = f.input :postoffice, label: 'Postitoimipaikka'
+
+    %br
+
+    = f.input :email, label: 'Sähköposti'
 
     %br
 
@@ -62,12 +55,10 @@
 
     %br
 
-    = f.label :membernumber, 'Jäsennumero:'
-    = f.text_field :membernumber
+    = f.input :membernumber, label: 'Jäsennumero'
 
     %br
-    = f.label :payday, 'Viimeisin laskun maksupäivä:'
-    = f.text_field  :payday
+    = f.input :payday, label: 'Viimeisin laskun maksupäivä:'
 
     %br
     %br
