@@ -17,5 +17,6 @@
 
 Gemfile.lock
 /spec/coverage/
+/coverage/
 
 *.*̃

@@ -11,10 +11,10 @@ describe Admin do
     FactoryGirl.build(:admin, login: "aaaaaaaaaaaaaaaaaaaa").should be_valid
   end
   it "is valid with 8 symbol password" do
-    FactoryGirl.build(:admin, password: "aaaaaaaa").should_not be_valid
+    FactoryGirl.build(:admin, password: "aaaaaaaa").should be_valid
   end
   it "is valid with 20 symbol password" do
-    FactoryGirl.build(:admin, password: "aaaaaaaaaaaaaaaaaaaa").should_not be_valid
+    FactoryGirl.build(:admin, password: "aaaaaaaaaaaaaaaaaaaa").should be_valid
   end
   it "is invalid without a login" do
     FactoryGirl.build(:admin, login: nil).should_not be_valid
