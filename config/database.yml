@@ -23,6 +23,7 @@ production:
   database: production
   username: root
   host: localhost
+  encoding: utf8
 
 cucumber:
   <<: *test
