@@ -2,8 +2,14 @@
 =link_to "Kirjaudu ulos", logout_path
 
 = flash[:notice]
-- @members.each do | member|
- %br
- = member.name
- = member.surname
- %br
+%table{:border => "1"}
+  %tr
+    %th Nimi
+    %th Sukunimi
+    %th Mail
+  - @members.each do | member|
+    %tr
+      %td= member.name
+      %td= member.surname
+      %td= member.email
+      %br
