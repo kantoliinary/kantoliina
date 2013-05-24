@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20130521105651) do
     t.string   "surname"
     t.string   "municipality"
     t.string   "address"
-    t.integer   "zipcode"
+    t.string   "zipcode"
     t.string   "postoffice"
     t.string   "email"
     t.string   "membergroup"

@@ -43,4 +43,4 @@ gem 'jquery-rails', '2.0.2'
 gem 'haml'
 gem 'dynamic_form'
 gem 'simple_form'
-gem "twitter-bootstrap-rails", "~> 2.2.6"
+gem 'country_select'
