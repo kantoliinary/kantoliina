@@ -12,3 +12,9 @@ https://docs.google.com/spreadsheet/ccc?key=0AqbQbGiOmqPMdHU3QXhWNUlCRnBxcGEzeEh
 
 -työtunnit
 https://docs.google.com/spreadsheet/ccc?key=0AqbQbGiOmqPMdFdrYklDU3JIbldMVnhTX09Yb2RPanc&usp=sharing
+
+-travis
+https://travis-ci.org/kantoliinary/kantoliina/builds
+
+-heroku
+http://kantoliina.herokuapp.com/login
