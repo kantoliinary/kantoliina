@@ -17,6 +17,6 @@ class Member < ActiveRecord::Base
                 :with    => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
                 :message => "Sahkopostiosoitteen muoto on vaara!"}
   validates :membergroup, :presence => true
-  validates :membernumber, :presence => {:message => "Jasennumero puuttuu!"}, :numericality => {:message => "Jasennumerossa tulee olla vain numeroita!"}, :length => {:minimum => 3,  :maximum => 19, :message => "Jasennumeron tulee olla 3-19 merkkia pitka!"}
+  validates :membernumber, :presence => {:message => "Jasennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jasennumerossa tulee olla vain numeroita!"}, :length => {:minimum => 3,  :maximum => 19, :message => "Jasennumeron tulee olla 3-19 merkkia pitka!"}
   validates :payday, :presence => {:message => "Viimeinen maksupaiva puuttuu!"}
 end
