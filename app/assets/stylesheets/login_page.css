@@ -1,23 +1,28 @@
 #login_page h1{
     text-align: center;
 }
+#login_page #error{
+    color: #ff0000
+}
 #login_page #login_form{
     margin: 0 auto;
     border: 2px solid #C0C0C0;
-    width: 200px;
+    width: 250px;
     height: 150px;
     border-radius: 5px;
     padding: 20px;
 }
 #login_page #login_form input {
-    width: 196px;
+    width: 246px;
     border: 2px inset;
     border-radius: 5px;
     margin-bottom: 5px;
 }
 
-#login_page #login_form #submit {
+#login_page #login_form #submit{
+    text-align: center;
+}
+#login_page #login_form #submit input {
     width: 100px;
-    margin: 0 auto;
     border-style: outset;
 }
