@@ -2,10 +2,18 @@ Feature: add new member
 
   I want add new member and get and get information of that was successfull created or get error messages
 
+  Background: admins in database
+    Given the following admins exist:
+      | login | password  |
+      | admin | qwerty123 |
+
+    When I am on the login page
+    And I fill in "login" with "admin"
+    And I fill in "password" with "qwerty123"
+    And I press "Login"
 
   Scenario: add new member
-    When I am on the new member page
-    And I fill in the following:
+    When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |
       | Kunta            | gfdal    |
@@ -20,8 +28,7 @@ Feature: add new member
     Then I should see "Jasen lisatty!"
 
   Scenario: add new member with invalid params
-    When I am on the new member page
-    And I press "Lisää"
+    When I press "Lisää"
     Then I should see "Etunimi puuttuu!"
     Then I should see "Sukunimi puuttuu!"
     Then I should see "Kunta puuttuu!"
@@ -32,8 +39,7 @@ Feature: add new member
     Then I should see "Jasennumero puuttuu!"
 
   Scenario: add new member with wrong length zipcode
-    When I am on the new member page
-    And I fill in the following:
+    When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |
       | Kunta            | gfdal    |
@@ -46,8 +52,7 @@ Feature: add new member
     Then I should see "Postinumeron tulee olla viiden merkin pituinen!"
 
   Scenario: add new member with chars in zipcode
-    When I am on the new member page
-    And I fill in the following:
+    When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |
       | Kunta            | gfdal    |
@@ -60,8 +65,7 @@ Feature: add new member
     Then I should see "Postinumeron tulee sisaltaa vain numeroita!"
 
   Scenario: add new member with wrong format email
-    When I am on the new member page
-    And I fill in the following:
+    When I fill in the following:
       | Etunimet         | jasen  |
       | Sukunimi         | aaa    |
       | Kunta            | gfdal  |
@@ -74,8 +78,7 @@ Feature: add new member
     Then I should see "Sahkopostiosoitteen muoto on vaara!"
 
   Scenario: add new member with wrong length membernumber
-    When I am on the new member page
-    And I fill in the following:
+    When I fill in the following:
       | Etunimet         | jasen  |
       | Sukunimi         | aaa    |
       | Kunta            | gfdal  |
