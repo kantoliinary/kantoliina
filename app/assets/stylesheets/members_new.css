@@ -1,0 +1,13 @@
+#new_member_page {
+    margin: 40px;
+    font-family: Arial
+
+}
+#new_member_page input {
+    width: 220px;
+}
+#new_member_page #header {
+}
+#new_member_page #submit {
+    width: 50px
+}

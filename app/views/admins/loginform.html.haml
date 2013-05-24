@@ -1,11 +1,15 @@
-= flash[:notice]
-%h1 Kirjaudu sisään
-= @error[:error]
-= form_tag login_path do
-  = label_tag 'login', 'Käyttäjätunnus'
-  = text_field_tag "login"
-  %br
-  =label_tag 'password', "Salasana"
-  = password_field_tag "password"
-  %br
-  = submit_tag "Login"
+%div{id: "login_page"}
+  = flash[:error]
+  %h1 Kirjaudu sisään
+  = @error[:error]
+  %div{id: "login_form"}
+    = form_tag login_path do
+      %div{id: "label"}
+        = label_tag 'login', 'Käyttäjätunnus'
+      %div{id: "input"}
+        = text_field_tag "login"
+      %div{id: "label"}
+      =label_tag 'password', "Salasana"
+      %div{id: "input"}
+        = password_field_tag "password"
+      = submit_tag "Login", id: "submit"

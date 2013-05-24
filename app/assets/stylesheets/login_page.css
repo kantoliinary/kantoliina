@@ -1,0 +1,23 @@
+#login_page h1{
+    text-align: center;
+}
+#login_page #login_form{
+    margin: 0 auto;
+    border: 2px solid #C0C0C0;
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    padding: 20px;
+}
+#login_page #login_form input {
+    width: 196px;
+    border: 2px inset;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#login_page #login_form #submit {
+    width: 100px;
+    margin: 0 auto;
+    border-style: outset;
+}
