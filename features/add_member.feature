@@ -22,7 +22,7 @@ Feature: add new member
       | Postitoimipaikka | gda      |
       | Sähköposti       | gf@a.com |
       | Jäsennumero      | 123      |
-    And I select "Varsinainen jäsen" from "Jäsenryhmä"
+    And I select "Varsinainen jäsen" from "member_membergroup"
     And I select "2013/11/12" as the member "payday" date
     And I press "Lisää"
     Then I should see "Jasen lisatty!"

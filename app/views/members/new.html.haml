@@ -22,7 +22,7 @@
     = f.input :postoffice, placeholder: 'Postitoimipaikka'
     = f.input :email, placeholder: 'Sähköposti'
     = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
-    = f.label 'Jäsenryhmä:'
+    = f.label 'Jäsenryhmä'
     = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],
     ['Perhejäsen', 'familymember'],
     ['Ainaisjäsen', 'permanentmember'],
@@ -30,7 +30,7 @@
     ['Yhteisöjäsen', 'communitymember']]
     %br
     %br
-    = f.label 'Viimeinen maksupäivä:'
+    = f.label 'Viimeinen maksupäivä'
     %br
     = f.input :payday
     %br

@@ -25,7 +25,6 @@ class MembersController < ApplicationController
 
   def require_login
     unless logged_in?
-      flash[:error] = "Sinun on kirjauduttava sisaan ennen kuin voit hallitta jarjestelmaa"
       redirect_to login_path
     end
   end

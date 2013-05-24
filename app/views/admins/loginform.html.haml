@@ -1,8 +1,9 @@
 %div{id: "login_page"}
-  = flash[:error]
   %h1 Kirjaudu sisään
-  = @error[:error]
+
   %div{id: "login_form"}
+    %div{id: "error"}
+      = @error[:error]
     = form_tag login_path do
       %div{id: "label"}
         = label_tag 'login', 'Käyttäjätunnus'
@@ -12,4 +13,5 @@
       =label_tag 'password', "Salasana"
       %div{id: "input"}
         = password_field_tag "password"
-      = submit_tag "Login", id: "submit"
+      %div{id: "submit"}
+        = submit_tag "Login"
