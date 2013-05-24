@@ -1,0 +1,14 @@
+#new_member {
+    padding: 30px;
+    font-family: Arial
+
+}
+#new_member input {
+    width: 220px;
+}
+#new_member #header {
+    margin-left: 30px;
+}
+#new_member #submit {
+    width: 50px
+}
