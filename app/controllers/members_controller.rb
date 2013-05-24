@@ -1,4 +1,6 @@
 class MembersController < ApplicationController
+  before_filter :require_login
+
   def new
      @member = flash[:member] || Member.new
   end
@@ -19,4 +21,16 @@ class MembersController < ApplicationController
     @members = Member.all
   end
 
+  private
+
+  def require_login
+    unless logged_in?
+      flash[:error] = "Sinun on kirjauduttava sisaan ennen kuin voit hallitta jarjestelmaa"
+      redirect_to login_path
+    end
+  end
+
+  def logged_in?
+    !!session[:admin]
+  end
 end
