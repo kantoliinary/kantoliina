@@ -10,7 +10,7 @@ class Member < ActiveRecord::Base
             #    :message => "Sukunimen muoto ei kelpaa!"}
   validates :municipality, :presence => {:message => "Kunta puuttuu!"}
   validates :address, :presence => {:message => "Osoite puuttuu!"}
-  validates :zipcode, :presence => {:message => "Postinumero puuttuu!"}, :length => {:minimum => 5,  :maximum => 5, :message => "Postinumeron tulee olla viiden merkin pituinen!"}, :numericality => {:only_integer => true, :message => "Postinumeron tulee sisaltaa vain numeroita!"}
+  validates :zipcode, :presence => {:message => "Postinumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Postinumeron tulee sisaltaa vain numeroita!"}, :length => {:minimum => 5,  :maximum => 5, :message => "Postinumeron tulee olla viiden merkin pituinen!"}
   validates :postoffice, :presence => {:message => "Postitoimipaikka puuttuu!"}
   validates :email, :presence => {:message => "Sahkopostiosoite puuttuu!"},
             :format => {
