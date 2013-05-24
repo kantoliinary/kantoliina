@@ -1,4 +1,4 @@
-%div{:id => "new_member"}
+%div{:id => "new_member_page"}
   %div{:id => "header"}
     %h1 Ylläpitäjän sivu
     =link_to "Kirjaudu ulos", logout_path
@@ -12,22 +12,16 @@
 
   %div
 
-  = simple_form_for @member do |f|
+  = simple_form_for @member, defaults:{label:false} do |f|
 
-    = f.input_field :name, placeholder: 'Etunimet'
-    %br
-    = f.input_field :surname, placeholder: 'Sukunimi'
-    %br
-    = f.input_field :municipality, placeholder: 'Kunta'
-    %br
-    = f.input_field :address, placeholder: 'Katuosoite'
-    %br
-    = f.input_field :zipcode, placeholder: 'Postinumero'
-    %br
-    = f.input_field :postoffice, placeholder: 'Postitoimipaikka'
-    %br
-    = f.input_field :email, placeholder: 'Sähköposti'
-    %br
+    = f.input :name, placeholder: 'Etunimet'
+    = f.input :surname, placeholder: 'Sukunimi'
+    = f.input :municipality, placeholder: 'Kunta'
+    = f.input :address, placeholder: 'Katuosoite'
+    = f.input :zipcode, placeholder: 'Postinumero'
+    = f.input :postoffice, placeholder: 'Postitoimipaikka'
+    = f.input :email, placeholder: 'Sähköposti'
+    = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
     = f.label 'Jäsenryhmä:'
     = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],
     ['Perhejäsen', 'familymember'],
@@ -35,9 +29,10 @@
     ['Kannatusjäsen', 'supportmember'],
     ['Yhteisöjäsen', 'communitymember']]
     %br
-    = f.input_field :membernumber, placeholder: 'Jäsennumero'
     %br
-    = f.input_field :payday, placeholder: 'Viimeisin laskun maksupäivä'
+    = f.label 'Viimeinen maksupäivä:'
+    %br
+    = f.input :payday
     %br
     %br
     = f.submit "Lisää", id:"submit"
