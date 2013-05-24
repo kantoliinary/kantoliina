@@ -14,5 +14,9 @@ FactoryGirl.define do
     f.payday "12.02.2011"
 
   end
+  factory :invalid_member, parent: :member do |f|
+    f.name nil
+  end
+
 end
 
