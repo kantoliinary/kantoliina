@@ -35,25 +35,12 @@
 
     %br
 
-    -#%select{:name => 'membergroup'}
-    -#  %option{:value=> 'actualm§ember'} Varsinainen jäsen
-    -#  %option{:value=>'familymember'} Perhejäsen
-    -#  %option{:value=>'permanentmember'} Ainaisjäsen
-    -#  %option{:value=>'supportmember'} Kannatusjäsen
-    -#  %option{:value=>'communitymember'} Yhteisöjäsen
-
     = f.label :membergroup, 'Jäsenryhmä:'
     = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],
     ['Perhejäsen', 'familymember'],
     ['Ainaisjäsen', 'permanentmember'],
     ['Kannatusjäsen', 'supportmember'],
     ['Yhteisöjäsen', 'communitymember']]
-
-    -#<option value='actualmember'>Varsinainen jäsen</option>
-    -#<option value='familymember'>Perhejäsen</option>
-    -#<option value='permanentmember'>Ainaisjäsen</option>
-    -#<option value='supportmember'>Kannatusjäsen</option>
-    -#<option value='communitymember'>Yhteisöjäsen</option>".html_safe
 
     %br
 
