@@ -1,15 +1,22 @@
-%h1 Ylläpitäjän sivu
-=link_to "Kirjaudu ulos", logout_path
+%div{:id => "index_member_page"}
+  %h1 Ylläpitäjän sivu
 
-= flash[:notice]
-%table{:border => "1"}
-  %tr
-    %th Nimi
-    %th Sukunimi
-    %th Mail
-  - @members.each do | member|
+  =link_to "Kirjaudu ulos", logout_path
+  %br
+  =link_to "Jäsenien lisäykseen", new_member_path
+
+  %br
+  = flash[:notice]
+  %table{:id => "table"}
     %tr
-      %td= member.name
-      %td= member.surname
-      %td= member.email
-      %br
+      %th Jäsennumero
+      %th Nimi
+      %th Sukunimi
+      %th Sähköposti
+    - @members.each do | member|
+      %tr
+        %td= member.membernumber
+        %td= member.name
+        %td= member.surname
+        %td= member.email
+        %br
