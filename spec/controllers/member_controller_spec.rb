@@ -31,6 +31,23 @@ describe MembersController do
   end
 
 
+  describe "GET #index" do
+
+
+    before(:each) do
+      admin = FactoryGirl.build(:admin)
+      session[:admin] = admin
+    end
+
+    context "get :index" do
+      it "shows members" do
+      get :index
+      end
+
+
+    end
+  end
+
   describe "POST #create" do
 
 
