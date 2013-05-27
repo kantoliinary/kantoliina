@@ -91,7 +91,6 @@ describe MembersController do
 
     before(:each) do
       admin = FactoryGirl.build(:admin)
-
       session[:admin] = admin
     end
 
@@ -106,22 +105,19 @@ describe MembersController do
   end
 end
 
-  describe "POST #destroy" do
+describe "POST #destroy" do
 
 
-    before(:each) do
-      admin = FactoryGirl.build(:admin)
-      session[:admin] = admin
-    end
+  before(:each) do
+    admin = FactoryGirl.build(:admin)
+    session[:admin] = admin
+  end
 
-    context "with valid attributes" do
-      it "status becomes false" do
-        member = FactoryGirl.create(:member)
-        delete :destroy, FactoryGirl.attributes_for(:member)
-        response.should redirect_to members_path
-
-      end
+  context "with valid attributes" do
+    it "status becomes false" do
 
     end
+
   end
 end
+

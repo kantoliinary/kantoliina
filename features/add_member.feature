@@ -39,7 +39,7 @@ Feature: add new member
       | Sähköposti | gf.com |
       | Jäsennumero | 123 |
     And I press "Lisää"
-    Then I should see "Sahkopostiosoitteen muoto on vaara!"
+    Then I should see "Sähköpostiosoitteen muoto on väärä!"
 
   Scenario: add new member with wrong length membernumber
     When I fill in the following:
