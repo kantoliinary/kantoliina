@@ -11,6 +11,11 @@ Kantoliina::Application.routes.draw do
   get 'logout' => 'admins#logout'
   resources :members
 
+
+
+  match "/" => redirect("/members"), :conditions => lambda{ |req| !req.session["admin"].blank? }
+  match "/" => redirect("/login")
+
   #get 'userpage'=> 'members'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
@@ -53,7 +58,8 @@ Kantoliina::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+
+ # root :to => 'admins#loginform'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controllers route that's not recommended for RESTful applications.

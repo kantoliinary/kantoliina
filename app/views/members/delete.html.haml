@@ -1,0 +1,11 @@
+%h1 Poista jäsen
+
+=link_to "Kirjaudu ulos", logout_path
+%br
+=link_to "Listaa jäsenet", members_path
+
+%br
+= flash[:notice]
+%h2 Poista jäsen syöttämällä jäsennumero
+%br
+= f.input :membernumber, label: 'Jäsennumero'

@@ -30,10 +30,16 @@ ActiveRecord::Schema.define(:version => 20130521105651) do
     t.string   "email"
     t.string   "membergroup"
     t.integer  "membernumber"
+<<<<<<< HEAD
     t.boolean  "membership",   :default => true
     t.date     "payday"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+=======
+    t.boolean  "poistettu"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+>>>>>>> 4544ab83b697d8d410b1ed8417988cd01fa4b12a
   end
 
 end

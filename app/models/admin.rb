@@ -1,3 +1,6 @@
+##
+# Login must be 3-20 symbol and password must be 8-20 symbol.
+
 class Admin < ActiveRecord::Base
   attr_accessible :login, :password, :password_digest
   has_secure_password

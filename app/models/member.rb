@@ -1,16 +1,15 @@
+##
+# None of fields cannot be blank.
+# Email must be in email format.
+# Membernumber can have only integers and its length must be 3-19.
+
 class Member < ActiveRecord::Base
   attr_accessible :name, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup, :membernumber, :membership, :payday
   validates :name, :presence => {:message => "Etunimi puuttuu!"}
-            #:format => {
-            #    :with    => /\A[a-zA-Z]+\z/,
-            #    :message => "Etunimen muoto ei kelpaa!"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu!"}
-            #:format => {
-            #    :with    => /\A[a-zA-Z]+\z/,
-            #    :message => "Sukunimen muoto ei kelpaa!"}
   validates :municipality, :presence => {:message => "Kunta puuttuu!"}
   validates :address, :presence => {:message => "Osoite puuttuu!"}
-  validates :zipcode, :presence => {:message => "Postinumero puuttuu!"}, :length => {:minimum => 5,  :maximum => 5, :message => "Postinumeron tulee olla viiden merkin pituinen!"}, :numericality => {:only_integer => true, :message => "Postinumeron tulee sisaltaa vain numeroita!"}
+  validates :zipcode, :presence => {:message => "Postinumero puuttuu!"}
   validates :postoffice, :presence => {:message => "Postitoimipaikka puuttuu!"}
   validates :email, :presence => {:message => "Sahkopostiosoite puuttuu!"},
             :format => {
