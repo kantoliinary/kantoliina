@@ -30,5 +30,7 @@
         %td= member.surname
         %td= member.email
         %td= member.membership
-
-        %br
+        = simple_form_for member, defaults:{label:false} do |f |
+          = f.input :id, :as => :hidden
+          %td= f.submit "Poista"
+          %br
