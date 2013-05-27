@@ -104,20 +104,21 @@ describe MembersController do
     end
   end
 
-describe "POST #destroy" do
+  describe "POST #destroy" do
 
 
-  before(:each) do
-    admin = FactoryGirl.build(:admin)
-    session[:admin] = admin
-  end
+    before(:each) do
+      admin = FactoryGirl.build(:admin)
+      session[:admin] = admin
+    end
 
-  context "with valid attributes" do
-    it "status becomes false" do
+    context "with valid attributes" do
+      it "status becomes false" do
+
+      end
 
     end
 
   end
-
-end
+ end
 
