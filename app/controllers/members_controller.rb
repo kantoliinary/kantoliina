@@ -1,3 +1,4 @@
+#encoding: utf-8
 ##
 # Controller for member class
 
@@ -31,23 +32,41 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
-    if @member.as_null_object
+    if @member == false
       flash[:notice] = "Jasenta ei loydetty!"
     else
-      @member.membershipstatus = false
+      @member.membership = false
       if @member.save
         flash[:notice] = "Jasen poistettu"
+        redirect_to members_path
       else
         flash[:notice] = "Jasenen poisto ei onnistunut"
+        redirect_to members_path
       end
     end
   end
 
-##
-# Lists all members to @members and shows list page.
+  ##
+  # Lists all members to @members and shows list page.
 
   def index
     @members = Member.all
+    @all_sort_fields = Member.all_sort_fields
+    @selected_sort_fields = params[:sort_fields] || {}
+    @keyword = params[:keyword] || ""
+
+  end
+
+  def edit
+    @member = Member.find(params[:id])
+
+  end
+
+  def update
+    @member = Member.find(params[:id])
+    @member.update_attributes!(params[:member])
+    flash[:notice] = "Tiedot muutettu"
+    redirect_to members_path
   end
 
   private

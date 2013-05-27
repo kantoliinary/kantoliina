@@ -1,0 +1,40 @@
+%div{:id => "new_member_page"}
+  %div{:id => "header"}
+    %h1 Ylläpitäjän sivu
+    =link_to "Kirjaudu ulos", logout_path
+    %br
+    =link_to "Listaa jäsenet", members_path
+
+    %br
+    = flash[:notice]
+    %h2 Jäsenen tietojen muokkaus
+
+
+  %div
+  %table
+    %tr
+      %td
+      %td
+        = simple_form_for @member, defaults:{label:false} do |f|
+
+          = f.input :name, placeholder: 'Etunimet'
+          = f.input :surname, placeholder: 'Sukunimi'
+          = f.input :municipality, placeholder: 'Kunta'
+          = f.input :address, placeholder: 'Katuosoite'
+          = f.input :zipcode, placeholder: 'Postinumero'
+          = f.input :postoffice, placeholder: 'Postitoimipaikka'
+          = f.input :email, placeholder: 'Sähköposti'
+          = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
+          = f.label 'Jäsenryhmä'
+          = f.select :membergroup, [['Varsinainen jäsen', 'actualmember'],
+          ['Perhejäsen', 'familymember'],
+          ['Ainaisjäsen', 'permanentmember'],
+          ['Kannatusjäsen', 'supportmember'],
+          ['Yhteisöjäsen', 'communitymember']]
+          %br
+          %br
+          = f.label 'Viimeinen maksupäivä'
+          %br
+          = f.input :payday
+
+          = f.submit "Tallenna", id:"updated"
