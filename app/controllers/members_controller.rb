@@ -29,6 +29,11 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
+  ##
+  # Deletes the member with params[:member] and try save it.
+  # If save succeed, deletes flash[:notice] message otherwise not delete member flash[:member].
+  # Redirect to members page.
+
   def destroy
     @member = Member.find(params[:id])
     if @member == false
@@ -50,11 +55,22 @@ class MembersController < ApplicationController
 
   def index
     @members = Member.all
+    @all_sort_fields = Member.all_sort_fields
+    @selected_sort_fields = params[:sort_fields] || {}
+    @keyword = params[:keyword] || ""
+
   end
 
   def edit
     @member = Member.find(params[:id])
 
+  end
+
+  def update
+    @member = Member.find(params[:id])
+    @member.update_attributes!(params[:member])
+    flash[:notice] = "Tiedot muutettu"
+    redirect_to members_path
   end
 
   private
@@ -77,3 +93,5 @@ class MembersController < ApplicationController
   end
 
 end
+
+
