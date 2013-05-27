@@ -21,7 +21,7 @@ describe AdminsController do
         admin = FactoryGirl.create(:admin)
         Admin.stub(:find_by_login).and_return(admin)
         post :login, FactoryGirl.attributes_for(:admin)
-        response.should redirect_to new_member_path
+        response.should redirect_to members_path
       end
 
     end

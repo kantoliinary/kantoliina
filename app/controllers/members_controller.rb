@@ -30,6 +30,11 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
+  ##
+  # Deletes the member with params[:member] and try save it.
+  # If save succeed, deletes flash[:notice] message otherwise not delete member flash[:member].
+  # Redirect to members page.
+
   def destroy
     @member = Member.find(params[:id])
     if @member == false
@@ -92,3 +97,5 @@ class MembersController < ApplicationController
   end
 
 end
+
+
