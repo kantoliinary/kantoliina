@@ -23,4 +23,4 @@
         %td= member.surname
         %td= member.email
         %td= member.membership
-        = button_to 'Poista', members_path(member), :method => :delete
+        %td= button_to 'Poista', member_path(member), :method => :delete
