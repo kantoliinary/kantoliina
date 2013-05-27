@@ -18,4 +18,8 @@ class Member < ActiveRecord::Base
   validates :membergroup, :presence => true
   validates :membernumber, :presence => {:message => "Jasennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jasennumerossa tulee olla vain numeroita!"}, :length => {:minimum => 3,  :maximum => 19, :message => "Jasennumeron tulee olla 3-19 merkkia pitka!"}
   validates :payday, :presence => {:message => "Viimeinen maksupaiva puuttuu!"}
+
+  def self.all_sort_fields
+    %w(Asuinkunta Maksustatus Jasenstatus)
+  end
 end

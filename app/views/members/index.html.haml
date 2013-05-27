@@ -6,6 +6,15 @@
   =link_to "Jäsenien lisäykseen", new_member_path
 
   %br
+  %hr
+  = form_tag members_path, :method => :get, :id => 'filter_form' do
+    = text_field_tag "keyword"
+    %br
+    - @all_sort_fields.each do |sort_field|
+      = sort_field
+      = check_box_tag "sort_field[#{sort_field}]", 1, @selected_sort_fields.include?(sort_field), :id => "sort_fields_#{sort_field}"
+    = submit_tag "Hae", :id => "search"
+  %hr
   = flash[:notice]
   %table{:id => "table"}
     %tr

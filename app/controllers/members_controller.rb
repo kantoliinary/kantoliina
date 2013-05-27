@@ -48,6 +48,8 @@ class MembersController < ApplicationController
 
   def index
     @members = Member.all
+    @all_sort_fields = Member.all_sort_fields
+    @selected_sort_fields = Hash.new
   end
 
   private
