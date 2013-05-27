@@ -57,6 +57,12 @@ class MembersController < ApplicationController
 
   end
 
+  def update
+    @member = Member.find(params[:id])
+    @member.update_attributes!(params[:member])
+    redirect_to members_path
+  end
+
   private
 
 ##

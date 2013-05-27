@@ -14,7 +14,7 @@
       %th Nimi
       %th Sukunimi
       %th Sähköposti
-      %th active
+      %th Jäsenyyden status
     - @members.each do | member|
       %tr
         %td
@@ -23,4 +23,4 @@
         %td= member.surname
         %td= member.email
         %td= member.membership
-        %td= button_to 'Poista', member_path(member), :method => :delete
+        = button_to 'Poista', members_path(member), :method => :delete
