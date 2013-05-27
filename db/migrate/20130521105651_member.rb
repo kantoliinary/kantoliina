@@ -10,6 +10,7 @@ class Member < ActiveRecord::Migration
       t.string   :email
       t.string   :membergroup
       t.integer  :membernumber
+      t.boolean  :membership, :default => true
       t.date     :payday
       t.timestamps
     end
