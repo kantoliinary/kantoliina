@@ -1,3 +1,4 @@
+#encoding: utf-8
 ##
 # Controller for member class
 
@@ -51,7 +52,9 @@ class MembersController < ApplicationController
   def index
     @members = Member.all
     @all_sort_fields = Member.all_sort_fields
-    @selected_sort_fields = Hash.new
+    @selected_sort_fields = params[:sort_fields] || {}
+    @keyword = params[:keyword] || ""
+
   end
 
   def edit

@@ -1,3 +1,4 @@
+#encoding: utf-8
 ##
 # None of fields cannot be blank.
 # Email must be in email format.
@@ -20,6 +21,6 @@ class Member < ActiveRecord::Base
   validates :payday, :presence => {:message => "Viimeinen maksupaiva puuttuu!"}
 
   def self.all_sort_fields
-    %w(Asuinkunta Maksustatus Jasenstatus)
+    %w(Asuinkunta Maksustatus Jäsenstatus)
   end
 end
