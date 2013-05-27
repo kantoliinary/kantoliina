@@ -41,7 +41,7 @@ describe MembersController do
 
     context "get :index" do
       it "shows members" do
-      get :index
+        get :index
       end
 
 
@@ -60,12 +60,33 @@ describe MembersController do
     context "with valid attributes" do
       it "saves a member" do
         member = FactoryGirl.build(:member)
-        Member.stub(:find_by_login).and_return(member)
+        Member.stub(:find).and_return(member)
         post :create, FactoryGirl.attributes_for(:member)
         flash[:member].should_not be_nil
       end
     end
   end
 
+  describe "POST #destroy" do
 
+
+    before(:each) do
+      admin = FactoryGirl.build(:admin)
+      session[:admin] = admin
+    end
+
+    context "with valid attributes" do
+      it "status becomes false" do
+        member = FactoryGirl.create(:member)
+        delete :destroy, FactoryGirl.attributes_for(:member)
+        response.should redirect_to members_path
+
+      end
+
+    end
+  end
 end
+
+
+
+

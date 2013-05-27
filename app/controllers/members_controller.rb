@@ -1,3 +1,4 @@
+#encoding: utf-8
 ##
 # Controller for member class
 
@@ -50,8 +51,8 @@ class MembersController < ApplicationController
     end
   end
 
-##
-# Lists all members to @members and shows list page.
+  ##
+  # Lists all members to @members and shows list page.
 
   def index
     @members = Member.all

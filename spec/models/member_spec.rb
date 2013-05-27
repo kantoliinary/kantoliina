@@ -22,13 +22,8 @@ describe Member do
     FactoryGirl.build(:member, zipcode: nil).should_not be_valid
   end
 
-  it "is invalid with a letter zipcode" do
-    FactoryGirl.build(:member, zipcode: "puistola").should_not be_valid
-  end
-
-
-  it "is invalid with wrong length zipcode" do
-    FactoryGirl.build(:member, zipcode: "6666").should_not be_valid
+  it "is valid with a letter zipcode" do
+    FactoryGirl.build(:member, zipcode: "puistola").should be_valid
   end
 
   it "is valid with right length zipcode" do
