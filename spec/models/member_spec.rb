@@ -67,19 +67,19 @@ describe Member do
   end
 
   it "is invalid without a payday" do
-    FactoryGirl.build(:member, payday: nil).should_not be_valid
+    FactoryGirl.build(:member, expirationdate: nil).should_not be_valid
   end
 
   it "is invalid with wrong payday" do
-    FactoryGirl.build(:member, payday: "maaliskuu").should_not be_valid
+    FactoryGirl.build(:member, expirationdate: "maaliskuu").should_not be_valid
   end
 
   it "is valid with a right form payday" do
-    FactoryGirl.build(:member, payday: "40/6/2008").should_not be_valid
+    FactoryGirl.build(:member, expirationdate: "40/6/2008").should_not be_valid
   end
 
   it "is invalid with a wrong form payday" do
-    FactoryGirl.build(:member, payday: "40/6/2008").should_not be_valid
+    FactoryGirl.build(:member, expirationdate: "40/6/2008").should_not be_valid
   end
 
 

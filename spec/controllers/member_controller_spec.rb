@@ -77,7 +77,7 @@ describe MembersController do
     end
 
     context "with valid attributes" do
-      it "saves a member" do
+      it "loads the correct member" do
         member = FactoryGirl.build(:member)
         Member.stub(:find_by_login).and_return(member)
         post :create, FactoryGirl.attributes_for(:member)
@@ -103,7 +103,6 @@ describe MembersController do
       end
     end
   end
-end
 
 describe "POST #destroy" do
 
@@ -119,5 +118,6 @@ describe "POST #destroy" do
     end
 
   end
+
 end
 
