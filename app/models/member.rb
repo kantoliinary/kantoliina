@@ -1,5 +1,5 @@
 class Member < ActiveRecord::Base
-  attr_accessible :name, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup, :membernumber, :payday
+  attr_accessible :name, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup, :membernumber, :membership, :payday
   validates :name, :presence => {:message => "Etunimi puuttuu!"}
             #:format => {
             #    :with    => /\A[a-zA-Z]+\z/,
