@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20130521105651) do
     t.integer  "membernumber"
     t.boolean  "membership",   :default => true
     t.date     "payday"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
 end
