@@ -13,10 +13,13 @@
       %th Nimi
       %th Sukunimi
       %th Sähköposti
+      %th active
     - @members.each do | member|
       %tr
         %td= member.membernumber
         %td= member.name
         %td= member.surname
         %td= member.email
+        %td= member.membership
+
         %br
