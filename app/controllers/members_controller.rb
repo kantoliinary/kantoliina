@@ -29,16 +29,18 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
-  def destroy
+  def update
     @member = Member.find(params[:id])
-    if @member.as_null_object
+    if @member == false
       flash[:notice] = "Jasenta ei loydetty!"
     else
-      @member.membershipstatus = false
+      @member.membership = false
       if @member.save
         flash[:notice] = "Jasen poistettu"
+        redirect_to members_path
       else
         flash[:notice] = "Jasenen poisto ei onnistunut"
+        redirect_to members_path
       end
     end
   end
