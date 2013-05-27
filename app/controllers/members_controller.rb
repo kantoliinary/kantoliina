@@ -44,6 +44,11 @@ class MembersController < ApplicationController
     @members = Member.all
   end
 
+  def edit
+    @member = Member.find(params[:id])
+
+  end
+
   private
 
   ##
@@ -62,4 +67,5 @@ class MembersController < ApplicationController
   def logged_in?
     !!session[:admin]
   end
+
 end

@@ -9,6 +9,7 @@
   = flash[:notice]
   %table{:id => "table"}
     %tr
+      %th
       %th Jäsennumero
       %th Nimi
       %th Sukunimi
@@ -16,7 +17,8 @@
       %th active
     - @members.each do | member|
       %tr
-        %td= member.membernumber
+        %td
+        %td= link_to member.membernumber, edit_member_path(member)
         %td= member.name
         %td= member.surname
         %td= member.email
