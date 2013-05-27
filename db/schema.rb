@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20130521105651) do
     t.string   "email"
     t.string   "membergroup"
     t.integer  "membernumber"
-    t.date     "payday"
+    t.boolean  "poistettu"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

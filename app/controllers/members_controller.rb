@@ -17,6 +17,15 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
+  def update
+    @member = Member.find([:membernumber])
+    if @member.as_null_object
+      flash[:notice] = "Jasenta ei loydetty!"
+    else
+      @member.updated_at
+    end
+  end
+
   def index
     @members = Member.all
   end
