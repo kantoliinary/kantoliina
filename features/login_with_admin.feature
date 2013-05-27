@@ -19,10 +19,10 @@ Feature: login with admin
     And I fill in "login" with "fdkglsa"
     And I fill in "password" with "gfdaögf"
     And I press "Login"
-    Then I should see "Virheellinen kayttajatunnus tai salasana"
+    Then I should see "Virheellinen käyttäjätunnus tai salasana"
 
   Scenario: login with wrong password
     And I fill in "login" with "admin"
     And I fill in "password" with "gfda"
     And I press "Login"
-    Then I should see "Virheellinen kayttajatunnus tai salasana"
+    Then I should see "Virheellinen käyttäjätunnus tai salasana"

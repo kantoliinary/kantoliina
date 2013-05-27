@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 require 'spec_helper'
 
 
@@ -67,6 +69,43 @@ describe MembersController do
     end
   end
 
+  describe "GET #edit" do
+
+
+    before(:each) do
+      admin = FactoryGirl.build(:admin)
+
+      session[:admin] = admin
+    end
+
+    context "with valid attributes" do
+      it "loads the correct member" do
+        member = FactoryGirl.build(:member)
+        Member.stub(:find_by_login).and_return(member)
+        post :create, FactoryGirl.attributes_for(:member)
+        flash[:member].should_not be_nil
+      end
+    end
+  end
+
+  describe "POST #update" do
+
+
+    before(:each) do
+      admin = FactoryGirl.build(:admin)
+      session[:admin] = admin
+    end
+
+    context "with valid attributes" do
+      it "saves a member" do
+        member = FactoryGirl.build(:member)
+        Member.stub(:find_by_login).and_return(member)
+        post :create, FactoryGirl.attributes_for(:member)
+        flash[:member].should_not be_nil
+      end
+    end
+  end
+
   describe "POST #destroy" do
 
 
@@ -78,15 +117,15 @@ describe MembersController do
     context "with valid attributes" do
       it "status becomes false" do
         member = FactoryGirl.create(:member)
+        Member.stub(:find_by_login).and_return(member)
         delete :destroy, FactoryGirl.attributes_for(:member)
-        response.should redirect_to members_path
+        flash[:notice] == "Jasen poistettu"
+
 
       end
 
     end
+
   end
-end
-
-
-
+ end
 

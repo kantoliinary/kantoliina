@@ -28,7 +28,3 @@ Feature: delete member
     And I press "Lisää"
     Then I should see "Jasen lisatty!"
     And I follow "Listaa jäsenet"
-
-  Scenario: delete the member
-    And I press "Poista"
-    Then I should see "Jasen poistettu!"
