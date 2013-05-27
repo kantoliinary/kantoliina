@@ -76,8 +76,8 @@ describe MembersController do
       session[:admin] = admin
     end
 
-    context "gets the correct member" do
-      it "saves a member" do
+    context "with valid attributes" do
+      it "loads the correct member" do
         member = FactoryGirl.build(:member)
         Member.stub(:find_by_login).and_return(member)
         post :create, FactoryGirl.attributes_for(:member)
