@@ -29,7 +29,7 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
-  def update
+  def destroy
     @member = Member.find(params[:id])
     if @member == false
       flash[:notice] = "Jasenta ei loydetty!"
@@ -52,6 +52,11 @@ class MembersController < ApplicationController
     @members = Member.all
     @all_sort_fields = Member.all_sort_fields
     @selected_sort_fields = Hash.new
+  end
+
+  def edit
+    @member = Member.find(params[:id])
+
   end
 
   private
