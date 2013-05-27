@@ -9,8 +9,8 @@ class Admin < ActiveRecord::Base
   validates :login, :length => {
     :minimum => 3,
     :maximum => 20,
-    :too_short => "Kayttajatunnuksen tulee olla vahintaan 3 merkkia",
-    :too_long => "Kayttajatunnus tulee olla korkeintaan 20 merkkia"
+    :too_short => "Käyttäjätunnuksen tulee olla vähintaan 3 merkkiä",
+    :too_long => "Kayttajatunnuksen tulee olla korkeintaan 20 merkin pituinen"
   }
   validates :password, :length => {
       :minimum => 8,

@@ -22,7 +22,7 @@ class AdminsController < ApplicationController
       session[:admin] = admin
       redirect_to members_path and return
     end
-    @error[:error] = "Virheellinen kayttajatunnus tai salasana"
+    @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
     render "loginform"
   end
 

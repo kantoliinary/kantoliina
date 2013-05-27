@@ -33,14 +33,14 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     if @member == false
-      flash[:notice] = "Jasenta ei loydetty!"
+      flash[:notice] = "Jäsenta ei löydetty!"
     else
       @member.membership = false
       if @member.save
-        flash[:notice] = "Jasen poistettu"
+        flash[:notice] = "Jäsen poistettu"
         redirect_to members_path
       else
-        flash[:notice] = "Jasenen poisto ei onnistunut"
+        flash[:notice] = "Jäsenen poisto ei onnistunut"
         redirect_to members_path
       end
     end
