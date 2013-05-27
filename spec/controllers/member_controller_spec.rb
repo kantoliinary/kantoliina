@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 require 'spec_helper'
 
 
@@ -114,6 +116,11 @@ describe MembersController do
 
     context "with valid attributes" do
       it "status becomes false" do
+        member = FactoryGirl.create(:member)
+        Member.stub(:find_by_login).and_return(member)
+        delete :destroy, FactoryGirl.attributes_for(:member)
+        flash[:notice] == "Jasen poistettu"
+
 
       end
 
