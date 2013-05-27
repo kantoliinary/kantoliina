@@ -1,3 +1,4 @@
+#encoding: utf-8
 ##
 # Controller for member class
 
@@ -45,11 +46,15 @@ class MembersController < ApplicationController
     end
   end
 
-##
-# Lists all members to @members and shows list page.
+  ##
+  # Lists all members to @members and shows list page.
 
   def index
     @members = Member.all
+    @all_sort_fields = Member.all_sort_fields
+    @selected_sort_fields = params[:sort_fields] || {}
+    @keyword = params[:keyword] || ""
+
   end
 
   def edit

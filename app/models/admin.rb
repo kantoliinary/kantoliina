@@ -1,3 +1,4 @@
+#encoding: utf-8
 ##
 # Login must be 3-20 symbol and password must be 8-20 symbol.
 
