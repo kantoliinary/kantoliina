@@ -37,6 +37,7 @@ class MembersController < ApplicationController
       @member.updated_at
     end
   end
+
   ##
   # Lists all members to @members and shows list page.
 
