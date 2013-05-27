@@ -60,7 +60,7 @@ describe MembersController do
     context "with valid attributes" do
       it "saves a member" do
         member = FactoryGirl.build(:member)
-        Member.stub(:find_by_login).and_return(member)
+        Member.stub(:find).and_return(member)
         post :create, FactoryGirl.attributes_for(:member)
         flash[:member].should_not be_nil
       end
@@ -68,4 +68,8 @@ describe MembersController do
   end
 
 
+
+
 end
+
+
