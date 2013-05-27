@@ -30,17 +30,22 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
+  ##
+  # Deletes the member with params[:member] and try save it.
+  # If save succeed, deletes flash[:notice] message otherwise not delete member flash[:member].
+  # Redirect to members page.
+
   def destroy
     @member = Member.find(params[:id])
     if @member == false
-      flash[:notice] = "Jasenta ei loydetty!"
+      flash[:notice] = "Jäsenta ei löydetty!"
     else
       @member.membership = false
       if @member.save
-        flash[:notice] = "Jasen poistettu"
+        flash[:notice] = "Jäsen poistettu"
         redirect_to members_path
       else
-        flash[:notice] = "Jasenen poisto ei onnistunut"
+        flash[:notice] = "Jäsenen poisto ei onnistunut"
         redirect_to members_path
       end
     end
@@ -57,9 +62,19 @@ class MembersController < ApplicationController
     @members = search_with_search_fields(@keyword, @selected_search_fields) unless @selected_search_fields.empty?
   end
 
+  ##
+  #
+
   def edit
     @member = Member.find(params[:id])
 
+  end
+
+  def update
+    @member = Member.find(params[:id])
+    @member.update_attributes!(params[:member])
+    flash[:notice] = "Tiedot muutettu"
+    redirect_to members_path
   end
 
   private

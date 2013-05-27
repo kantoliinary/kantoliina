@@ -11,7 +11,7 @@ class Member < ActiveRecord::Migration
       t.string   :membergroup
       t.integer  :membernumber
       t.boolean  :membership, :default => true
-      t.date     :payday
+      t.date     :expirationdate
       t.timestamps
     end
   end

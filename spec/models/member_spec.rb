@@ -22,13 +22,8 @@ describe Member do
     FactoryGirl.build(:member, zipcode: nil).should_not be_valid
   end
 
-  it "is invalid with a letter zipcode" do
-    FactoryGirl.build(:member, zipcode: "puistola").should_not be_valid
-  end
-
-
-  it "is invalid with wrong length zipcode" do
-    FactoryGirl.build(:member, zipcode: "6666").should_not be_valid
+  it "is valid with a letter zipcode" do
+    FactoryGirl.build(:member, zipcode: "puistola").should be_valid
   end
 
   it "is valid with right length zipcode" do
@@ -72,19 +67,19 @@ describe Member do
   end
 
   it "is invalid without a payday" do
-    FactoryGirl.build(:member, payday: nil).should_not be_valid
+    FactoryGirl.build(:member, expirationdate: nil).should_not be_valid
   end
 
   it "is invalid with wrong payday" do
-    FactoryGirl.build(:member, payday: "maaliskuu").should_not be_valid
+    FactoryGirl.build(:member, expirationdate: "maaliskuu").should_not be_valid
   end
 
   it "is valid with a right form payday" do
-    FactoryGirl.build(:member, payday: "40/6/2008").should_not be_valid
+    FactoryGirl.build(:member, expirationdate: "40/6/2008").should_not be_valid
   end
 
   it "is invalid with a wrong form payday" do
-    FactoryGirl.build(:member, payday: "40/6/2008").should_not be_valid
+    FactoryGirl.build(:member, expirationdate: "40/6/2008").should_not be_valid
   end
 
 
