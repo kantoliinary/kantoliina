@@ -20,7 +20,15 @@ class Member < ActiveRecord::Base
   validates :membernumber, :presence => {:message => "Jasennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jasennumerossa tulee olla vain numeroita!"}, :length => {:minimum => 3,  :maximum => 19, :message => "Jasennumeron tulee olla 3-19 merkkia pitka!"}
   validates :payday, :presence => {:message => "Viimeinen maksupaiva puuttuu!"}
 
-  def self.all_sort_fields
-    %w(Asuinkunta Maksustatus Jäsenstatus)
+  @@all_search_fields = {:municipality => "Asuinkunta", :name => "Etunimi"}
+
+  def self.all_search_fields
+    @@all_search_fields
+    #%w(Asuinkunta, Maksustatus Jäsenstatus)
   end
+
+  def self.has_field? field
+    @@all_search_fields.has_key?(field.to_sym)
+  end
+
 end
