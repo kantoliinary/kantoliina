@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20130521105651) do
     t.string   "membergroup"
     t.integer  "membernumber"
     t.boolean  "membership",   :default => true
-    t.date     "payday"
+    t.date     "expirationdate"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end

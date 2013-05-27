@@ -76,7 +76,7 @@ describe MembersController do
       session[:admin] = admin
     end
 
-    context "with valid attributes" do
+    context "gets the correct member" do
       it "saves a member" do
         member = FactoryGirl.build(:member)
         Member.stub(:find_by_login).and_return(member)
@@ -104,7 +104,6 @@ describe MembersController do
       end
     end
   end
-end
 
   describe "POST #destroy" do
 
@@ -124,4 +123,5 @@ end
 
     end
   end
+
 end
