@@ -29,7 +29,7 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
-  def update
+  def destroy
     @member = Member.find(params[:id])
     if @member == false
       flash[:notice] = "Jasenta ei loydetty!"

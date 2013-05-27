@@ -21,7 +21,4 @@
         %td= member.surname
         %td= member.email
         %td= member.membership
-        = simple_form_for member, defaults:{label:false} do |f |
-          = f.input :id, :as => :hidden
-          %td= f.submit "Poista"
-          %br
+        = button_to 'Poista', members_path(member), :method => :delete
