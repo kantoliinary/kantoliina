@@ -9,7 +9,7 @@ class MembersController < ApplicationController
   # if old member in flash[:member], saves it to @member.
 
   def new
-     @member = flash[:member] || Member.new
+    @member = flash[:member] || Member.new
   end
 
   ##
@@ -29,16 +29,22 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
-  def update
-    @member = Member.find([:membernumber])
+  def destroy
+    @member = Member.find(params[:id])
     if @member.as_null_object
       flash[:notice] = "Jasenta ei loydetty!"
     else
-      @member.updated_at
+      @member.membershipstatus = false
+      if @member.save
+        flash[:notice] = "Jasen poistettu"
+      else
+        flash[:notice] = "Jasenen poisto ei onnistunut"
+      end
     end
   end
-  ##
-  # Lists all members to @members and shows list page.
+
+##
+# Lists all members to @members and shows list page.
 
   def index
     @members = Member.all
@@ -46,8 +52,8 @@ class MembersController < ApplicationController
 
   private
 
-  ##
-  # Checks is user logged in and redirect to login form if not.
+##
+# Checks is user logged in and redirect to login form if not.
 
   def require_login
     unless logged_in?
@@ -55,11 +61,12 @@ class MembersController < ApplicationController
     end
   end
 
-  ##
-  # Checks is admin in session.
-  #@return boolean value is user logged in.
+##
+# Checks is admin in session.
+#@return boolean value is user logged in.
 
   def logged_in?
     !!session[:admin]
   end
+
 end
