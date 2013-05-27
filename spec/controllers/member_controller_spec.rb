@@ -41,7 +41,7 @@ describe MembersController do
 
     context "get :index" do
       it "shows members" do
-      get :index
+        get :index
       end
 
 
@@ -67,9 +67,26 @@ describe MembersController do
     end
   end
 
+  describe "POST #destroy" do
 
 
+    before(:each) do
+      admin = FactoryGirl.build(:admin)
+      session[:admin] = admin
+    end
 
+    context "with valid attributes" do
+      it "status becomes false" do
+        member = FactoryGirl.create(:member)
+        delete :destroy, FactoryGirl.attributes_for(:member)
+        response.should redirect_to members_path
+
+      end
+
+    end
+  end
 end
+
+
 
 
