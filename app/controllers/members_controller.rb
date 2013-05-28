@@ -66,14 +66,13 @@ class MembersController < ApplicationController
   #
 
   def edit
-    @member = Member.find(params[:id])
-
+    @member = flash[:member] || Member.find(params[:id])
   end
 
   def update
     @member = Member.find(params[:id])
 
-    if @member.update_attributes!(params[:member])
+    if @member.update_attributes(params[:member])
       flash[:notice] = "Tiedot muutettu"
     else
       flash[:member] = @member
