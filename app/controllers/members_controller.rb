@@ -56,10 +56,10 @@ class MembersController < ApplicationController
 
   def index
     @members = Member.all
-    @all_sort_fields = Member.all_sort_fields
-    @selected_sort_fields = params[:sort_fields] || {}
+    @all_search_fields = Member.all_search_fields
+    @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
-
+    @members = search_with_search_fields(@keyword, @selected_search_fields) unless @selected_search_fields.empty?
   end
 
   ##
@@ -96,6 +96,14 @@ class MembersController < ApplicationController
     !!session[:admin]
   end
 
+  def search_with_search_fields keyword, search_fields
+    keyword = "#{keyword}%"
+    member = nil
+    search_fields.keys.each do |field|
+      if Member.has_field?(field)
+        member = (member ? member : Member).where("#{field} LIKE ?", keyword)
+      end
+    end
+    return member
+  end
 end
-
-
