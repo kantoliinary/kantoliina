@@ -72,9 +72,13 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-    @member.update_attributes!(params[:member])
-    flash[:notice] = "Tiedot muutettu"
-    redirect_to members_path
+
+    if @member.update_attributes!(params[:member])
+      flash[:notice] = "Tiedot muutettu"
+    else
+      flash[:member] = @member
+    end
+    redirect_to edit_member_path
   end
 
   private

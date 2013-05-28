@@ -11,7 +11,7 @@
 
   %div
   = simple_form_for @member, defaults:{label:false} do |f|
-    = f.input :name, placeholder: "Etunimet: "
+    = f.input :name, placeholder: 'Etunimet'
     = f.input :surname, placeholder: 'Sukunimi'
     = f.input :municipality, placeholder: 'Kunta'
     = f.input :address, placeholder: 'Katuosoite'
@@ -27,8 +27,9 @@
     ['Yhteisöjäsen', 'communitymember']]
     %br
     %br
-    = f.label 'Viimeinen maksupäivä'
+    = f.label 'Jäsenyyden päättymispäivä'
     %br
     = f.input :expirationdate
-
+    %br
+    %br
     = f.submit "Tallenna", id:"updated"
