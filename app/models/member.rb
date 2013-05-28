@@ -5,7 +5,8 @@
 # Membernumber can have only integers and its length must be 3-19.
 
 class Member < ActiveRecord::Base
-  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup, :membernumber, :membership, :expirationdate
+  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :membership, :expirationdate
+  belongs_to :membergroup
   validates :firstnames, :presence => {:message => "Etunimi puuttuu!"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu!"}
   validates :municipality, :presence => {:message => "Kunta puuttuu!"}

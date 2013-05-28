@@ -50,6 +50,6 @@
         %td= member.surname
         %td= member.email
         %td= member.membership
-        %td= member.membergroup_id
+        %td= member.membergroup.groupname
         %td= button_to 'Poista', member_path(member), :method => :delete
 

@@ -60,7 +60,7 @@ class MembersController < ApplicationController
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
     @membership = params[:membership] || "1"
-    @paymentstatus = params[:paymentstatus] || "1"
+    @paymentstatus = params[:paymentstatus] || "2"
     @members = search_with_filter(@keyword, @selected_search_fields, @membership, @paymentstatus)
 
   end
@@ -131,10 +131,6 @@ class MembersController < ApplicationController
       puts !!membership
       member = (member ? member : Member).where("expirationdate > ?", Time.now)
     end
-    if member
-      member
-    else
-      Member.all
-    end
+    member || Member.all
   end
 end
