@@ -23,7 +23,7 @@ class MembersController < ApplicationController
     @member = Member.new(params[:member])
     @member.expirationdate += 1
     if @member.save
-      flash[:notice] = "Jäsen lisatty!"
+      flash[:notice] = "Jäsen lisätty!"
     else
       flash[:member] = @member
     end
@@ -38,7 +38,7 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     if @member == false
-      flash[:notice] = "Jäsenta ei löydetty!"
+      flash[:notice] = "Jäsentä ei löydetty!"
     else
       @member.membership = false
       if @member.save
@@ -55,6 +55,7 @@ class MembersController < ApplicationController
   # Lists all members to @members and shows list page.
 
   def index
+    @membergroups = Membergroup.all
     @all_search_fields = Member.all_search_fields
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""

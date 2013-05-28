@@ -35,19 +35,21 @@
   = flash[:notice]
   %table{:id => "table"}
     %tr
-      %th
+      %th= check_box_tag "Check"
       %th Jäsennumero
       %th Nimi
       %th Sukunimi
       %th Sähköposti
       %th Jäsenyyden status
+      %th Jäsenryhmä
     - @members.each do | member|
       %tr
-        %td
+        %td= check_box_tag "Check"
         %td= link_to member.membernumber, edit_member_path(member)
         %td= member.name
         %td= member.surname
         %td= member.email
         %td= member.membership
-        %td= button_to "Poista", member_path(member), :method => :delete
+        %td= member.membergroup_id
+        %td= button_to 'Poista', member_path(member), :method => :delete
 
