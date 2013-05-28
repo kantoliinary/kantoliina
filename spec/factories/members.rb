@@ -3,7 +3,7 @@ require 'faker'
 FactoryGirl.define do
   factory :member do |f|
     f.id "1"
-    f.name "John"
+    f.firstnames "John"
     f.surname "Doe"
     f.municipality "f"
     f.zipcode "00540"
