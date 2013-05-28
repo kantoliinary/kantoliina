@@ -17,13 +17,8 @@ class Member < ActiveRecord::Base
                 :with    => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
                 :message => "Sähköpostiosoitteen muoto on väärä!"}
   validates :membergroup, :presence => true
-<<<<<<< HEAD
   validates :membernumber, :presence => {:message => "Jäsennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jäsennumerossa tulee olla vain numeroita!"}, :length => {:minimum => 3,  :maximum => 19, :message => "Jasennumeron tulee olla 3-19 merkkia pitka!"}
   validates :expirationdate, :presence => {:message => "Jäsenyyden päättymispäivä puuttuu!"}
-=======
-  validates :membernumber, :presence => {:message => "Jäsennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jäsennumerossa tulee olla vain numeroita!"}, :length => {:minimum => 3,  :maximum => 19, :message => "Jäsennumeron tulee olla 3-19 merkkiä pitkä!"}
-  validates :expirationdate, :presence => {:message => "Viimeinen maksupäivä puuttuu!"}
->>>>>>> a44d08f78aeafc2440573e5a5292d5401013744e
 
   @@all_search_fields = {:municipality => "Asuinkunta", :name => "Etunimi"}
 
