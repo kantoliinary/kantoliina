@@ -11,7 +11,7 @@
 
   %div
   = simple_form_for @member, defaults:{label:false} do |f|
-    = f.input :name, placeholder: 'Etunimet'
+    = f.input :firstnames, placeholder: 'Etunimet'
     = f.input :surname, placeholder: 'Sukunimi'
     = f.input :municipality, placeholder: 'Kunta'
     = f.input :address, placeholder: 'Katuosoite'
