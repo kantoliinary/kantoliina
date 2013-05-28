@@ -2,10 +2,18 @@ Feature: add new member
 
   I want add new member and get and get information of that was successfull created or get error messages
 
+
   Background: admins in database
+
     Given the following admins exist:
       | login | password  |
       | admin | qwerty123 |
+
+    Given the following membergroups exist:
+      | id       | groupname                   | fee |
+      | 1        | Ainaisjäsen                 | 10.0|
+
+
 
     When I am on the login page
     And I fill in "login" with "admin"
@@ -14,6 +22,9 @@ Feature: add new member
     And I follow "Jäsenien lisäykseen"
 
   Scenario: add new member
+
+
+
     When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |
@@ -23,7 +34,7 @@ Feature: add new member
       | Postitoimipaikka | gda      |
       | Sähköposti       | gf@a.com |
       | Jäsennumero      | 123      |
-    And I select "Varsinainen jäsen" from "member_membergroup"
+    And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"

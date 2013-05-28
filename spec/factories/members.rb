@@ -13,7 +13,7 @@ FactoryGirl.define do
     #f.membergroup "varsinaisjasen"
     f.membergroup_id "1"
     f.membernumber "333"
-    f.expirationdate "2011/11/12"
+    f.expirationdate '2011/11/12'
     f.membership "true"
 
   end
