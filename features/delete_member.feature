@@ -12,8 +12,6 @@ Feature: delete member
     And I fill in "password" with "qwerty123"
     And I press "Login"
     And I follow "Jäsenien lisäykseen"
-
-  Scenario: add new member
     When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |
@@ -26,5 +24,11 @@ Feature: delete member
     And I select "Varsinainen jäsen" from "member_membergroup"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
-    Then I should see "Jasen lisatty!"
+    Then I should see "Jäsen lisatty!"
     And I follow "Listaa jäsenet"
+
+
+  Scenario: delete member
+       When I am on the members page
+       And I press "Poista"
+       Then I should see "Jäsen poistettu"
