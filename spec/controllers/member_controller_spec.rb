@@ -25,11 +25,12 @@ describe MembersController do
       session[:admin] = admin
     end
 
-    it "renders the :new view" do
-      get :new
-      response.should render_template :new
+    context "with logged in" do
+      it "renders the :new view" do
+        get :new
+        response.should render_template :new
+      end
     end
-
   end
 
 
@@ -55,7 +56,6 @@ describe MembersController do
 
     before(:each) do
       admin = FactoryGirl.build(:admin)
-
       session[:admin] = admin
     end
 
@@ -64,62 +64,58 @@ describe MembersController do
         member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         post :create, FactoryGirl.attributes_for(:member)
-        flash[:member].should_not be_nil
+        flash[:notice] == "Jäsen lisätty!"
       end
     end
   end
+
 
   describe "GET #edit" do
 
 
-    before(:each) do
-      admin = FactoryGirl.build(:admin)
 
-      session[:admin] = admin
-    end
-
-    context "with valid attributes" do
-      it "loads the correct member" do
-        member = FactoryGirl.build(:member)
-        Member.stub(:find_by_login).and_return(member)
-        post :create, FactoryGirl.attributes_for(:member)
-        flash[:member].should_not be_nil
-      end
-
-      it "update works and redirects" do
+    context "with not logged in" do
+      it "renders not the :edit view" do
         member = FactoryGirl.create(:member)
-        Member.stub(:find_by_login).and_return(member)
-        get :update,  FactoryGirl.attributes_for(:member)
-        flash[:notice].should == "Tiedot muutettu"
-        response.should  redirect_to members_path
-
-
-
+        Member.stub(:find).and_return(member)
+        get :edit, FactoryGirl.attributes_for(:member)
       end
 
+      context "with valid attributes" do
 
-    end
-  end
+        before(:each) do
+          admin = FactoryGirl.build(:admin)
+          session[:admin] = admin
+
+        end
 
 
-  describe "POST #update" do
+
+        it "loads the correct member" do
+          member = FactoryGirl.build(:member)
+          Member.stub(:find).and_return(member)
+          post :create, FactoryGirl.attributes_for(:member)
+          flash[:member].should_not be_nil
+
+        end
+
+        it "update works" do
+          member = FactoryGirl.create(:member)
+          Member.stub(:find).and_return(member)
+          get :update, FactoryGirl.attributes_for(:member)
+          flash[:notice].should == "Tiedot muutettu!"
+        end
 
 
-    before(:each) do
-      admin = FactoryGirl.build(:admin)
-      session[:admin] = admin
-    end
-
-    context "with valid attributes" do
-      it "saves a member" do
-        member = FactoryGirl.build(:member)
-        Member.stub(:find_by_login).and_return(member)
-        post :create, FactoryGirl.attributes_for(:member)
-        flash[:member].should_not be_nil
+        it "redirects to edit_member_path" do
+          member = FactoryGirl.create(:member)
+          Member.stub(:find).and_return(member)
+          get :update, FactoryGirl.attributes_for(:member)
+          redirect_to edit_member_path
+        end
       end
     end
   end
-
   describe "POST #destroy" do
 
 
@@ -128,18 +124,18 @@ describe MembersController do
       session[:admin] = admin
     end
 
+
     context "with valid attributes" do
-      it "status becomes false" do
-        member = FactoryGirl.create(:member)
-        Member.stub(:find_by_login).and_return(member)
+      it "member shall be removed" do
+        member = FactoryGirl.build(:member)
+        Member.stub(:find).and_return(member)
         delete :destroy, FactoryGirl.attributes_for(:member)
         flash[:notice] == "Jasen poistettu"
 
 
       end
-
     end
-
   end
 end
+
 

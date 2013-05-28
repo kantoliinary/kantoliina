@@ -26,7 +26,7 @@ Feature: add new member
     And I select "Varsinainen jäsen" from "member_membergroup"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
-    Then I should see "Jasen lisatty!"
+    Then I should see "Jäsen lisätty!"
 
   Scenario: add new member with wrong format email
     When I fill in the following:
@@ -52,4 +52,4 @@ Feature: add new member
       | Sähköposti | gf.com |
       | Jäsennumero | 12 |
     And I press "Lisää"
-    Then I should see "Jasennumeron tulee olla 3-19 merkkia pitka!"
+    Then I should see "Jäsennumeron tulee olla 3-19 merkkiä pitkä!"

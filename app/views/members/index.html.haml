@@ -15,19 +15,19 @@
       = check_box_tag "search_fields[#{key}]", 1, @selected_search_fields.include?(key), :id => "search_fields_#{key}"
     %br
     Poistettu:
-    = radio_button_tag "membership", "1", false
+    = radio_button_tag "membership", "1", (@membership == 1 ? true : false)
     Ei
-    = radio_button_tag "membership", "0", false
+    = radio_button_tag "membership", "0", (@membership == 0 ? true : false)
     Kyllä
-    = radio_button_tag "membership", "2", true
+    = radio_button_tag "membership", "2", (@membership == 2 ? true : false)
     Molemmat
     %br
     Maksanut:
-    = radio_button_tag "paymentstatus", "0", false
+    = radio_button_tag "paymentstatus", "0", (@paymentstatus == 0 ? true : false)
     Ei
-    = radio_button_tag "paymentstatus", "1", false
+    = radio_button_tag "paymentstatus", "1", (@membership == 1 ? true : false)
     Kyllä
-    =radio_button_tag "paymentstatus", "2", true
+    =radio_button_tag "paymentstatus", "2", (@membership == 2 ? true : false)
     Molemmat
     %br
     = submit_tag "Hae", :id => "search"
@@ -35,7 +35,7 @@
   = flash[:notice]
   %table{:id => "table"}
     %tr
-      %th
+      %th= check_box_tag "Check"
       %th Jäsennumero
       %th Nimi
       %th Sukunimi
@@ -44,7 +44,7 @@
       %th Jäsenryhmä
     - @members.each do | member|
       %tr
-        %td
+        %td= check_box_tag "Check"
         %td= link_to member.membernumber, edit_member_path(member)
         %td= member.name
         %td= member.surname
@@ -52,3 +52,4 @@
         %td= member.membership
         %td= member.membergroup_id
         %td= button_to 'Poista', member_path(member), :method => :delete
+
