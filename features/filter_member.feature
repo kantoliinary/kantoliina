@@ -57,7 +57,7 @@ Feature: filter members
       | Postinumero      | 12345                   |
       | Postitoimipaikka | Stadi                   |
       | Sähköposti       | jaana.jasen@hotmail.com |
-      | Jäsennumero      | 12345                   |
+      | Jäsennumero      | 12543                   |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I select "2013/11/12" as the member "expirationdate" date
@@ -95,7 +95,7 @@ Feature: filter members
   Scenario: filter members by address
     When I am on the members page
     And I fill in "keyword" with "jokin"
-    And I check "search_fields[municipality]"
+    And I check "search_fields[address]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -103,11 +103,11 @@ Feature: filter members
 
   Scenario: filter members by address
     When I am on the members page
-    And I fill in "keyword" with "jokin"
+    And I fill in "keyword" with "espoo"
     And I check "search_fields[municipality]"
     And I press "Hae"
     Then I should see "Jaana"
-    Then I should see "Janne"
+    Then I should not see "Janne"
     Then I should see "Liisa"
 
   Scenario: filter members by zipcode
@@ -140,7 +140,7 @@ Feature: filter members
   Scenario: filter members by member number
     When I am on the members page
     And I fill in "keyword" with "125"
-    And I check "search_fields[email]"
+    And I check "search_fields[membernumber]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
