@@ -79,8 +79,25 @@ describe MembersController do
         get :edit, FactoryGirl.attributes_for(:member)
       end
 
+      it "update works and redirects" do
+        member = FactoryGirl.create(:member)
+        Member.stub(:find_by_login).and_return(member)
+        get :update,  FactoryGirl.attributes_for(:member)
+        flash[:notice].should == "Tiedot muutettu"
+        response.should  redirect_to members_path
+
+
+
+      end
+
+
     end
   end
+
+
+  describe "POST #update" do
+
+    end
 
   #describe "GET #edit" do
   #
@@ -121,6 +138,4 @@ describe MembersController do
     end
   end
 end
-
-
 
