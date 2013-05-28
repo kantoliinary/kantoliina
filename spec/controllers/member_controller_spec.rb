@@ -59,19 +59,18 @@ describe MembersController do
       session[:admin] = admin
     end
 
-    context "with valid attributes" do
-      it "saves a member" do
-        member = FactoryGirl.build(:member)
-        Member.stub(:find).and_return(member)
-        post :create, FactoryGirl.attributes_for(:member)
-        flash[:notice] == "Jäsen lisätty!"
-      end
-    end
+    #context "with valid attributes" do
+    #   it "saves a member" do
+    #    member = FactoryGirl.build(:member)
+    #   Member.stub(:find).and_return(member)
+    #  post :create, FactoryGirl.attributes_for(:member)
+    # flash[:notice] == "Jäsen lisätty!"
+    # end
+    #end
   end
 
 
   describe "GET #edit" do
-
 
 
     context "with not logged in" do
@@ -90,14 +89,13 @@ describe MembersController do
         end
 
 
+        # it "loads the correct member" do
+        #  member = FactoryGirl.build(:member)
+        # Member.stub(:find).and_return(member)
+        #post :create, FactoryGirl.attributes_for(:member)
+        #flash[:member].should_not be_nil
 
-        it "loads the correct member" do
-          member = FactoryGirl.build(:member)
-          Member.stub(:find).and_return(member)
-          post :create, FactoryGirl.attributes_for(:member)
-          flash[:member].should_not be_nil
-
-        end
+        #end
 
         it "update works" do
           member = FactoryGirl.create(:member)

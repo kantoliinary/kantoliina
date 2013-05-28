@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130528080932) do
   end
 
   create_table "members", :force => true do |t|
-    t.string   "name"
+    t.string   "firstnames"
     t.string   "surname"
     t.string   "municipality"
     t.string   "address"

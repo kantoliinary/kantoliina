@@ -7,7 +7,6 @@ Feature: edit member
     Given the following admins exist:
       | login | password  |
       | admin | qwerty123 |
-
     When I am on the login page
     And I fill in "login" with "admin"
     And I fill in "password" with "qwerty123"
@@ -32,7 +31,7 @@ Feature: edit member
     When I am on the members page
     And I follow "123"
     Then I should see "Jäsenen tietojen muokkaus"
-    And I fill in "member[name]" with "Janne"
+    And I fill in "member[firstnames]" with "Janne"
     And I fill in "member[surname]" with "Jäsen"
     And I press "Tallenna"
     Then I should see "Tiedot muutettu!"
@@ -59,7 +58,7 @@ Feature: edit member
     When I am on the members page
     And I follow "123"
     Then I should see "Jäsenen tietojen muokkaus"
-    And I fill in "member[name]" with ""
+    And I fill in "member[firstnames]" with ""
     And I fill in "member[surname]" with ""
     And I fill in "member[municipality]" with ""
     And I fill in "member[address]" with ""

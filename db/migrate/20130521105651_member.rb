@@ -1,7 +1,7 @@
 class Member < ActiveRecord::Migration
   def change
     create_table :members do |t|
-      t.string :name
+      t.string :firstnames
       t.string   :surname
       t.string   :municipality
       t.string   :address
