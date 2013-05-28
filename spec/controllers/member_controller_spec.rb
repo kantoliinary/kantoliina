@@ -85,8 +85,22 @@ describe MembersController do
         post :create, FactoryGirl.attributes_for(:member)
         flash[:member].should_not be_nil
       end
+
+      it "update works and redirects" do
+        member = FactoryGirl.create(:member)
+        Member.stub(:find_by_login).and_return(member)
+        get :update,  FactoryGirl.attributes_for(:member)
+        flash[:notice].should == "Tiedot muutettu"
+        response.should  redirect_to members_path
+
+
+
+      end
+
+
     end
   end
+
 
   describe "POST #update" do
 
@@ -127,5 +141,5 @@ describe MembersController do
     end
 
   end
- end
+end
 
