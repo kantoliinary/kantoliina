@@ -20,7 +20,7 @@ Feature: filter members
       | Postitoimipaikka | Stadi                 |
       | Sähköposti       | janne.jasen@yahoo.com |
       | Jäsennumero      | 123                   |
-    And I select "Varsinainen jäsen" from "member_membergroup_id"
+    And I select "Varsinainen jäsen" from "Jäsenryhma"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
@@ -35,7 +35,7 @@ Feature: filter members
       | Postitoimipaikka | Stadi                      |
       | Sähköposti       | liisa.mehilainen@gmail.com |
       | Jäsennumero      | 124                        |
-    And I select "Varsinainen jäsen" from "member_membergroup_id"
+    And I select "Varsinainen jäsen" from "Jäsenryhmä"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
@@ -50,7 +50,7 @@ Feature: filter members
       | Postitoimipaikka | Stadi                   |
       | Sähköposti       | jaana.jasen@hotmail.com |
       | Jäsennumero      | 125                     |
-    And I select "Varsinainen jäsen" from "member_membergroup_id"
+    And I select "Varsinainen jäsen" from "Jäsenryhmä"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
