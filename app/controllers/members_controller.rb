@@ -108,12 +108,16 @@ class MembersController < ApplicationController
     member = nil
     keywords.each do |word|
       query = ""
+      query_keywords = {}
+      counter = 65;
       search_fields.keys.each do |field|
         if Member.has_field?(field)
-          query += (query.empty? ? "" : " OR ") + "#{field} LIKE '#{word}%'"
+          query += (query.empty? ? "" : " OR ") + "#{field} LIKE :#{counter.chr}"
+          query_keywords[counter.chr.to_sym] = "#{word}%"
+          counter += 1
         end
       end
-      member = (member ? member : Member).where(query)
+      member = (member ? member : Member).where(query, query_keywords)
     end
     if membership == "0" || membership == "1"
       puts !!membership
