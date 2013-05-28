@@ -12,7 +12,7 @@ class Member < ActiveRecord::Base
   validates :address, :presence => {:message => "Osoite puuttuu!"}
   validates :zipcode, :presence => {:message => "Postinumero puuttuu!"}
   validates :postoffice, :presence => {:message => "Postitoimipaikka puuttuu!"}
-  validates :email, :presence => {:message => "Sähkopostiosoite puuttuu!"},
+  validates :email, :presence => {:message => "Sähköpostiosoite puuttuu!"},
             :format => {
                 :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
                 :message => "Sähköpostiosoitteen muoto on väärä!"}
