@@ -25,7 +25,7 @@ Feature: filter members
       | Postinumero      | 54321                 |
       | Postitoimipaikka | Stadi                 |
       | Sähköposti       | janne.jasen@yahoo.com |
-      | Jäsennumero      | 123                   |
+      | Jäsennumero      | 12345                |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I select "2013/11/12" as the member "expirationdate" date
@@ -41,7 +41,7 @@ Feature: filter members
       | Postinumero      | 12345                      |
       | Postitoimipaikka | Stadi                      |
       | Sähköposti       | liisa.mehilainen@gmail.com |
-      | Jäsennumero      | 124                        |
+      | Jäsennumero      | 12466                      |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I select "2013/11/12" as the member "expirationdate" date
@@ -57,7 +57,7 @@ Feature: filter members
       | Postinumero      | 12345                   |
       | Postitoimipaikka | Stadi                   |
       | Sähköposti       | jaana.jasen@hotmail.com |
-      | Jäsennumero      | 125                     |
+      | Jäsennumero      | 12345                   |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I select "2013/11/12" as the member "expirationdate" date
