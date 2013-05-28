@@ -72,6 +72,7 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
+
     if @member.update_attributes!(params[:member])
       flash[:notice] = "Tiedot muutettu"
     else
