@@ -59,7 +59,8 @@ class MembersController < ApplicationController
     @all_search_fields = Member.all_search_fields
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
-    @members = search_with_search_fields(@keyword, @selected_search_fields) unless @selected_search_fields.empty?
+    @members = search_with_search_fields(@keyword, @selected_search_fields) unless @selected_search_fields.empty? || @keyword.empty?
+    @membership = params[:membership] || 3
   end
 
   ##
@@ -100,13 +101,18 @@ class MembersController < ApplicationController
   end
 
   def search_with_search_fields keyword, search_fields
-    keyword = "#{keyword}%"
+    keywords = keyword.split(" ")
+    puts keywords
     member = nil
-    search_fields.keys.each do |field|
-      if Member.has_field?(field)
-        member = (member ? member : Member).where("#{field} LIKE ?", keyword)
+    keywords.each do |word|
+      query = ""
+      search_fields.keys.each do |field|
+        if Member.has_field?(field)
+          query += (query.empty? ? "" : " OR ") + "#{field} LIKE '#{word}%'"
+        end
       end
+      member = (member ? member : Member).where(query)
     end
-    return member
+    member
   end
 end
