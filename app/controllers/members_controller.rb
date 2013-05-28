@@ -6,17 +6,17 @@ class MembersController < ApplicationController
   before_filter :require_login
 
   ##
-  # Show new member page to user.
-  # if old member in flash[:member], saves it to @member.
+  # Shows new member page to the admin.
+  # If old member in flash[:member], saves it to @member.
 
   def new
     @member = flash[:member] || Member.new
   end
 
   ##
-  # Creates new member with params[:member] and try save it.
-  # If save succeed, adds flash[:notice] message otherwise adds members informations to flash[:member].
-  # Redirect to new member page.
+  # Creates a new member with params[:member] and tries to save it.
+  # If save succeeds, adds flash[:notice] message, otherwise adds members information to flash[:member].
+  # Redirects to new member page.
 
   def create
 
@@ -31,9 +31,9 @@ class MembersController < ApplicationController
   end
 
   ##
-  # Deletes the member with params[:member] and try save it.
-  # If save succeed, deletes flash[:notice] message otherwise not delete member flash[:member].
-  # Redirect to members page.
+  # Deletes the member with params[:member] and tries to save it.
+  # The interface informs the admin whether the save succeeded or not.
+  # Redirects to the list page.
 
   def destroy
     @member = Member.find(params[:id])
@@ -52,7 +52,7 @@ class MembersController < ApplicationController
   end
 
   ##
-  # Lists all members to @members and shows list page.
+  # Lists all members to @members and shows the list page.
 
   def index
     @membergroups = Membergroup.all
@@ -66,7 +66,7 @@ class MembersController < ApplicationController
   end
 
   ##
-  #
+  #Edits the current Member with right parameters.
 
   def edit
     @member = flash[:member] || Member.find(params[:id])
@@ -86,7 +86,7 @@ class MembersController < ApplicationController
   private
 
 ##
-# Checks is user logged in and redirect to login form if not.
+# Checks that admin is logged in and redirects the admin to the login form if not.
 
   def require_login
     unless logged_in?
@@ -95,12 +95,17 @@ class MembersController < ApplicationController
   end
 
 ##
-# Checks is admin in session.
+# Checks if admin is logged in.
 #@return boolean value is user logged in.
 
   def logged_in?
     !!session[:admin]
   end
+
+##
+ # Filters
+ #
+
 
   def search_with_filter keyword, search_fields, membership, paymentstatus
     keywords = keyword.split(" ")

@@ -34,6 +34,7 @@ Feature: add new member
       | Postitoimipaikka | gda      |
       | Sähköposti       | gf@a.com |
       | Jäsennumero      | 123      |
+
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"

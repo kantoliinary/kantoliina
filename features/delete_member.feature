@@ -9,8 +9,8 @@ Feature: delete member
       | admin | qwerty123 |
 
     Given the following membergroups exist:
-      | id       | groupname                   | fee |
-      | 1        | Ainaisjäsen                 | 10.0|
+      | id | groupname   | fee  |
+      | 1  | Ainaisjäsen | 10.0 |
 
 
     When I am on the login page
@@ -35,6 +35,6 @@ Feature: delete member
 
 
   Scenario: delete member
-       When I am on the members page
-       And I press "Poista"
-       Then I should see "Jäsen poistettu"
+    When I am on the members page
+    And I press "Poista"
+    Then I should see "Jäsen poistettu"
