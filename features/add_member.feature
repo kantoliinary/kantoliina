@@ -62,6 +62,6 @@ Feature: add new member
       | Postinumero      | 12345  |
       | Postitoimipaikka | gda    |
       | Sähköposti       | gf.com |
-      | Jäsennumero      | 12345  |
+      | Jäsennumero      | 12  |
     And I press "Lisää"
     Then I should see "Jäsennumeron tulee olla 3-19 merkkiä pitkä!"
