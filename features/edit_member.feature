@@ -26,7 +26,7 @@ Feature: edit member
       | Postinumero      | 12345    |
       | Postitoimipaikka | gda      |
       | Sähköposti       | gf@a.com |
-      | Jäsennumero      | 123      |
+      | Jäsennumero      | 12345    |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I select "2013/11/12" as the member "expirationdate" date
@@ -36,7 +36,7 @@ Feature: edit member
 
   Scenario: edit member with right values
     When I am on the members page
-    And I follow "123"
+    And I follow "12345"
     Then I should see "Jäsenen tietojen muokkaus"
     And I fill in "member[firstnames]" with "Janne"
     And I fill in "member[surname]" with "Jäsen"
@@ -50,7 +50,7 @@ Feature: edit member
 
   Scenario: edit member with wrong values
     When I am on the members page
-    And I follow "123"
+    And I follow "12345"
     Then I should see "Jäsenen tietojen muokkaus"
     And I fill in "member[email]" with "google"
     And I fill in "member[membernumber]" with "1"
@@ -63,7 +63,7 @@ Feature: edit member
 
   Scenario: edit member with empty values
     When I am on the members page
-    And I follow "123"
+    And I follow "12345"
     Then I should see "Jäsenen tietojen muokkaus"
     And I fill in "member[firstnames]" with ""
     And I fill in "member[surname]" with ""
