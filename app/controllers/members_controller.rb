@@ -23,7 +23,7 @@ class MembersController < ApplicationController
     @member = Member.new(params[:member])
 
     if @member.save
-      flash[:notice] = "Jasen lisatty!"
+      flash[:notice] = "Jäsen lisatty!"
     else
       flash[:member] = @member
     end

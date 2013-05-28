@@ -27,4 +27,8 @@ Feature: delete member
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jasen lisatty!"
-    And I follow "Listaa jäsenet"
+
+    Scenario: delete member
+      And I follow "Listaa jäsenet"
+      And I press "1"
+      Then I should see "Jasen poistettu"
