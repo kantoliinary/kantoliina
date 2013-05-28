@@ -35,7 +35,7 @@
   = flash[:notice]
   %table{:id => "table"}
     %tr
-      %th
+      %th= check_box_tag "Check"
       %th Jäsennumero
       %th Nimi
       %th Sukunimi
@@ -43,7 +43,7 @@
       %th Jäsenyyden status
     - @members.each do | member|
       %tr
-        %td
+        %td= check_box_tag "Check"
         %td= link_to member.membernumber, edit_member_path(member)
         %td= member.name
         %td= member.surname
