@@ -26,7 +26,7 @@ Feature: add new member
     And I select "Varsinainen jäsen" from "member_membergroup"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
-    Then I should see "Jäsen lisatty!"
+    Then I should see "Jäsen lisätty!"
 
   Scenario: add new member with wrong format email
     When I fill in the following:

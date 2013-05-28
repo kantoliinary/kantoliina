@@ -24,7 +24,7 @@ Feature: delete member
     And I select "Varsinainen jäsen" from "member_membergroup"
     And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
-    Then I should see "Jäsen lisatty!"
+    Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
 
 
