@@ -52,4 +52,4 @@ Feature: add new member
       | Sähköposti | gf.com |
       | Jäsennumero | 12 |
     And I press "Lisää"
-    Then I should see "Jasennumeron tulee olla 3-19 merkkia pitka!"
+    Then I should see "Jäsennumeron tulee olla 3-19 merkkiä pitkä!"
