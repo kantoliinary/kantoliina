@@ -8,8 +8,8 @@ class Member < ActiveRecord::Migration
       t.string   :zipcode
       t.string   :postoffice
       t.string   :email
-      t.string   :membergroup
       t.integer  :membernumber
+      t.integer  :membergroup_id
       t.boolean  :membership, :default => true
       t.date     :expirationdate
       t.timestamps

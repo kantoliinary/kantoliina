@@ -41,6 +41,7 @@
       %th Sukunimi
       %th Sähköposti
       %th Jäsenyyden status
+      %th Jäsenryhmä
     - @members.each do | member|
       %tr
         %td
@@ -49,4 +50,5 @@
         %td= member.surname
         %td= member.email
         %td= member.membership
+        %td= member.membergroup_id
         %td= button_to 'Poista', member_path(member), :method => :delete
