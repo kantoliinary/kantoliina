@@ -23,7 +23,7 @@ class MembersController < ApplicationController
     @member = Member.new(params[:member])
 
     if @member.save
-      flash[:notice] = "Jasen lisatty!"
+      flash[:notice] = "Jäsen lisätty!"
     else
       flash[:member] = @member
     end
@@ -38,7 +38,7 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     if @member == false
-      flash[:notice] = "Jäsenta ei löydetty!"
+      flash[:notice] = "Jäsentä ei löydetty!"
     else
       @member.membership = false
       if @member.save
