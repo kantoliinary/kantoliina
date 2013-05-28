@@ -11,13 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130521105651) do
+ActiveRecord::Schema.define(:version => 20130528080932) do
 
   create_table "admins", :force => true do |t|
     t.string   "login"
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "membergroups", :force => true do |t|
+    t.string "groupname"
+    t.float  "fee"
   end
 
   create_table "members", :force => true do |t|
@@ -28,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20130521105651) do
     t.string   "zipcode"
     t.string   "postoffice"
     t.string   "email"
-    t.string   "membergroup"
     t.integer  "membernumber"
+    t.integer  "membergroup_id"
     t.boolean  "membership",     :default => true
     t.date     "expirationdate"
     t.datetime "created_at",                       :null => false

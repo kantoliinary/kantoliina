@@ -21,7 +21,7 @@ class MembersController < ApplicationController
   def create
 
     @member = Member.new(params[:member])
-
+    @member.expirationdate += 1
     if @member.save
       flash[:notice] = "Jäsen lisätty!"
     else
@@ -55,12 +55,14 @@ class MembersController < ApplicationController
   # Lists all members to @members and shows list page.
 
   def index
-    @members = Member.all
+    @membergroups = Membergroup.all
     @all_search_fields = Member.all_search_fields
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
-    @members = search_with_search_fields(@keyword, @selected_search_fields) unless @selected_search_fields.empty? || @keyword.empty?
-    @membership = params[:membership] || 3
+    @membership = params[:membership] || "1"
+    @paymentstatus = params[:paymentstatus] || "1"
+    @members = search_with_filter(@keyword, @selected_search_fields, @membership, @paymentstatus)
+
   end
 
   ##
@@ -100,7 +102,7 @@ class MembersController < ApplicationController
     !!session[:admin]
   end
 
-  def search_with_search_fields keyword, search_fields
+  def search_with_filter keyword, search_fields, membership, paymentstatus
     keywords = keyword.split(" ")
     puts keywords
     member = nil
@@ -113,6 +115,22 @@ class MembersController < ApplicationController
       end
       member = (member ? member : Member).where(query)
     end
-    member
+    if membership == "0" || membership == "1"
+      puts !!membership
+      member = (member ? member : Member).where(:membership => (membership == "0" ? false : true))
+    end
+    if paymentstatus == "0"
+      puts !!membership
+      member = (member ? member : Member).where("expirationdate < ?", Time.now)
+    end
+    if paymentstatus == "1"
+      puts !!membership
+      member = (member ? member : Member).where("expirationdate > ?", Time.now)
+    end
+    if member
+      member
+    else
+      Member.all
+    end
   end
 end
