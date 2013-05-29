@@ -145,3 +145,12 @@ Feature: filter members
     Then I should see "Jaana"
     Then I should not see "Janne"
     Then I should not see "Liisa"
+
+  Scenario: filter members by membergroup
+    When I am on the members page
+    And I fill in "keyword" with "125"
+    And I check "search_fields[membernumber]"
+    And I press "Hae"
+    Then I should see "Jaana"
+    Then I should not see "Janne"
+    Then I should not see "Liisa"

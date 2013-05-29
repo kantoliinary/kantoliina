@@ -1,0 +1,28 @@
+%div{:id => "invoice_member_page"}
+  %h1 Laskunlähetys
+
+  =link_to "Kirjaudu ulos", logout_path
+  %br
+  =link_to "Jäsenien listaukseen", members_path
+
+  %table{:id => "members"}
+    %tr
+      %th= check_box_tag "check_all", :id => "check_all"
+      %th Jäsennumero
+      %th Etunimet
+      %th Sukunimi
+      %th Sähköposti
+      %th Jäsenryhmä
+      %th Laskun summa
+      %th Viitenumero
+    - @members.each do |member|
+      %tr
+        %td= check_box_tag "member_checkbox", member.id
+        %td= link_to member.membernumber, edit_member_path(member)
+        %td= member.firstnames
+        %td= member.surname
+        %td= member.email
+        %td= member.membergroup.groupname
+        %td= (20)
+        %td= (member.membernumber * 75)
+
