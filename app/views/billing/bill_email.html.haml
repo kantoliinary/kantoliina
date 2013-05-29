@@ -1,13 +1,17 @@
-Kantoliinayhdistyksen jäsenmaksu -lasku
+%h1 Kantoliinayhdistyksen jäsenmaksu -lasku
 
-Laskun eräpäivä:
-Summa:
-Viitenumero:
+%p Laskun eräpäivä:
+%p Summa:
+= @member.membergroup.fee
+%p Viitenumero:
+= Member.generate_refnumber(@member.membernumber)
 
-TILINUMERO:
+%p TILINUMERO:
 
-IBAN böböö
+%br
 
-Ystävällisin terveisin,
+%p IBAN böböö
 
-Kantoliinayhdistys
+%p Ystävällisin terveisin,
+
+%p Kantoliinayhdistys

@@ -89,8 +89,8 @@ class MembersController < ApplicationController
   end
 
   def send_invoices
-    members = Member.find_all_by_id(params[:member])
-    members.each do |member|
+    @members = Member.find_all_by_id(params[:member])
+    @members.each do |member|
       Billing.bill_email(member).deliver
     end
     redirect_to members_path
