@@ -12,8 +12,8 @@ FactoryGirl.define do
     f.email "sadasdsa@com.cocm"
     #f.membergroup "varsinaisjasen"
     f.membergroup_id "1"
-    f.membernumber "333"
-    f.expirationdate "2011/11/12"
+    f.membernumber "33333"
+    f.expirationdate '2011/11/12'
     f.membership "true"
 
   end

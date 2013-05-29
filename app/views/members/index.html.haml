@@ -4,7 +4,6 @@
   =link_to "Kirjaudu ulos", logout_path
   %br
   =link_to "Jäsenien lisäykseen", new_member_path
-
   %br
   %hr
   = form_tag members_path, :method => :get, :id => 'filter_form' do
@@ -31,11 +30,13 @@
     Molemmat
     %br
     = submit_tag "Hae", :id => "search"
+    %br
+    = submit_tag "Lähetä", id:"submit"
   %hr
   = flash[:notice]
-  %table{:id => "table"}
+  %table{:id => "members"}
     %tr
-      %th= check_box_tag "Check"
+      %th= check_box_tag "check_all", :id => "check_all"
       %th Jäsennumero
       %th Etunimet
       %th Sukunimi
@@ -48,7 +49,7 @@
       %th Jäsenryhmä
     - @members.each do | member|
       %tr
-        %td= check_box_tag "Check"
+        %td= check_box_tag "member_checkbox", member.id
         %td= link_to member.membernumber, edit_member_path(member)
         %td= member.firstnames
         %td= member.surname
@@ -61,3 +62,6 @@
         %td= member.membergroup.groupname
         %td= button_to 'Poista', member_path(member), :method => :delete
 
+  = form_tag invoice_confirm_path, :id => "invoice_form" do
+    = hidden_field_tag "ids"
+    = button_tag "Lähetä laskut", :id => "send_invoice"

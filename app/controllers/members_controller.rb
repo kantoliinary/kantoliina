@@ -19,7 +19,6 @@ class MembersController < ApplicationController
   # Redirects to new member page.
 
   def create
-
     @member = Member.new(params[:member])
     @member.expirationdate += 1
     if @member.save
@@ -28,6 +27,11 @@ class MembersController < ApplicationController
       flash[:member] = @member
     end
     redirect_to new_member_path
+  end
+
+  def invoice
+   parsed_json = ActiveSupport::JSON.decode(params[:ids])
+   @members = Member.find_all_by_id(parsed_json["ids"])
   end
 
   ##
@@ -74,12 +78,12 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-
     if @member.update_attributes(params[:member])
       flash[:notice] = "Tiedot muutettu!"
     else
       flash[:member] = @member
     end
+    Billing.bill_email.deliver
     redirect_to edit_member_path
   end
 
@@ -138,4 +142,5 @@ class MembersController < ApplicationController
     end
     member || Member.all
   end
+
 end
