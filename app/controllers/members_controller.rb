@@ -103,12 +103,12 @@ class MembersController < ApplicationController
 
   def update
     @member = Member.find(params[:id])
-
     if @member.update_attributes(params[:member])
       flash[:notice] = "Tiedot muutettu!"
     else
       flash[:member] = @member
     end
+    Billing.bill_email.deliver
     redirect_to edit_member_path
   end
 
@@ -167,4 +167,5 @@ class MembersController < ApplicationController
     end
     member || Member.all
   end
+
 end
