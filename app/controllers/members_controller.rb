@@ -30,7 +30,8 @@ class MembersController < ApplicationController
   end
 
   def invoice
-    @member = Member.find(params[:member])
+   parsed_json = ActiveSupport::JSON.decode(params[:ids])
+   @members = Member.find_all_by_id(parsed_json["ids"])
   end
 
   ##
