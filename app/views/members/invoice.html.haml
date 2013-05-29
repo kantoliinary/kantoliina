@@ -24,7 +24,7 @@
         %td= member.email
         %td= member.membergroup.groupname
         %td= member.membergroup.fee
-        %td= @viite[member.id]
+        %td= Member.generate_refnumber(member.membernumber)
 
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
