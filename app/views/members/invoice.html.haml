@@ -23,6 +23,7 @@
         %td= member.surname
         %td= member.email
         %td= member.membergroup.groupname
-        %td= (20)
-        %td= (member.membernumber * 75)
+        %td= member.membergroup.fee
+        %td= @viite[member.id]
+
 
