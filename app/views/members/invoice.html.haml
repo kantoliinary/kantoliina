@@ -26,4 +26,7 @@
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
 
+  = form_tag invoice_confirm_path, :id => "invoice_form" do
+    = hidden_field_tag "ids", @ids
+    = button_tag "Lähetä laskut", :id => "send_invoice"
 

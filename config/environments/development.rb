@@ -10,7 +10,7 @@ Kantoliina::Application.configure do
   config.whiny_nils = true
 
   # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
@@ -37,14 +37,13 @@ Kantoliina::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      :tls => true,
       :address => "smtp.gmail.com",
       :port => 587,
-      :domain => "gmail.com",
-      :authentication => "plain",
-      :enable_starttls_auto => true,
-      :user_name => "kantoliinatesti",
-      :password => "kant0liina" }
+      :domain => 'gmail.com',
+      :user_name => "kantoliinatesti@gmail.com",
+      :password => "kant0liina",
+      :authentication => 'plain',
+      :enable_starttls_auto => true  }
   # Rest of file omitted.
 
 end

@@ -29,9 +29,6 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
-  ##
-  # Parses members number by JSON
-
   def invoice
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
     @members = Member.find_all_by_id(parsed_json["ids"])
@@ -88,8 +85,15 @@ class MembersController < ApplicationController
     else
       flash[:member] = @member
     end
-    Billing.bill_email.deliver
     redirect_to edit_member_path
+  end
+
+  def send_invoices
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    members = Member.find_all_by_id(parsed_json["ids"])
+    members.each do |member|
+      Billing.bill_email(member).deliver
+    end
   end
 
   private
