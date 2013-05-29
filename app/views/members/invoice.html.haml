@@ -1,0 +1,50 @@
+%div{:id => "invoice_member_page"}
+  %h1 Laskunlähetys
+
+  =link_to "Kirjaudu ulos", logout_path
+  %br
+  =link_to "Jäsenien listaukseen", members_path
+
+  %table{:id => "table"}
+    %tr
+      %th= check_box_tag "Check"
+      %th Jäsennumero
+      %th Etunimet
+      %th Sukunimi
+      %th Kunta
+      %th Osoite
+      %th Postinumero
+      %th Postitoimipaikka
+      %th Sähköposti
+      %th Jäsenyyden status
+      %th Jäsenryhmä
+
+  %hr
+    = flash[:notice]
+    %table{:id => "table"}
+      %tr
+        %th= check_box_tag "Check"
+        %th Jäsennumero
+        %th Etunimet
+        %th Sukunimi
+        %th Kunta
+        %th Osoite
+        %th Postinumero
+        %th Postitoimipaikka
+        %th Sähköposti
+        %th Jäsenyyden status
+        %th Jäsenryhmä
+      - @members.each do | member|
+        %tr
+          %td= check_box_tag "Check"
+          %td= link_to member.membernumber, edit_member_path(member)
+          %td= member.firstnames
+          %td= member.surname
+          %td= member.municipality
+          %td= member.address
+          %td= member.zipcode
+          %td= member.postoffice
+          %td= member.email
+          %td= member.membership
+          %td= member.membergroup.groupname
+          %td= button_to 'Poista', member_path(member), :method => :delete

@@ -19,7 +19,6 @@ class MembersController < ApplicationController
   # Redirects to new member page.
 
   def create
-
     @member = Member.new(params[:member])
     @member.expirationdate += 1
     if @member.save
@@ -28,6 +27,10 @@ class MembersController < ApplicationController
       flash[:member] = @member
     end
     redirect_to new_member_path
+  end
+
+  def invoice
+    @member = Member.find(params[:member])
   end
 
   ##
