@@ -89,11 +89,11 @@ class MembersController < ApplicationController
   end
 
   def send_invoices
-    parsed_json = ActiveSupport::JSON.decode(params[:ids])
-    members = Member.find_all_by_id(parsed_json["ids"])
+    members = Member.find_all_by_id(params[:member])
     members.each do |member|
       Billing.bill_email(member).deliver
     end
+    redirect_to members_path
   end
 
   private

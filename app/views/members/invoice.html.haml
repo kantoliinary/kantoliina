@@ -25,7 +25,8 @@
         %td= Member.generate_refnumber(member.membernumber)
         %td= button_to 'Poista'
 
-  = form_tag invoice_confirm_path, :id => "invoice_form" do
-    = hidden_field_tag "ids", @ids
+  = form_tag invoice_path, :id => "invoice_form" do
+    -@members.each do |member|
+      = hidden_field_tag "member[]", member.id
     = button_tag "Lähetä laskut", :id => "send_invoice"
 
