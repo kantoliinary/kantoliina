@@ -1,18 +1,18 @@
 #encoding: utf-8
 ##
-# Controller for admin class
+# The controller for Admin class.
 
 class AdminsController < ApplicationController
 
   ##
-  # Shows login form to user.
+  # Shows login form to the admin.
 
   def loginform
     @error = Hash.new
   end
 
   ##
-  # Saves logged admin to session[:admin] if login and password correct, and redirect to members list page.
+  # Saves logged Admin to session[:admin] if login and password are correct, and redirects to members list page.
   # Add error to @error[:error] if incorrect username or password, and renders login form.
 
   def login

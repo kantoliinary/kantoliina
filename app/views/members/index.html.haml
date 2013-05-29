@@ -37,8 +37,12 @@
     %tr
       %th= check_box_tag "check_all", :id => "check_all"
       %th Jäsennumero
-      %th Nimi
+      %th Etunimet
       %th Sukunimi
+      %th Kunta
+      %th Osoite
+      %th Postinumero
+      %th Postitoimipaikka
       %th Sähköposti
       %th Jäsenyyden status
       %th Jäsenryhmä
@@ -48,6 +52,10 @@
         %td= link_to member.membernumber, edit_member_path(member)
         %td= member.firstnames
         %td= member.surname
+        %td= member.municipality
+        %td= member.address
+        %td= member.zipcode
+        %td= member.postoffice
         %td= member.email
         %td= member.membership
         %td= member.membergroup.groupname

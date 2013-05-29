@@ -4,3 +4,9 @@ When /^I select "([^"]*)" as the (.+) "([^"]*)" date$/ do |date, model, selector
   select(date.strftime("%B"), :from => "#{model}[#{selector}(2i)]")
   select(date.day.to_s, :from => "#{model}[#{selector}(3i)]")
 end
+
+Given /the following membergroups exist/ do |membergroups_table|
+  membergroups_table.hashes.each do |membergroup|
+    Membergroup.create!(membergroup)
+  end
+end
