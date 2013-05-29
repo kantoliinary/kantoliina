@@ -13,7 +13,7 @@ class AdminsController < ApplicationController
 
   ##
   # Saves logged Admin to session[:admin] if login and password are correct, and redirects to members list page.
-  # Add error to @error[:error] if incorrect username or password, and renders login form.
+  # Adds error to @error[:error] if username or password is incorrect, and rerenders login form.
 
   def login
     admin = Admin.find_by_login(params[:login]).try(:authenticate, params[:password])
@@ -27,7 +27,7 @@ class AdminsController < ApplicationController
   end
 
   ##
-  # Clears all from session and redirect to login form page.
+  # Clears all from session and redirects to login form page.
   def logout
     reset_session
     flash[:notice] = "Kirjauduttu ulos"

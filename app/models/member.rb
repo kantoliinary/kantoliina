@@ -1,8 +1,8 @@
 #encoding: utf-8
 ##
-# None of fields cannot be blank.
-# Email must be in email format.
-# Membernumber can have only integers and its length must be 3-19.
+# None of the fields can be blank.
+# E-mail must be in e-mail format.
+# Member number can have only integers and its length must be 3-19 symbols.
 
 class Member < ActiveRecord::Base
   attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :membership, :expirationdate

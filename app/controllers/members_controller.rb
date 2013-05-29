@@ -1,6 +1,6 @@
 #encoding: utf-8
 ##
-# Controller for member class
+# The controller for class Member.
 
 class MembersController < ApplicationController
   before_filter :require_login
