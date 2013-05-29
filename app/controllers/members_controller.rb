@@ -30,19 +30,20 @@ class MembersController < ApplicationController
   end
 
   def invoice
-   parsed_json = ActiveSupport::JSON.decode(params[:ids])
-   @members = Member.find_all_by_id(parsed_json["ids"])
-   @viite = generate_refnumber(parsed_json["ids"])
+    @ids = params[:ids]
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @members = Member.find_all_by_id(parsed_json["ids"])
+    @viite = generate_refnumber(parsed_json["ids"])
   end
 
   def generate_refnumber(param)
     @number = Hash.new
-    @members.each do  |member|
+    @members.each do |member|
       input = member.membernumber.to_s.reverse!
       base = "731" * 50
 
       index = 0
-      sum   = 0
+      sum = 0
 
       input.each_byte do |b|
         result = b.chr.to_i * base[index % 3].chr.to_i
@@ -108,8 +109,15 @@ class MembersController < ApplicationController
     else
       flash[:member] = @member
     end
-    Billing.bill_email(@member).deliver
     redirect_to edit_member_path
+  end
+
+  def send_invoices
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    members = Member.find_all_by_id(parsed_json["ids"])
+    members.each do |member|
+      Billing.bill_email(member).deliver
+    end
   end
 
   private
@@ -132,8 +140,8 @@ class MembersController < ApplicationController
   end
 
 ##
- # Filters
- #
+# Filters
+#
 
 
   def search_with_filter keyword, search_fields, membership, paymentstatus
