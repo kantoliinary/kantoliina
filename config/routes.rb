@@ -10,6 +10,7 @@ Kantoliina::Application.routes.draw do
   post 'login' => 'admins#login'
   get 'logout' => 'admins#logout'
   post "invoice/confirm" => 'members#invoice'
+  post "invoice" => 'members#send_invoices'
   resources :members
 
 

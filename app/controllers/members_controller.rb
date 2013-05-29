@@ -30,35 +30,11 @@ class MembersController < ApplicationController
   end
 
   def invoice
-    @ids = params[:ids]
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
     @members = Member.find_all_by_id(parsed_json["ids"])
-    @viite = generate_refnumber(parsed_json["ids"])
-  end
-
-  def generate_refnumber(param)
-    @number = Hash.new
-    @members.each do |member|
-      input = member.membernumber.to_s.reverse!
-      base = "731" * 50
-
-      index = 0
-      sum = 0
-
-      input.each_byte do |b|
-        result = b.chr.to_i * base[index % 3].chr.to_i
-        sum = sum + result
-        index = index + 1
-
-      end
-      difference = (10 - (sum % 10)) % 10
-
-      @number[member.id] = "#{difference}#{input}".reverse
-
-    end
-    return @number
 
   end
+
 
   ##
   # Deletes the member with params[:member] and tries to save it.
@@ -113,11 +89,11 @@ class MembersController < ApplicationController
   end
 
   def send_invoices
-    parsed_json = ActiveSupport::JSON.decode(params[:ids])
-    members = Member.find_all_by_id(parsed_json["ids"])
+    members = Member.find_all_by_id(params[:member])
     members.each do |member|
       Billing.bill_email(member).deliver
     end
+    redirect_to members_path
   end
 
   private

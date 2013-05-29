@@ -23,6 +23,8 @@ class Member < ActiveRecord::Base
   validates :expirationdate, :presence => {:message => "Jäsenyyden päättymispäivä puuttuu!"}
 
   @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membergroup => "Jäsenryhmä", :membernumber => "Jäsennumero"}
+  #@@ref_number = self.generate_refnumber
+
 
   def self.all_search_fields
     @@all_search_fields
@@ -33,4 +35,29 @@ class Member < ActiveRecord::Base
     @@all_search_fields.has_key?(field.to_sym)
   end
 
+
+  def self.generate_refnumber membernumber
+
+    input = membernumber.to_s.reverse!
+    base = "731" * 50
+
+    index = 0
+    sum = 0
+
+    input.each_byte do |b|
+      result = b.chr.to_i * base[index % 3].chr.to_i
+      sum = sum + result
+      index = index + 1
+
+    end
+    difference = (10 - (sum % 10)) % 10
+
+    input = "#{difference}#{input}".reverse
+    return input
+
+
+  end
+
+
 end
+
