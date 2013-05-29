@@ -83,7 +83,7 @@ class MembersController < ApplicationController
     else
       flash[:member] = @member
     end
-    Billing.bill_email.deliver
+    Billing.bill_email(@member).deliver
     redirect_to edit_member_path
   end
 
