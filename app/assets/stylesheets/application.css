@@ -45,6 +45,23 @@ table.center {
     margin-right:auto;
 }
 
+div.center{
+    margin: 0 auto;
+}
+div.left {
+    float: left;
+    margin-top: 7px;
+    margin-bottom: 8px;
+}
+
+div.right {
+    float: right;
+    /*margin-top: 8px;*/
+}
+.clear {
+    clear: both;
+}
+
 table {
     border-collapse: collapse;
     margin: 10px 15px;
@@ -90,16 +107,16 @@ fieldset {
     padding-left:20px;
 }
 label {
-    display:block;
-    font-weight:bold;
-    margin:5px 0;
+    /*display:block;*/
+    /*font-weight:bold;*/
+    /*margin:5px 0;*/
 }
 input {
     padding: 2px;
     border:1px solid #eee;
     font: normal 1em "Trebuchet MS", Tahoma, sans-serif;
     color:#777;
-    margin:5px;
+    margin:5px;;
 }
 textarea {
     width:400px;
