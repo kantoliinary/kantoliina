@@ -29,10 +29,11 @@ class MembersController < ApplicationController
     redirect_to new_member_path
   end
 
+  ##
+  # Parses an array of IDs from JSON code given as a parameter and selects an array of members based on those IDs.
   def invoice
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
     @members = Member.find_all_by_id(parsed_json["ids"])
-
   end
 
 
@@ -78,6 +79,8 @@ class MembersController < ApplicationController
     @member = flash[:member] || Member.find(params[:id])
   end
 
+  ##
+  #Replaces the selected attributes of a single member.
   def update
     @member = Member.find(params[:id])
     if @member.update_attributes(params[:member])
@@ -88,6 +91,8 @@ class MembersController < ApplicationController
     redirect_to edit_member_path
   end
 
+  ##
+  #Selects a group of members by chosen ID and sends an invoice to their e-mails.
   def send_invoices
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
@@ -116,8 +121,8 @@ class MembersController < ApplicationController
   end
 
 ##
-# Filters
-#
+# Filters members by selected radio buttons. Values are membership and payment status with OR operation.
+# If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
   def search_with_filter keyword, search_fields, membership, paymentstatus
