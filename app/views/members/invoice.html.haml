@@ -22,10 +22,10 @@
         %td= member.membergroup.groupname
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
-        %td= button_to 'Poista'
+        %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
 
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
-      = hidden_field_tag "member[]", member.id
+      = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
     = button_tag "Lähetä laskut", :id => "send_invoice"
 
