@@ -1,6 +1,6 @@
 #encoding: utf-8
 ##
-# Controller for member class
+# The controller for class Member.
 
 class MembersController < ApplicationController
   before_filter :require_login
@@ -89,8 +89,8 @@ class MembersController < ApplicationController
   end
 
   def send_invoices
-    members = Member.find_all_by_id(params[:member])
-    members.each do |member|
+    @members = Member.find_all_by_id(params[:member])
+    @members.each do |member|
       Billing.bill_email(member).deliver
     end
     redirect_to members_path

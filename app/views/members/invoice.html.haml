@@ -7,7 +7,6 @@
 
   %table{:id => "members"}
     %tr
-      %th= check_box_tag "check_all", :id => "check_all"
       %th Jäsennumero
       %th Etunimet
       %th Sukunimi
@@ -17,7 +16,6 @@
       %th Viitenumero
     - @members.each do |member|
       %tr
-        %td= check_box_tag "member_checkbox", member.id
         %td= link_to member.membernumber, edit_member_path(member)
         %td= member.firstnames
         %td= member.surname
