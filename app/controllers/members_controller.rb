@@ -68,11 +68,8 @@ class MembersController < ApplicationController
     @keyword = params[:keyword] || ""
     @membership = params[:membership] || "1"
     @paymentstatus = params[:paymentstatus] || "2"
-    @selected_membergroups = params[:membergroups] || "1"
-    puts "gfdsaafga"
-    puts @selected_membergroups.class
+    @selected_membergroups = params[:membergroups] || @membergroups.collect{|g| g.id}
     @members = search_with_filter(@keyword, @selected_search_fields, @membership, @paymentstatus, @selected_membergroups)
-
   end
 
   ##
@@ -130,7 +127,7 @@ class MembersController < ApplicationController
 
   def search_with_filter keyword, search_fields, membership, paymentstatus, membergroups
     keywords = keyword.split(" ")
-    member = nil
+    member = Member.includes(:membergroup)
     keywords.each do |word|
       query = ""
       query_keywords = {}
@@ -142,23 +139,26 @@ class MembersController < ApplicationController
           counter += 1
         end
       end
-      member = (member ? member : Member).where(query, query_keywords)
+      member = member.where(query, query_keywords)
     end
     if membership == "0" || membership == "1"
-      member = (member ? member : Member).where(:membership => (membership == "0" ? false : true))
+      member.where(:membership => (membership == "0" ? false : true))
     end
     if paymentstatus == "0"
-      member = (member ? member : Member).where("expirationdate < ?", Time.now)
+      member = member.where("expirationdate < ?", Time.now)
     end
     if paymentstatus == "1"
-      member = (member ? member : Member).where("expirationdate > ?", Time.now)
+      member = member.where("expirationdate > ?", Time.now)
     end
-    unless membergroups.empty?
-      membergroups.each do |group|
-        member = (member ? member : Member).where("groupname ")
-      end
+    query = ""
+    query_keywords = {}
+    counter = 65;
+    membergroups.each do |id|
+      query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{counter.chr}"
+      query_keywords[counter.chr.to_sym] = id
+      counter += 1
     end
-    member || Member.all
+    member.where(query, query_keywords)
   end
 
 end
