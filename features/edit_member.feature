@@ -17,7 +17,7 @@ Feature: edit member
     And I fill in "login" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Jäsenien lisäykseen"
+    And I follow "Lisää jäsen"
     When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |

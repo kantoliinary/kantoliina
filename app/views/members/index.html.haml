@@ -4,10 +4,9 @@
     -#= render 'nav'
     %p
       =link_to "Listaa jäsenet", members_path
-      =link_to "Lisää Jäsen", new_member_path
+      =link_to "Lisää jäsen", new_member_path
       =link_to "Kirjaudu ulos", logout_path
   %br
-  %hr
   = form_tag members_path, :method => :get, :id => 'filter_form' do
     = text_field_tag "keyword", "#{@keyword}"
     %br
@@ -35,7 +34,6 @@
     %br
     = submit_tag "Hae", :id => "search"
     %br
-  %hr
   = flash[:notice]
   %table{:class => "center", :id => "members"}
     %tr

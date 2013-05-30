@@ -20,7 +20,6 @@ group :development, :test do
   gem 'simplecov'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'json'
 end
 
 group :test do
@@ -28,7 +27,6 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
-  gem 'json'
 end
 
 # Gems used only for assets and not required
