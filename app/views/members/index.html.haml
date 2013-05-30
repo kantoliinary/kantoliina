@@ -1,9 +1,7 @@
 %div{:id => "index_member_page"}
   %h1 Ylläpitäjän sivu
-
-  =link_to "Kirjaudu ulos", logout_path
-  %br
-  =link_to "Jäsenien lisäykseen", new_member_path
+  %header
+    -#= render 'nav'
   %br
   %hr
   = form_tag members_path, :method => :get, :id => 'filter_form' do
