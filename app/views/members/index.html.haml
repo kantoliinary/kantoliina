@@ -29,6 +29,8 @@
     =radio_button_tag "paymentstatus", "2", (@paymentstatus == "2" ? true : false)
     Molemmat
     %br
+    = select_tag "membergroups", options_for_select(@membergroups.collect{ |o| [o.groupname, o.id]}, @selected_membergroups), :multiple => true
+    %br
     = submit_tag "Hae", :id => "search"
     %br
   %hr

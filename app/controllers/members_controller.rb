@@ -67,7 +67,10 @@ class MembersController < ApplicationController
     @keyword = params[:keyword] || ""
     @membership = params[:membership] || "1"
     @paymentstatus = params[:paymentstatus] || "2"
-    @members = search_with_filter(@keyword, @selected_search_fields, @membership, @paymentstatus)
+    @selected_membergroups = params[:membergroups] || "1"
+    puts "gfdsaafga"
+    puts @selected_membergroups.class
+    @members = search_with_filter(@keyword, @selected_search_fields, @membership, @paymentstatus, @selected_membergroups)
 
   end
 
@@ -120,9 +123,8 @@ class MembersController < ApplicationController
 #
 
 
-  def search_with_filter keyword, search_fields, membership, paymentstatus
+  def search_with_filter keyword, search_fields, membership, paymentstatus, membergroups
     keywords = keyword.split(" ")
-    puts keywords
     member = nil
     keywords.each do |word|
       query = ""
@@ -138,16 +140,18 @@ class MembersController < ApplicationController
       member = (member ? member : Member).where(query, query_keywords)
     end
     if membership == "0" || membership == "1"
-      puts !!membership
       member = (member ? member : Member).where(:membership => (membership == "0" ? false : true))
     end
     if paymentstatus == "0"
-      puts !!membership
       member = (member ? member : Member).where("expirationdate < ?", Time.now)
     end
     if paymentstatus == "1"
-      puts !!membership
       member = (member ? member : Member).where("expirationdate > ?", Time.now)
+    end
+    unless membergroups.empty?
+      membergroups.each do |group|
+        member = (member ? member : Member).where("groupname ")
+      end
     end
     member || Member.all
   end
