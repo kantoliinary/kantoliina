@@ -1,4 +1,4 @@
-#encoding: utf-8
+2#encoding: utf-8
 
 require 'spec_helper'
 
@@ -114,6 +114,8 @@ describe MembersController do
       end
     end
   end
+
+
   describe "POST #destroy" do
 
 
@@ -134,6 +136,9 @@ describe MembersController do
       end
     end
   end
+
+  describe
+
 end
 
 

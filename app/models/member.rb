@@ -35,6 +35,8 @@ class Member < ActiveRecord::Base
     @@all_search_fields.has_key?(field.to_sym)
   end
 
+  ##
+  # Generates a reference number from a member number using a mathematical formula.
 
   def self.generate_refnumber membernumber
 

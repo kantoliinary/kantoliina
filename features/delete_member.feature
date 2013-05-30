@@ -38,3 +38,4 @@ Feature: delete member
     When I am on the members page
     And I press "Poista"
     Then I should see "Jäsen poistettu"
+    Then I should not see "jasen"
