@@ -4,12 +4,10 @@
   =link_to "Kirjaudu ulos", logout_path
   %br
   =link_to "Jäsenien listaukseen", members_path
-
-  %table{:id => "members"}
+  %table{:class => "center", :id => "members"}
     %tr
       %th Jäsennumero
-      %th Etunimet
-      %th Sukunimi
+      %th Nimi
       %th Sähköposti
       %th Jäsenryhmä
       %th Laskun summa
@@ -17,8 +15,9 @@
     - @members.each do |member|
       %tr
         %td= link_to member.membernumber, edit_member_path(member)
-        %td= member.firstnames
-        %td= member.surname
+        %td
+          = member.firstnames
+          = member.surname
         %td= member.email
         %td= member.membergroup.groupname
         %td= member.membergroup.fee

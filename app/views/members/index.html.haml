@@ -31,12 +31,12 @@
     %br
   %hr
   = flash[:notice]
-  %table{:id => "members"}
+  %table{:class => "center", :id => "members"}
     %tr
       %th= check_box_tag "check_all", :id => "check_all"
       %th Jäsennumero
-      %th Etunimet
-      %th Sukunimi
+      %th Nimi
+      -#%th Sukunimi
       %th Kunta
       %th Osoite
       %th Postinumero
@@ -48,8 +48,10 @@
       %tr
         %td= check_box_tag "member_checkbox", member.id
         %td= link_to member.membernumber, edit_member_path(member)
-        %td= member.firstnames
-        %td= member.surname
+        %td
+          = member.firstnames
+          = member.surname
+        -#%td= member.surname
         %td= member.municipality
         %td= member.address
         %td= member.zipcode
