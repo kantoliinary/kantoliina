@@ -15,34 +15,37 @@
             = field
           - i += 1
         %div{:class => "clear"}
-      %div{:id => "membership_buttons"}
+      %hr
+      %div{:id => "membergroup_fields"}
+        - @membergroups.each do |group|
+          %div{:class => "left"}
+            = check_box_tag "membergroups[#{group.id}]", 1, @selected_membergroups.include?("#{group.id}"), :id => "membergroups_#{group.id}"
+            = group.groupname
+        %div{:class => "clear"}
+      %hr
+      %div{:id => "membership_fields", :class => "left"}
         %span{:class => "bold"}
-          Poistettu:
-        = radio_button_tag "membership", "1", (@membership == "1" ? true : false)
-        %span
-          Ei
-        = radio_button_tag "membership", "0", (@membership == "0" ? true : false)
-        %span
-          Kyllä
-        = radio_button_tag "membership", "2", (@membership == "2" ? true : false)
-        %span
-          Molemmat
-      %div{:id => "paymentstatus_buttons"}
+          Poistettu
+        %div{:class => "field"}
+          = check_box_tag "membership[0]", 1, @membership.include?("0")
+          %span
+            Kyllä
+        %div{:class => "field"}
+          = check_box_tag "membership[1]", 1, @membership.include?("1")
+          %span
+            Ei
+      %div{:id => "paymentstatus_fields", :class => "left"}
         %span{:class => "bold"}
           Maksanut:
-        = radio_button_tag "paymentstatus", "0", (@paymentstatus == "0" ? true : false)
-        %span
-          Ei
-        = radio_button_tag "paymentstatus", "1", (@paymentstatus == "1" ? true : false)
-        %span
-          Kyllä
-        =radio_button_tag "paymentstatus", "2", (@paymentstatus == "2" ? true : false)
-        %span
-          Molemmat
-      %div{:id => "membergroup_buttons"}
-        - @membergroups.each do |group|
-          = group.groupname
-          = check_box_tag "membergroups[#{group.id}]", 1, @selected_membergroups.include?("#{group.id}"), :id => "membergroups_#{group.id}"
+        %div{:class => "field"}
+          = check_box_tag "paymentstatus[1]", 1, @paymentstatus.include?("1")
+          %span
+            Kyllä
+        %div{:class => "field"}
+          = check_box_tag "paymentstatus[0]", 1, @paymentstatus.include?("0")
+          %span
+            Ei
+      %div{:class => "clear"}
       %div{:id => "submit_button"}
         = submit_tag "Hae", :id => "search"
   = flash[:notice]

@@ -20,7 +20,6 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
-    @member.expirationdate += 1
     if @member.save
       flash[:notice] = "Jäsen lisätty!"
     else
@@ -66,11 +65,13 @@ class MembersController < ApplicationController
     @all_search_fields = Member.all_search_fields
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
-    @membership = params[:membership] || "1"
-    @paymentstatus = params[:paymentstatus] || "2"
+    @membership = params[:membership] || {"1" =>"1"}
+    puts "qaaaaaaaaaaaaaa"
+    puts @membership
+    @paymentstatus = params[:paymentstatus] || {"0" => "0", "1" => "1"}
     s_membergroups = params[:membergroups]
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect{|g| "#{g.id}" }
-    @members = search_with_filter(@keyword, @selected_search_fields, @membership, @paymentstatus, @selected_membergroups)
+    @members = search_with_filter(@keyword, @selected_search_fields, @membership.keys, @paymentstatus.keys, @selected_membergroups)
   end
 
   ##
@@ -144,14 +145,12 @@ class MembersController < ApplicationController
       end
       member = member.where(query, query_keywords)
     end
-    if membership == "0" || membership == "1"
-      member.where(:membership => (membership == "0" ? false : true))
+    if membership.length == 1
+      puts membership.at(0).class
+      member = member.where(:membership => membership.at(0) == "1")
     end
-    if paymentstatus == "0"
-      member = member.where("expirationdate < ?", Time.now)
-    end
-    if paymentstatus == "1"
-      member = member.where("expirationdate > ?", Time.now)
+    if paymentstatus.length == 1
+      member = member.where("expirationdate "+(paymentstatus.at(0) == "0" ? "<" : ">") +" ?", Time.now-1.day)
     end
     query = ""
     query_keywords = {}
