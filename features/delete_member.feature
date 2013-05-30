@@ -17,7 +17,7 @@ Feature: delete member
     And I fill in "login" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Jäsenien lisäykseen"
+    And I follow "Lisää jäsen"
     When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |
@@ -36,6 +36,7 @@ Feature: delete member
 
   Scenario: delete member
     When I am on the members page
+    Then I should see "jasen"
     And I press "Poista"
     Then I should see "Jäsen poistettu"
     Then I should not see "jasen"

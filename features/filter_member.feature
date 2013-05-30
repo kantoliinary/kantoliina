@@ -16,7 +16,7 @@ Feature: filter members
     And I fill in "login" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Jäsenien lisäykseen"
+    And I follow "Lisää jäsen"
     When I fill in the following:
       | Etunimet         | Janne                 |
       | Sukunimi         | Jäsen                 |
@@ -32,7 +32,7 @@ Feature: filter members
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
-    And I follow "Jäsenien lisäykseen"
+    And I follow "Lisää jäsen"
     When I fill in the following:
       | Etunimet         | Liisa                      |
       | Sukunimi         | Mehiläinen                 |
@@ -48,7 +48,7 @@ Feature: filter members
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
-    And I follow "Jäsenien lisäykseen"
+    And I follow "Lisää jäsen"
     When I fill in the following:
       | Etunimet         | Jaana                   |
       | Sukunimi         | Jäsen                   |
@@ -154,3 +154,28 @@ Feature: filter members
     Then I should see "Jaana"
     Then I should not see "Janne"
     Then I should not see "Liisa"
+
+  Scenario: select deleted members
+    When I am on the members page
+    And I choose "membership_1"
+    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should see "Janne"
+#    Then I should see "Liisa"
+#
+#
+#  Scenario: see deleted members
+#    When I am on the members page
+#    Then I should see "Jaana"
+#    Then I should see "Janne"
+#    Then I should see "Liisa"
+#    And I press "Poista"
+#    Then I should not see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should not see "Liisa"
+#    Then I should see "Jäsen poistettu"
+#    And I choose "membership_0"
+#    And I press "Hae"
+
+
+

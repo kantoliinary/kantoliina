@@ -127,7 +127,6 @@ class MembersController < ApplicationController
 
   def search_with_filter keyword, search_fields, membership, paymentstatus
     keywords = keyword.split(" ")
-    puts keywords
     member = nil
     keywords.each do |word|
       query = ""
@@ -143,15 +142,12 @@ class MembersController < ApplicationController
       member = (member ? member : Member).where(query, query_keywords)
     end
     if membership == "0" || membership == "1"
-      puts !!membership
       member = (member ? member : Member).where(:membership => (membership == "0" ? false : true))
     end
     if paymentstatus == "0"
-      puts !!membership
       member = (member ? member : Member).where("expirationdate < ?", Time.now)
     end
     if paymentstatus == "1"
-      puts !!membership
       member = (member ? member : Member).where("expirationdate > ?", Time.now)
     end
     member || Member.all

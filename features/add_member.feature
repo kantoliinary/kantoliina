@@ -19,7 +19,7 @@ Feature: add new member
     And I fill in "login" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Jäsenien lisäykseen"
+    And I follow "Lisää jäsen"
 
   Scenario: add new member
 
