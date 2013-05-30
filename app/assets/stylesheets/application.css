@@ -597,3 +597,7 @@ ul#SearchResults li {
     margin: 5px 0;
     font-size: 1em;
 }
+
+.bold{
+    font-weight: bold;
+}

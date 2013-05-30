@@ -68,7 +68,8 @@ class MembersController < ApplicationController
     @keyword = params[:keyword] || ""
     @membership = params[:membership] || "1"
     @paymentstatus = params[:paymentstatus] || "2"
-    @selected_membergroups = params[:membergroups] || @membergroups.collect{|g| g.id}
+    s_membergroups = params[:membergroups]
+    @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect{|g| "#{g.id}" }
     @members = search_with_filter(@keyword, @selected_search_fields, @membership, @paymentstatus, @selected_membergroups)
   end
 
