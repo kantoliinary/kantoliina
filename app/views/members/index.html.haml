@@ -1,9 +1,11 @@
 %div{:id => "index_member_page"}
   %h1 Ylläpitäjän sivu
-
-  =link_to "Kirjaudu ulos", logout_path
-  %br
-  =link_to "Jäsenien lisäykseen", new_member_path
+  %header
+    -#= render 'nav'
+    %p
+      =link_to "Listaa jäsenet", members_path
+      =link_to "Lisää Jäsen", new_member_path
+      =link_to "Kirjaudu ulos", logout_path
   %br
   %hr
   = form_tag members_path, :method => :get, :id => 'filter_form' do
@@ -48,6 +50,7 @@
       %th Sähköposti
       %th Jäsenyyden status
       %th Jäsenryhmä
+      %th
     - @members.each do | member|
       %tr
         %td= check_box_tag "member_checkbox", member.id
