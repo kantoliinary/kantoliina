@@ -82,5 +82,10 @@ describe Member do
     FactoryGirl.build(:member, expirationdate: "40/6/2008").should_not be_valid
   end
 
+  it "generates ref_number" do
+    member = FactoryGirl.build(:member, membernumber: "12345")
+    Member.generate_refnumber(member.membernumber)  == "123453"
+  end
+
 
 end
