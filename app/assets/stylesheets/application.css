@@ -58,6 +58,23 @@ table.center {
     margin-right: auto;
 }
 
+div.center{
+    margin: 0 auto;
+}
+div.left {
+    float: left;
+    margin-top: 7px;
+    margin-bottom: 8px;
+}
+
+div.right {
+    float: right;
+    /*margin-top: 8px;*/
+}
+.clear {
+    clear: both;
+}
+
 table {
     border-collapse: collapse;
     margin: 10px 15px;
@@ -113,9 +130,9 @@ fieldset {
 }
 
 label {
-    display: block;
-    font-weight: bold;
-    margin: 5px 0;
+    /*display:block;*/
+    /*font-weight:bold;*/
+    /*margin:5px 0;*/
 }
 
 /*input {*/
