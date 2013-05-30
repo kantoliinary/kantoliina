@@ -1,10 +1,11 @@
 %div{:id => "new_member_page"}
+  -#%p
+  -#  =link_to "Listaa jäsenet", members_path
+  -#  =link_to "Lisää jäsen", new_member_path
+  -#  =link_to "Kirjaudu ulos", logout_path
+
+
   %div{:id => "h"}
-    %h1 Ylläpitäjän sivu
-    =link_to "Kirjaudu ulos", logout_path
-    %br
-    =link_to "Listaa jäsenet", members_path
-    %br
 
     %br
     = flash[:notice]

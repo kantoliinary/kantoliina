@@ -1,55 +1,54 @@
 %div{:id => "new_edit_member_page"}
-  %div{:id => "h"}
-    %h1 Ylläpitäjän sivu
-    =link_to "Kirjaudu ulos", logout_path
-    %br
-    =link_to "Listaa jäsenet", members_path
+  -#%p
+  -#  =link_to "Listaa jäsenet", members_path
+  -#  =link_to "Lisää jäsen", new_member_path
+  -#  =link_to "Kirjaudu ulos", logout_path
 
-    %br
-    = flash[:notice]
-    %h2 Jäsenen tietojen muokkaus
+  %br
+  = flash[:notice]
+  %h2 Jäsenen tietojen muokkaus
 
-    %div{:id => "edit_form"}
-      = simple_form_for @member, defaults:{label:false} do |f|
-        %div{:class => "left"}
-          = f.label "Etunimet"
-        %div{:class => "right"}
-          = f.input :firstnames, placeholder: 'Etunimet'
-        %div{:class => "left"}
-          = f.label "Sukunimi"
-        %div{:class => "right"}
-          = f.input :surname, placeholder: 'Sukunimi'
-        %div{:class => "left"}
-          = f.label "Kunta"
-        %div{:class => "right"}
-          = f.input :municipality, placeholder: 'Kunta'
-        %div{:class => "left"}
-          = f.label "Katuosoite"
-        %div{:class => "right"}
-          = f.input :address, placeholder: 'Katuosoite'
-        %div{:class => "left"}
-          = f.label "Postinumero"
-        %div{:class => "right"}
-          = f.input :zipcode, placeholder: 'Postinumero'
-        %div{:class => "left"}
-          = f.label "Postitoimipaikka"
-        %div{:class => "right"}
-          = f.input :postoffice, placeholder: 'Postitoimipaikka'
-        %div{:class => "left"}
-          = f.label "Sähköposti"
-        %div{:class => "right"}
-          = f.input :email, placeholder: 'Sähköposti'
-        %div{:class => "left"}
-          = f.label "Jäsennumero"
-        %div{:class => "right"}
-          = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
-        %div{:class => "left"}
-          = f.label 'Jäsenryhmä'
-        %div{:class => "right"}
-          = f.collection_select(:membergroup_id, Membergroup.all, :id, :groupname)
-        %div{:class => "clear"}
-        = f.label 'Jäsenyyden päättymispäivä'
+  %div{:id => "edit_form"}
+    = simple_form_for @member, defaults:{label:false} do |f|
+      %div{:class => "left"}
+        = f.label "Etunimet"
+      %div{:class => "right"}
+        = f.input :firstnames, placeholder: 'Etunimet'
+      %div{:class => "left"}
+        = f.label "Sukunimi"
+      %div{:class => "right"}
+        = f.input :surname, placeholder: 'Sukunimi'
+      %div{:class => "left"}
+        = f.label "Kunta"
+      %div{:class => "right"}
+        = f.input :municipality, placeholder: 'Kunta'
+      %div{:class => "left"}
+        = f.label "Katuosoite"
+      %div{:class => "right"}
+        = f.input :address, placeholder: 'Katuosoite'
+      %div{:class => "left"}
+        = f.label "Postinumero"
+      %div{:class => "right"}
+        = f.input :zipcode, placeholder: 'Postinumero'
+      %div{:class => "left"}
+        = f.label "Postitoimipaikka"
+      %div{:class => "right"}
+        = f.input :postoffice, placeholder: 'Postitoimipaikka'
+      %div{:class => "left"}
+        = f.label "Sähköposti"
+      %div{:class => "right"}
+        = f.input :email, placeholder: 'Sähköposti'
+      %div{:class => "left"}
+        = f.label "Jäsennumero"
+      %div{:class => "right"}
+        = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
+      %div{:class => "left"}
+        = f.label 'Jäsenryhmä'
+      %div{:class => "right"}
+        = f.collection_select(:membergroup_id, Membergroup.all, :id, :groupname)
+      %div{:class => "clear"}
+      = f.label 'Jäsenyyden päättymispäivä'
 
-        = f.input :expirationdate
+      = f.input :expirationdate
 
-        = f.submit "Tallenna", id:"updated"
+      = f.submit "Tallenna", id:"updated"

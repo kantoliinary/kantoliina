@@ -1,10 +1,4 @@
 %div{:id => "index_member_page"}
-  %h1 Ylläpitäjän sivu
-  %header
-    %p
-      =link_to "Listaa jäsenet", members_path
-      =link_to "Lisää jäsen", new_member_path
-      =link_to "Kirjaudu ulos", logout_path
   %br
   %div{:id => "search_form"}
     = form_tag members_path, :method => :get, :id => 'filter_form' do
