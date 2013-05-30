@@ -2,6 +2,10 @@
   %h1 Ylläpitäjän sivu
   %header
     -#= render 'nav'
+    %p
+      =link_to "Listaa jäsenet", members_path
+      =link_to "Lisää Jäsen", new_member_path
+      =link_to "Kirjaudu ulos", logout_path
   %br
   %hr
   = form_tag members_path, :method => :get, :id => 'filter_form' do
@@ -27,7 +31,7 @@
     =radio_button_tag "paymentstatus", "2", (@paymentstatus == "2" ? true : false)
     Molemmat
     %br
-    = submit_tag "Hae", :id => "search"
+    = button_tag "Hae", :id => "search"
     %br
   %hr
   = flash[:notice]
@@ -44,6 +48,7 @@
       %th Sähköposti
       %th Jäsenyyden status
       %th Jäsenryhmä
+      %th
     - @members.each do | member|
       %tr
         %td= check_box_tag "member_checkbox", member.id

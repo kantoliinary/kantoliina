@@ -24,34 +24,49 @@
 */
 
 /* top elements */
-* { padding: 0; margin: 0; }
+* {
+    padding: 0;
+    margin: 0;
+}
 
 body {
-    margin: 0; 	padding: 0;
-    font: normal 73%/1.5em 'Trebuchet MS', Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+    font: normal 100%/1.5em 'Trebuchet MS', Tahoma, sans-serif;
     color: #555;
-    background: #FFF url(../images/) repeat-x;
+    background: #fdfdfd url(../images/) repeat-x;
     text-align: center;
 }
 
 /* links */
-a { background: inherit; color: #72A545; text-decoration: none; }
-a:hover { background: inherit; color: #006699; text-decoration: underline; }
+a {
+    background: inherit;
+    color: #72A545;
+    text-decoration: none;
+}
+
+a:hover {
+    background: inherit;
+    color: #006699;
+    text-decoration: underline;
+}
 
 /* start - table */
 /*#members{ align: center; }*/
 table.center {
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table {
     border-collapse: collapse;
     margin: 10px 15px;
 }
+
 th strong {
     color: #fff;
 }
+
 th {
     background: #74A846;
     height: 29px;
@@ -62,9 +77,11 @@ th {
     border-left: 1px solid #B6D59A;
     border-bottom: solid 2px #FFF;
 }
+
 tr {
     height: 30px;
 }
+
 td {
     padding-left: 11px;
     padding-right: 11px;
@@ -72,43 +89,51 @@ td {
     border-left: 1px solid #FFF;
     border-bottom: solid 1px #ffffff;
 }
-td.first,th.first {
+
+td.first, th.first {
     border-left: 0px;
 }
+
 tr {
     background: #EFEFEF;
 }
+
 /* end - table */
 
 /* form elements */
 form {
-    margin:10px 15px; padding: 0;
-    background-color: #FAFAFA;
+    margin: 10px 15px;
+    padding: 0;
+    /*background-color: #FAFAFA;*/
 }
+
 fieldset {
-    border:0px;
-    padding-left:20px;
+    border: 0px;
+    padding-left: 20px;
 }
+
 label {
-    display:block;
-    font-weight:bold;
-    margin:5px 0;
+    display: block;
+    font-weight: bold;
+    margin: 5px 0;
 }
-input {
-    padding: 2px;
-    border:1px solid #eee;
-    font: normal 1em "Trebuchet MS", Tahoma, sans-serif;
-    color:#777;
-    margin:5px;
-}
+
+/*input {*/
+    /*padding: 2px;*/
+    /*border: 1px solid #dbdbdb;*/
+    /*font: normal 1em "Trebuchet MS", Tahoma, sans-serif;*/
+    /*color: #777;*/
+    /*margin: 5px;*/
+/*}*/
+
 textarea {
-    width:400px;
-    padding:2px;
+    width: 400px;
+    padding: 2px;
     font: normal 1em "Trebuchet MS", Tahoma, sans-serif;
-    border:1px solid #eee;
-    height:100px;
-    display:block;
-    color:#777;
+    border: 1px solid #eee;
+    height: 100px;
+    display: block;
+    color: #777;
 }
 
 input.button {
@@ -123,9 +148,16 @@ input.button {
 /* search form */
 .searchform {
     background-color: transparent;
-    border: none;	margin: 0; padding: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
-.searchform p { margin: 10px; padding: 0; }
+
+.searchform p {
+    margin: 10px;
+    padding: 0;
+}
+
 .searchform input.textbox {
     width: 130px;
     color: #333;
@@ -133,6 +165,7 @@ input.button {
     padding: 2px;
     vertical-align: top;
 }
+
 .searchform input.button {
     font: bold 12px Arial, Sans-serif;
     color: #333;
@@ -142,6 +175,8 @@ input.button {
     padding: 3px 5px;
     vertical-align: top;
 }
+
+
 
 /***********************
 	  LAYOUT
@@ -158,38 +193,47 @@ input.button {
     background-color: #e1c45f; /*#f3a85f;*/
     border-bottom: 3px solid #74a846;
 }
+
 #header-content {
-    margin: 0 auto; padding: 10px;
+    margin: 0 auto;
+    padding: 10px;
     position: relative;
 }
+
 #header-content h1#logo {
     position: absolute;
     font: 45px 'Perpetua Titling MT';
     letter-spacing: -2px;
     color: #FFF;
-    margin: 0; padding: 2;
+    margin: 0;
+    padding: 2;
 
     /* change the values of left and top to adjust the position of the logo */
-    top: 25px; left: 5px;
+    top: 25px;
+    left: 5px;
 }
+
 #header-content h1#logo a {
     text-decoration: none;
     color: #FFF;
 }
 
-
 /* header menu */
 #header-content ul {
     position: absolute;
-    left: 5px; top: 88px;
+    left: 5px;
+    top: 88px;
     font: /*bolder 1.1em*/ 13px 'Verdana', sans-serif;
     color: #FFF;
     list-style: none;
-    margin: 0px; padding: 0;
+    margin: 0px;
+    padding: 0;
 }
+
 #header-content li {
     display: inline;
 }
+
 #header-content li a {
     float: left;
     display: block;
@@ -203,11 +247,13 @@ input.button {
     border-size: 1px;
     border-color: #74a846;
 }
+
 #header-content li a:hover {
     background: #b6dc9a;
     color: #000;
 }
-#header-content li a.current  {
+
+#header-content li a.current {
     background: #b6dc9a; /*#c5f796*/
     color: #000;
 }
@@ -227,6 +273,7 @@ input.button {
     float: left;
     width: 100%;
 }
+
 #content {
     text-align: left;
     padding: 0;
@@ -237,13 +284,16 @@ input.button {
 #sidebar {
     float: right;
     width: 30%;
-    margin: 0 0 10px 0; padding: 0;
+    margin: 0 0 10px 0;
+    padding: 0;
 }
+
 #sidebar h1 {
     padding: 10px 0px 5px 10px;
     margin: 0;
     font: bold 1.3em 'Trebuchet MS', Tahoma, Sans-serif;
 }
+
 .sidebox {
     background: #F5F5F5;
     border: 1px solid #d2d2d2; /*efeded*/
@@ -252,36 +302,41 @@ input.button {
 
 /* sidebar menu */
 #sidebar ul.sidemenu {
-    list-style:none;
+    list-style: none;
     margin: 10px 0 15px 0;
     padding: 0;
     background: #F2F2F2;
 }
+
 #sidebar ul.sidemenu li {
     padding: 0px 10px;
 }
+
 #sidebar ul.sidemenu a {
-    display:block;
-    font-weight:normal;
+    display: block;
+    font-weight: normal;
     color: #333;
     height: 1.5em;
-    padding:.3em 0 .3em 15px;
+    padding: .3em 0 .3em 15px;
     line-height: 1.5em;
     border-bottom: 1px dashed #D4D4D4;
-    text-decoration:none;
+    text-decoration: none;
 }
-#sidebar ul.sidemenu a.top{
+
+#sidebar ul.sidemenu a.top {
     border-top: 1px dashed #D4D4D4;
 }
+
 #sidebar ul.sidemenu a:hover {
     padding: .3em 0 .3em 10px;
-    border-left: 5px solid  #c5f796;
+    border-left: 5px solid #c5f796;
     color: #65944A;
 }
+
 #sidebar ul.sidemenu a.current,
 #sidebar ul.sidemenu a.section {
     padding: .3em 0 .3em 10px;
-    border-left: 5px solid  #c5f796; /*#65944A*/
+    border-left: 5px solid #c5f796; /*#65944A*/
     color: #65944A;
 }
 
@@ -289,14 +344,17 @@ input.button {
 #main {
     float: left;
     width: 68%;
-    margin: 0 0 10px 0; padding: 0;
+    margin: 0 0 10px 0;
+    padding: 0;
 }
+
 #main h1 {
     padding: 10px 0px 0px 5px;
     margin: 0 0 0 10px;
     border-bottom: 1px solid #d2d2d2;
     font: normal 1.5em 'Trebuchet MS', Tahoma, Sans-serif;
 }
+
 #main ul li {
     list-style-image: url(../images/bullet.gif);
 }
@@ -313,78 +371,113 @@ input.button {
 }
 
 .post {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     background: #FFF url(../images/gradientbg.jpg) repeat-x;
     border: 1px solid #EFEDED;
 }
+
 .post .post-footer {
     background-color: #FAFAFA;
     border: 1px solid #f2f2f2;
-    padding: 5px; margin-top: 20px;
+    padding: 5px;
+    margin-top: 20px;
     font-size: 95%;
 }
+
 .post .post-footer .date {
     background: url('../images/clock.gif') no-repeat 0 center;
-    padding-left: 20px; margin: 0 10px 0 5px;
+    padding-left: 20px;
+    margin: 0 10px 0 5px;
 }
+
 .post .post-footer .comments {
     background: url('../images/comment.gif') no-repeat 0 center;
-    padding-left: 20px; margin: 0 10px 0 5px;
+    padding-left: 20px;
+    margin: 0 10px 0 5px;
 }
+
 .post .post-footer .readmore {
     background: url('../images/page.gif') no-repeat 0 center;
-    padding-left: 20px; margin: 0 10px 0 5px;
+    padding-left: 20px;
+    margin: 0 10px 0 5px;
 }
 
 /* footer */
 #footer {
     clear: both;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     font: normal .95em/1.6em 'Trebuchet MS', Tahoma, Arial, sans-serif;
     text-align: left;
 }
 
-#footer h1, #footer p {	margin-left: 0; }
+#footer h1, #footer p {
+    margin-left: 0;
+}
 
 #footer-content {
     border-top: 1px solid #d2d2d2;
     margin: 0 auto;
     padding-left: 15px;
 }
+
 #footer-content a {
     text-decoration: none;
     color: #777;
 }
+
 #footer-content a:hover {
     text-decoration: underline;
     color: #333;
 }
+
 #footer-content ul {
     list-style: none;
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
 }
+
 #footer-content .col {
     width: 32%;
     padding: 0 5px 30px 0;
 }
+
 #footer-content .col2 {
     width: 33%;
     padding: 0 0 30px 0;
 }
 
 /* alignment classes */
-.float-left  { float: left; }
-.float-right { float: right; }
-.align-left  { text-align: left; }
-.align-right {	text-align: right; }
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-right {
+    text-align: right;
+}
 
 /* additional classes */
-.clear { clear: both; }
-.green  { color: #74a846; }
+.clear {
+    clear: both;
+}
 
-p, h1,h2,h3 {
+.green {
+    color: #74a846;
+}
+
+p, h1, h2, h3 {
     margin: 10px 15px;
 }
+
 ul, ol {
     margin: 10px 30px;
     padding: 0 15px;
@@ -405,7 +498,6 @@ ul, ol {
     margin-right: 10px;
 }
 
-
 /* Comments
 ******************************************/
 
@@ -415,17 +507,18 @@ ul, ol {
 }
 
 #PageComments li {
-    list-style-image:none !important;
+    list-style-image: none !important;
     margin: 5px 0;
     padding: 1px;
     width: 88%;
 }
+
 #PageComments li.odd {
     background: #ecf7e2 url(../images/commentBg.png) no-repeat 1% 10%;
     padding-left: 40px;
     padding-right: 10px;
-    border-bottom:1px dotted #72A545;
-    border-top:1px dotted #72A545;
+    border-bottom: 1px dotted #72A545;
+    border-top: 1px dotted #72A545;
 }
 
 #PageComments li.even {
@@ -442,10 +535,12 @@ ul, ol {
     padding-right: 3px;
     font-size: 10px;
 }
+
 .actionLinks li {
     display: inline;
     border-right: 1px solid;
 }
+
 .actionLinks li.last {
     border-right: none;
 }
@@ -456,13 +551,16 @@ ul, ol {
     font-size: 1.1em;
     line-height: 1.6em;
 }
+
 #PageCommentsPagination p {
     text-align: center;
     font-size: 1.2em;
 }
+
 #PageComments p {
     font-size: 1em;
 }
+
 #PageComments p.info {
     color: #999;
     margin: 0px;
@@ -476,6 +574,7 @@ ul, ol {
 ul#SearchResults {
     margin: 10px 0;
 }
+
 ul#SearchResults li {
     list-style: none;
     margin: 5px 0;
