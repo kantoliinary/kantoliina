@@ -6,7 +6,9 @@
 
   %br
   = flash[:notice]
-  %h2 Jäsenen tietojen muokkaus
+  %h1 Jäsenen tietojen muokkaus
+
+
 
   %div{:id => "edit_form"}
     = simple_form_for @member, defaults:{label:false} do |f|
