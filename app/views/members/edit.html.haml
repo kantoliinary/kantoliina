@@ -60,4 +60,4 @@
         = f.submit "Tallenna", id:"update"
       %div{:class => "clear"}
     %div{:class => "left"}
-      = button_to 'Poista', member_path(@member), :method => :delete, :id => "delete"
+      = button_to  (@member.membership ? 'Poista' : 'Aktivoi'), member_path(@member), :method => :delete, :id => "delete"
