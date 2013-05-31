@@ -1,28 +1,23 @@
-2#encoding: utf-8
+#encoding: utf-8
 
 require 'spec_helper'
 
 
 describe MembersController do
 
-  describe "GET #new" do
+  before(:each) do
+    admin = FactoryGirl.build(:admin)
+    session[:admin] = admin
+  end
 
+  describe "GET #new" do
     context "with not logged in" do
       it "renders not the :new view" do
+        session[:admin] = nil
         get :new
         response.should_not render_template :new
       end
 
-    end
-  end
-
-
-  describe "GET #new" do
-
-
-    before(:each) do
-      admin = FactoryGirl.build(:admin)
-      session[:admin] = admin
     end
 
     context "with logged in" do
@@ -34,117 +29,82 @@ describe MembersController do
   end
 
 
-  describe "GET #index" do
-
-
-    before(:each) do
-      admin = FactoryGirl.build(:admin)
-      session[:admin] = admin
-    end
-
-    context "get :index" do
-      it "shows members" do
-        get :index
-      end
-
-
-    end
-  end
-
   describe "POST #create" do
 
-
-    before(:each) do
-      admin = FactoryGirl.build(:admin)
-      session[:admin] = admin
+    context "with valid attributes" do
+      it "member will be created" do
+        member = FactoryGirl.build(:member)
+        post :create, FactoryGirl.attributes_for(:member)
+        flash[:notice] == "Jäsen lisätty!"
+      end
     end
-
-    #context "with valid attributes" do
-    #   it "saves a member" do
-    #    member = FactoryGirl.build(:member)
-    #   Member.stub(:find).and_return(member)
-    #  post :create, FactoryGirl.attributes_for(:member)
-    # flash[:notice] == "Jäsen lisätty!"
-    # end
-    #end
   end
 
 
-  describe "GET #edit" do
+  describe "#invoice" do
 
 
-    context "with not logged in" do
-      it "renders not the :edit view" do
-        member = FactoryGirl.create(:member)
-        Member.stub(:find).and_return(member)
-        get :edit, FactoryGirl.attributes_for(:member)
-      end
-
-      context "with valid attributes" do
-
-        before(:each) do
-          admin = FactoryGirl.build(:admin)
-          session[:admin] = admin
-
-        end
-
-
-        # it "loads the correct member" do
-        #  member = FactoryGirl.build(:member)
-        # Member.stub(:find).and_return(member)
-        #post :create, FactoryGirl.attributes_for(:member)
-        #flash[:member].should_not be_nil
-
-        #end
-
-        it "update works" do
-          member = FactoryGirl.create(:member)
-          Member.stub(:find).and_return(member)
-          get :update, FactoryGirl.attributes_for(:member)
-          flash[:notice].should == "Tiedot muutettu!"
-        end
-
-
-        it "redirects to edit_member_path" do
-          member = FactoryGirl.create(:member)
-          Member.stub(:find).and_return(member)
-          get :update, FactoryGirl.attributes_for(:member)
-          redirect_to edit_member_path
-        end
-      end
-    end
   end
 
 
   describe "POST #destroy" do
-
-
-    before(:each) do
-      admin = FactoryGirl.build(:admin)
-      session[:admin] = admin
-    end
-
-
     context "with valid attributes" do
       it "member shall be removed" do
         member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         delete :destroy, FactoryGirl.attributes_for(:member)
         flash[:notice] == "Jasen poistettu"
-        delete :destroy, FactoryGirl.attributes_for(:member)
-        flash[:notice] == "Jasenen poisto ei onnistunut"
       end
-      #
-      #
-      #it "non-existing member cannot be removed" do
-      #  member = FactoryGirl.build(:member)
-      #  Member.stub(:find).and_return(member)
-      #  delete :destroy, FactoryGirl.attributes_for(:member)
-      #  flash[:notice] == "Jasenta ei loydetty!"
-      #end
     end
   end
 
+
+  describe "GET #index" do
+
+    context "get :index" do
+      it "shows members" do
+        get :index
+        response.should render_template :index
+      end
+    end
+  end
+
+  describe "GET #edit" do
+
+    context "with not logged in" do
+      it "renders not the :edit view" do
+        member = FactoryGirl.create(:member)
+        get :edit, FactoryGirl.attributes_for(:member)
+      end
+    end
+
+  end
+
+  describe "GET #update" do
+
+    context "with valid attributes" do
+
+      it "update works" do
+        member = FactoryGirl.create(:member)
+        Member.stub(:find).and_return(member)
+        get :update, FactoryGirl.attributes_for(:member)
+        flash[:notice].should == "Tiedot muutettu!"
+      end
+
+      it "redirects to edit_member_path" do
+        member = FactoryGirl.create(:member)
+        Member.stub(:find).and_return(member)
+        get :update, FactoryGirl.attributes_for(:member)
+        redirect_to edit_member_path
+      end
+    end
+  end
+
+  describe "GET #search_with_filter" do
+    search_with_filter("moi")
+
+
+  end
 end
 
 
