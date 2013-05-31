@@ -4,13 +4,17 @@
 
 
 #new_edit_member_page #edit_form {
-  width: 350px;
+  width: 480px;
   margin: 0 auto;
   margin-top: 0px;
 }
 
+#new_edit_member_page #expirationdate {
+  padding-top: 12px;
+}
+
 #new_edit_member_page .left {
-  width: 100px;
+  width: 130px;
   text-align: left;
 }
 
@@ -21,7 +25,7 @@
 
 #new_edit_member_page #edit_form select {
   margin-top: 0px;
-  margin-left: 5px;
+  margin-left: 0px;
 }
 
 #index_member_page #search_form {

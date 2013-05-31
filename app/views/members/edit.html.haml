@@ -48,11 +48,12 @@
         = f.label 'Jäsenryhmä'
       %div{:class => "right"}
         = f.collection_select(:membergroup_id, Membergroup.all, :id, :groupname)
+      %div{:class => "left"}
+        = f.label 'Jäsenyyden päättymispäivä'
+      %div{:class => "right", :id => "expirationdate"}
+        = f.input :expirationdate
       %div{:class => "clear"}
-      = f.label 'Jäsenyyden päättymispäivä'
-
-      = f.input :expirationdate
-
-      %br
-      = f.submit "Tallenna", id:"updated"
-  = button_to 'Merkitse Poistetuksi', member_path(@member), :method => :delete
+      %div{:class => "left"}
+        = f.submit "Tallenna", id:"updated"
+      %div{:class => "left"}
+        = button_to 'Merkitse Poistetuksi', member_path(@member), :method => :delete
