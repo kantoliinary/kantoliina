@@ -55,6 +55,14 @@ describe MembersController do
         delete :destroy, FactoryGirl.attributes_for(:member)
         flash[:notice] == "Jasen poistettu"
       end
+
+      it "member shall be removed" do
+        member = FactoryGirl.build(:member, membership: false)
+        Member.stub(:find).and_return(member)
+        delete :destroy, FactoryGirl.attributes_for(:member)
+        flash[:notice] == "Jasen aktivoitu"
+      end
+
     end
   end
 
