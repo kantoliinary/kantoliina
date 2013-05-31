@@ -4,11 +4,14 @@
 
 
 #new_edit_member_page #edit_form {
-  width: 480px;
-  margin: 0 auto;
+  width: 640px;
+  margin: 740px;
   margin-top: 0px;
 }
-
+#new_edit_member_page #edit_form form{
+  margin: 0;
+  padding: 0;
+}
 #new_edit_member_page #expirationdate {
   padding-top: 12px;
 }
@@ -18,14 +21,25 @@
   text-align: left;
 }
 
-#new_edit_member_page .right {
-  width: 300px;
+#new_edit_member_page .right_field {
+  width: 500px;
   text-align: left;
 }
 
 #new_edit_member_page #edit_form select {
   margin-top: 0px;
   margin-left: 0px;
+}
+
+#new_edit_member_page .row{
+  height: 35px;
+}
+#new_edit_member_page #update{
+  width: 344px;
+  margin-bottom: 10px;
+}
+#new_edit_member_page #delete{
+  width: 344px;
 }
 
 #index_member_page #search_form {
@@ -46,8 +60,7 @@
 #index_member_page #search_form #paymentstatus_fields, #index_member_page #search_form #membership_fields{
   width: 150px;
 }
-
-#index_member_page .submit, #invoice_member_page #send_invoice {
-  width: 200px;
-  padding: 5px;
+#index_member_page .poista, #invoice_member_page .delete_button {
+  width: 70px;
 }
+
