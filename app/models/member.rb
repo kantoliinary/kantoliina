@@ -23,10 +23,10 @@ class Member < ActiveRecord::Base
   validates :expirationdate, :presence => {:message => "Jäsenyyden päättymispäivä puuttuu!"}
 
   @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membernumber => "Jäsennumero"}
-  #@@ref_number = self.generate_refnumber
 
   ##
   #  Searches all search fields and returns them.
+
   def self.all_search_fields
     @@all_search_fields
     #%w(Asuinkunta, Maksustatus Jäsenstatus)
