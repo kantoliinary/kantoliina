@@ -66,6 +66,11 @@ describe Member do
     FactoryGirl.build(:member, membernumber: "vaara").should_not be_valid
   end
 
+  it "is unique membernumber" do
+    FactoryGirl.create(:member, membernumber: "12345").should be_valid
+    FactoryGirl.build(:member, membernumber: "12345").should_not be_valid
+  end
+
   it "is invalid without a payday" do
     FactoryGirl.build(:member, expirationdate: nil).should_not be_valid
   end
