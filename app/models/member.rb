@@ -1,8 +1,8 @@
 #encoding: utf-8
 ##
-# None of the fields can be blank.
-# E-mail must be in e-mail format.
-# Member number can have only integers and its length must be 3-19 symbols.
+# The model for a member in the database.
+# Validates the presence and form of the text written by the admin in the text fields.
+#
 
 class Member < ActiveRecord::Base
   attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :membership, :expirationdate
@@ -25,12 +25,15 @@ class Member < ActiveRecord::Base
   @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membernumber => "Jäsennumero"}
   #@@ref_number = self.generate_refnumber
 
-
+  ##
+  #  Searches all search fields and returns them.
   def self.all_search_fields
     @@all_search_fields
     #%w(Asuinkunta, Maksustatus Jäsenstatus)
   end
 
+  ##
+  #  Ensures that the field exists.
   def self.has_field? field
     @@all_search_fields.has_key?(field.to_sym)
   end
