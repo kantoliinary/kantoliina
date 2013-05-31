@@ -60,4 +60,5 @@
         = f.submit "Tallenna muutokset", id:"update"
       %div{:class => "clear"}
     %div{:class => "left"}
-      = button_to 'Poista jäsen', member_path(@member), :method => :delete, :id => "delete"
+      = button_to  (@member.membership ? 'Poista' : 'Aktivoi'), member_path(@member), :method => :delete, :id => "delete"
+

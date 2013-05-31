@@ -43,18 +43,16 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
-    if @member == false
-      flash[:notice] = "Jäsentä ei löydetty!"
-    else
-      @member.membership = false
-      if @member.save
+    if @member
+      @member.membership = "#{!@member.membership}"
+      @member.save!(:validate => false)
+      unless @member.membership
         flash[:notice] = "Jäsen poistettu"
-        redirect_to members_path
       else
-        flash[:notice] = "Jäsenen poisto ei onnistunut"
-        redirect_to members_path
+        flash[:notice] = "Jäsen aktivoitu"
       end
     end
+    redirect_to members_path
   end
 
   ##
