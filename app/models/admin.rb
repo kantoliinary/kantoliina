@@ -1,6 +1,8 @@
 #encoding: utf-8
+
 ##
-# Login must be 3-20 symbols long and password must be 8-20 symbols long.
+# The model for an admin in the database.
+# Validates the presence and length of the username and password.
 
 class Admin < ActiveRecord::Base
   attr_accessible :login, :password, :password_digest

@@ -153,15 +153,13 @@ textarea {
     color: #777;
 }
 
-input.button {
-    margin: 0;
-    font: bold 1em Arial, Sans-serif;
-    background: #FFF url(../images/gradientbg.jpg) repeat-x;
-    padding: 2px 3px;
-    color: #333;
-    border: 1px solid #DADADA;
+input, button {
+    width: 200px;
+    padding: 5px;
 }
-
+.checkbox{
+    width:auto;
+}
 /* search form */
 .searchform {
     background-color: transparent;
