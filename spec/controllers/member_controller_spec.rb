@@ -99,12 +99,10 @@ describe MembersController do
       end
     end
   end
-
-  describe "GET #search_with_filter" do
-    search_with_filter("moi")
-
-
-  end
+  #
+  #describe "GET #search_with_filter" do
+  #  search_with_filter("moi")
+  #end
 end
 
 

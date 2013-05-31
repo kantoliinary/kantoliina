@@ -57,5 +57,5 @@ Feature: delete member
     And I check "membership[0]"
     And I press "Hae"
     Then I should see "aaa"
-    And I press "Poista"
-    Then I should see "Jäsenen poisto ei onnistunut"
+    And I press "Aktivoi"
+    Then I should see "Jäsen aktivoitu"
