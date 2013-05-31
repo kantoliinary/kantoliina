@@ -13,6 +13,7 @@
       %th Jäsenryhmä
       %th Laskun summa
       %th Viitenumero
+      %th
     - @members.each do |member|
       %tr
         %td= link_to member.membernumber, edit_member_path(member)

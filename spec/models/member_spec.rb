@@ -54,9 +54,9 @@ describe Member do
     FactoryGirl.build(:member, email: "jotain@ehka.com").should be_valid
   end
 
-  #it "is invalid without a membergroup" do
-  #  FactoryGirl.build(:member, membergroup: nil).should_not be_valid
-  #end
+  it "is invalid without a membergroupid" do
+    FactoryGirl.build(:member, membergroup_id: nil).should_not be_valid
+  end
 
   it "is invalid without a membernumber" do
     FactoryGirl.build(:member, membernumber: nil).should_not be_valid
