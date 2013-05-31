@@ -15,7 +15,6 @@
 /tmp
 /.idea
 
-Gemfile.lock
 /spec/coverage/
 /coverage/
 /db/.nfs*
