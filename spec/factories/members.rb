@@ -16,7 +16,7 @@ FactoryGirl.define do
     f.membership "true"
 
   end
-  factory :invalid_member, parent: :member do |f|
+  factory :invalid_member, parent: :member  do |f|
     f.name nil
   end
 
