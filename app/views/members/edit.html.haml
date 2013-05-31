@@ -57,7 +57,7 @@
           = f.input :expirationdate
       %div{:class => "clear"}
       %div{:class => "left"}
-        = f.submit "Tallenna", id:"update"
+        = f.submit "Tallenna muutokset", id:"update"
       %div{:class => "clear"}
     %div{:class => "left"}
-      = button_to 'Poista', member_path(@member), :method => :delete, :id => "delete"
+      = button_to 'Poista jäsen', member_path(@member), :method => :delete, :id => "delete"
