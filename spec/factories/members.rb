@@ -10,7 +10,6 @@ FactoryGirl.define do
     f.address "Street 7"
     f.postoffice "Helsinki"
     f.email "sadasdsa@com.cocm"
-    #f.membergroup "varsinaisjasen"
     f.membergroup_id "1"
     f.membernumber "33333"
     f.expirationdate '2011/11/12'

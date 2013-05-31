@@ -28,15 +28,21 @@ Feature: delete member
       | Sähköposti       | gf@a.com |
       | Jäsennumero      | 12345    |
     And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I select "2013/11/12" as the member "expirationdate" date
+    And I select "2012/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
 
 
-  Scenario: delete member
+  Scenario: delete member form list page
     When I am on the members page
     Then I should see "jasen"
     And I press "Poista"
     Then I should see "Jäsen poistettu"
     Then I should not see "jasen"
+
+  Scenario: delete member form edit page
+    When I am on the members page
+    And I follow "12345"
+    And I press "Merkitse Poistetuksi"
+    Then I should see "Jäsen poistettu"

@@ -131,13 +131,19 @@ describe MembersController do
         Member.stub(:find).and_return(member)
         delete :destroy, FactoryGirl.attributes_for(:member)
         flash[:notice] == "Jasen poistettu"
-
-
+        delete :destroy, FactoryGirl.attributes_for(:member)
+        flash[:notice] == "Jasenen poisto ei onnistunut"
       end
+      #
+      #
+      #it "non-existing member cannot be removed" do
+      #  member = FactoryGirl.build(:member)
+      #  Member.stub(:find).and_return(member)
+      #  delete :destroy, FactoryGirl.attributes_for(:member)
+      #  flash[:notice] == "Jasenta ei loydetty!"
+      #end
     end
   end
-
-  describe
 
 end
 

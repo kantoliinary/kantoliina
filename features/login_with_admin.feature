@@ -13,7 +13,7 @@ Feature: login with admin
     And I fill in "login" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    Then I should see "Ylläpitäjän sivu"
+    Then I should see "Kirjaudu ulos"
 
   Scenario: login with admin invalid params
     And I fill in "login" with "fdkglsa"

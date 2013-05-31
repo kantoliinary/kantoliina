@@ -66,8 +66,8 @@ class MembersController < ApplicationController
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
     @membership = params[:membership] || {"1" =>"1"}
-    puts "qaaaaaaaaaaaaaa"
-    puts @membership
+    #puts "qaaaaaaaaaaaaaa"
+    #puts @membership
     @paymentstatus = params[:paymentstatus] || {"0" => "0", "1" => "1"}
     s_membergroups = params[:membergroups]
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect{|g| "#{g.id}" }
@@ -146,7 +146,7 @@ class MembersController < ApplicationController
       member = member.where(query, query_keywords)
     end
     if membership.length == 1
-      puts membership.at(0).class
+      #puts membership.at(0).class
       member = member.where(:membership => membership.at(0) == "1")
     end
     if paymentstatus.length == 1

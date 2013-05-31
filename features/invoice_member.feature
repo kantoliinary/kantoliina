@@ -1,6 +1,6 @@
-Feature: filter members
+Feature: invoice members
 
-  I want to search the exact member object and see the change in the screen
+  I want to see if we are billing the right members
 
   Background: admins in database
 
@@ -34,35 +34,31 @@ Feature: filter members
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
-#    And I follow "Jäsenien lisäykseen"
-#    When I fill in the following:
-#      | Etunimet         | Liisa                      |
-#      | Sukunimi         | Mehiläinen                 |
-#      | Kunta            | Espoo                      |
-#      | Katuosoite       | Jokintie                   |
-#      | Postinumero      | 12345                      |
-#      | Postitoimipaikka | Stadi                      |
-#      | Sähköposti       | liisa.mehilainen@gmail.com |
-#      | Jäsennumero      | 12466                      |
-#    And I select "Ainaisjäsen" from "member[membergroup_id]"
-#    And I select "2013/11/12" as the member "expirationdate" date
-#    And I press "Lisää"
-#    Then I should see "Jäsen lisätty!"
-#    And I follow "Listaa jäsenet"
-
-  Scenario:
-#    And I press "Lähetä laskut"
-#    And I should not see "Laskunlähetys"
+    And I follow "Lisää jäsen"
+    When I fill in the following:
+      | Etunimet         | Liisa                      |
+      | Sukunimi         | Mehiläinen                 |
+      | Kunta            | Espoo                      |
+      | Katuosoite       | Jokintie                   |
+      | Postinumero      | 12345                      |
+      | Postitoimipaikka | Stadi                      |
+      | Sähköposti       | liisa.mehilainen@gmail.com |
+      | Jäsennumero      | 12466                      |
+    And I select "Ainaisjäsen" from "member[membergroup_id]"
+    And I select "2013/11/12" as the member "expirationdate" date
+    And I press "Lisää"
+    Then I should see "Jäsen lisätty!"
+    And I follow "Listaa jäsenet"
 
   Scenario: Select all
-#    And I should see "Liisa"
-#    And I should see "Janne"
-#    And I check "member_checkbox"
+    And I should see "Liisa"
+    And I should see "Janne"
+    And I check "check_all"
 #    And I press "Lähetä laskut"
 #    And I should see "Laskunlähetys"
 #
-#  Scenario: Select one
-#    And I check "member_checkbox"
+  Scenario: Select one
+#    And I check "1"
 #    And I press "Lähetä laskut"
 #    And I should not see "Liisa"
 #    And I should see "Janne"

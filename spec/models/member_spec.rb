@@ -54,7 +54,7 @@ describe Member do
     FactoryGirl.build(:member, email: "jotain@ehka.com").should be_valid
   end
 
-  # it "is invalid without a membergroup" do
+  #it "is invalid without a membergroup" do
   #  FactoryGirl.build(:member, membergroup: nil).should_not be_valid
   #end
 
@@ -85,6 +85,11 @@ describe Member do
   it "generates ref_number" do
     member = FactoryGirl.build(:member, membernumber: "12345")
     Member.generate_refnumber(member.membernumber)  == "123453"
+  end
+
+  it "generates ref_number" do
+    member = FactoryGirl.build(:member, membernumber: nil)
+    Member.generate_refnumber(member.membernumber)  != "123453"
   end
 
 

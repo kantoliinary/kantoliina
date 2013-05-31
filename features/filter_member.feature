@@ -155,27 +155,30 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should not see "Liisa"
 
-  Scenario: select deleted members
+  Scenario: see both type of members
     When I am on the members page
-    And I choose "membership_1"
+    And I check "membership[0]"
+    And I check "membership[1]"
     And I press "Hae"
-#    Then I should see "Jaana"
-#    Then I should see "Janne"
-#    Then I should see "Liisa"
-#
-#
-#  Scenario: see deleted members
-#    When I am on the members page
-#    Then I should see "Jaana"
-#    Then I should see "Janne"
-#    Then I should see "Liisa"
-#    And I press "Poista"
-#    Then I should not see "Jaana"
-#    Then I should not see "Janne"
-#    Then I should not see "Liisa"
-#    Then I should see "Jäsen poistettu"
-#    And I choose "membership_0"
-#    And I press "Hae"
+    Then I should see "Jaana"
+    Then I should see "Janne"
+    Then I should see "Liisa"
+
+  Scenario: see deleted members
+    When I am on the members page
+    And I check "membership[1]"
+    And I uncheck "membership[0]"
+    And I press "Hae"
+    Then I should see "Jaana"
+    Then I should see "Janne"
+    Then I should see "Liisa"
 
 
-
+  Scenario: see existing members
+    When I am on the members page
+    And I uncheck "membership[1]"
+    And I check "membership[0]"
+    And I press "Hae"
+    Then I should not see "Jaana"
+    Then I should not see "Janne"
+    Then I should not see "Liisa"
