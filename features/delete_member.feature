@@ -44,7 +44,7 @@ Feature: delete member
   Scenario: delete member form edit page
     When I am on the members page
     And I follow "12345"
-    And I press "Merkitse Poistetuksi"
+    And I press "Poista"
     Then I should see "Jäsen poistettu"
 
   Scenario: cannot delete already deleted member form list page
@@ -56,6 +56,6 @@ Feature: delete member
     And I check "membership[1]"
     And I check "membership[0]"
     And I press "Hae"
-    Then I should see "jasen"
+    Then I should see "aaa"
     And I press "Poista"
-    #Then I should see "Jäsenen poisto ei onnistunut"
+    Then I should see "Jäsenen poisto ei onnistunut"
