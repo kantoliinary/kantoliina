@@ -1,59 +1,63 @@
 %div{:id => "new_edit_member_page"}
-  -#%p
-  -#  =link_to "Listaa jäsenet", members_path
-  -#  =link_to "Lisää jäsen", new_member_path
-  -#  =link_to "Kirjaudu ulos", logout_path
-
-  %br
-  = flash[:notice]
+  %div{:id => "notice"}
+    = flash[:notice]
   %h1 Jäsenen tietojen muokkaus
-
-
 
   %div{:id => "edit_form"}
     = simple_form_for @member, defaults:{label:false} do |f|
-      %div{:class => "left"}
-        = f.label "Etunimet"
-      %div{:class => "right"}
-        = f.input :firstnames, placeholder: 'Etunimet'
-      %div{:class => "left"}
-        = f.label "Sukunimi"
-      %div{:class => "right"}
-        = f.input :surname, placeholder: 'Sukunimi'
-      %div{:class => "left"}
-        = f.label "Kunta"
-      %div{:class => "right"}
-        = f.input :municipality, placeholder: 'Kunta'
-      %div{:class => "left"}
-        = f.label "Katuosoite"
-      %div{:class => "right"}
-        = f.input :address, placeholder: 'Katuosoite'
-      %div{:class => "left"}
-        = f.label "Postinumero"
-      %div{:class => "right"}
-        = f.input :zipcode, placeholder: 'Postinumero'
-      %div{:class => "left"}
-        = f.label "Postitoimipaikka"
-      %div{:class => "right"}
-        = f.input :postoffice, placeholder: 'Postitoimipaikka'
-      %div{:class => "left"}
-        = f.label "Sähköposti"
-      %div{:class => "right"}
-        = f.input :email, placeholder: 'Sähköposti'
-      %div{:class => "left"}
-        = f.label "Jäsennumero"
-      %div{:class => "right"}
-        = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
-      %div{:class => "left"}
-        = f.label 'Jäsenryhmä'
-      %div{:class => "right"}
-        = f.collection_select(:membergroup_id, Membergroup.all, :id, :groupname)
-      %div{:class => "left"}
-        = f.label 'Jäsenyyden päättymispäivä'
-      %div{:class => "right", :id => "expirationdate"}
-        = f.input :expirationdate
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Etunimet"
+        %div{:class => "left right_field"}
+          = f.input :firstnames, placeholder: 'Etunimet'
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Sukunimi"
+        %div{:class => "left right_field"}
+          = f.input :surname, placeholder: 'Sukunimi'
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Kunta"
+        %div{:class => "left right_field"}
+          = f.input :municipality, placeholder: 'Kunta'
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Katuosoite"
+        %div{:class => "left right_field"}
+          = f.input :address, placeholder: 'Katuosoite'
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Postinumero"
+        %div{:class => "left right_field"}
+          = f.input :zipcode, placeholder: 'Postinumero'
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Postitoimipaikka"
+        %div{:class => "left right_field"}
+          = f.input :postoffice, placeholder: 'Postitoimipaikka'
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Sähköposti"
+        %div{:class => "left right_field"}
+          = f.input :email, placeholder: 'Sähköposti'
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label "Jäsennumero"
+        %div{:class => "left right_field"}
+          = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label 'Jäsenryhmä'
+        %div{:class => "left right_field"}
+          = f.collection_select(:membergroup_id, Membergroup.all, :id, :groupname)
+      %div{:class => "row"}
+        %div{:class => "left"}
+          = f.label 'Jäsenyyden päättymispäivä'
+        %div{:class => "left right_field", :id => "expirationdate"}
+          = f.input :expirationdate
       %div{:class => "clear"}
       %div{:class => "left"}
-        = f.submit "Tallenna", id:"updated"
-      %div{:class => "left"}
-        = button_to 'Merkitse Poistetuksi', member_path(@member), :method => :delete
+        = f.submit "Tallenna", id:"update"
+      %div{:class => "clear"}
+    %div{:class => "left"}
+      = button_to 'Poista', member_path(@member), :method => :delete, :id => "delete"

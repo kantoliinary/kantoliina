@@ -11,7 +11,7 @@
             %div{:class => "clear"}
           %div{:class => "left"}
 
-            = check_box_tag "search_fields[#{key}]", 1, @selected_search_fields.include?(key), :id => "search_fields_#{key}"
+            = check_box_tag "search_fields[#{key}]", 1, @selected_search_fields.include?(key), :class => "checkbox", :id => "search_fields_#{key}"
             = field
           - i += 1
         %div{:class => "clear"}
@@ -19,7 +19,7 @@
       %div{:id => "membergroup_fields"}
         - @membergroups.each do |group|
           %div{:class => "left"}
-            = check_box_tag "membergroups[#{group.id}]", 1, @selected_membergroups.include?("#{group.id}"), :id => "membergroups_#{group.id}"
+            = check_box_tag "membergroups[#{group.id}]", 1, @selected_membergroups.include?("#{group.id}"), :id => "membergroups_#{group.id}", :class => "checkbox"
             = group.groupname
         %div{:class => "clear"}
       %hr
@@ -27,22 +27,22 @@
         %span{:class => "bold"}
           Poistettu
         %div{:class => "field"}
-          = check_box_tag "membership[0]", 1, @membership.include?("0")
+          = check_box_tag "membership[0]", 1, @membership.include?("0"), :class => "checkbox"
           %span
             Kyllä
         %div{:class => "field"}
-          = check_box_tag "membership[1]", 1, @membership.include?("1")
+          = check_box_tag "membership[1]", 1, @membership.include?("1"), :class => "checkbox"
           %span
             Ei
       %div{:id => "paymentstatus_fields", :class => "left"}
         %span{:class => "bold"}
           Maksanut:
         %div{:class => "field"}
-          = check_box_tag "paymentstatus[1]", 1, @paymentstatus.include?("1")
+          = check_box_tag "paymentstatus[1]", 1, @paymentstatus.include?("1"), :class => "checkbox"
           %span
             Kyllä
         %div{:class => "field"}
-          = check_box_tag "paymentstatus[0]", 1, @paymentstatus.include?("0")
+          = check_box_tag "paymentstatus[0]", 1, @paymentstatus.include?("0"), :class => "checkbox"
           %span
             Ei
       %div{:class => "clear"}
@@ -51,7 +51,7 @@
   = flash[:notice]
   %table{:class => "center", :id => "members"}
     %tr
-      %th= check_box_tag "check_all", :id => "check_all"
+      %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
       %th Jäsennumero
       %th Nimi
       -#%th Sukunimi
@@ -65,12 +65,11 @@
       %th
     - @members.each do | member|
       %tr
-        %td= check_box_tag "member_checkbox", member.id
+        %td= check_box_tag "member_checkbox", member.id, false, :class => "checkbox"
         %td= link_to member.membernumber, edit_member_path(member)
         %td
           = member.firstnames
           = member.surname
-        -#%td= member.surname
         %td= member.municipality
         %td= member.address
         %td= member.zipcode
@@ -78,7 +77,7 @@
         %td= member.email
         %td= member.membership
         %td= member.membergroup.groupname
-        %td= button_to 'Poista', member_path(member), :method => :delete
+        %td= button_to 'Poista', member_path(member), :method => :delete, :class => "poista"
 
   = form_tag invoice_confirm_path, :id => "invoice_form" do
     = hidden_field_tag "ids"
