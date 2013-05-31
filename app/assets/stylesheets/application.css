@@ -207,6 +207,7 @@ input, button {
     text-align: left;
     background-color: #e1c45f; /*#f3a85f;*/
     border-bottom: 3px solid #74a846;
+    margin-bottom: 20px;
 }
 
 #header-content {
