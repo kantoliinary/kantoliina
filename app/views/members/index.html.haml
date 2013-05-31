@@ -47,7 +47,7 @@
             Ei
       %div{:class => "clear"}
       %div{:id => "submit_button"}
-        = submit_tag "Hae", :id => "search"
+        = submit_tag "Hae", :class => "submit"
   = flash[:notice]
   %table{:class => "center", :id => "members"}
     %tr
@@ -82,4 +82,4 @@
 
   = form_tag invoice_confirm_path, :id => "invoice_form" do
     = hidden_field_tag "ids"
-    = button_tag "Lähetä laskut", :id => "send_invoice"
+    = button_tag "Lähetä laskut", :class => "submit" , :id => "send_invoice"
