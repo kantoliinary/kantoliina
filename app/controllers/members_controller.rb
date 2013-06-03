@@ -37,7 +37,7 @@ class MembersController < ApplicationController
     @members = Member.find_all_by_id(parsed_json["ids"])
   end
 
-  def poista
+  def delete
 
     puts params[:ids]
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
