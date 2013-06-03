@@ -110,14 +110,16 @@ describe MembersController do
   end
 
   #describe "GET #send_invoices" do
-  #  it "uses invoice" do
-  #    member = FactoryGirl.build(:member)
-  #    Member.stub(:find).and_return(member)
-  #    member2 = FactoryGirl.build(:member, id: 2)
-  #    Member.stub(:find).and_return(member2)
-  #    FactoryGirl.create(:name)
-  #    Billing.should_receive(:send_invoices).with(member)
-  #    post :send_invoices, {:a => FactoryGirl.attributes_for(:member)}
+  #  context "with valid attributes" do
+  #    it "uses invoice" do
+  #      member = FactoryGirl.build(:member)
+  #      Member.stub(:find).and_return(member)
+  #      member2 = FactoryGirl.build(:member, id: 2)
+  #      Member.stub(:find).and_return(member2)
+  #      FactoryGirl.create(:name)
+  #      Billing.should_receive(:send_invoices).with(member)
+  #      post :send_invoices, {:a => FactoryGirl.attributes_for(:member)}
+  #    end
   #  end
   #end
 end
