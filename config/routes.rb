@@ -9,6 +9,11 @@ Kantoliina::Application.routes.draw do
   get 'login' => 'admins#loginform'
   post 'login' => 'admins#login'
   get 'logout' => 'admins#logout'
+
+  get 'partner_login' => 'partners#loginform'
+  post 'partner_login' => 'partners#login'
+  get 'logout' => 'partners#logout'
+
   post "invoice/confirm" => 'members#invoice'
   post "invoice" => 'members#send_invoices'
   resources :members
