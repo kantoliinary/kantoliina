@@ -1,0 +1,17 @@
+%div{id: "login_page"}
+  %h1 Kirjaudu sisään
+
+  %div{id: "login_form"}
+    %div{id: "error"}
+      = @error[:error]
+    = form_tag login_path do
+      %div{id: "label"}
+        = label_tag 'login', 'Käyttäjätunnus'
+      %div{id: "input"}
+        = text_field_tag "login"
+      %div{id: "label"}
+      =label_tag 'password', "Salasana"
+      %div{id: "input"}
+        = password_field_tag "password"
+      %div{id: "submit"}
+        = submit_tag "Login"
