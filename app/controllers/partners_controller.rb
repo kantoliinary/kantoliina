@@ -16,7 +16,7 @@ class PartnersController < ApplicationController
   #
 
   def login
-    partner = Partner.find_by_login(params[:login]).try(:authenticate, params[:password])
+    partner = Partner.find_by_username(params[:username]).try(:authenticate, params[:password])
     @error = Hash.new
     if  partner
       session[:partner] = partner
@@ -25,6 +25,25 @@ class PartnersController < ApplicationController
     @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
     render "loginform"
   end
+
+
+  def require_login
+    unless logged_in?
+
+      redirect_to login_path
+    end
+    @partner = session[:partner]
+  end
+
+##
+# Checks if admin is logged in.
+#@return boolean value is user logged in.
+
+  def logged_in?
+    !!session[:partner]
+  end
+
+
 
   ##
   # Clears all from session and redirects to login form page.
