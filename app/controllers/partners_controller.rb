@@ -24,7 +24,7 @@ class PartnersController < ApplicationController
       session[:partner_id] = partner.id
       redirect_to partners_path and return
     end
-    @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
+    @error[:error] = "Virheellinen käyttäjätunnus tai salasana!"
     render "loginform"
   end
 
