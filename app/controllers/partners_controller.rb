@@ -31,9 +31,9 @@ class PartnersController < ApplicationController
 
 
 
-  def check_membership
-
-  end
+  #def check_membership
+  #
+  #end
 
   def find_member_status
 

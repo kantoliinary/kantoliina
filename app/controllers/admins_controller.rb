@@ -4,9 +4,9 @@
 
 class AdminsController < ApplicationController
   skip_before_filter :require_login, :only => [:loginform, :login]
+
   ##
   # Shows login form to the admin.
-
   def loginform
     redirect_to members_path unless session[:admin_id].blank?
     @error = Hash.new
@@ -15,7 +15,6 @@ class AdminsController < ApplicationController
   ##
   # Saves logged Admin to session[:admin] if username and password are correct, and redirects to members list page.
   # Adds error to @error[:error] if username or password is incorrect, and rerenders login form.
-
   def login
     admin = Admin.find_by_username(params[:username]).try(:authenticate, params[:password])
     @error = Hash.new
