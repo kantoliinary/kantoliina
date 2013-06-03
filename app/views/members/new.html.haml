@@ -5,11 +5,12 @@
   -#  =link_to "Kirjaudu ulos", logout_path
 
 
-  %div{:id => "h"}
 
-    %br
-    = flash[:notice]
-    %h1 Jäsenen lisäys
+
+
+  = flash[:notice]
+
+  %h1 Jäsenen lisäys
 
   %div
   = simple_form_for @member, defaults:{label:false} do |f|

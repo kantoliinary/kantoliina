@@ -9,5 +9,4 @@ describe Billing do
       Billing.bill_email(member).should be_true
     end
   end
-
 end

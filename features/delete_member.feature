@@ -41,12 +41,6 @@ Feature: delete member
     Then I should see "Jäsen poistettu"
     Then I should not see "jasen"
 
-  Scenario: delete member form edit page
-    When I am on the members page
-    And I follow "12345"
-    And I press "Poista"
-    Then I should see "Jäsen poistettu"
-
   Scenario: cannot delete already deleted member form list page
     When I am on the members page
     Then I should see "jasen"
@@ -57,5 +51,5 @@ Feature: delete member
     And I check "membership[0]"
     And I press "Hae"
     Then I should see "aaa"
-    And I press "Poista"
-    Then I should see "Jäsenen poisto ei onnistunut"
+    And I press "Aktivoi"
+    Then I should see "Jäsen aktivoitu"

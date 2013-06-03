@@ -55,6 +55,14 @@ describe MembersController do
         delete :destroy, FactoryGirl.attributes_for(:member)
         flash[:notice] == "Jasen poistettu"
       end
+
+      it "member shall be removed" do
+        member = FactoryGirl.build(:member, membership: false)
+        Member.stub(:find).and_return(member)
+        delete :destroy, FactoryGirl.attributes_for(:member)
+        flash[:notice] == "Jasen aktivoitu"
+      end
+
     end
   end
 
@@ -71,10 +79,11 @@ describe MembersController do
 
   describe "GET #edit" do
 
-    context "with not logged in" do
-      it "renders not the :edit view" do
+    context "get :edit" do
+      it "renders the :edit view" do
         member = FactoryGirl.create(:member)
         get :edit, FactoryGirl.attributes_for(:member)
+        response.should render_template :edit
       end
     end
 
@@ -85,26 +94,33 @@ describe MembersController do
     context "with valid attributes" do
 
       it "update works" do
-        member = FactoryGirl.create(:member)
+        member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         get :update, FactoryGirl.attributes_for(:member)
         flash[:notice].should == "Tiedot muutettu!"
       end
 
       it "redirects to edit_member_path" do
-        member = FactoryGirl.create(:member)
+        member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         get :update, FactoryGirl.attributes_for(:member)
-        redirect_to edit_member_path
+        response.should redirect_to edit_member_path
       end
     end
   end
 
-  describe "GET #search_with_filter" do
-    search_with_filter("moi")
-
-
-  end
+  #describe "GET #send_invoices" do
+  #  it "uses invoice" do
+  #    member = FactoryGirl.build(:member)
+  #    Member.stub(:find).and_return(member)
+  #    member2 = FactoryGirl.build(:member, id: 2)
+  #    Member.stub(:find).and_return(member2)
+  #    FactoryGirl.create(:membergroup)
+  #    Billing.should_receive(:send_invoices).with(member)
+  #    post :send_invoices, {:a => FactoryGirl.attributes_for(:member)}
+  #  end
+  #end
 end
+
 
 
