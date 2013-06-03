@@ -2,10 +2,12 @@
 
   %h1 Jäsenen haku
   %div{:id => "search_form"}
-    = form_tag  find_member_status, :method => :get, :id => 'find_member_status' do
+    = form_tag  partners_path do
       %div{:id => "number_field"}
         = text_field_tag "number", "#{@number}"
 
       %div{:id => "submit_button"}
         = submit_tag "Hae", :class => "submit"
+  = link_to "kirjaudu ulos", partner_logout_path
+  %br
   = flash[:notice]

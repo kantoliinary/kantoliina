@@ -11,11 +11,10 @@ Kantoliina::Application.routes.draw do
 
   get 'partner_login' => 'partners#loginform'
   post 'partner_login' => 'partners#login'
-  get 'logout' => 'partners#logout'
+  get 'partner_logout' => 'partners#partner_logout'
   get "partners" => 'partners#check_membership'
 
-  #post "find_member_status" => 'partners#find_member_status'
-  #get  "find_member_status" => 'partners#check_membership'
+  post "partners" => 'partners#find_member_status'
 
   post "invoice/confirm" => 'members#invoice'
   post "invoice" => 'members#send_invoices'
