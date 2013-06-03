@@ -19,8 +19,8 @@ class PartnersController < ApplicationController
     partner = Partner.find_by_login(params[:login]).try(:authenticate, params[:password])
     @error = Hash.new
     if  partner
-      session[:partner] = parner
-      redirect_to partners_path and return
+      session[:partner] = partner
+      redirect_to search_member_path and return
     end
     @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
     render "loginform"
