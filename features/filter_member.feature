@@ -29,7 +29,6 @@ Feature: filter members
       | Jäsennumero      | 12345                 |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I select "2012/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
@@ -45,7 +44,6 @@ Feature: filter members
       | Jäsennumero      | 12466                      |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I select "2018/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
@@ -61,7 +59,6 @@ Feature: filter members
       | Jäsennumero      | 12543                   |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I select "2018/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
@@ -182,22 +179,4 @@ Feature: filter members
     And I press "Hae"
     Then I should not see "Jaana"
     Then I should not see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: see members who have payed
-    When I am on the members page
-    And I uncheck "paymentstatus[0]"
-    And I check "paymentstatus[1]"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should not see "Janne"
-    Then I should see "Liisa"
-
-  Scenario: see members who have payed
-    When I am on the members page
-    And I uncheck "paymentstatus[1]"
-    And I check "paymentstatus[0]"
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should see "Janne"
     Then I should not see "Liisa"

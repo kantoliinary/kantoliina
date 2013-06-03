@@ -4,8 +4,8 @@
 
 class PartnersController < ApplicationController
   before_filter :require_partner_login
-  skip_before_filter :require_login, :require_partner_login, :only => [:loginform, :login]
-  #skip_before_filter :require_partner_login, :only => [:loginform, :login]
+  skip_before_filter :require_login, :only => [:check_membership, :loginform, :login]
+  skip_before_filter :require_partner_login, :only => [:loginform, :login]
   ##
   # Shows login form to the partner.
 
@@ -21,7 +21,7 @@ class PartnersController < ApplicationController
     partner = Partner.find_by_username(params[:username])
     @error = Hash.new
     if  partner
-      session[:partner] = partner
+      session[:partner_id] = partner.id
       redirect_to partners_path and return
     end
     @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
@@ -29,8 +29,40 @@ class PartnersController < ApplicationController
   end
 
 
+
+
+  def check_membership
+
+  end
+
+  def find_member_status
+
+    member = Member.find_by_membernumber(params[:number])
+    if member
+      if member.membership
+        flash[:notice] = "Henkilön jäsenyys on voimassa."
+      else
+        flash[:notice] = "Henkilön jäsenyys ei ole voimassa."
+      end
+    else
+      flash[:notice] = "Numerolla ei löydy jäsentä!"
+    end
+    render "check_membership"
+  end
+
+
+  ##
+  # Clears all from session and redirects to login form page.
+  def partner_logout
+    reset_session
+    flash[:notice] = "Kirjauduttu ulos"
+    redirect_to partner_login_path
+  end
+
+  private
+
   def require_partner_login
-    unless logged_in?
+    unless partner_logged_in?
 
       redirect_to partner_login_path
     end
@@ -42,18 +74,7 @@ class PartnersController < ApplicationController
 #@return boolean value is user logged in.
 
   def partner_logged_in?
-    !!session[:partner]
+    !!session[:partner_id]
   end
 
-  def index
-
-  end
-
-  ##
-  # Clears all from session and redirects to login form page.
-  def partner_logout
-    reset_session
-    flash[:notice] = "Kirjauduttu ulos"
-    redirect_to partner_login_path
-  end
 end
