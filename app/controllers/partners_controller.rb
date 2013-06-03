@@ -3,7 +3,7 @@
 # The controller for Partner class.
 
 class PartnersController < ApplicationController
-
+  skip_before_filter :require_login, :only => [:loginfrom, :login]
   ##
   # Shows login form to the partner.
 

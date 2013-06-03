@@ -6,14 +6,14 @@ require 'spec_helper'
 describe MembersController do
 
   before(:each) do
-    admin = FactoryGirl.build(:admin)
-    session[:admin] = admin
+    admin = FactoryGirl.create(:admin)
+    session[:admin_id] = admin.id
   end
 
   describe "GET #new" do
     context "with not logged in" do
       it "renders not the :new view" do
-        session[:admin] = nil
+        session[:admin_id] = nil
         get :new
         response.should_not render_template :new
       end

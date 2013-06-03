@@ -3,7 +3,7 @@
 # The controller for class Member.
 
 class MembersController < ApplicationController
-  before_filter :require_login
+
 
   ##
   # Shows new member page to the admin.
@@ -63,12 +63,12 @@ class MembersController < ApplicationController
     @all_search_fields = Member.all_search_fields
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
-    @membership = params[:membership] || {"1" =>"1"}
+    @membership = params[:membership] || {"1" => "1"}
     #puts "qaaaaaaaaaaaaaa"
     #puts @membership
     @paymentstatus = params[:paymentstatus] || {"0" => "0", "1" => "1"}
     s_membergroups = params[:membergroups]
-    @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect{|g| "#{g.id}" }
+    @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
     @members = search_with_filter(@keyword, @selected_search_fields, @membership.keys, @paymentstatus.keys, @selected_membergroups)
   end
 
@@ -104,25 +104,6 @@ class MembersController < ApplicationController
   end
 
   private
-
-##
-# Checks that admin is logged in and redirects the admin to the login form if not.
-
-  def require_login
-    unless logged_in?
-
-      redirect_to login_path
-    end
-    @admin = session[:admin]
-  end
-
-##
-# Checks if admin is logged in.
-#@return boolean value is user logged in.
-
-  def logged_in?
-    !!session[:admin]
-  end
 
 ##
 # Filters members by selected radio buttons. Values are membership and payment status with OR operation.
