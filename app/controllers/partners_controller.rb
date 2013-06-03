@@ -4,7 +4,7 @@
 
 class PartnersController < ApplicationController
   before_filter :require_partner_login
-  skip_before_filter :require_login, :only => [:check_membership, :find_member_status, :loginform, :login]
+  skip_before_filter :require_login, :only => [:check_membership, :find_member_status, :partner_logout, :loginform, :login]
   skip_before_filter :require_partner_login, :only => [:loginform, :login]
   ##
   # Shows login form to the partner.
