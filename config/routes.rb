@@ -18,7 +18,10 @@ Kantoliina::Application.routes.draw do
 
   post "invoice/confirm" => 'members#invoice'
   post "invoice" => 'members#send_invoices'
-  match "/del" => 'members#delete'
+
+  post "invoice/confirm" => 'members#invoice'
+  post "invoice" => 'members#send_invoices'
+  post "delete" => 'members#delete'
 
   resources :members
 
