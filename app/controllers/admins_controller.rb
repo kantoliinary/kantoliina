@@ -3,11 +3,12 @@
 # The controller for Admin class.
 
 class AdminsController < ApplicationController
-
+  skip_before_filter :require_login, :only => [:loginform, :login]
   ##
   # Shows login form to the admin.
 
   def loginform
+    redirect_to members_path unless session[:admin_id].blank?
     @error = Hash.new
   end
 
@@ -19,7 +20,7 @@ class AdminsController < ApplicationController
     admin = Admin.find_by_username(params[:username]).try(:authenticate, params[:password])
     @error = Hash.new
     if  admin
-      session[:admin] = admin
+      session[:admin_id] = admin.id
       redirect_to members_path and return
     end
     @error[:error] = "Virheellinen käyttäjätunnus tai salasana"

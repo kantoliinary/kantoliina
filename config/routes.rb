@@ -5,7 +5,6 @@ Kantoliina::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controllers and :action
-
   get 'login' => 'admins#loginform'
   post 'login' => 'admins#login'
   get 'logout' => 'admins#logout'
@@ -21,7 +20,7 @@ Kantoliina::Application.routes.draw do
 
 
 
-  match "/" => redirect("/members"), :conditions => lambda{ |req| !req.session["admin"].blank? }
+  match "/" => redirect("/members"), :conditions => lambda{ |req| !req.session["admin_id"].blank? }
   match "/" => redirect("/login")
 
   #get 'userpage'=> 'members'
