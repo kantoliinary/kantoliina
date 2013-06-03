@@ -5,7 +5,7 @@
   %div{id: "login_form"}
     %div{id: "error"}
       = @error[:error]
-    = form_tag login_path do
+    = form_tag partner_login_path do
       %div{id: "label"}
         = label_tag 'username', 'Käyttäjätunnus'
       %div{id: "input"}

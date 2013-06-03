@@ -15,3 +15,4 @@ Membergroup.create!([name: 'Ainaisjäsen', fee: 100])
 Membergroup.create!([name: 'Kannatusjäsen', fee: 30])
 Membergroup.create!([name: 'Yhteisöjäsen', fee: 50])
 
+
