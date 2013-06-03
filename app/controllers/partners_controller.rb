@@ -20,7 +20,7 @@ class PartnersController < ApplicationController
     @error = Hash.new
     if  partner
       session[:partner] = partner
-      redirect_to search_member_path and return
+      redirect_to partners_path and return
     end
     @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
     render "loginform"
@@ -43,7 +43,9 @@ class PartnersController < ApplicationController
     !!session[:partner]
   end
 
+  def index
 
+  end
 
   ##
   # Clears all from session and redirects to login form page.
