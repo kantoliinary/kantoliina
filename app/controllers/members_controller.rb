@@ -37,6 +37,21 @@ class MembersController < ApplicationController
     @members = Member.find_all_by_id(parsed_json["ids"])
   end
 
+  def delete
+
+    puts params[:ids]
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @members = Member.find_all_by_id(parsed_json["ids"])
+    @members.each do |member|
+
+      if member
+        member.membership = "#{!member.membership}"
+        member.save!(:validate => false)
+      end
+    end
+    redirect_to members_path
+  end
+
 
   ##
   # Deletes the member with params[:member] and tries to save it.
