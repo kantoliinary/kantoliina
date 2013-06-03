@@ -14,6 +14,9 @@ Kantoliina::Application.routes.draw do
   get 'logout' => 'partners#logout'
   get "partners" => 'partners#check_membership'
 
+  #post "find_member_status" => 'partners#find_member_status'
+  #get  "find_member_status" => 'partners#check_membership'
+
   post "invoice/confirm" => 'members#invoice'
   post "invoice" => 'members#send_invoices'
   resources :members

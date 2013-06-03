@@ -2,9 +2,9 @@
 
   %h1 Jäsenen haku
   %div{:id => "search_form"}
-    = form_tag _path, :method => :get, :id => 'filter_form' do
-      %div{:id => "keyword_field"}
-        = text_field_tag "keyword", "#{@keyword}"
+    = form_tag  find_member_status, :method => :get, :id => 'find_member_status' do
+      %div{:id => "number_field"}
+        = text_field_tag "number", "#{@number}"
 
       %div{:id => "submit_button"}
         = submit_tag "Hae", :class => "submit"

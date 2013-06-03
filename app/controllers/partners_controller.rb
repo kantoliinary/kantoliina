@@ -35,6 +35,21 @@ class PartnersController < ApplicationController
 
   end
 
+  def find_member_status
+
+    member = Member.find_by_membernumber(params[:number])
+    if member
+      if member.membership
+        flash[:notice] = "Henkilön jäsenyys on voimassa."
+      else
+        flash[:notice] = "Henkilön jäsenyys ei ole voimassa."
+      end
+    else
+      flash[:notice] = "Numerolla ei löydy jäsentä!"
+    end
+    render "check_membership"
+  end
+
 
   ##
   # Clears all from session and redirects to login form page.
