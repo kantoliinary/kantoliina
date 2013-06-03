@@ -12,7 +12,7 @@ Kantoliina::Application.routes.draw do
   get 'partner_login' => 'partners#loginform'
   post 'partner_login' => 'partners#login'
   get 'logout' => 'partners#logout'
-  get "/partners" => 'partners#check_membership'
+  get "partners" => 'partners#check_membership'
 
   post "invoice/confirm" => 'members#invoice'
   post "invoice" => 'members#send_invoices'
