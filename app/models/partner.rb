@@ -1,5 +1,9 @@
 #encoding: utf-8
 
+##
+# The model for an partner in the database.
+# Validates the presence and length of the username and password.
+
 class Partner < ActiveRecord::Base
   attr_accessible :username, :password, :password_digest
   has_secure_password

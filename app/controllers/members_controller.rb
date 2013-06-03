@@ -20,6 +20,8 @@ class MembersController < ApplicationController
 
   def create
     @member = Member.new(params[:member])
+    @member.membershipyear = (Time.now.year+1).to_i
+    @member.paymentstatus = false
     if @member.save
       flash[:notice] = "Jäsen lisätty!"
     else

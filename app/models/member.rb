@@ -5,7 +5,7 @@
 #
 
 class Member < ActiveRecord::Base
-  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :membership, :expirationdate
+  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :membership
   belongs_to :membergroup
   validates :firstnames, :presence => {:message => "Etunimi puuttuu!"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu!"}
@@ -20,7 +20,7 @@ class Member < ActiveRecord::Base
 
   validates :membergroup_id, :numericality => {:only_integer => true, :message => "Valitse jäsenryhmä"}
   validates :membernumber, :uniqueness => {:message => "Jäsennumero on jo käytössä!"}, :presence => {:message => "Jäsennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jäsennumerossa tulee olla vain numeroita!"}, :length => {:is => 5, :message => "Jäsennumeron tulee olla tasan 5 merkkiä pitkä!"}
-  validates :expirationdate, :presence => {:message => "Jäsenyyden päättymispäivä puuttuu!"}
+
 
   @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membernumber => "Jäsennumero"}
 
