@@ -13,6 +13,7 @@ Kantoliina::Application.routes.draw do
   post 'partner_login' => 'partners#login'
   get 'logout' => 'partners#logout'
   get "partners" => 'partners#check_membership'
+
   post "partners" => 'partners#find_member_status'
 
   post "invoice/confirm" => 'members#invoice'
