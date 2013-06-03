@@ -1,6 +1,6 @@
 Feature: filter members
 
-  I want to search the exact member object and see the change in the screen
+  I want to search the exact member object and see the change on the screen
 
   Background: admins in database
 
@@ -63,7 +63,7 @@ Feature: filter members
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
 
-  Scenario: filter members by first name
+  Scenario: I filter members by first name
     When I am on the members page
     And I fill in "keyword" with "Ja"
     And I check "search_fields[firstnames]"
@@ -72,7 +72,7 @@ Feature: filter members
     Then I should see "Janne"
     Then I should not see "Liisa"
 
-  Scenario: filter members by last name
+  Scenario: I filter members by last name
     When I am on the members page
     And I fill in "keyword" with "Jäsen"
     And I check "search_fields[surname]"
@@ -81,7 +81,7 @@ Feature: filter members
     Then I should see "Janne"
     Then I should not see "Liisa"
 
-  Scenario: filter members by municipality
+  Scenario: I filter members by municipality
     When I am on the members page
     And I fill in "keyword" with "Espoo"
     And I check "search_fields[municipality]"
@@ -90,7 +90,7 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should see "Liisa"
 
-  Scenario: filter members by address
+  Scenario: I filter members by address
     When I am on the members page
     And I fill in "keyword" with "jokin"
     And I check "search_fields[address]"
@@ -99,7 +99,7 @@ Feature: filter members
     Then I should see "Janne"
     Then I should see "Liisa"
 
-  Scenario: filter members by address
+  Scenario: I filter members by address
     When I am on the members page
     And I fill in "keyword" with "espoo"
     And I check "search_fields[municipality]"
@@ -108,7 +108,7 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should see "Liisa"
 
-  Scenario: filter members by zipcode
+  Scenario: I filter members by zipcode
     When I am on the members page
     And I fill in "keyword" with "12345"
     And I check "search_fields[zipcode]"
@@ -117,7 +117,7 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should see "Liisa"
 
-  Scenario: filter members by post office
+  Scenario: I filter members by post office
     When I am on the members page
     And I fill in "keyword" with "helsinki"
     And I check "search_fields[postoffice]"
@@ -126,7 +126,7 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should not see "Liisa"
 
-  Scenario: filter members by email
+  Scenario: I filter members by e-mail
     When I am on the members page
     And I fill in "keyword" with "liisa"
     And I check "search_fields[email]"
@@ -135,7 +135,7 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should see "Liisa"
 
-  Scenario: filter members by member number
+  Scenario: I filter members by member number
     When I am on the members page
     And I fill in "keyword" with "125"
     And I check "search_fields[membernumber]"
@@ -144,7 +144,7 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should not see "Liisa"
 
-  Scenario: filter members by membergroup
+  Scenario: I filter members by membergroup
     When I am on the members page
     And I fill in "keyword" with "125"
     And I check "search_fields[membernumber]"
@@ -153,7 +153,7 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should not see "Liisa"
 
-  Scenario: see both type of members
+  Scenario: I try to see both types of members
     When I am on the members page
     And I check "membership[0]"
     And I check "membership[1]"
@@ -162,7 +162,7 @@ Feature: filter members
     Then I should see "Janne"
     Then I should see "Liisa"
 
-  Scenario: see deleted members
+  Scenario: I try to see deleted members
     When I am on the members page
     And I check "membership[1]"
     And I uncheck "membership[0]"
@@ -172,7 +172,7 @@ Feature: filter members
     Then I should see "Liisa"
 
 
-  Scenario: see existing members
+  Scenario: I try to see existing members
     When I am on the members page
     And I uncheck "membership[1]"
     And I check "membership[0]"

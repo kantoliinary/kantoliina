@@ -1,6 +1,6 @@
 Feature: login with partner
 
-  I want to login to the system as a partner
+  I want to log into the system as a partner
 
   Background: partners in database
     Given the following partners exist:
@@ -9,19 +9,19 @@ Feature: login with partner
 
     When I am on the partner_login page
 
-  Scenario: login as a partner
+  Scenario: I log in as a partner
     And I fill in "username" with "partner"
     And I fill in "password" with "qwerty123"
     And I press "Login"
     Then I should see "Kirjaudu ulos"
 
-  Scenario: login as a partner using invalid params
+  Scenario: I log in as a partner using invalid parameters
     And I fill in "username" with "fdkglsa"
     And I fill in "password" with "gfdaögf"
     And I press "Login"
     Then I should see "Virheellinen käyttäjätunnus tai salasana"
 
-  Scenario: login with wrong password
+  Scenario: I log in using an incorrect password
     And I fill in "username" with "partner"
     And I fill in "password" with "gfda"
     And I press "Login"

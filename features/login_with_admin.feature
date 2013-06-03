@@ -1,6 +1,6 @@
 Feature: login with admin
 
-  I want to login to the system as an admin and redirect to add new member page
+  I want to log into the system as an admin and redirect to the "add a new member" page
 
   Background: admins in database
     Given the following admins exist:

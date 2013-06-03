@@ -1,6 +1,6 @@
-Feature: delete member
+Feature: Delete a new member
 
-  I want delete the member and get and get information of that was successfully destroyed or get error messages
+  I want to delete a member and see if the member was successfully destroyed
 
   Background: admins in database
 
@@ -33,14 +33,14 @@ Feature: delete member
     And I follow "Listaa jäsenet"
 
 
-  Scenario: delete member form list page
+  Scenario: I try to delete a member from the list page
     When I am on the members page
     Then I should see "jasen"
     And I press "Poista"
     Then I should see "Jäsen poistettu"
     Then I should not see "jasen"
 
-  Scenario: cannot delete already deleted member form list page
+  Scenario: I try to delete an already deleted member from the list page
     When I am on the members page
     Then I should see "jasen"
     And I press "Poista"
