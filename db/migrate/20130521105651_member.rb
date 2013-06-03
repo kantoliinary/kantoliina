@@ -10,8 +10,11 @@ class Member < ActiveRecord::Migration
       t.string      :email
       t.integer     :membernumber
       t.references  :membergroup
+      t.integer     :membershipyear
+      t.boolean     :paymentstatus
+      t.date        :invoicedate
       t.boolean     :membership, :default => true
-      t.date        :expirationdate
+
       t.timestamps
     end
   end

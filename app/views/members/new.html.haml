@@ -26,10 +26,5 @@
     = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
     %br
     %br
-    = f.label 'Jäsenyyden päättymispäivä'
-    %br
-    = f.input :expirationdate
-    %br
-    %br
     = f.submit "Lisää", id:"submit"
 
