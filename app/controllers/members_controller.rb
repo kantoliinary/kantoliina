@@ -97,10 +97,9 @@ class MembersController < ApplicationController
   #Selects a group of members by chosen ID and sends an invoice to their e-mails.
   def send_invoices
     @members = Member.find_all_by_id(params[:member])
-    puts @members
     @members.each do |member|
-      puts "aaaaaaaaaaa"
-      Billing.bill_email(member).deliver
+      member.invoicedate = Time.now
+      Billing.bill_email(member, params[:additional_message]).deliver
     end
     redirect_to members_path
   end
