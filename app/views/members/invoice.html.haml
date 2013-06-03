@@ -29,5 +29,7 @@
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+    %div{:id => "textarea"}
+      = text_area_tag "additional_message", "", :id => "additional_message"
     = button_tag "Lähetä laskut", :id => "send_invoice"
 

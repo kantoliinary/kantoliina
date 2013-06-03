@@ -35,17 +35,17 @@
           = check_box_tag "membership[1]", 1, @membership.include?("1"), :class => "checkbox"
           %span
             Ei
-      %div{:id => "paymentstatus_fields", :class => "left"}
-        %span{:class => "bold"}
-          Maksanut
-        %div{:class => "field"}
-          = check_box_tag "paymentstatus[1]", 1, @paymentstatus.include?("1"), :class => "checkbox"
-          %span
-            Kyllä
-        %div{:class => "field"}
-          = check_box_tag "paymentstatus[0]", 1, @paymentstatus.include?("0"), :class => "checkbox"
-          %span
-            Ei
+      -#%div{:id => "paymentstatus_fields", :class => "left"}
+      -#  %span{:class => "bold"}
+      -#    Maksanut
+      -#  %div{:class => "field"}
+      -#    = check_box_tag "paymentstatus[1]", 1, @paymentstatus.include?("1"), :class => "checkbox"
+      -#    %span
+      -#      Kyllä
+      -#  %div{:class => "field"}
+      -#    = check_box_tag "paymentstatus[0]", 1, @paymentstatus.include?("0"), :class => "checkbox"
+      -#    %span
+      -#      Ei
       %div{:class => "clear"}
       %div{:id => "submit_button"}
         = submit_tag "Hae", :class => "submit"

@@ -50,11 +50,6 @@
           = f.label 'Jäsenryhmä'
         %div{:class => "left right_field"}
           = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
-      %div{:class => "row"}
-        %div{:class => "left"}
-          = f.label 'Jäsenyyden päättymispäivä'
-        %div{:class => "left right_field", :id => "expirationdate"}
-          = f.input :expirationdate
       %div{:class => "clear"}
       %div{:class => "left"}
         = f.submit "Tallenna muutokset", id:"update"

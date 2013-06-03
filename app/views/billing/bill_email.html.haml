@@ -1,6 +1,8 @@
 %h3 Kantoliinayhdistyksen jäsenmaksu -lasku
-
+%p
+  = @top_additional_message
 %p Laskun eräpäivä:
+= @member.invoicedate + 30.days
 %p Summa:
 = @member.membergroup.fee
 %p Viitenumero:
@@ -9,7 +11,8 @@
 %p TILINUMERO:
 
 %p IBAN XXXXX
-
+%p
+  = @bottom_additional_message
 %p Ystävällisin terveisin,
 
 %p Kantoliinayhdistys

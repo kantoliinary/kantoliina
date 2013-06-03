@@ -36,7 +36,6 @@ Feature: add new member
       | Jäsennumero      | 12345    |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I select "2013/11/12" as the member "expirationdate" date
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
 
