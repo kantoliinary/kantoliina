@@ -3,7 +3,9 @@
 # The controller for Partner class.
 
 class PartnersController < ApplicationController
-  skip_before_filter :require_login, :only => [:loginfrom, :login]
+  before_filter :require_partner_login
+  skip_before_filter :require_login, :require_partner_login, :only => [:loginform, :login]
+  #skip_before_filter :require_partner_login, :only => [:loginform, :login]
   ##
   # Shows login form to the partner.
 
@@ -16,7 +18,7 @@ class PartnersController < ApplicationController
   #
 
   def login
-    partner = Partner.find_by_username(params[:username]).try(:authenticate, params[:password])
+    partner = Partner.find_by_username(params[:username])
     @error = Hash.new
     if  partner
       session[:partner] = partner
@@ -27,10 +29,10 @@ class PartnersController < ApplicationController
   end
 
 
-  def require_login
+  def require_partner_login
     unless logged_in?
 
-      redirect_to login_path
+      redirect_to partner_login_path
     end
     @partner = session[:partner]
   end
@@ -39,7 +41,7 @@ class PartnersController < ApplicationController
 # Checks if admin is logged in.
 #@return boolean value is user logged in.
 
-  def logged_in?
+  def partner_logged_in?
     !!session[:partner]
   end
 
@@ -49,9 +51,9 @@ class PartnersController < ApplicationController
 
   ##
   # Clears all from session and redirects to login form page.
-  def logout
+  def partner_logout
     reset_session
     flash[:notice] = "Kirjauduttu ulos"
-    redirect_to login_path
+    redirect_to partner_login_path
   end
 end
