@@ -12,8 +12,11 @@ FactoryGirl.define do
     f.email "sadasdsa@com.cocm"
     f.membergroup_id "1"
     f.membernumber "33333"
-    f.expirationdate '2011/11/12'
+    f.membershipyear "2014"
+    f.paymentstatus "f"
+    f.invoicedate ""
     f.membership "true"
+
 
   end
   factory :invalid_member, parent: :member  do |f|
