@@ -52,6 +52,7 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+
   ##
   # Deletes the member with params[:member] and tries to save it.
   # The interface informs the admin whether the save succeeded or not.
