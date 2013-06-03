@@ -2,7 +2,7 @@
 
   %h1 Jäsenen haku
   %div{:id => "search_form"}
-    = form_tag  find_status_path, :method => :get, :id => 'find_status' do
+    = form_tag  partners_path, :id => 'find_status' do
       %div{:id => "number_field"}
         = text_field_tag "number", "#{@number}"
 

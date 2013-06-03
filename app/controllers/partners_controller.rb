@@ -4,7 +4,7 @@
 
 class PartnersController < ApplicationController
   before_filter :require_partner_login
-  skip_before_filter :require_login, :only => [:check_membership, :loginform, :login]
+  skip_before_filter :require_login, :only => [:check_membership, :find_status, :loginform, :login]
   skip_before_filter :require_partner_login, :only => [:loginform, :login]
   ##
   # Shows login form to the partner.
@@ -29,8 +29,6 @@ class PartnersController < ApplicationController
   end
 
 
-
-
   def check_membership
 
   end
@@ -38,16 +36,12 @@ class PartnersController < ApplicationController
   def find_status
 
     member = Member.find_by_membernumber(params[:number])
-    if member
-      if member.membership
-        flash[:notice] = "Henkilön jäsenyys on voimassa."
-      else
-        flash[:notice] = "Henkilön jäsenyys ei ole voimassa."
-      end
+    if member && member.membership
+      flash[:notice] = "Henkilön jäsenyys on voimassa."
     else
-      flash[:notice] = "Numerolla ei löydy jäsentä!"
+      flash[:notice] = "Henkilön jäsenyys ei ole voimassa."
     end
-    render "check_membership"
+    redirect_to partners_path
   end
 
 
