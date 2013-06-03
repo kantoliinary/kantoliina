@@ -5,16 +5,16 @@ Feature: delete member
   Background: admins in database
 
     Given the following admins exist:
-      | login | password  |
-      | admin | qwerty123 |
+      | username | password  |
+      | admin    | qwerty123 |
 
     Given the following membergroups exist:
-      | id | groupname   | fee  |
+      | id | name        | fee  |
       | 1  | Ainaisjäsen | 10.0 |
 
 
     When I am on the login page
-    And I fill in "login" with "admin"
+    And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
     And I follow "Lisää jäsen"
