@@ -66,12 +66,9 @@ class MembersController < ApplicationController
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
     @membership = params[:membership] || {"1" => "1"}
-    #puts "qaaaaaaaaaaaaaa"
-    #puts @membership
-    @paymentstatus = params[:paymentstatus] || {"0" => "0", "1" => "1"}
     s_membergroups = params[:membergroups]
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
-    @members = search_with_filter(@keyword, @selected_search_fields, @membership.keys, @paymentstatus.keys, @selected_membergroups)
+    @members = search_with_filter(@keyword, @selected_search_fields, @membership.keys, @selected_membergroups)
   end
 
   ##
@@ -112,7 +109,7 @@ class MembersController < ApplicationController
 # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
-  def search_with_filter keyword, search_fields, membership, paymentstatus, membergroups
+  def search_with_filter keyword, search_fields, membership, membergroups
     keywords = keyword.split(" ")
     member = Member.includes(:membergroup)
     keywords.each do |word|
@@ -131,9 +128,6 @@ class MembersController < ApplicationController
     if membership.length == 1
       #puts membership.at(0).class
       member = member.where(:membership => membership.at(0) == "1")
-    end
-    if paymentstatus.length == 1
-      member = member.where("expirationdate "+(paymentstatus.at(0) == "0" ? "<" : ">") +" ?", Time.now-1.day)
     end
     query = ""
     query_keywords = {}
