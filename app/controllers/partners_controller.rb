@@ -34,7 +34,7 @@ class PartnersController < ApplicationController
   #
   #end
 
-  def find_status
+  def find_member_status
 
     member = Member.find_by_membernumber(params[:number])
     if member && member.membership
