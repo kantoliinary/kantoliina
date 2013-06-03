@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
   end
 
   create_table "partners", :force => true do |t|
-    t.string   "login"
-    t.string   "password"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end
