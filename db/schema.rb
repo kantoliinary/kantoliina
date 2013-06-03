@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(:version => 20130603080112) do
 
   create_table "admins", :force => true do |t|
-    t.string   "login"
+    t.string   "username"
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
   create_table "membergroups", :force => true do |t|
-    t.string "groupname"
+    t.string "name"
     t.float  "fee"
   end
 
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
   end
 
   create_table "partners", :force => true do |t|
-    t.string   "login"
-    t.string   "password"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "username"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

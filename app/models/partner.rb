@@ -1,10 +1,10 @@
 #encoding: utf-8
 
 class Partner < ActiveRecord::Base
-  attr_accessible :login, :password, :password_digest
+  attr_accessible :username, :password, :password_digest
   has_secure_password
-  validates :password, :login, :presence => true
-  validates :login, :length => {
+  validates :password, :username, :presence => true
+  validates :username, :length => {
       :minimum => 3,
       :maximum => 20,
       :too_short => "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen",

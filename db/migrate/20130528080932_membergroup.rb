@@ -1,7 +1,7 @@
 class Membergroup < ActiveRecord::Migration
   def change
     create_table :membergroups do |t|
-      t.string :groupname
+      t.string :name
       t.float  :fee
     end
   end

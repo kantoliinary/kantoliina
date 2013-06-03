@@ -6,17 +6,17 @@ Feature: add new member
   Background: admins in database
 
     Given the following admins exist:
-      | login | password  |
-      | admin | qwerty123 |
+      | username | password  |
+      | admin    | qwerty123 |
 
     Given the following membergroups exist:
-      | id       | groupname                   | fee |
-      | 1        | Ainaisjäsen                 | 10.0|
+      | id | name        | fee  |
+      | 1  | Ainaisjäsen | 10.0 |
 
 
 
     When I am on the login page
-    And I fill in "login" with "admin"
+    And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
     And I follow "Lisää jäsen"
@@ -49,7 +49,7 @@ Feature: add new member
       | Postinumero      | 12345  |
       | Postitoimipaikka | gda    |
       | Sähköposti       | gf.com |
-      | Jäsennumero      | 12345|
+      | Jäsennumero      | 12345  |
     And I press "Lisää"
     Then I should see "Sähköpostiosoitteen muoto on väärä!"
 
@@ -68,24 +68,24 @@ Feature: add new member
 
   Scenario: add new member with already taken membernumber
     When I fill in the following:
-      | Etunimet         | jasen  |
-      | Sukunimi         | aaa    |
-      | Kunta            | gfdal  |
-      | Katuosoite       | gda    |
-      | Postinumero      | 12345  |
-      | Postitoimipaikka | gda    |
+      | Etunimet         | jasen      |
+      | Sukunimi         | aaa        |
+      | Kunta            | gfdal      |
+      | Katuosoite       | gda        |
+      | Postinumero      | 12345      |
+      | Postitoimipaikka | gda        |
       | Sähköposti       | gf@kkk.com |
-      | Jäsennumero      | 12345  |
+      | Jäsennumero      | 12345      |
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
     When I fill in the following:
-      | Etunimet         | jasen  |
-      | Sukunimi         | aaa    |
-      | Kunta            | gfdal  |
-      | Katuosoite       | gda    |
-      | Postinumero      | 12345  |
-      | Postitoimipaikka | gda    |
+      | Etunimet         | jasen      |
+      | Sukunimi         | aaa        |
+      | Kunta            | gfdal      |
+      | Katuosoite       | gda        |
+      | Postinumero      | 12345      |
+      | Postitoimipaikka | gda        |
       | Sähköposti       | gf@ggg.com |
-      | Jäsennumero      | 12345  |
+      | Jäsennumero      | 12345      |
     And I press "Lisää"
     Then I should see "Jäsennumero on jo käytössä!"

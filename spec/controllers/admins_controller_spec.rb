@@ -13,13 +13,13 @@ describe AdminsController do
     context "with valid attributes" do
       it "saves admin id in session" do
         admin = FactoryGirl.create(:admin)
-        Admin.stub(:find_by_login).and_return(admin)
+        Admin.stub(:find_by_username).and_return(admin)
         post :login, FactoryGirl.attributes_for(:admin)
         session[:admin].should == admin
       end
       it "redirects to the new member" do
         admin = FactoryGirl.create(:admin)
-        Admin.stub(:find_by_login).and_return(admin)
+        Admin.stub(:find_by_username).and_return(admin)
         post :login, FactoryGirl.attributes_for(:admin)
         response.should redirect_to members_path
       end
@@ -43,14 +43,14 @@ describe AdminsController do
   describe "GET #logout" do
     it "destroys session" do
       admin = FactoryGirl.create(:admin)
-      Admin.stub(:find_by_login).and_return(admin)
+      Admin.stub(:find_by_username).and_return(admin)
       post :login, FactoryGirl.attributes_for(:admin)
       get :logout
       session[:admin].should == nil
     end
     it "redirect to the login" do
       admin = FactoryGirl.create(:admin)
-      Admin.stub(:find_by_login).and_return(admin)
+      Admin.stub(:find_by_username).and_return(admin)
       post :login, FactoryGirl.attributes_for(:admin)
       get :logout
       response.should redirect_to login_path
