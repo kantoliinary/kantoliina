@@ -22,7 +22,7 @@
     = f.input :email, placeholder: 'Sähköposti'
     = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
     = f.label 'Jäsenryhmä'
-    = f.collection_select(:membergroup_id, Membergroup.all, :id, :groupname)
+    = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
     %br
     %br
     = f.label 'Jäsenyyden päättymispäivä'

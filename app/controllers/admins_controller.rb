@@ -12,11 +12,11 @@ class AdminsController < ApplicationController
   end
 
   ##
-  # Saves logged Admin to session[:admin] if login and password are correct, and redirects to members list page.
+  # Saves logged Admin to session[:admin] if username and password are correct, and redirects to members list page.
   # Adds error to @error[:error] if username or password is incorrect, and rerenders login form.
 
   def login
-    admin = Admin.find_by_login(params[:login]).try(:authenticate, params[:password])
+    admin = Admin.find_by_username(params[:username]).try(:authenticate, params[:password])
     @error = Hash.new
     if  admin
       session[:admin] = admin
