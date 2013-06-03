@@ -63,6 +63,7 @@
       %th Sähköposti
       %th Jäsenyyden status
       %th Jäsenryhmä
+      %th päättymis pv
       %th
     - @members.each do | member|
       %tr
@@ -78,6 +79,7 @@
         %td= member.email
         %td= member.membership
         %td= member.membergroup.name
+        %td= member.expirationdate
         %td= button_to (member.membership ? 'Poista' : 'Aktivoi'), member_path(member), :method => :delete, :class => "delete_or_active"
 
   = form_tag invoice_confirm_path, :id => "invoice_form" do

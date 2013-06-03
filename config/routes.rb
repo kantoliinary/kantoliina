@@ -12,13 +12,11 @@ Kantoliina::Application.routes.draw do
   get 'partner_login' => 'partners#loginform'
   post 'partner_login' => 'partners#login'
   get 'logout' => 'partners#logout'
+  get "/partners" => 'partners#check_membership'
 
   post "invoice/confirm" => 'members#invoice'
   post "invoice" => 'members#send_invoices'
   resources :members
-  resources :partners
-
-
 
   match "/" => redirect("/members"), :conditions => lambda{ |req| !req.session["admin_id"].blank? }
   match "/" => redirect("/login")
