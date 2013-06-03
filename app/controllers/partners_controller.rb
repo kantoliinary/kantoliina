@@ -18,7 +18,7 @@ class PartnersController < ApplicationController
   #
 
   def login
-    partner = Partner.find_by_username(params[:username])
+    partner = Partner.find_by_username(params[:username]).try(:authenticate, params[:password])
     @error = Hash.new
     if  partner
       session[:partner_id] = partner.id
