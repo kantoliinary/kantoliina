@@ -15,7 +15,7 @@ describe AdminsController do
         admin = FactoryGirl.create(:admin)
         Admin.stub(:find_by_username).and_return(admin)
         post :login, FactoryGirl.attributes_for(:admin)
-        session[:admin].should == admin
+        session[:admin_id].should == admin.id
       end
       it "redirects to the new member" do
         admin = FactoryGirl.create(:admin)
