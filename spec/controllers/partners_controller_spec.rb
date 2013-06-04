@@ -32,6 +32,13 @@ describe PartnersController do
         post :login, FactoryGirl.attributes_for(:invalid_partner)
         session[:partner].should == nil
       end
+      it "redirects to the login" do
+        partner = FactoryGirl.build(:invalid_partner)
+        Partner.stub(:find_by_username).and_return(partner)
+        post :login, FactoryGirl.attributes_for(:invalid_partner)
+        get :partner_logout
+        response.should redirect_to partner_login_path
+      end
       it "re-renders the :loginform view" do
         partner = FactoryGirl.build(:invalid_partner)
         post :login, FactoryGirl.attributes_for(:invalid_partner)
