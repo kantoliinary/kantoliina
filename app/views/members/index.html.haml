@@ -77,10 +77,18 @@
         %td= member.zipcode
         %td= member.postoffice
         %td= member.email
-        %td= member.membership
+        - if(!member.membership)
+          %td{:bgcolor => "red"}
+        - else
+          %td{:bgcolor => "green"}
         %td= member.membergroup.name
         %td= member.membershipyear
-        %td= member.paymentstatus
+        - if(!member.paymentstatus)
+          %td{:bgcolor => "red"}
+        - else
+          %td{:bgcolor => "green"}
+
+
   %div{:id => "bottom_forms"}
     = form_tag invoice_confirm_path, :id => "invoice_form" do
       = hidden_field_tag "ids"

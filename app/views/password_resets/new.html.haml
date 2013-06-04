@@ -1,0 +1,11 @@
+%div{:id => "recover_password_page"}
+  %h1 Salasanan palautus
+
+  %div{id: "login_form"}
+    = form_tag password_resets_path do
+      %div{id: "label"}
+        = label_tag 'email', 'Sähköposti'
+      %div{id: "input"}
+        = text_field_tag "email"
+      %div{id: "submit"}
+        = submit_tag "Palauta", :id =>"submit_button"

@@ -37,9 +37,16 @@ class MembersController < ApplicationController
     @members = Member.find_all_by_id(parsed_json["ids"])
   end
 
+
+  ##
+  # Parses an array of IDs from JSON code given as a parameter and selects an array of members based on those IDs.
+  # Deletes/Activates selected members.
+  #
+  # Redirects to the list page.
+
+
   def delete
 
-    puts params[:ids]
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
     @members = Member.find_all_by_id(parsed_json["ids"])
     @members.each do |member|

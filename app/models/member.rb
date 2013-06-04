@@ -23,7 +23,6 @@ class Member < ActiveRecord::Base
   validates :membershipyear, :numericality => {:only_integer => true}, :length => {:is => 4}
   validates :paymentstatus, :inclusion => {:in => [true, false]}
 
-
   @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membernumber => "Jäsennumero"}
 
   ##
