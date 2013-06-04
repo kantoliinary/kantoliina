@@ -1,18 +1,30 @@
 %h3 Kantoliinayhdistyksen jäsenmaksu -lasku
 %p
   = @top_additional_message
-%p Laskun eräpäivä:
-= @member.invoicedate + 30.days
-%p Summa:
-= @member.membergroup.fee
-%p Viitenumero:
-= Member.generate_refnumber(@member.membernumber)
 
-%p TILINUMERO:
 
-%p IBAN XXXXX
+
+%p
+  Saajan tilinumero: FI22 1228 3000 0038 46
+  %br
+  Maksun saaja: Kantoliinayhdistys ry
+  %br
+  Laskun eräpäivä:
+  = @member.invoicedate + 30.days
+  %br
+  Viitenumero:
+  = Member.generate_refnumber(@member.membernumber)
+  %br
+  Summa:
+  = @member.membergroup.fee
+
+
 %p
   = @bottom_additional_message
-%p Ystävällisin terveisin,
 
-%p Kantoliinayhdistys
+
+%p
+  Ystävällisin terveisin,
+
+  %br
+  Kantoliinayhdistys
