@@ -2,11 +2,11 @@ Feature: Delete a new member
 
   I want to delete a member and see if the member was successfully destroyed
 
-  Background: admins in database
+  Background: admins in the database
 
     Given the following admins exist:
-      | username | password  |
-      | admin    | qwerty123 |
+      | username | password  | email          |
+      | admin    | qwerty123 | testi@testi.fi |
 
     Given the following membergroups exist:
       | id | name        | fee  |
@@ -38,7 +38,7 @@ Feature: Delete a new member
     Then I should see "jasen"
 #    And I press "Poista"
 #    Then I should see "Jäsen poistettu"
-#    Then I should not see "jasen"
+#    Then I should  not see "jasen"
 
   Scenario: I try to delete an already deleted member from the list page
     When I am on the members page

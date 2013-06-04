@@ -5,8 +5,8 @@ Feature: edit member
   Background: admins in database
 
     Given the following admins exist:
-      | username | password  |
-      | admin    | qwerty123 |
+      | username | password  | email          |
+      | admin    | qwerty123 | testi@testi.fi |
 
     Given the following membergroups exist:
       | id | name        | fee  |
@@ -33,7 +33,7 @@ Feature: edit member
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
 
-  Scenario: edit member with right values
+  Scenario: edit member with correct values
     When I am on the members page
     And I follow "12345"
     Then I should see "Jäsenen tietojen muokkaus"
@@ -47,7 +47,7 @@ Feature: edit member
     Then I should see "Jäsen"
 
 
-  Scenario: edit member with wrong values
+  Scenario: edit member with incorrect values
     When I am on the members page
     And I follow "12345"
     Then I should see "Jäsenen tietojen muokkaus"
@@ -60,7 +60,7 @@ Feature: edit member
     And I press "Tallenna"
     Then I should see "Jäsennumerossa tulee olla vain numeroita!"
 
-  Scenario: edit member with empty values
+  Scenario: edit member with incorrect values
     When I am on the members page
     And I follow "12345"
     Then I should see "Jäsenen tietojen muokkaus"
