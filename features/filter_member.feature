@@ -153,19 +153,9 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should not see "Liisa"
 
-  Scenario: I try to see both types of members
-    When I am on the members page
-    And I check "membership[0]"
-    And I check "membership[1]"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should see "Janne"
-    Then I should see "Liisa"
-
   Scenario: I try to see deleted members
     When I am on the members page
-    And I check "membership[1]"
-    And I uncheck "membership[0]"
+    And I choose "membership_1"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -174,8 +164,7 @@ Feature: filter members
 
   Scenario: I try to see existing members
     When I am on the members page
-    And I uncheck "membership[1]"
-    And I check "membership[0]"
+    And I choose "membership_0"
     And I press "Hae"
     Then I should not see "Jaana"
     Then I should not see "Janne"
