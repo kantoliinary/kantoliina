@@ -5,6 +5,8 @@ Kantoliina::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controllers and :action
+  match "/" => redirect("/members"), :conditions => lambda { |req| !req.session["admin_id"].blank? }
+  match "/" => redirect("/login")
   get 'login' => 'sessions#new', :as => 'login'
   post 'login' => 'sessions#create', :as =>'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
@@ -13,19 +15,16 @@ Kantoliina::Application.routes.draw do
   post 'partnerlogin' => 'partner_sessions#create', :as =>'partner_login'
   get 'partnerlogout' => 'partner_sessions#destroy', :as => 'partner_logout'
 
-  post "invoice/confirm" => 'members#invoice'
-  post "invoice" => 'members#send_invoices'
+  post "invoice/confirm" => 'invoice#index', :as => 'invoice_confirm'
+  post "invoice" => 'invoice#create'
 
-  post "invoice/confirm" => 'members#invoice'
-  post "invoice" => 'members#send_invoices'
   post "delete" => 'members#delete'
 
   resources :partners, :only => [:index]
   resources :password_resets, :only => [:new, :create]
   resources :members
 
-  match "/" => redirect("/members"), :conditions => lambda { |req| !req.session["admin_id"].blank? }
-  match "/" => redirect("/login")
+
 
   #get 'userpage'=> 'members'
   # Sample of named route:
