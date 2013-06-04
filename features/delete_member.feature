@@ -2,7 +2,7 @@ Feature: Delete a new member
 
   I want to delete a member and see if the member was successfully destroyed
 
-  Background: admins in database
+  Background: admins in the database
 
     Given the following admins exist:
       | username | password  |
