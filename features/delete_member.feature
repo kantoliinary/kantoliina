@@ -38,7 +38,7 @@ Feature: Delete a new member
     Then I should see "jasen"
 #    And I press "Poista"
 #    Then I should see "Jäsen poistettu"
-#    Then I should not see "jasen"
+#    Then I should  not see "jasen"
 
   Scenario: I try to delete an already deleted member from the list page
     When I am on the members page
