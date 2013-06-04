@@ -6,6 +6,9 @@ class SessionsController < ApplicationController
   def new
     redirect_to members_path unless session[:admin_id].blank?
     @error = Hash.new
+    @form_path = login_path
+    @title = "Ylläpitäjän sisäänkirjautuminen"
+    @password_reset_link = true
   end
 
   ##
@@ -18,6 +21,9 @@ class SessionsController < ApplicationController
       session[:admin_id] = admin.id
       redirect_to members_path and return
     end
+    @form_path = login_path
+    @title = "Ylläpitäjän sisäänkirjautuminen"
+    @password_reset_link = true
     @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
     render "new"
   end

@@ -10,6 +10,8 @@ class PartnerSessionsController < ApplicationController
   #
   def new
     @error = Hash.new
+    @title = "Yhteistyökumppanin sisäänkirjautuminen"
+    @form_path = partner_login_path
   end
 
   ##
@@ -22,6 +24,8 @@ class PartnerSessionsController < ApplicationController
       session[:partner_id] = partner.id
       redirect_to partners_path and return
     end
+    @title = "Yhteistyökumppanin sisäänkirjautuminen"
+    @form_path = partner_login_path
     @error[:error] = "Virheellinen käyttäjätunnus tai salasana!"
     render "new"
   end

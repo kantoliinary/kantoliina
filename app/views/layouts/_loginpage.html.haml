@@ -1,0 +1,20 @@
+%div{id: "login_page"}
+  %h1
+    = @title
+
+  %div{id: "login_form"}
+    %div{id: "error"}
+      = @error[:error]
+    = form_tag @form_path do
+      %div{id: "label"}
+        = label_tag 'username', 'Käyttäjätunnus'
+      %div{id: "input"}
+        = text_field_tag "username"
+      %div{id: "label"}
+        =label_tag 'password', "Salasana"
+      %div{id: "input"}
+        = password_field_tag "password"
+      %div{id: "submit"}
+        = submit_tag "Login"
+  - if @password_reset_link
+    %a{:title => "Palauta salasana", :href => new_password_reset_path} Palauta salasana

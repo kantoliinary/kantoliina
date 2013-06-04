@@ -8,6 +8,13 @@ SimpleCov.start 'rails'
 
 require 'cucumber/rails'
 
+require 'selenium-webdriver'
+require 'capybara/cucumber'
+require 'rspec/expectations'
+Capybara.default_driver = :selenium
+Cucumber::Rails::World.use_transactional_fixtures = false
+#config.action_controller.session = { :session_http_only => false }
+
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
@@ -33,10 +40,17 @@ ActionController::Base.allow_rescue = false
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
 begin
-  DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.strategy = :truncation
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
 end
+
+#Before do
+#  Fixtures.reset_cache
+#  fixtures_folder = File.join(RAILS_ROOT, 'spec', 'fixtures')
+#  fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
+#  Fixtures.create_fixtures(fixtures_folder, fixtures)
+#end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
