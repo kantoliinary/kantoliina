@@ -28,11 +28,11 @@
         %span{:class => "bold"}
           Poistettu
         %div{:class => "field"}
-          = check_box_tag "membership[0]", 1, @membership.include?("0"), :class => "checkbox"
+          = radio_button_tag "membership", 0, @membership == "0", :class => "checkbox"
           %span
             Kyllä
         %div{:class => "field"}
-          = check_box_tag "membership[1]", 1, @membership.include?("1"), :class => "checkbox"
+          = radio_button_tag "membership", 1, @membership == "1", :class => "checkbox"
           %span
             Ei
       -#%div{:id => "paymentstatus_fields", :class => "left"}
@@ -65,7 +65,6 @@
       %th Jäsenryhmä
       %th Jäsenyysvuosi
       %th Maksustatus
-      %th
     - @members.each do | member|
       %tr
         %td= check_box_tag "member_checkbox", member.id, false, :class => "checkbox"
@@ -82,14 +81,14 @@
         %td= member.membergroup.name
         %td= member.membershipyear
         %td= member.paymentstatus
-        %td= button_to (member.membership ? 'Poista' : 'Aktivoi'), member_path(member), :method => :delete, :class => "delete_or_active"
+  %div{:id => "bottom_forms"}
+    = form_tag invoice_confirm_path, :id => "invoice_form" do
+      = hidden_field_tag "ids"
+      = button_tag "Luo laskut", :class => "submit send"
 
-  = form_tag invoice_confirm_path, :id => "invoice_form" do
-    = hidden_field_tag "ids"
-    = button_tag "Luo laskut", :class => "submit" , :id => "send_invoice"
-
-  = form_tag delete_path, :id => "invoice_form" do
-    = hidden_field_tag "ids"
-    = button_tag "Poista Valitut", :class => "submit" , :id => "send_invoice"
+    = form_tag delete_path, :id => "delete_active_form" do
+      = hidden_field_tag "ids"
+      = button_tag (@membership == "0" ? "Aktivoi" : "Poista"), :class => "submit send"
+    %div{:class => "clear"}
 
 

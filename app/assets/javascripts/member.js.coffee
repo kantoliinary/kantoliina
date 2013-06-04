@@ -1,8 +1,10 @@
 $(document).ready ->
   index = $ "#index_member_page"
   invoice = $ "#invoice_member_page"
-  index.find("#send_invoice").click (e) ->
+  index.find(".send").click (e) ->
     e.preventDefault()
+    if !confirm("Oletko varma?")
+      return false
     checkboxs = $("#index_member_page #members").find ":checkbox"
     ids = []
     $(checkboxs).each (index, value) ->
@@ -10,7 +12,7 @@ $(document).ready ->
       if !!checkbox.attr("checked") && checkbox.attr("name") != "check_all"
         ids.push checkbox.val()
 
-    form = $("#index_member_page #invoice_form")
+    form = $(this).parent("form")
     form.children("#ids").val(JSON.stringify({
       ids: ids
     }))

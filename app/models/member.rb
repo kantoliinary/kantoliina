@@ -20,7 +20,9 @@ class Member < ActiveRecord::Base
 
   validates :membergroup_id, :numericality => {:only_integer => true, :message => "Valitse jäsenryhmä"}
   validates :membernumber, :uniqueness => {:message => "Jäsennumero on jo käytössä!"}, :presence => {:message => "Jäsennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jäsennumerossa tulee olla vain numeroita!"}, :length => {:is => 5, :message => "Jäsennumeron tulee olla tasan 5 merkkiä pitkä!"}
-
+  validates :membershipyear, :numericality => {:only_integer => true}, :length => {:is => 4}
+  validates :paymentstatus, :inclusion => { :in => [true, false] }
+  #validates :invoicedate, :only_date => true
 
   @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membernumber => "Jäsennumero"}
 
