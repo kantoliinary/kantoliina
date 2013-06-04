@@ -70,21 +70,33 @@ describe Member do
     FactoryGirl.create(:member, membernumber: "12345").should be_valid
     FactoryGirl.build(:member, membernumber: "12345").should_not be_valid
   end
-  #
-  #it "is invalid without a payday" do
-  #  FactoryGirl.build(:member, membershipyear: nil).should_not be_valid
+
+  it "is invalid without a mebershipyear" do
+    FactoryGirl.build(:member, membershipyear: nil).should_not be_valid
+  end
+
+  it "is invalid with wrong length membershipyear" do
+    FactoryGirl.build(:member, membershipyear: "123").should_not be_valid
+  end
+
+  it "is valid with right length membershipyear" do
+    FactoryGirl.build(:member, membershipyear: "1234").should be_valid
+  end
+
+  it "is invalid with wrong paymentstatus" do
+    FactoryGirl.build(:member, paymentstatus: nil).should_not be_valid
+  end
+
+  it "is valid with right paymentstatus" do
+    FactoryGirl.build(:member, paymentstatus: true).should be_valid
+  end
+
+  #it "is valid with a right form invoicedate" do
+  #  FactoryGirl.build(:member, invoicedate: Time.now.year).should be_valid
   #end
   #
-  #it "is invalid with wrong payday" do
-  #  FactoryGirl.build(:member, membershipyear: "2013").should_not be_valid
-  #end
-  #
-  #it "is valid with a right form payday" do
-  #  FactoryGirl.build(:member, membershipyear: "2013").should_not be_valid
-  #end
-  #
-  #it "is invalid with a wrong form payday" do
-  #  FactoryGirl.build(:member, membershipyear: "2013".should_not be_valid
+  #it "is invalid with a wrong form invoicedate" do
+  #  FactoryGirl.build(:member, invoicedate: "dfadsf").should_not be_valid
   #end
 
   it "generates ref_number" do
