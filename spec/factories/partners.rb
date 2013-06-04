@@ -1,8 +1,13 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+FactoryGirl.define do
+  factory :partner do |f|
+    f.username "partner"
+    f.password "qwerty123"
+  end
+end
 
 FactoryGirl.define do
-  factory :partner do
-    login "MyString"
-    password "MyString"
+  factory :invalid_partner, parent: :partner do |f|
+    f.username "partner"
+    f.password "qw"
   end
 end

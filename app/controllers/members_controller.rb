@@ -80,10 +80,10 @@ class MembersController < ApplicationController
     @all_search_fields = Member.all_search_fields
     @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
-    @membership = params[:membership] || {"1" => "1"}
+    @membership = params[:membership] || "1"
     s_membergroups = params[:membergroups]
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
-    @members = search_with_filter(@keyword, @selected_search_fields, @membership.keys, @selected_membergroups)
+    @members = search_with_filter(@keyword, @selected_search_fields, @membership, @selected_membergroups)
   end
 
   ##
@@ -139,8 +139,7 @@ class MembersController < ApplicationController
       end
       member = member.where(query, query_keywords)
     end
-    if membership.length == 1
-      #puts membership.at(0).class
+    if membership.length > 0
       member = member.where(:membership => membership.at(0) == "1")
     end
     query = ""
