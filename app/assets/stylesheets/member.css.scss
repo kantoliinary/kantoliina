@@ -23,17 +23,30 @@
       width: 150px;
     }
   }
+  #bottom_forms {
+    width: 420px;
+    margin: 0 auto;
+
+    #invoice_form, #delete_active_form {
+      width: 210px;
+      float: left;
+      margin: 0;
+    }
+  }
 
 }
+
 #index_member_page .delete_or_active, #invoice_member_page .delete_button {
   width: 70px;
 }
+
 #invoice_member_page {
-  #additional_message{
+  #additional_message {
     display: inline-block;
     width: 895px;
   }
 }
+
 #new_edit_member_page {
   #edit_form {
     width: 640px;
