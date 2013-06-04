@@ -1,6 +1,6 @@
-Feature: add new member
+Feature: Add a new member
 
-  I want add new member and get and get information of that was successfull created or get error messages
+  I want to add a new member and see if it was successfully created
 
 
   Background: admins in database
@@ -39,7 +39,7 @@ Feature: add new member
     And I press "Lisää"
     Then I should see "Jäsen lisätty!"
 
-  Scenario: add new member with wrong format email
+  Scenario: Add a new member with wrongly formatted e-mail
     When I fill in the following:
       | Etunimet         | jasen  |
       | Sukunimi         | aaa    |
@@ -52,7 +52,7 @@ Feature: add new member
     And I press "Lisää"
     Then I should see "Sähköpostiosoitteen muoto on väärä!"
 
-  Scenario: add new member with wrong length membernumber
+  Scenario: Add a new member with too short member number
     When I fill in the following:
       | Etunimet         | jasen  |
       | Sukunimi         | aaa    |
@@ -65,7 +65,7 @@ Feature: add new member
     And I press "Lisää"
     Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä!"
 
-  Scenario: add new member with already taken membernumber
+  Scenario: Add a new member with a membernumber already in use
     When I fill in the following:
       | Etunimet         | jasen      |
       | Sukunimi         | aaa        |
