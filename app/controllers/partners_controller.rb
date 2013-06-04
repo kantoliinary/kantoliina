@@ -47,7 +47,7 @@ class PartnersController < ApplicationController
 
 
   ##
-  # Clears all from session and redirects to login form page.
+  # Clears all from sessions and redirects to login form page.
   def partner_logout
     reset_session
     flash[:notice] = "Kirjauduttu ulos"

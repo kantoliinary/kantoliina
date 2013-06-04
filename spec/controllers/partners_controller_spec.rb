@@ -11,7 +11,7 @@ describe PartnersController do
 
   describe "POST #login" do
     context "with valid attributes" do
-      it "saves admin id in session" do
+      it "saves admin id in sessions" do
         partner = FactoryGirl.create(:partner)
         Partner.stub(:find_by_username).and_return(partner)
         post :login, FactoryGirl.attributes_for(:partner)
@@ -27,7 +27,7 @@ describe PartnersController do
     end
 
     context "with invalid attributes" do
-      it "does not save admin id in session" do
+      it "does not save admin id in sessions" do
         partner = FactoryGirl.build(:invalid_partner)
         post :login, FactoryGirl.attributes_for(:invalid_partner)
         session[:partner].should == nil
@@ -41,7 +41,7 @@ describe PartnersController do
   end
 
   describe "GET #logout" do
-    it "destroys session" do
+    it "destroys sessions" do
       partner = FactoryGirl.create(:partner)
       Partner.stub(:find_by_username).and_return(partner)
       post :login, FactoryGirl.attributes_for(:partner)

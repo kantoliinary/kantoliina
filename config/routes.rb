@@ -5,9 +5,8 @@ Kantoliina::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controllers and :action
-  get 'login' => 'admins#loginform'
-  post 'login' => 'admins#login'
-  get 'logout' => 'admins#logout'
+  get 'login' => 'sessions#new', :as => 'login'
+  get 'logout' => 'sessions#destroy', :as => 'logout'
 
   get 'partner_login' => 'partners#loginform'
   post 'partner_login' => 'partners#login'
@@ -23,7 +22,8 @@ Kantoliina::Application.routes.draw do
   post "invoice" => 'members#send_invoices'
   post "delete" => 'members#delete'
 
-  resources :password_resets
+
+  resources :password_resets, :only => [:new, :create]
   resources :members
 
   match "/" => redirect("/members"), :conditions => lambda { |req| !req.session["admin_id"].blank? }

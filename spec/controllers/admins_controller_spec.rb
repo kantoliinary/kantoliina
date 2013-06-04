@@ -11,7 +11,7 @@ describe AdminsController do
 
   describe "POST #login" do
     context "with valid attributes" do
-      it "saves admin id in session" do
+      it "saves admin id in sessions" do
         admin = FactoryGirl.create(:admin)
         Admin.stub(:find_by_username).and_return(admin)
         post :login, FactoryGirl.attributes_for(:admin)
@@ -27,7 +27,7 @@ describe AdminsController do
     end
 
     context "with invalid attributes" do
-      it "does not save admin id in session" do
+      it "does not save admin id in sessions" do
         admin = FactoryGirl.build(:invalid_admin)
         post :login, FactoryGirl.attributes_for(:invalid_admin)
         session[:admin].should == nil
@@ -41,7 +41,7 @@ describe AdminsController do
   end
 
   describe "GET #logout" do
-    it "destroys session" do
+    it "destroys sessions" do
       admin = FactoryGirl.create(:admin)
       Admin.stub(:find_by_username).and_return(admin)
       post :login, FactoryGirl.attributes_for(:admin)
