@@ -78,15 +78,19 @@
         %td= member.postoffice
         %td= member.email
         - if(!member.membership)
-          %td{:bgcolor => "red"}
+          %td
+            %img{:src => "assets/not.jpg"}
         - else
-          %td{:bgcolor => "green"}
+          %td
+            %img{:src => "assets/ok.jpg"}
         %td= member.membergroup.name
         %td= member.membershipyear
         - if(!member.paymentstatus)
-          %td{:bgcolor => "red"}
+          %td
+            %img{:src => "assets/not.jpg"}
         - else
-          %td{:bgcolor => "green"}
+          %td
+            %img{:src => "assets/ok.jpg"}
 
 
   %div{:id => "bottom_forms"}
