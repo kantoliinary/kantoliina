@@ -61,7 +61,6 @@
       %th Postinumero
       %th Postitoimipaikka
       %th Sähköposti
-      %th Jäsenyyden status
       %th Jäsenryhmä
       %th Jäsenyysvuosi
       %th Maksustatus
@@ -83,6 +82,7 @@
         - else
           %td
             %img{:src => "/assets/ok.jpg"}         .
+
         %td= member.membergroup.name
         %td= member.membershipyear
         - if(!member.paymentstatus)

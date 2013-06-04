@@ -11,6 +11,7 @@ class MembersController < ApplicationController
 
   def new
     @member = flash[:member] || Member.new
+    @submit_text = "Lisää"
   end
 
   ##
@@ -90,6 +91,7 @@ class MembersController < ApplicationController
 
   def edit
     @member = flash[:member] || Member.find(params[:id])
+    @submit_text = "Tallenna muutokset"
   end
 
   ##

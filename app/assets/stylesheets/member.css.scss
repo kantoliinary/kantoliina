@@ -47,28 +47,30 @@
   }
 }
 
-#new_edit_member_page {
-  #edit_form {
-    width: 640px;
-    margin: 0 40%;
+#new_member_page, #edit_member_page {
+  #form {
+    width: auto;
+    display: inline-table;
+    margin: 0 auto;
     margin-top: 30px;
-
-    form {
-      margin: 0;
-      padding: 0;
-    }
   }
+  form {
+    margin: 0;
+    padding: 0;
+  }
+
   #expirationdate {
     padding-top: 12px;
   }
 
   .left {
+    display: table;
     width: 130px;
     text-align: left;
   }
 
   .right_field {
-    width: 500px;
+    width: auto;
     text-align: left;
   }
 
@@ -90,8 +92,9 @@
     width: 344px;
   }
 }
-#recover_password_page{
-  #submit_button{
+
+#recover_password_page {
+  #submit_button {
     width: 214px;
     margin-top: 10px;
   }

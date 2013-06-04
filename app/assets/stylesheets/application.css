@@ -600,3 +600,6 @@ ul#SearchResults li {
 .bold{
     font-weight: bold;
 }
+.error{
+    color: #ff0000;
+}
