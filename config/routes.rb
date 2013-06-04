@@ -6,6 +6,7 @@ Kantoliina::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controllers and :action
   get 'login' => 'sessions#new', :as => 'login'
+  post 'login' => 'sessions#create', :as =>'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
 
   get 'partner_login' => 'partners#loginform'
