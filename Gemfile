@@ -27,6 +27,7 @@ group :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'selenium-webdriver', '~> 2.33.0'
 end
 
 # Gems used only for assets and not required

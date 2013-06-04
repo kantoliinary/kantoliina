@@ -48,11 +48,12 @@ Feature: invoice members
     Then I should see "Jäsen lisätty!"
     And I follow "Listaa jäsenet"
 
+
+
   Scenario: Select all
     And I should see "Liisa"
     And I should see "Janne"
-    And I check "membership[1]"
-    And I uncheck "membership[0]"
+    And I choose "membership_1"
 #    And I press "Lähetä laskut"
 #    And I should see "Laskunlähetys"
 #
