@@ -8,6 +8,9 @@ require 'rspec/autorun'
 
 require "capybara/rspec"
 
+##for selenium
+#config.use_transactional_fixtures = false
+
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
