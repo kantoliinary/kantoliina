@@ -9,12 +9,9 @@ Kantoliina::Application.routes.draw do
   post 'login' => 'sessions#create', :as =>'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
 
-  get 'partner_login' => 'partners#loginform'
-  post 'partner_login' => 'partners#login'
-  get 'partner_logout' => 'partners#partner_logout'
-  get "partners" => 'partners#check_membership'
-
-  post "partners" => 'partners#find_member_status'
+  get 'partnerlogin' => 'partner_sessions#new', :as => 'partner_login'
+  post 'partnerlogin' => 'partner_sessions#create', :as =>'partner_login'
+  get 'partnerlogout' => 'partner_sessions#destroy', :as => 'partner_logout'
 
   post "invoice/confirm" => 'members#invoice'
   post "invoice" => 'members#send_invoices'
@@ -23,7 +20,7 @@ Kantoliina::Application.routes.draw do
   post "invoice" => 'members#send_invoices'
   post "delete" => 'members#delete'
 
-
+  resources :partners, :only => [:index]
   resources :password_resets, :only => [:new, :create]
   resources :members
 

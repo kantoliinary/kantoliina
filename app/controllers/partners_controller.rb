@@ -4,55 +4,24 @@
 
 class PartnersController < ApplicationController
   before_filter :require_partner_login
-  skip_before_filter :require_login, :only => [:check_membership, :find_member_status, :partner_logout, :loginform, :login]
+  skip_before_filter :require_login, :only => [:index, :partner_logout, :loginform, :login]
   skip_before_filter :require_partner_login, :only => [:loginform, :login]
   ##
   # Shows login form to the partner.
 
-  def loginform
-    @error = Hash.new
-  end
 
-  ##
-  #
-  #
-
-  def login
-    partner = Partner.find_by_username(params[:username]).try(:authenticate, params[:password])
-    @error = Hash.new
-    if  partner
-      session[:partner_id] = partner.id
-      redirect_to partners_path and return
+  def index
+    @message = Hash.new
+    if params[:number]
+      member = Member.find_by_membernumber(params[:number])
+      if member && member.membership
+        @message[:notice] = "Henkilön jäsenyys on voimassa."
+      else
+        @message[:notice] = "Henkilön jäsenyys ei ole voimassa."
+      end
     end
-    @error[:error] = "Virheellinen käyttäjätunnus tai salasana!"
-    render "loginform"
   end
 
-
-
-  def check_membership
-
-  end
-
-  def find_member_status
-
-    member = Member.find_by_membernumber(params[:number])
-    if member && member.membership
-      flash[:notice] = "Henkilön jäsenyys on voimassa."
-    else
-      flash[:notice] = "Henkilön jäsenyys ei ole voimassa."
-    end
-    redirect_to partners_path
-  end
-
-
-  ##
-  # Clears all from sessions and redirects to login form page.
-  def partner_logout
-    reset_session
-    flash[:notice] = "Kirjauduttu ulos"
-    redirect_to partner_login_path
-  end
 
   private
 
@@ -61,7 +30,6 @@ class PartnersController < ApplicationController
 
       redirect_to partner_login_path
     end
-    @partner = session[:partner]
   end
 
 ##

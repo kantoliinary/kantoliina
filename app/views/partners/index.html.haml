@@ -2,7 +2,7 @@
 
   %h1 Jäsenen haku
   %div{:id => "search_form"}
-    = form_tag  partners_path do
+    = form_tag  partners_path, :method => "get" do
       %div{:id => "number_field"}
         = text_field_tag "number", "#{@number}"
 
@@ -10,4 +10,4 @@
         = submit_tag "Hae", :class => "submit"
   = link_to "Kirjaudu ulos", partner_logout_path
   %br
-  = flash[:notice]
+  = @message[:notice]
