@@ -52,3 +52,10 @@ Feature: delete member
     Then I should see "aaa"
     And I press "Aktivoi"
     Then I should see "Jäsen aktivoitu"
+
+#  Scenario: deleting by main button
+#    When I am on the members page
+#    Then I should see "jasen"
+#    And I check "check_all"
+#    And I press "Poista Valitut"
+#    Then I should not see "jasen"
