@@ -23,6 +23,7 @@ Kantoliina::Application.routes.draw do
   post "invoice" => 'members#send_invoices'
   post "delete" => 'members#delete'
 
+  resources :password_resets
   resources :members
 
   match "/" => redirect("/members"), :conditions => lambda { |req| !req.session["admin_id"].blank? }
