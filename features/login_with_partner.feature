@@ -5,7 +5,7 @@ Feature: login with partner
   Background: partners in database
     Given the following partners exist:
       | username | password  |
-      | partner    | qwerty123 |
+      | partner  | qwerty123 |
 
     When I am on the partner_login page
 
