@@ -6,10 +6,9 @@ class PartnersController < ApplicationController
   before_filter :require_partner_login
   skip_before_filter :require_login, :only => [:index, :partner_logout, :loginform, :login]
   skip_before_filter :require_partner_login, :only => [:loginform, :login]
+
   ##
-  # Shows login form to the partner.
-
-
+  # Shows login form to a partner.
   def index
     @message = Hash.new
     if params[:number]
