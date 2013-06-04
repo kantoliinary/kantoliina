@@ -30,7 +30,6 @@ class Admin < ActiveRecord::Base
     (0..8).each do |i|
       new_password += chars.at(rand(chars.length))
     end
-    puts new_password
     self.update_attributes(:password => new_password)
     save!
     AdminMailer.password_reset(self, new_password).deliver

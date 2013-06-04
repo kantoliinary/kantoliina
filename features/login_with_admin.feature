@@ -4,8 +4,8 @@ Feature: login with admin
 
   Background: admins in database
     Given the following admins exist:
-      | username | password  |
-      | admin    | qwerty123 |
+      | username | password  | email          |
+      | admin    | qwerty123 | testi@testi.fi |
 
     When I am on the login page
 

@@ -6,8 +6,8 @@ Feature: Add a new member
   Background: admins in database
 
     Given the following admins exist:
-      | username | password  |
-      | admin    | qwerty123 |
+      | username | password  | email          |
+      | admin    | qwerty123 | testi@testi.fi |
 
     Given the following membergroups exist:
       | id | name        | fee  |
