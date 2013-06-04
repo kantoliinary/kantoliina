@@ -61,7 +61,6 @@
       %th Postinumero
       %th Postitoimipaikka
       %th Sähköposti
-      %th Jäsenyyden status
       %th Jäsenryhmä
       %th Jäsenyysvuosi
       %th Maksustatus
@@ -77,12 +76,6 @@
         %td= member.zipcode
         %td= member.postoffice
         %td= member.email
-        - if(!member.membership)
-          %td
-            %img{:src => "assets/not.jpg"}
-        - else
-          %td
-            %img{:src => "assets/ok.jpg"}
         %td= member.membergroup.name
         %td= member.membershipyear
         - if(!member.paymentstatus)
