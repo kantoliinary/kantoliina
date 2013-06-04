@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+  %title Kantoliina
+  = stylesheet_link_tag "application", :media => "all"
+  = javascript_include_tag "application"
+  = csrf_meta_tags
+%body
+  %div{:id => "header"}
+    %div{:id => "header-content"}
+
+      %h1{:id => "logo"}
+        %a{:title => "", :href => "./"}
+          KANTOLIINA<span class="green">YHDISTYS</span>
+      %img{:src => "http://www.kantoliinayhdistys.fi/themes/pixelgreen/images/logo.gif", :height => "100", :align => "right"}
+      -if @admin
+        %ul
+          %li
+            = link_to "Listaa jäsenet", members_path
+          %li
+            = link_to "Lisää jäsen", new_member_path
+          %li
+            = link_to "Kirjaudu ulos", logout_path
+
+  = yield

@@ -4,6 +4,8 @@ class PartnerSessionsController < ApplicationController
 
   def new
     @error = Hash.new
+    @title = "Yhteistyökumppanin sisäänkirjautuminen"
+    @form_path = partner_login_path
   end
 
   ##
