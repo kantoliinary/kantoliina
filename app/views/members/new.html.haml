@@ -1,31 +1,6 @@
 %div{:id => "new_member_page"}
-  -#%p
-  -#  =link_to "Listaa jäsenet", members_path
-  -#  =link_to "Lisää jäsen", new_member_path
-  -#  =link_to "Kirjaudu ulos", logout_path
-
-
-
-
-
   = flash[:notice]
-
   %h1 Jäsenen lisäys
 
   %div{:id => "form"}
     = render :partial => "new_edit_form.html"
-  -#= simple_form_for @member, defaults:{label:false} do |f|
-  -#  = f.input :firstnames, placeholder: 'Etunimet'
-  -#  = f.input :surname, placeholder: 'Sukunimi'
-  -#  = f.input :municipality, placeholder: 'Kunta'
-  -#  = f.input :address, placeholder: 'Katuosoite'
-  -#  = f.input :zipcode, placeholder: 'Postinumero'
-  -#  = f.input :postoffice, placeholder: 'Postitoimipaikka'
-  -#  = f.input :email, placeholder: 'Sähköposti'
-  -#  = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
-  -#  = f.label 'Jäsenryhmä'
-  -#  = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
-  -#  %br
-  -#  %br
-  -#  = f.submit "Lisää", id:"submit"
-

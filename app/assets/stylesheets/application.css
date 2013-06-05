@@ -603,3 +603,6 @@ ul#SearchResults li {
 .error{
     color: #ff0000;
 }
+.notice{
+    color: #00FF00;
+}

@@ -49,14 +49,13 @@ Feature: Delete a new member
     And I follow "Listaa jäsenet"
 
   @javascript
-  Scenario: I try to delete all members from the list page
+  Scenario: I try to delete a members from the list page
     When I am on the members page
     Then I should see "jasen"
-    And I check "check_all"
+    And I check "member_1"
     Given I expect to click "OK" on a confirmation box
     When I press "Poista"
-
-    Then I should not see "jasen"
+    Then I should see "Jäsen poistettu"
 
   @javascript
   Scenario: I try to delete all members from the list page and press cancel on conf
@@ -65,7 +64,7 @@ Feature: Delete a new member
     And I check "check_all"
     Given I expect to click "cancel" on a confirmation box
     When I press "Poista"
-    Then I should see "jasen"
+    Then I should not see "Jäsen poistettu"
 
 
 

@@ -47,28 +47,10 @@ class MembersController < ApplicationController
       if member
         member.membership = "#{!member.membership}"
         member.save!(:validate => false)
+
       end
     end
-    redirect_to members_path
-  end
-
-
-  ##
-  # Deletes the member with params[:member] and tries to save it.
-  # The interface informs the admin whether the save succeeded or not.
-  # Redirects to the list page.
-
-  def destroy
-    @member = Member.find(params[:id])
-    if @member
-      @member.membership = "#{!@member.membership}"
-      @member.save!(:validate => false)
-      unless @member.membership
-        flash[:notice] = "Jäsen poistettu"
-      else
-        flash[:notice] = "Jäsen aktivoitu"
-      end
-    end
+    flash[:notice] = "Jäsen" + (@members.count > 1 ? "et" : "") +" poistettu"
     redirect_to members_path
   end
 
@@ -105,7 +87,6 @@ class MembersController < ApplicationController
     end
     redirect_to edit_member_path
   end
-
 
 
   private

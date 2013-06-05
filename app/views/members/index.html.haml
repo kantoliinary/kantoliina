@@ -64,9 +64,11 @@
       %th Jäsenryhmä
       %th Jäsenyysvuosi
       %th Maksustatus
+    - count = 0
     - @members.each do | member|
+      - count += 1
       %tr
-        %td= check_box_tag "member_checkbox", member.id, false, :class => "checkbox"
+        %td= check_box_tag "member_#{member.id }", member.id, false, :class => "checkbox"
         %td= link_to member.membernumber, edit_member_path(member)
         %td
           = member.firstnames
@@ -76,12 +78,12 @@
         %td= member.zipcode
         %td= member.postoffice
         %td= member.email
-        - if(!member.membership)
-          %td
-            %img{:src => "/assets/not.jpg"}
-        - else
-          %td
-            %img{:src => "/assets/ok.jpg"}         .
+        -#- if(!member.membership)
+        -#  %td
+        -#    %img{:src => "/assets/not.jpg"}
+        -#- else
+        -#  %td
+        -#    %img{:src => "/assets/ok.jpg"}         .
 
         %td= member.membergroup.name
         %td= member.membershipyear
@@ -91,7 +93,8 @@
         - else
           %td
             %img{:src => "/assets/ok.jpg"}
-
+  %p
+    =count
 
   %div{:id => "bottom_forms"}
     = form_tag invoice_confirm_path, :id => "invoice_form" do

@@ -7,7 +7,8 @@
 class Partner < ActiveRecord::Base
   attr_accessible :username, :password, :password_digest
   has_secure_password
-  validates :password, :username, :presence => true
+  validates :username, :presence => {:message => "Käyttäjätunnus puuttuu"}
+  validates :password, :presence => {:message => "Salasana puuttuu"}
   validates :username, :length => {
       :minimum => 3,
       :maximum => 20,
