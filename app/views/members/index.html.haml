@@ -1,6 +1,6 @@
 %div{:id => "index_member_page"}
-
   %h1 Jäsenten listaus
+
   %div{:id => "search_form"}
     = form_tag members_path, :method => :get, :id => 'filter_form' do
       %div{:id => "keyword_field"}
@@ -49,6 +49,9 @@
       %div{:class => "clear"}
       %div{:id => "submit_button"}
         = submit_tag "Hae", :class => "submit"
+      %div
+        Hakutulosten määrä:
+        =@members.count
   = flash[:notice]
   %table{:class => "center", :id => "members"}
     %tr
@@ -64,9 +67,8 @@
       %th Jäsenryhmä
       %th Jäsenyysvuosi
       %th Maksustatus
-    - count = 0
+
     - @members.each do | member|
-      - count += 1
       %tr
         %td= check_box_tag "member_#{member.id }", member.id, false, :class => "checkbox"
         %td= link_to member.membernumber, edit_member_path(member)
@@ -93,8 +95,6 @@
         - else
           %td
             %img{:src => "/assets/ok.jpg"}
-  %p
-    =count
 
   %div{:id => "bottom_forms"}
     = form_tag invoice_confirm_path, :id => "invoice_form" do
