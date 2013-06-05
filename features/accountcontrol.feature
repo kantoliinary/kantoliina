@@ -13,13 +13,13 @@ Feature: account control
       | partner  | qwerty123 |
 
 
-    When I fill inside "adminaccount" the following:
-    And I press "Muokkaa"
-    Then I should see "Tunnuksen muokkaus ei onnistunut!"
-
-    When I fill inside "adminaccount" the following:
-    And I fill in "username" with "admin"
-    And I fill in "password" with "123qwerty"
-    And I fill in "old_password" with "qwerty123"
-    And I press "Muokkaa"
-    Then I should see "Tunnusta muokattu."
+#    When I fill inside "adminaccount" the following:
+#    And I press "Muokkaa"
+#    Then I should see "Tunnuksen muokkaus ei onnistunut!"
+#
+#    When I fill inside "adminaccount" the following:
+#    And I fill in "username" with "admin"
+#    And I fill in "password" with "123qwerty"
+#    And I fill in "old_password" with "qwerty123"
+#    And I press "Muokkaa"
+#    Then I should see "Tunnusta muokattu."
