@@ -5,8 +5,8 @@
 # Validates the presence and length of the username and password.
 
 class Partner < ActiveRecord::Base
-  attr_accessible :username, :password, :password_digest
-  has_secure_password
+  attr_accessible :username, :password, :password_confirmation, :password_digest
+
   validates :username, :presence => {:message => "Käyttäjätunnus puuttuu"}
   validates :password, :presence => {:message => "Salasana puuttuu"}
   validates :username, :length => {
@@ -20,5 +20,6 @@ class Partner < ActiveRecord::Base
       :maximum => 20,
       :too_short => "Salasanan tulee olla vähintään 8 merkin pituinen",
       :too_long => "Salasanan tulee olla korkeintaan 20 merkin pituinen"
-  }
+  }, :confirmation => {:message => "Salasanan vahvistus on virheellinen"}
+  has_secure_password
 end
