@@ -29,12 +29,13 @@ Feature: Change paymentstatus to false
       | Jäsennumero      | 12345    |
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-#
-#  @javascript
-#  Scenario: I try to delete all members from the list page and press cancel on conf
-#    When I am on the members page
-#    Then I should see "jasen"
-#    And I check "check_all"
-#    Given I expect to click "cancel" on a confirmation box
-#    When I press "Poista"
-#    Then I should not see "Jäsen poistettu"
+
+  @javascript
+  Scenario: I check all members and change their paymentstatus to false
+    When I am on the members page
+    Then I should see "jasen"
+    And I check "check_all"
+    Given I expect to click "OK" on a confirmation box
+    When I press "Maksettu"
+    Then I should see "Maksustatus muutettu!"
+
