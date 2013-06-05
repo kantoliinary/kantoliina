@@ -22,9 +22,6 @@ Feature: Add a new member
     And I follow "Lisää jäsen"
 
   Scenario: add new member
-
-
-
     When I fill in the following:
       | Etunimet         | jasen    |
       | Sukunimi         | aaa      |

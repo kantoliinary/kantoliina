@@ -38,6 +38,8 @@ class PartnersController < ApplicationController
 
   private
 
+  ##
+  # Checks if a partner is logged in and redirects the user to the login page if not.
   def require_partner_login
     unless partner_logged_in?
 
@@ -47,7 +49,7 @@ class PartnersController < ApplicationController
 
 ##
 # Checks if admin is logged in.
-#@return boolean value is user logged in.
+#@return boolean value is the user logged in.
 
   def partner_logged_in?
     !!session[:partner_id]

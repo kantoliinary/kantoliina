@@ -3,9 +3,9 @@
   %div{:id => "control_form"}
     %div{:id => "headers"}
       %div{:id => "adminaccount_header"}
-        %h3 Admin hallinta
+        %h3 Ylläpitäjä
       %div{:id => "partneraccount_header"}
-        %h3 Yhteistyökumppanin hallinta
+        %h3 Yhteistyökumppani
       %div{:class => "clear"}
     %div{:class => "notice"}
       = flash[:adminnotice]
@@ -56,7 +56,7 @@
         %div{:class => "input"}
           = f.input "password_confirmation"
         %div{:class => "label"}
-          = label_tag "admin_password", "Admin salasana"
+          = label_tag "admin_password", "Ylläpitäjän salasana"
         %div{:class => "input"}
           = password_field_tag "admin_password"
         = f.submit "Muokkaa", :class => "update"

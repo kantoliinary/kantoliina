@@ -41,30 +41,24 @@ describe MembersController do
   end
 
 
-  describe "#invoice" do
-
-
-  end
-
-
-  describe "POST #destroy" do
-    context "with valid attributes" do
-      it "member shall be removed" do
-        member = FactoryGirl.build(:member)
-        Member.stub(:find).and_return(member)
-        delete :destroy, FactoryGirl.attributes_for(:member)
-        flash[:notice] == "Jasen poistettu"
-      end
-
-      it "member shall be removed" do
-        member = FactoryGirl.build(:member, membership: false)
-        Member.stub(:find).and_return(member)
-        delete :destroy, FactoryGirl.attributes_for(:member)
-        flash[:notice] == "Jasen aktivoitu"
-      end
-
-    end
-  end
+  #describe "POST #destroy" do
+  #  context "with valid attributes" do
+  #    it "member shall be removed" do
+  #      member = FactoryGirl.create(:member)
+  #      Member.stub(:find).and_return(member)
+  #      post :delete, FactoryGirl.attributes_for(:member)
+  #      flash[:notice] == "Jasen poistettu"
+  #    end
+  #
+  #    it "member shall be removed" do
+  #      member = FactoryGirl.create(:member, membership: false)
+  #      Member.stub(:find).and_return(member)
+  #      post :delete, FactoryGirl.attributes_for(:member)
+  #      flash[:notice] == "Jasen aktivoitu"
+  #    end
+  #
+  #  end
+  #end
 
 
   describe "GET #index" do
