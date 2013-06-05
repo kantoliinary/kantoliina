@@ -3,8 +3,8 @@ $(document).ready ->
   invoice = $ "#invoice_member_page"
   index.find(".send").click (e) ->
     e.preventDefault()
-#    if !confirm("Oletko varma?")
-#      return false
+    if !confirm("Oletko varma?")
+      return false
     checkboxs = $("#index_member_page #members").find ":checkbox"
     ids = []
     $(checkboxs).each (index, value) ->

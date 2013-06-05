@@ -37,6 +37,17 @@ class MembersController < ApplicationController
   #
   # Redirects to the list page.
 
+  def payment
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @members = Member.find_all_by_id(parsed_json["ids"])
+    @members.each do |member|
+      if member
+        member.paymentstatus = "#{!member.paymentstatus}"
+        member.save!(:validate => false)
+      end
+    end
+    redirect_to members_path
+  end
 
   def delete
 

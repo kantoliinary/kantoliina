@@ -19,6 +19,7 @@ Kantoliina::Application.routes.draw do
   post "invoice" => 'invoice#create'
 
   post "delete" => 'members#delete'
+  post "payment" => 'members#payment'
 
   resources :accountcontrol, :only => [:index]
   resources :admins, :only => [:update]
