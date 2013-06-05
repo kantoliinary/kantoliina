@@ -25,12 +25,22 @@ class PartnersController < ApplicationController
     admin = Admin.find(session[:admin_id]).try(:authenticate, params[:admin_password])
     if admin
       partner = Partner.find(params[:id])
-      if partner.update_attributes(params[:partner])
-        flash[:partnernotice] = "Tunnus muokattu"
+      unless params[:partner][:password].empty?
+        if partner.update_attributes(params[:partner])
+          flash[:partnernotice] = "Tunnus muokattu"
+        else
+          flash[:partner] = partner
+        end
       else
-        flash[:partner] = partner
+        partner.username = params[:partner][:username]
+        if partner.validate_username && partner.save(:validate => false)
+          flash[:partnernotice] = "Tunnus muokattu"
+        else
+          flash[:partner] = partner
+        end
       end
     else
+      flash[:partner] = partner
       flash[:partnererror] = "Tunnuksen muokkaus ei onnistunut"
     end
     redirect_to accountcontrol_index_path and return

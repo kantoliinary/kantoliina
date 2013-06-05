@@ -8,7 +8,9 @@
         %h3 Yhteistyökumppani
       %div{:class => "clear"}
     %div{:class => "notice"}
-      = flash[:adminnotice]
+      %div
+        = flash[:adminnotice]
+        =flash[:partnernotice]
     %div{:class => "error"}
       %div
         = flash[:adminerror]

@@ -9,12 +9,7 @@ class Partner < ActiveRecord::Base
 
   validates :username, :presence => {:message => "Käyttäjätunnus puuttuu"}
   validates :password, :presence => {:message => "Salasana puuttuu"}
-  validates :username, :length => {
-      :minimum => 3,
-      :maximum => 20,
-      :too_short => "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen",
-      :too_long => "Käyttäjätunnuksen tulee olla korkeintaan 20 merkin pituinen"
-  }
+  validate :validate_username
   validates :password, :length => {
       :minimum => 8,
       :maximum => 20,
@@ -22,4 +17,16 @@ class Partner < ActiveRecord::Base
       :too_long => "Salasanan tulee olla korkeintaan 20 merkin pituinen"
   }, :confirmation => {:message => "Salasanan vahvistus on virheellinen"}
   has_secure_password
+
+  def validate_username
+    if username.length < 3
+      errors.add(:username, "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen")
+      false
+    end
+    if username.length > 20
+      errors.add(:username, "Käyttäjätunnuksen tulee olla korkeintaan 20 merkin pituinen")
+      false
+    end
+    true
+  end
 end
