@@ -23,7 +23,7 @@ class AdminsController < ApplicationController
       end
     else
       flash[:admin] = admin
-      flash[:adminerror] = "Tunnuksen muokkaus ei onnistunut"
+      flash[:adminerror] = "Tunnuksen muokkaus ei onnistunut!"
     end
     redirect_to accountcontrol_index_path and return
   end
