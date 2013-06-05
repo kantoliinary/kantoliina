@@ -5,8 +5,8 @@ Feature: account control
   Background: admins and partners in database
 
     Given the following admins exist:
-      | username | password  |
-      | admin    | qwerty123 |
+      | username | password  | email         |
+      | admin    | qwerty123 | mail@mail.com |
 
     Given the following partners exist:
       | username | password  |
@@ -15,22 +15,10 @@ Feature: account control
 
     When I fill inside "adminaccount" the following:
     And I fill in "username" with "admin"
-    And I fill in "password" with "qwerty123"
-    And I press ""
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | jasen    |
-      | Sukunimi         | aaa      |
-      | Kunta            | gfdal    |
-      | Katuosoite       | gda      |
-      | Postinumero      | 12345    |
-      | Postitoimipaikka | gda      |
-      | Sähköposti       | gf@a.com |
-      | Jäsennumero      | 12345    |
-
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    And I fill in "password" with "123qwerty"
+    And I fill in "old_password" with "qwerty123"
+    And I press "Muokkaa"
+    Then I should see "Salasana päivitetty."
     And I follow "Listaa jäsenet"
 
   Scenario: edit member with correct values
