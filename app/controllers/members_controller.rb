@@ -46,6 +46,7 @@ class MembersController < ApplicationController
         member.save!(:validate => false)
       end
     end
+    flash[:notice] = "Maksustatus muutettu!"
     redirect_to members_path
   end
 
