@@ -105,7 +105,7 @@
       = hidden_field_tag "ids"
       = button_tag (@membership == "0" ? "Aktivoi" : "Poista"), :class => "submit send"
 
-    = form_tag payment_path, :id => "payment_active_form" do
+    = form_tag payment_path, :id => "payment_form" do
       = hidden_field_tag "ids"
       = button_tag "Maksettu", :class => "submit send"
     %div{:class => "clear"}
