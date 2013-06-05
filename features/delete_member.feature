@@ -36,8 +36,9 @@ Feature: Delete a new member
   Scenario: I try to delete a member from the list page
     When I am on the members page
     Then I should see "jasen"
-#    And I press "Poista"
-#    Then I should see "Jäsen poistettu"
+    And I check "member_1"
+    And I press "Poista"
+    Then I should see "Jäsen poistettu"
 #    Then I should  not see "jasen"
 
   Scenario: I try to delete an already deleted member from the list page
