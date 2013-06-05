@@ -5,7 +5,7 @@
 class PartnersController < ApplicationController
   before_filter :require_partner_login
   skip_before_filter :require_login, :only => [:index, :partner_logout, :loginform, :login]
-  skip_before_filter :require_partner_login, :only => [:loginform, :login]
+  skip_before_filter :require_partner_login, :only => [:update]
 
   ##
   # Shows login form to a partner.
@@ -21,6 +21,20 @@ class PartnersController < ApplicationController
     end
   end
 
+  def update
+    admin = Admin.find(session[:admin_id]).try(:authenticate, params[:admin_password])
+    if admin
+      partner = Partner.find(params[:id])
+      if partner.update_attributes(params[:partner])
+        flash[:partnernotice] = "Tunnus muokattu"
+      else
+        flash[:partner] = partner
+      end
+    else
+      flash[:partnererror] = "Tunnuksen muokkaus ei onnistunut"
+    end
+    redirect_to accountcontrol_index_path and return
+  end
 
   private
 

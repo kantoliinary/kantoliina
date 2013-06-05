@@ -1,0 +1,55 @@
+%div{:id => "accountcontrol_page"}
+  %h1 Tunnuksien hallinta
+  %div{:id => "control_form"}
+    %div{:id => "headers"}
+      %div{:id => "adminaccount_header"}
+        %h3 Admin hallinta
+      %div{:id => "partneraccount_header"}
+        %h3 Yhteistyökumppanin hallinta
+      %div{:class => "clear"}
+    %div{:class => "notice"}
+      = flash[:adminnotice]
+    %div{:class => "error"}
+      %div
+        = flash[:adminerror]
+      %div
+        = @admin.errors.get(:username).to_sentence if @admin.errors.get(:username)
+      %div
+        = @admin.errors.get(:password).to_sentence if @admin.errors.get(:password)
+      %div
+        = flash[:partnererror]
+      %div
+        = @partner.errors.get(:username).to_sentence if @partner.errors.get(:username)
+      %div
+        = @partner.errors.get(:password).to_sentence if @partner.errors.get(:password)
+    %div{:id => "adminaccount"}
+      = simple_form_for @admin, defaults:{label:false, error:false} do |f|
+        %div{:class => "label"}
+          = f.label "username", "Käyttäjätunnus"
+        %div{:class => "input"}
+          = f.input "username"
+        %div{:class => "label"}
+          = f.label "password", "Salasana"
+        %div{:class => "input"}
+          = f.input "password"
+        %div{:class => "label"}
+          = label_tag "old_password", "Vanha salasana"
+        %div{:class => "input"}
+          = password_field_tag "old_password"
+        = f.submit "Muokkaa", :class => "update"
+    %div{:id => "partneraccount"}
+      = simple_form_for @partner, defaults:{label:false, error:false} do |f|
+        %div{:class => "label"}
+          = f.label "username", "Käyttäjätunnus"
+        %div{:class => "input"}
+          = f.input "username"
+        %div{:class => "label"}
+          = f.label "password", "Salasana"
+        %div{:class => "input"}
+          = f.input "password"
+        %div{:class => "label"}
+          = label_tag "admin_password", "Admin salasana"
+        %div{:class => "input"}
+          = password_field_tag "admin_password"
+        = f.submit "Muokkaa", :class => "update"
+    %div{:class => "clear"}

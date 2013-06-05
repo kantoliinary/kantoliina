@@ -3,7 +3,7 @@
     = @title
 
   %div{id: "login_form"}
-    %div{id: "error"}
+    %span{class: "error"}
       = @error[:error]
     = form_tag @form_path do
       %div{id: "label"}

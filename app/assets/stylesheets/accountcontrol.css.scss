@@ -1,0 +1,21 @@
+#accountcontrol_page {
+  #control_form {
+    width: 700px;
+    margin: 0 auto;
+    .notice, .error {
+       text-align: center;
+    }
+    #adminaccount, #adminaccount_header {
+      float: left;
+      width: 300px;
+    }
+    #partneraccount, #partneraccount_header {
+      float: right;
+      width: 300px;
+    }
+    .update {
+      width: 214px;
+      margin-top: 5px;
+    }
+  }
+}
