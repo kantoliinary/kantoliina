@@ -9,7 +9,7 @@ class AdminsController < ApplicationController
     if admin
       unless params[:admin][:password].empty?
         if admin.update_attributes(params[:admin])
-          flash[:adminnotice] = "Salasana päivitetty"
+          flash[:adminnotice] = "Tiedot päivitetty"
         else
           flash[:admin] = admin
         end
