@@ -61,7 +61,6 @@
       %th Postinumero
       %th Postitoimipaikka
       %th Sähköposti
-      %th Jäsenyyden status
       %th Jäsenryhmä
       %th Jäsenyysvuosi
       %th Maksustatus
@@ -79,18 +78,19 @@
         %td= member.email
         - if(!member.membership)
           %td
-            %img{:src => "assets/not.jpg"}
+            %img{:src => "/assets/not.jpg"}
         - else
           %td
-            %img{:src => "assets/ok.jpg"}
+            %img{:src => "/assets/ok.jpg"}         .
+
         %td= member.membergroup.name
         %td= member.membershipyear
         - if(!member.paymentstatus)
           %td
-            %img{:src => "assets/not.jpg"}
+            %img{:src => "/assets/not.jpg"}
         - else
           %td
-            %img{:src => "assets/ok.jpg"}
+            %img{:src => "/assets/ok.jpg"}
 
 
   %div{:id => "bottom_forms"}

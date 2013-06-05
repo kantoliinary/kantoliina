@@ -12,19 +12,20 @@
 
   %h1 Jäsenen lisäys
 
-  %div
-  = simple_form_for @member, defaults:{label:false} do |f|
-    = f.input :firstnames, placeholder: 'Etunimet'
-    = f.input :surname, placeholder: 'Sukunimi'
-    = f.input :municipality, placeholder: 'Kunta'
-    = f.input :address, placeholder: 'Katuosoite'
-    = f.input :zipcode, placeholder: 'Postinumero'
-    = f.input :postoffice, placeholder: 'Postitoimipaikka'
-    = f.input :email, placeholder: 'Sähköposti'
-    = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
-    = f.label 'Jäsenryhmä'
-    = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
-    %br
-    %br
-    = f.submit "Lisää", id:"submit"
+  %div{:id => "form"}
+    = render :partial => "new_edit_form.html"
+  -#= simple_form_for @member, defaults:{label:false} do |f|
+  -#  = f.input :firstnames, placeholder: 'Etunimet'
+  -#  = f.input :surname, placeholder: 'Sukunimi'
+  -#  = f.input :municipality, placeholder: 'Kunta'
+  -#  = f.input :address, placeholder: 'Katuosoite'
+  -#  = f.input :zipcode, placeholder: 'Postinumero'
+  -#  = f.input :postoffice, placeholder: 'Postitoimipaikka'
+  -#  = f.input :email, placeholder: 'Sähköposti'
+  -#  = f.input :membernumber, placeholder: 'Jäsennumero', as: :string
+  -#  = f.label 'Jäsenryhmä'
+  -#  = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
+  -#  %br
+  -#  %br
+  -#  = f.submit "Lisää", id:"submit"
 
