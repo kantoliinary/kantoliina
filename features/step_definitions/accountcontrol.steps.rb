@@ -1,7 +1,7 @@
-When /I sign in/ do
-  within("#session") do
-    fill_in 'Username', :with => 'user@example.com'
-    fill_in 'Password', :with => 'password'
+When /^I fill inside "(.*)" the following:$/ do |id,table|
+  within("##{id}") do
+    table.rows_hash.each do |name, value|
+      step %{I fill in "#{name}" with "#{value}"}
+    end
   end
-  click_link 'Sign in'
 end

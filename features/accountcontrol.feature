@@ -13,10 +13,10 @@ Feature: account control
       | partner  | qwerty123 |
 
 
-    When I am on the accountcontrol page
+    When I fill inside "adminaccount" the following:
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
-    And I press "Login"
+    And I press ""
     And I follow "Lisää jäsen"
     When I fill in the following:
       | Etunimet         | jasen    |
