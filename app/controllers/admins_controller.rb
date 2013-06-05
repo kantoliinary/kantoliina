@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
     admin = Admin.find(params[:id]).try(:authenticate, params[:old_password])
     if admin
       if admin.update_attributes(params[:admin])
-        flash[:adminnotice] = "Tunnus muokattu"
+        flash[:adminnotice] = "Salasana päivitetty"
       else
         flash[:admin] = admin
       end

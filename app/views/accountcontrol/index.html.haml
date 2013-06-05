@@ -25,11 +25,11 @@
     %div{:id => "adminaccount"}
       = simple_form_for @admin, defaults:{label:false, error:false} do |f|
         %div{:class => "label"}
-          = f.label "username", "Käyttäjätunnus"
+          = f.label "username", "Uusi käyttäjätunnus"
         %div{:class => "input"}
           = f.input "username"
         %div{:class => "label"}
-          = f.label "password", "Salasana"
+          = f.label "password", "Uusi salasana"
         %div{:class => "input"}
           = f.input "password"
         %div{:class => "label"}
@@ -44,11 +44,11 @@
     %div{:id => "partneraccount"}
       = simple_form_for @partner, defaults:{label:false, error:false} do |f|
         %div{:class => "label"}
-          = f.label "username", "Käyttäjätunnus"
+          = f.label "username", "Uusi käyttäjätunnus"
         %div{:class => "input"}
           = f.input "username"
         %div{:class => "label"}
-          = f.label "password", "Salasana"
+          = f.label "password", "Uusi salasana"
         %div{:class => "input"}
           = f.input "password"
         %div{:class => "label"}
