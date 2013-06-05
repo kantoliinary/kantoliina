@@ -41,12 +41,6 @@ describe MembersController do
   end
 
 
-  describe "#invoice" do
-
-
-  end
-
-
   describe "POST #destroy" do
     context "with valid attributes" do
       it "member shall be removed" do
