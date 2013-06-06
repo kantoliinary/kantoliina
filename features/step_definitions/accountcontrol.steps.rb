@@ -5,3 +5,9 @@ When /^I fill inside "(.*)" the following:$/ do |id,table|
     end
   end
 end
+
+When /^I press the button "(.*)" inside "(.*)"$/ do |button, id |
+  within("##{id}") do
+    click_button(button)
+  end
+end

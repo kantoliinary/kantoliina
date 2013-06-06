@@ -9,7 +9,7 @@ class AdminsController < ApplicationController
     if admin
       unless params[:admin][:password].empty?
         if admin.update_attributes(params[:admin])
-          flash[:adminnotice] = "Salasana päivitetty"
+          flash[:adminnotice] = "Tiedot päivitetty"
         else
           flash[:admin] = admin
         end
@@ -25,6 +25,6 @@ class AdminsController < ApplicationController
       flash[:admin] = admin
       flash[:adminerror] = "Tunnuksen muokkaus ei onnistunut!"
     end
-    redirect_to accountcontrol_index_path and return
+    redirect_to accountcontrols_path and return
   end
 end
