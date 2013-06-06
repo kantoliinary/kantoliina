@@ -30,7 +30,7 @@ Feature: filter members
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
     And I follow "Lisää jäsen"
     When I fill in the following:
@@ -45,7 +45,7 @@ Feature: filter members
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
     And I follow "Lisää jäsen"
     When I fill in the following:
@@ -60,7 +60,7 @@ Feature: filter members
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
 
   Scenario: I filter members by first name

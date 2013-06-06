@@ -25,4 +25,4 @@ Feature: login with partner
     And I fill in "username" with "partner"
     And I fill in "password" with "gfda"
     And I press "Login"
-    Then I should see "Virheellinen käyttäjätunnus tai salasana!"
+    Then I should see "Virheellinen käyttäjätunnus tai salasana"

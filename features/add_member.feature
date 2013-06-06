@@ -34,7 +34,7 @@ Feature: Add a new member
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
 
   Scenario: Add a new member with wrongly formatted e-mail
     When I fill in the following:
@@ -47,7 +47,7 @@ Feature: Add a new member
       | Sähköposti       | gf.com |
       | Jäsennumero      | 12345  |
     And I press "Lisää"
-    Then I should see "Sähköpostiosoitteen muoto on väärä!"
+    Then I should see "Sähköpostiosoitteen muoto on väärä"
 
   Scenario: Add a new member with too short member number
     When I fill in the following:
@@ -60,7 +60,7 @@ Feature: Add a new member
       | Sähköposti       | gf.com |
       | Jäsennumero      | 12     |
     And I press "Lisää"
-    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä!"
+    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"
 
   Scenario: Add a new member with a membernumber already in use
     When I fill in the following:
@@ -73,7 +73,7 @@ Feature: Add a new member
       | Sähköposti       | gf@kkk.com |
       | Jäsennumero      | 12345      |
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     When I fill in the following:
       | Etunimet         | jasen      |
       | Sukunimi         | aaa        |
@@ -84,4 +84,4 @@ Feature: Add a new member
       | Sähköposti       | gf@ggg.com |
       | Jäsennumero      | 12345      |
     And I press "Lisää"
-    Then I should see "Jäsennumero on jo käytössä!"
+    Then I should see "Jäsennumero on jo käytössä"

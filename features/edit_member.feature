@@ -30,7 +30,7 @@ Feature: edit member
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
 
   Scenario: edit member with correct values
@@ -40,7 +40,7 @@ Feature: edit member
     And I fill in "member[firstnames]" with "Janne"
     And I fill in "member[surname]" with "Jäsen"
     And I press "Tallenna"
-    Then I should see "Tiedot muutettu!"
+    Then I should see "Tiedot muutettu"
     And I follow "Listaa jäsenet"
     When I am on the members page
     Then I should see "Janne"
@@ -54,11 +54,11 @@ Feature: edit member
     And I fill in "member[email]" with "google"
     And I fill in "member[membernumber]" with "1"
     And I press "Tallenna"
-    Then I should see "Sähköpostiosoitteen muoto on väärä!"
-    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä!"
+    Then I should see "Sähköpostiosoitteen muoto on väärä"
+    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"
     And I fill in "member[membernumber]" with "aaa"
     And I press "Tallenna"
-    Then I should see "Jäsennumerossa tulee olla vain numeroita!"
+    Then I should see "Jäsennumerossa tulee olla vain numeroita"
 
   Scenario: edit member with incorrect values
     When I am on the members page
@@ -73,11 +73,11 @@ Feature: edit member
     And I fill in "member[email]" with ""
     And I fill in "member[membernumber]" with ""
     And I press "Tallenna"
-    Then I should see "Etunimi puuttuu!"
-    Then I should see "Sukunimi puuttuu!"
-    Then I should see "Kunta puuttuu!"
-    Then I should see "Osoite puuttuu!"
-    Then I should see "Postinumero puuttuu!"
-    Then I should see "Postitoimipaikka puuttuu!"
-    Then I should see "Sähköpostiosoite puuttuu!"
-    Then I should see "Jäsennumero puuttuu!"
+    Then I should see "Etunimi puuttuu"
+    Then I should see "Sukunimi puuttuu"
+    Then I should see "Kunta puuttuu"
+    Then I should see "Osoite puuttuu"
+    Then I should see "Postinumero puuttuu"
+    Then I should see "Postitoimipaikka puuttuu"
+    Then I should see "Sähköpostiosoite puuttuu"
+    Then I should see "Jäsennumero puuttuu"

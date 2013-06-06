@@ -31,7 +31,7 @@ Feature: invoice members
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
     And I follow "Lisää jäsen"
     When I fill in the following:
@@ -45,7 +45,7 @@ Feature: invoice members
       | Jäsennumero      | 12466                      |
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
 
 

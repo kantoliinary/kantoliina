@@ -26,7 +26,7 @@ class PartnerSessionsController < ApplicationController
     end
     @title = "Yhteistyökumppanin sisäänkirjautuminen"
     @form_path = partner_login_path
-    @error[:error] = "Virheellinen käyttäjätunnus tai salasana!"
+    @error[:error] = "Virheellinen käyttäjätunnus tai salasana"
     render "new"
   end
 

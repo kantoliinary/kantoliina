@@ -37,5 +37,5 @@ Feature: Change paymentstatus to false
     And I check "check_all"
     Given I expect to click "OK" on a confirmation box
     When I press "Maksettu"
-    Then I should see "Maksustatus muutettu!"
+    Then I should see "Maksustatus muutettu"
 

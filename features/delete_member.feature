@@ -29,7 +29,7 @@ Feature: Delete a new member
       | Jäsennumero      | 12345    |
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
 
     When I fill in the following:
       | Etunimet         | vasen    |
@@ -42,7 +42,7 @@ Feature: Delete a new member
       | Jäsennumero      | 12346    |
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
-    Then I should see "Jäsen lisätty!"
+    Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
 
 
