@@ -39,7 +39,6 @@ describe InvoiceController do
   end
 
   describe "#update" do
-    end
   end
 end
 
