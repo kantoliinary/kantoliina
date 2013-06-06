@@ -9,6 +9,20 @@ describe InvoiceController do
     session[:admin_id] = admin.id
   end
 
+  describe "POST #index" do
+    it 'finds members with given ids' do
+
+      FactoryGirl.create(:membergroup)
+      post :index, :ids => "{\"ids\":[\"1\"]}"
+      member = FactoryGirl.create(:member)
+      member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
+      members = [member, member2]
+      Member.stub(:find_all_by_id).and_return(members)
+      Member.stub(:additional_message).and_return("dsa")
+      post :create, FactoryGirl.attributes_for(:member), :additional_message => "fdsa"
+
+    end
+  end
 
   describe "POST #create" do
 
@@ -22,4 +36,6 @@ describe InvoiceController do
       end
     end
   end
+
+
 end
