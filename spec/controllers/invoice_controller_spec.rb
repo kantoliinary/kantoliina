@@ -14,12 +14,6 @@ describe InvoiceController do
 
       FactoryGirl.create(:membergroup)
       post :index, :ids => "{\"ids\":[\"1\"]}"
-      member = FactoryGirl.create(:member)
-      member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
-      members = [member, member2]
-      Member.stub(:find_all_by_id).and_return(members)
-      Member.stub(:additional_message).and_return("dsa")
-      post :create, FactoryGirl.attributes_for(:member), :additional_message => "fdsa"
 
     end
   end
@@ -29,13 +23,27 @@ describe InvoiceController do
     context "with valid attributes" do
       it "mail will be created" do
         FactoryGirl.create(:membergroup)
+
         member = FactoryGirl.create(:member)
-        Member.stub(:find).and_return(member)
-        post :create, FactoryGirl.attributes_for(:member)
+        member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
+        members = [member, member2]
+        Member.stub(:find_all_by_id).and_return(members)
+
+
+        post :create, :additional_message => "fa"
+
+
         response.should redirect_to members_path
       end
     end
   end
 
+  describe "#update" do
 
+    it "does something" do
+      get :update
+      response.should redirect_to settings_path
+    end
+  end
 end
+
