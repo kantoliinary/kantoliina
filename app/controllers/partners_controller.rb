@@ -27,14 +27,14 @@ class PartnersController < ApplicationController
       partner = Partner.find(params[:id])
       unless params[:partner][:password].empty?
         if partner.update_attributes(params[:partner])
-          flash[:partnernotice] = "Tunnus muokattu"
+          flash[:partnernotice] = "Tiedot päivitetty"
         else
           flash[:partner] = partner
         end
       else
         partner.username = params[:partner][:username]
         if partner.validate_username && partner.save(:validate => false)
-          flash[:partnernotice] = "Tunnus muokattu"
+          flash[:partnernotice] = "Käyttäjätunnus päivitetty"
         else
           flash[:partner] = partner
         end

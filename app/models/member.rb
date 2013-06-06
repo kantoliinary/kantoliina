@@ -7,19 +7,19 @@
 class Member < ActiveRecord::Base
   attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :membership, :membershipyear, :paymentstatus, :invoicedate
   belongs_to :membergroup
-  validates :firstnames, :presence => {:message => "Etunimi puuttuu!"}
-  validates :surname, :presence => {:message => "Sukunimi puuttuu!"}
-  validates :municipality, :presence => {:message => "Kunta puuttuu!"}
-  validates :address, :presence => {:message => "Osoite puuttuu!"}
-  validates :zipcode, :presence => {:message => "Postinumero puuttuu!"}
-  validates :postoffice, :presence => {:message => "Postitoimipaikka puuttuu!"}
-  validates :email, :presence => {:message => "Sähköpostiosoite puuttuu!"},
+  validates :firstnames, :presence => {:message => "Etunimi puuttuu"}
+  validates :surname, :presence => {:message => "Sukunimi puuttuu"}
+  validates :municipality, :presence => {:message => "Kunta puuttuu"}
+  validates :address, :presence => {:message => "Osoite puuttuu"}
+  validates :zipcode, :presence => {:message => "Postinumero puuttuu"}
+  validates :postoffice, :presence => {:message => "Postitoimipaikka puuttuu"}
+  validates :email, :presence => {:message => "Sähköpostiosoite puuttuu"},
             :format => {
                 :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-                :message => "Sähköpostiosoitteen muoto on väärä!"}
+                :message => "Sähköpostiosoitteen muoto on väärä"}
 
   validates :membergroup_id, :numericality => {:only_integer => true, :message => "Valitse jäsenryhmä"}
-  validates :membernumber, :uniqueness => {:message => "Jäsennumero on jo käytössä!"}, :presence => {:message => "Jäsennumero puuttuu!"}, :numericality => {:only_integer => true, :message => "Jäsennumerossa tulee olla vain numeroita!"}, :length => {:is => 5, :message => "Jäsennumeron tulee olla tasan 5 merkkiä pitkä!"}
+  validates :membernumber, :uniqueness => {:message => "Jäsennumero on jo käytössä"}, :presence => {:message => "Jäsennumero puuttuu"}, :numericality => {:only_integer => true, :message => "Jäsennumerossa tulee olla vain numeroita"}, :length => {:is => 5, :message => "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"}
   validates :membershipyear, :numericality => {:only_integer => true}, :length => {:is => 4}
   validates :paymentstatus, :inclusion => {:in => [true, false]}
 

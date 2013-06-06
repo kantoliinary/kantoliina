@@ -15,10 +15,10 @@ class Admin < ActiveRecord::Base
       :too_short => "Salasanan tulee olla vähintään 8 merkin pituinen",
       :too_long => "Salasanan tulee olla korkeintaan 20 merkin pituinen"
   }, :confirmation => {:message => "Salasanan vahvistus on virheellinen"}
-  validates :email, :presence => {:message => "Sähköpostiosoite puuttuu!"},
+  validates :email, :presence => {:message => "Sähköpostiosoite puuttuu"},
             :format => {
                 :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-                :message => "Sähköpostiosoitteen muoto on väärä!"}
+                :message => "Sähköpostiosoitteen muoto on väärä"}
   has_secure_password
 
   def generate_and_send_new_password

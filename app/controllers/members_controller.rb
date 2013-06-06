@@ -24,7 +24,7 @@ class MembersController < ApplicationController
     @member.membershipyear = (Time.now.year+1).to_i
     @member.paymentstatus = false
     if @member.save
-      flash[:notice] = "Jäsen lisätty!"
+      flash[:notice] = "Jäsen lisätty"
     else
       flash[:member] = @member
     end
@@ -46,7 +46,7 @@ class MembersController < ApplicationController
         member.save!(:validate => false)
       end
     end
-    flash[:notice] = "Maksustatus muutettu!"
+    flash[:notice] = "Maksustatus muutettu"
     redirect_to members_path
   end
 
@@ -93,7 +93,7 @@ class MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update_attributes(params[:member])
-      flash[:notice] = "Tiedot muutettu!"
+      flash[:notice] = "Tiedot muutettu"
     else
       flash[:member] = @member
     end
