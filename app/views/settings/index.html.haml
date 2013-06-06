@@ -1,1 +1,8 @@
-%h3 Asetukset
+%div{:id => "settings_page"}
+  %h1 Asetukset
+  %div{:id => "invoice_template_editor"}
+    = form_tag invoice_path, :method => "put" do
+      %div
+        = text_area_tag "template", @template
+      %div
+        = submit_tag "Muokkaa"

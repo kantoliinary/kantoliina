@@ -17,4 +17,11 @@ class InvoiceController < ApplicationController
     end
     redirect_to members_path
   end
+
+  def update
+    File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'w') do |f|
+      f.puts params[:template]
+    end
+    redirect_to settings_path
+  end
 end

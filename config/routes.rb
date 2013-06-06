@@ -17,6 +17,7 @@ Kantoliina::Application.routes.draw do
 
   post "invoice/confirm" => 'invoice#index', :as => 'invoice_confirm'
   post "invoice" => 'invoice#create'
+  put 'invoice' => 'invoice#update'
 
   post "delete" => 'members#delete'
   post "payment" => 'members#payment'
