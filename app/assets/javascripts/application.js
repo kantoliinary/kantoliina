@@ -13,3 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$('document').ready(function(){      $('#line_numbers').linenumbers({col_width:'75px'}); })
