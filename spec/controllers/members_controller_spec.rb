@@ -35,7 +35,7 @@ describe MembersController do
       it "member will be created" do
         member = FactoryGirl.build(:member)
         post :create, FactoryGirl.attributes_for(:member)
-        flash[:notice] == "Jäsen lisätty!"
+        flash[:notice].should == "Jäsen lisätty!"
       end
     end
   end
