@@ -33,8 +33,8 @@ describe MembersController do
 
     context "with valid attributes" do
       it "member will be created" do
-        member = FactoryGirl.build(:member)
-        post :create, FactoryGirl.attributes_for(:member)
+        member = FactoryGirl.create(:member)
+        post :create, :id => member.id
         flash[:notice] == "Jäsen lisätty!"
       end
     end
@@ -98,6 +98,15 @@ describe MembersController do
         member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         get :update, FactoryGirl.attributes_for(:member)
+        response.should redirect_to edit_member_path
+      end
+    end
+    context "with valid attributes" do
+      it "update doesn't work" do
+        member = FactoryGirl.create(:member)
+        get :update,
+            :id => member.id,
+            :member => {:surname => ""}
         response.should redirect_to edit_member_path
       end
     end
