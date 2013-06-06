@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe AccountcontrolController do
+describe AccountcontrolsController do
 
   before(:each) do
     admin = FactoryGirl.create(:admin)

@@ -66,21 +66,6 @@ describe PartnersController do
         response.should redirect_to accountcontrol_index_path
       end
     end
-
-    context "with all empty" do
-      it "empty values" do
-        partner = FactoryGirl.create(:partner)
-        session[:partner_id] = partner.id
-        admin = FactoryGirl.create(:admin)
-        session[:admin_id] = admin.id
-        put :update,
-            :id => partner.id,
-            :admin_password => "qwerty123",
-            :partner => {:username => "", :passw
-        ord => ""}
-        response.should redirect_to accountcontrol_index_path
-      end
-    end
   end
 
 end
