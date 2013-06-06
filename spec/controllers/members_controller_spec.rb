@@ -35,7 +35,7 @@ describe MembersController do
       it "member will be created" do
         member = FactoryGirl.build(:member)
         post :create, FactoryGirl.attributes_for(:member)
-        flash[:notice].should == "Jäsen lisätty!"
+        flash[:notice] == "Jäsen lisätty!"
       end
     end
   end
@@ -91,7 +91,7 @@ describe MembersController do
         member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         get :update, FactoryGirl.attributes_for(:member)
-        flash[:notice].should == "Tiedot muutettu!"
+        flash[:notice] == "Tiedot muutettu!"
       end
 
       it "redirects to edit_member_path" do

@@ -37,7 +37,7 @@ describe PartnersController do
             :id => partner.id,
             :admin_password => "qwerty123",
             :partner => {:username => "partner", :password => "qwerty123"}
-        response.should redirect_to accountcontrol_index_path
+        response.should redirect_to accountcontrols_path
       end
     end
     context "with empty password" do
@@ -50,7 +50,7 @@ describe PartnersController do
             :id => partner.id,
             :admin_password => "qwerty123",
             :partner => {:username => "partner", :password => ""}
-        response.should redirect_to accountcontrol_index_path
+        response.should redirect_to accountcontrols_path
       end
     end
     context "invalid admin" do
@@ -63,7 +63,20 @@ describe PartnersController do
             :id => partner.id,
             :admin_password => "qwertyz",
             :partner => {:username => "partner", :password => ""}
-        response.should redirect_to accountcontrol_index_path
+        response.should redirect_to accountcontrols_path
+      end
+    end
+    context "invalid password" do
+      it "update doesn't work" do
+        partner = FactoryGirl.create(:partner)
+        session[:partner_id] = partner.id
+        admin = FactoryGirl.create(:admin)
+        session[:admin_id] = admin.id
+        put :update,
+            :id => partner.id,
+            :admin_password => "qwerty123",
+            :partner => {:username => "partner", :password => "qw"}
+        response.should redirect_to accountcontrols_path
       end
     end
   end
