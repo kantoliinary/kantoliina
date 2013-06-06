@@ -25,12 +25,22 @@ class PartnersController < ApplicationController
     admin = Admin.find(session[:admin_id]).try(:authenticate, params[:admin_password])
     if admin
       partner = Partner.find(params[:id])
-      if partner.update_attributes(params[:partner])
-        flash[:partnernotice] = "Tunnus muokattu"
+      unless params[:partner][:password].empty?
+        if partner.update_attributes(params[:partner])
+          flash[:partnernotice] = "Tunnus muokattu"
+        else
+          flash[:partner] = partner
+        end
       else
-        flash[:partner] = partner
+        partner.username = params[:partner][:username]
+        if partner.validate_username && partner.save(:validate => false)
+          flash[:partnernotice] = "Tunnus muokattu"
+        else
+          flash[:partner] = partner
+        end
       end
     else
+      flash[:partner] = partner
       flash[:partnererror] = "Tunnuksen muokkaus ei onnistunut"
     end
     redirect_to accountcontrol_index_path and return
@@ -38,6 +48,8 @@ class PartnersController < ApplicationController
 
   private
 
+  ##
+  # Checks if a partner is logged in and redirects the user to the login page if not.
   def require_partner_login
     unless partner_logged_in?
 
@@ -47,7 +59,7 @@ class PartnersController < ApplicationController
 
 ##
 # Checks if admin is logged in.
-#@return boolean value is user logged in.
+#@return boolean value is the user logged in.
 
   def partner_logged_in?
     !!session[:partner_id]

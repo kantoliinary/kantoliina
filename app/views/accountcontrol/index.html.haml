@@ -3,35 +3,41 @@
   %div{:id => "control_form"}
     %div{:id => "headers"}
       %div{:id => "adminaccount_header"}
-        %h3 Admin hallinta
+        %h3 Ylläpitäjä
       %div{:id => "partneraccount_header"}
-        %h3 Yhteistyökumppanin hallinta
+        %h3 Yhteistyökumppani
       %div{:class => "clear"}
     %div{:class => "notice"}
-      = flash[:adminnotice]
+      %div
+        = flash[:adminnotice]
+        =flash[:partnernotice]
     %div{:class => "error"}
       %div
         = flash[:adminerror]
       %div
-        = @admin.errors.get(:username).to_sentence if @admin.errors.get(:username)
+        = @admin.errors.get(:username).at(0) if @admin.errors.get(:username)
       %div
-        = @admin.errors.get(:password).to_sentence if @admin.errors.get(:password)
+        = @admin.errors.get(:password).at(0) if @admin.errors.get(:password)
       %div
         = flash[:partnererror]
       %div
-        = @partner.errors.get(:username).to_sentence if @partner.errors.get(:username)
+        = @partner.errors.get(:username).at(0) if @partner.errors.get(:username)
       %div
-        = @partner.errors.get(:password).to_sentence if @partner.errors.get(:password)
+        = @partner.errors.get(:password).at(0) if @partner.errors.get(:password)
     %div{:id => "adminaccount"}
       = simple_form_for @admin, defaults:{label:false, error:false} do |f|
         %div{:class => "label"}
-          = f.label "username", "Käyttäjätunnus"
+          = f.label "username", "Uusi käyttäjätunnus"
         %div{:class => "input"}
           = f.input "username"
         %div{:class => "label"}
-          = f.label "password", "Salasana"
+          = f.label "password", "Uusi salasana"
         %div{:class => "input"}
           = f.input "password"
+        %div{:class => "label"}
+          = f.label "password_confirmation", "Uuden salasanan vahvistus"
+        %div{:class => "input"}
+          = f.input "password_confirmation"
         %div{:class => "label"}
           = label_tag "old_password", "Vanha salasana"
         %div{:class => "input"}
@@ -40,15 +46,19 @@
     %div{:id => "partneraccount"}
       = simple_form_for @partner, defaults:{label:false, error:false} do |f|
         %div{:class => "label"}
-          = f.label "username", "Käyttäjätunnus"
+          = f.label "username", "Uusi käyttäjätunnus"
         %div{:class => "input"}
           = f.input "username"
         %div{:class => "label"}
-          = f.label "password", "Salasana"
+          = f.label "password", "Uusi salasana"
         %div{:class => "input"}
           = f.input "password"
         %div{:class => "label"}
-          = label_tag "admin_password", "Admin salasana"
+          = f.label "password_confirmation", "Uuden salasanan vahvistus"
+        %div{:class => "input"}
+          = f.input "password_confirmation"
+        %div{:class => "label"}
+          = label_tag "admin_password", "Ylläpitäjän salasana"
         %div{:class => "input"}
           = password_field_tag "admin_password"
         = f.submit "Muokkaa", :class => "update"

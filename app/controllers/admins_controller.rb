@@ -7,14 +7,23 @@ class AdminsController < ApplicationController
   def update
     admin = Admin.find(params[:id]).try(:authenticate, params[:old_password])
     if admin
-      if admin.update_attributes(params[:admin])
-        flash[:adminnotice] = "Tunnus muokattu"
+      unless params[:admin][:password].empty?
+        if admin.update_attributes(params[:admin])
+          flash[:adminnotice] = "Tiedot päivitetty"
+        else
+          flash[:admin] = admin
+        end
       else
-        flash[:admin] = admin
+        admin.username = params[:admin][:username]
+        if admin.validate_username && admin.save(:validate => false)
+          flash[:adminnotice] = "Käyttäjätunnus päivitetty"
+        else
+          flash[:admin] = admin
+        end
       end
     else
       flash[:admin] = admin
-      flash[:adminerror] = "Tunnuksen muokkaus ei onnistunut"
+      flash[:adminerror] = "Tunnuksen muokkaus ei onnistunut!"
     end
     redirect_to accountcontrol_index_path and return
   end
