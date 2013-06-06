@@ -103,6 +103,24 @@ describe MembersController do
     end
   end
 
+  describe "POST #payment" do
+    it "changes paymentstatus" do
+      member = FactoryGirl.create(:member)
+      Member.stub(:find).and_return(member)
+      post :payment, :ids => "{\"ids\":[\"1\"]}"
+      flash[:notice] == "Maksustatus muutettu!"
+    end
+  end
+
+  describe "POST #delete" do
+    it "deletes a member" do
+      member = FactoryGirl.create(:member)
+      Member.stub(:find).and_return(member)
+      post :delete, :ids => "{\"ids\":[\"1\"]}"
+      flash[:notice] = "Jäsen poistettu"
+    end
+  end
+
   #describe "GET #send_invoices" do
   #  context "with valid attributes" do
   #    it "uses invoice" do
