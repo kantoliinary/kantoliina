@@ -23,7 +23,7 @@ Feature: account control
     And I press the button "Muokkaa" inside "adminaccount"
     Then I should see "Tunnuksen muokkaus ei onnistunut!"
 
-  Scenario: I submit valid changes
+  Scenario: I submit valid changes with a correct password
     When I fill inside "adminaccount" the following:
       | Uusi käyttäjätunnus       | admin     |
       | Uusi salasana             | 123qwerty |
@@ -31,3 +31,12 @@ Feature: account control
       | Vanha salasana            | qwerty123 |
     And I press the button "Muokkaa" inside "adminaccount"
     Then I should see "Tiedot päivitetty"
+
+  Scenario: I submit valid changes with an incorrect password
+    When I fill inside "adminaccount" the following:
+      | Uusi käyttäjätunnus       | admin     |
+      | Uusi salasana             | 123qwerty |
+      | Uuden salasanan vahvistus | 123qwerty |
+      | Vanha salasana            | qwerty124 |
+    And I press the button "Muokkaa" inside "adminaccount"
+    Then I should see "Tunnuksen muokkaus ei onnistunut!"
