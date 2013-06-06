@@ -10,3 +10,7 @@
 
       %div
         = submit_tag "Muokkaa"
+  :javascript
+    $(document).ready(function(){
+      $(".lined").linedtextarea({selectedLine:#{@errorline}})
+    })

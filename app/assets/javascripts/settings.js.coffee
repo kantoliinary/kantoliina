@@ -12,6 +12,5 @@ $(document).delegate('#settings_page textarea', 'keydown', (e) ->
     $(this).get(0).selectionStart =
     $(this).get(0).selectionEnd = start + 2
 )
-$(document).ready ->
-  $(".lined").linedtextarea({selectedLine: 1})
+
 
