@@ -36,8 +36,9 @@ class InvoiceController < ApplicationController
     row_number = 1
     template.split(/\r?\n/).each do |row|
       unless row.strip.empty?
-        unless row.match(/\A\s{0,#{deep}}\S{1}.*\z/)
+        unless row.match(/\A[ ]{0,#{deep}}\S{1}.*\z/)
           flash[:error] = "Virheellinen sisennys rivillä #{row_number}: #{row}"
+          flash[:template] = template
           return false
         end
         deep = row.index(/\S{1}/)
