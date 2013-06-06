@@ -39,10 +39,6 @@ describe InvoiceController do
   end
 
   describe "#update" do
-
-    it "does something" do
-      get :update
-      response.should redirect_to settings_path
     end
   end
 end
