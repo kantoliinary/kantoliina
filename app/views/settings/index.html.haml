@@ -4,7 +4,7 @@
     %div{:class => "error"}
       = @error
     = form_tag invoice_path, :method => "put" do
-      %div
-        = text_area_tag "template", @template, :id => "line_numbers"
+      %div{:id => "textarea"}
+        = text_area_tag "template", @template
       %div
         = submit_tag "Muokkaa"
