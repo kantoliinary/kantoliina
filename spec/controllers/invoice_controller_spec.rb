@@ -9,17 +9,36 @@ describe InvoiceController do
     session[:admin_id] = admin.id
   end
 
+  describe "POST #index" do
+    it 'finds members with given ids' do
+
+      FactoryGirl.create(:membergroup)
+      post :index, :ids => "{\"ids\":[\"1\"]}"
+
+    end
+  end
 
   describe "POST #create" do
 
     context "with valid attributes" do
       it "mail will be created" do
         FactoryGirl.create(:membergroup)
+
         member = FactoryGirl.create(:member)
-        Member.stub(:find).and_return(member)
-        post :create, FactoryGirl.attributes_for(:member)
+        member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
+        members = [member, member2]
+        Member.stub(:find_all_by_id).and_return(members)
+
+
+        post :create, :additional_message => "fa"
+
+
         response.should redirect_to members_path
       end
     end
   end
+
+  describe "#update" do
+  end
 end
+

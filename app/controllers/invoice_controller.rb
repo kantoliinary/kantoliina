@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class InvoiceController < ApplicationController
 
   ##
@@ -16,5 +17,38 @@ class InvoiceController < ApplicationController
       Billing.bill_email(member, params[:additional_message]).deliver
     end
     redirect_to members_path
+  end
+
+  def update
+    template = params[:template]
+    if validate_invoice_template template
+      File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'w') do |f|
+        f.puts template
+      end
+    end
+    redirect_to settings_path
+  end
+
+  private
+
+  def validate_invoice_template template
+    deep = 0
+    row_number = 1
+    template.split(/\r?\n/).each do |row|
+      unless row.strip.empty?
+        unless row.match(/\A\s{0,#{deep}}\S{1}.*\z/)
+          flash[:error] = "Virheellinen sisennys rivillä #{row_number}: #{row}"
+          return false
+        end
+        deep = row.index(/\S{1}/)
+        puts deep
+        if row.match(/\A\s*%.*\z/)
+          deep += 2
+        end
+      end
+      row_number += 1
+    end
+
+    true
   end
 end

@@ -1,1 +1,10 @@
-%h3 Asetukset
+%div{:id => "settings_page"}
+  %h1 Asetukset
+  %div{:id => "invoice_template_editor"}
+    %div{:class => "error"}
+      = @error
+    = form_tag invoice_path, :method => "put" do
+      %div
+        = text_area_tag "template", @template, :id => "line_numbers"
+      %div
+        = submit_tag "Muokkaa"

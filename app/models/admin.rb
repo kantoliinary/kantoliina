@@ -8,7 +8,7 @@ class Admin < ActiveRecord::Base
   attr_accessible :username, :password, :password_confirmation, :password_digest, :email
   validates :username, :presence => {:message => "Käyttäjätunnus puuttuu"}
   validates :password, :presence => {:message => "Salasana puuttuu"}
-  validate  :validate_username
+  validate :validate_username
   validates :password, :length => {
       :minimum => 8,
       :maximum => 20,
@@ -34,13 +34,19 @@ class Admin < ActiveRecord::Base
   end
 
   def validate_username
-    if username.length < 3
+    if username.nil?
       errors.add(:username, "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen")
-      false
+      return false
+    end
+
+    if username.length < 3
+
+      errors.add(:username, "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen")
+      return false
     end
     if username.length > 20
       errors.add(:username, "Käyttäjätunnuksen tulee olla korkeintaan 20 merkin pituinen")
-      false
+      return false
     end
     true
   end

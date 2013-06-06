@@ -19,13 +19,18 @@ class Partner < ActiveRecord::Base
   has_secure_password
 
   def validate_username
+    if username.nil?
+      errors.add(:username, "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen")
+      return false
+    end
+
     if username.length < 3
       errors.add(:username, "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen")
-      false
+      return false
     end
     if username.length > 20
       errors.add(:username, "Käyttäjätunnuksen tulee olla korkeintaan 20 merkin pituinen")
-      false
+      return false
     end
     true
   end
