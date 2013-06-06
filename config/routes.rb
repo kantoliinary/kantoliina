@@ -21,7 +21,8 @@ Kantoliina::Application.routes.draw do
   post "delete" => 'members#delete'
   post "payment" => 'members#payment'
 
-  resources :accountcontrol, :only => [:index]
+  resources :settings, :only => [:index]
+  resources :accountcontrols, :only => [:index]
   resources :admins, :only => [:update]
   resources :partners, :only => [:index, :update]
   resources :password_resets, :only => [:new, :create]

@@ -1,4 +1,4 @@
-class AccountcontrolController < ApplicationController
+class AccountcontrolsController < ApplicationController
 
   def index
     @admin = flash[:admin] || Admin.first

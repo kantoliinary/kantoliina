@@ -43,7 +43,7 @@ class PartnersController < ApplicationController
       flash[:partner] = partner
       flash[:partnererror] = "Tunnuksen muokkaus ei onnistunut"
     end
-    redirect_to accountcontrol_index_path and return
+    redirect_to accountcontrols_path and return
   end
 
   private
