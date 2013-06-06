@@ -9,18 +9,12 @@
     border-radius: 5px;
     padding: 20px;
 
-    input {
-      width: 210px;
-      border: 2px inset;
-      border-radius: 5px;
-      margin-bottom: 5px;
-    }
     #submit {
       text-align: center;
     }
     #submit input {
+      margin-top: 10px;
       width: 100px;
-      border-style: outset;
     }
   }
 }
