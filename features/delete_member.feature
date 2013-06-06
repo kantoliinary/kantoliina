@@ -66,21 +66,6 @@ Feature: Delete a new member
     When I press "Poista"
     Then I should not see "Jäsen poistettu"
 
-
-
-#  Scenario: I try to delete an already deleted member from the list page
-#    When I am on the members page
-#    Then I should see "jasen"
-#    And I press "Poista"
-#    Then I should see "Jäsen poistettu"
-#    Then I should not see "jasen"
-#    And I check "membership[1]"
-#    And I check "membership[0]"
-#    And I press "Hae"
-#    Then I should see "aaa"
-#    And I press "Aktivoi"
-#    Then I should see "Jäsen aktivoitu"
-
 #  Scenario: deleting by main button
 #    When I am on the members page
 #    Then I should see "jasen"
