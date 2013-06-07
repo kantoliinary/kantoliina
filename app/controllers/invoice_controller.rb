@@ -43,14 +43,12 @@ class InvoiceController < ApplicationController
           return false
         end
         deep = row.index(/\S{1}/)
-        puts deep
         if row.match(/\A\s*%.*\z/)
           deep += 2
         end
       end
       line_number += 1
     end
-
     true
   end
 end
