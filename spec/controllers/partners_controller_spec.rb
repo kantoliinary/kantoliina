@@ -36,7 +36,7 @@ describe PartnersController do
         session[:admin_id] = admin.id
         member = FactoryGirl.create(:member)
         get :index, :number => member.membernumber
-        flash[:notice] == "Henkilön jäsenyys on voimassa."
+        flash[:notice].should == "Henkilön jäsenyys on voimassa."
       end
     end
   end
@@ -51,7 +51,7 @@ describe PartnersController do
         session[:admin_id] = admin.id
         member = FactoryGirl.create(:member)
         get :index, :number => "4"
-        flash[:notice] == "Henkilön jäsenyys ei ole voimassa."
+        flash[:notice].should == "Henkilön jäsenyys ei ole voimassa."
       end
     end
   end
@@ -122,13 +122,6 @@ describe PartnersController do
             :admin_password => "qwerty123",
             :partner => {:username => "p", :password => ""}
         response.should redirect_to accountcontrols_path
-      end
-    end
-  end
-
-  describe "not loggin in" do
-    context "invalid partner" do
-      it "login doesn't work" do
       end
     end
   end
