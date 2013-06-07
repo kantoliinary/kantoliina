@@ -1,7 +1,5 @@
 ##
 # The controller for editing admin and partner accounts
-#
-
 class AccountcontrolsController < ApplicationController
 
   ##

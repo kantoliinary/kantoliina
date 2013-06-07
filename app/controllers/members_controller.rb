@@ -50,6 +50,9 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+  ##
+  # Changes the membership status and shows the changes on the screen.
+
   def delete
 
     parsed_json = ActiveSupport::JSON.decode(params[:ids])

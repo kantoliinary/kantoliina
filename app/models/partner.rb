@@ -18,6 +18,9 @@ class Partner < ActiveRecord::Base
   }, :confirmation => {:message => "Salasanan vahvistus on virheellinen"}
   has_secure_password
 
+
+  ##
+  # Validates the username submitted by the admin and shows error messages if the username is not valid
   def validate_username
     if username.nil?
       errors.add(:username, "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen")
