@@ -33,9 +33,9 @@ describe MembersController do
 
     context "with valid attributes" do
       it "member will be created" do
+        FactoryGirl.create(:membergroup)
         member = FactoryGirl.create(:member)
         post :create, :id => member.id
-        flash[:notice] == "Jäsen lisätty!"
       end
     end
   end
