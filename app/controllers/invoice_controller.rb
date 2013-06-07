@@ -1,4 +1,7 @@
 #encoding: UTF-8
+##
+# The controller for sending invoices to members
+#
 class InvoiceController < ApplicationController
 
   ##
@@ -9,16 +12,20 @@ class InvoiceController < ApplicationController
   end
 
   ##
-  #Selects a group of members by chosen ID and sends an invoice to their e-mails.
+  # Selects a group of members by chosen ID and sends an invoice to their e-mails.
   def create
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
       member.invoicedate = Time.now
+      member.paymentstatus = false;
+      member.save(:validate => false)
       Billing.bill_email(member, params[:additional_message]).deliver
     end
     redirect_to members_path
   end
 
+  ##
+  #
   def update
     template = params[:template]
     if validate_invoice_template template

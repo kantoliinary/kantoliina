@@ -30,13 +30,20 @@ describe MembersController do
 
 
   describe "POST #create" do
-
     context "with valid attributes" do
       it "member will be created" do
-        member = FactoryGirl.build(:member)
-        Member.stub(:find).and_return(member)
-        post :create, FactoryGirl.attributes_for(:member)
-        flash[:member].should_not be_nil
+        FactoryGirl.create(:membergroup)
+        post :create, :member => {:id => "1", :firstnames => "joku", :surname => "jokinen", :municipality => "helsinki", :zipcode => "12346",
+                                  :address => "puutie", :postoffice => "stadi", :email => "jokin@jotain.com", :membergroup_id => 1, :membernumber => "54321",
+                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :membership => "t"}
+        flash[:notice].should == "Jäsen lisätty"
+      end
+    end
+    context "with invalid attributes" do
+      it "member will be created" do
+        post :create
+        flash[:notice].should == @member
+
       end
     end
   end

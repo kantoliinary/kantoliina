@@ -18,5 +18,6 @@
 /spec/coverage/
 /coverage/
 /db/.nfs*
+Gemfile.lock
 
 *.*̃
