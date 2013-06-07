@@ -84,7 +84,7 @@
 
     = form_tag delete_path, :id => "delete_active_form" do
       = hidden_field_tag "ids"
-      = button_tag (@membership == "0" ? "Aktivoi" : "Poista"), :class => "submit send"
+      = button_tag (@membership == "0" ? "Aktivoi" : "Poista"), :class => "submit send confirm"
 
     = form_tag payment_path, :id => "payment_form" do
       = hidden_field_tag "ids"
