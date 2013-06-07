@@ -34,9 +34,13 @@ describe PartnersController do
         session[:partner_id] = partner.id
         admin = FactoryGirl.create(:admin)
         session[:admin_id] = admin.id
+
+
         member = FactoryGirl.create(:member)
-        get :index, :number => member.membernumber
-        flash[:notice] == "Henkilön jäsenyys on voimassa."
+        Member.stub(:find).and_return(member)
+        post :index, :number => 33333
+
+        flash[:notice].should == "Henkilön jäsenyys on voimassa."
       end
     end
   end
@@ -51,7 +55,7 @@ describe PartnersController do
         session[:admin_id] = admin.id
         member = FactoryGirl.create(:member)
         get :index, :number => "4"
-        flash[:notice] == "Henkilön jäsenyys ei ole voimassa."
+        flash[:notice].should == "Henkilön jäsenyys ei ole voimassa."
       end
     end
   end
