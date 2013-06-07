@@ -103,7 +103,7 @@ describe Member do
 
   it "searches all fields" do
     member = FactoryGirl.create(:member)
-    member.has_field?(:)
+    Member.has_field?(:email).should be_true
   end
 
 
