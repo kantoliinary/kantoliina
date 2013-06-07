@@ -42,6 +42,7 @@
           = label_tag "old_password", "Vanha salasana"
         %div{:class => "input"}
           = password_field_tag "old_password"
+
         = f.submit "Muokkaa", :class => "update"
     %div{:id => "partneraccount"}
       = simple_form_for @partner, defaults:{label:false, error:false} do |f|
