@@ -49,7 +49,6 @@ class InvoiceController < ApplicationController
       end
       line_number += 1
     end
-
     true
   end
 end

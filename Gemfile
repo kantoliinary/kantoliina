@@ -28,6 +28,7 @@ group :test do
   gem 'guard-rspec'
   gem 'launchy'
   gem 'selenium-webdriver', '~> 2.33.0'
+  gem 'email_spec'
 end
 
 # Gems used only for assets and not required

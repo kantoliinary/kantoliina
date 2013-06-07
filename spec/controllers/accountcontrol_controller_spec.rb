@@ -7,24 +7,16 @@ describe AccountcontrolsController do
   before(:each) do
     admin = FactoryGirl.create(:admin)
     session[:admin_id] = admin.id
-    partner = FactoryGirl.create(:partner)
-    session[:partner_id] = partner.id
   end
 
   describe "GET #index" do
-
     context "get :index" do
-      it "shows member" do
-        member = FactoryGirl.build(:member)
-        Member.stub(:find).and_return(member)
-        get :index, FactoryGirl.attributes_for(:member)
+      it "should render the template" do
+        get :index
         response.should render_template :index
       end
     end
   end
-
-
-
-
-
 end
+
+
