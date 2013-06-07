@@ -8,6 +8,8 @@ SimpleCov.start 'rails'
 
 require 'cucumber/rails'
 
+require 'email_spec' # add this line if you use spork
+require 'email_spec/cucumber'
 require 'selenium-webdriver'
 require 'capybara/cucumber'
 require 'rspec/expectations'
