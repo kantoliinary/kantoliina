@@ -1,5 +1,11 @@
+##
+# The controller for editing the invoice template
+
 class SettingsController < ApplicationController
 
+
+  ##
+  # Loads the invoice template to the editor
   def index
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0

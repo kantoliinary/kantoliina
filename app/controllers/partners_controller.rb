@@ -22,6 +22,9 @@ class PartnersController < ApplicationController
     end
   end
 
+  ##
+  # Updates the database when valid changes are made in the account controls page and
+  # shows error messages when the changes are not valid
   def update
     admin = Admin.find(session[:admin_id]).try(:authenticate, params[:admin_password])
     if admin

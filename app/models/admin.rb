@@ -21,6 +21,8 @@ class Admin < ActiveRecord::Base
                 :message => "Sähköpostiosoitteen muoto on väärä"}
   has_secure_password
 
+  ##
+  # Generates and sends a new passwords to the admin e-mail
   def generate_and_send_new_password
     new_password = ""
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!#,.;:?%&".split(//)
@@ -33,6 +35,8 @@ class Admin < ActiveRecord::Base
     new_password
   end
 
+  ##
+  # Validates the username given by the admin and gives error messages when the password is not valid
   def validate_username
     if username.nil?
       errors.add(:username, "Käyttäjätunnuksen tulee olla vähintään 3 merkin pituinen")

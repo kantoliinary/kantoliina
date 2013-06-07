@@ -25,7 +25,7 @@ class InvoiceController < ApplicationController
   end
 
   ##
-  #
+  # Loads the invoice template to the interface
   def update
     template = params[:template]
     if validate_invoice_template template
@@ -38,6 +38,8 @@ class InvoiceController < ApplicationController
 
   private
 
+  ##
+  # Checks that there are no invalid changes made to the invoice template
   def validate_invoice_template template
     deep = 0
     line_number = 1
