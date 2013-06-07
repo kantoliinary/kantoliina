@@ -26,6 +26,7 @@ $(document).ready ->
 
   index.find("#members").find(":checkbox").click (e) ->
     checkboxs = index.find("#members").find(":checkbox")
+
     $("#bottom_forms").show()
     checked = false
     $(checkboxs).each (index, value) ->
