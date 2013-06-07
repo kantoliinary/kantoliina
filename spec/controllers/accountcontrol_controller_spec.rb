@@ -18,6 +18,7 @@ describe AccountcontrolsController do
         member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         get :index, FactoryGirl.attributes_for(:member)
+        response.should render_template :index
       end
     end
   end
