@@ -39,6 +39,34 @@ describe InvoiceController do
   end
 
   describe "#update" do
+
+    it "should update an e-mail" do
+      file = mock('file')
+      File.should_receive(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "w").and_yield(file)
+      file.should_receive(:puts).with("text")
+      post :update, :template => "text"
+
+    end
+  end
+
+  it "should not update e-mail with invalid row" do
+    file = mock('file')
+    File.stub(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "w").and_yield(file)
+
+    post :update, :template => "             text"
+    response.should_not be_success
+
+
+  end
+
+  it "should do something with %" do
+    file = mock('file')
+    File.stub(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "w").and_yield(file)
+    file.should_receive(:puts).with("%br")
+    post :update, :template => "%br"
+
+
   end
 end
+
 

@@ -4,7 +4,13 @@
     %div{:class => "error"}
       = @error
     = form_tag invoice_path, :method => "put" do
+
       %div{:id => "textarea"}
-        = text_area_tag "template", @template
+        = text_area_tag "template", @template, :class => "lined"
+
       %div
         = submit_tag "Muokkaa"
+  :javascript
+    $(document).ready(function(){
+      $(".lined").linedtextarea({selectedLine:#{@errorline}})
+    })
