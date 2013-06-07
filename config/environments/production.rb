@@ -71,7 +71,7 @@ Kantoliina::Application.configure do
       :tls => true,
       :address => "smtp.gmail.com",
       :port => 587,
-      :domain => "smtp.gmail.com",
+      :domain => "",
       :authentication => "plain",
       :enable_starttls_auto => true,
       :user_name => "kantoliinatesti@gmail.com",
