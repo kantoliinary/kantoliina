@@ -35,17 +35,6 @@
           = radio_button_tag "membership", 1, @membership == "1", :class => "checkbox"
           %span
             Ei
-      -#%div{:id => "paymentstatus_fields", :class => "left"}
-      -#  %span{:class => "bold"}
-      -#    Maksanut
-      -#  %div{:class => "field"}
-      -#    = check_box_tag "paymentstatus[1]", 1, @paymentstatus.include?("1"), :class => "checkbox"
-      -#    %span
-      -#      Kyllä
-      -#  %div{:class => "field"}
-      -#    = check_box_tag "paymentstatus[0]", 1, @paymentstatus.include?("0"), :class => "checkbox"
-      -#    %span
-      -#      Ei
       %div{:class => "clear"}
       %div{:id => "submit_button"}
         = submit_tag "Hae", :class => "submit"
@@ -58,7 +47,6 @@
       %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
       %th Jäsennumero
       %th Nimi
-      -#%th Sukunimi
       %th Kunta
       %th Osoite
       %th Postinumero
@@ -80,21 +68,14 @@
         %td= member.zipcode
         %td= member.postoffice
         %td= member.email
-        -#- if(!member.membership)
-        -#  %td
-        -#    %img{:src => "/assets/not.jpg"}
-        -#- else
-        -#  %td
-        -#    %img{:src => "/assets/ok.jpg"}         .
-
         %td= member.membergroup.name
         %td= member.membershipyear
         - if(!member.paymentstatus)
           %td
-            %img{:src => "/assets/not.jpg"}
+            %img{:src => "/assets/x-mark.png"}
         - else
           %td
-            %img{:src => "/assets/ok.jpg"}
+            %img{:src => "/assets/green-mark.png"}
 
   %div{:id => "bottom_forms"}
     = form_tag invoice_confirm_path, :id => "invoice_form" do
