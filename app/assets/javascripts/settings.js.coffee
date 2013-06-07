@@ -13,4 +13,3 @@ $(document).delegate('#settings_page textarea', 'keydown', (e) ->
     $(this).get(0).selectionEnd = start + 2
 )
 
-
