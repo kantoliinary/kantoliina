@@ -29,22 +29,23 @@ describe InvoiceController do
         members = [member, member2]
         Member.stub(:find_all_by_id).and_return(members)
 
-
         post :create, :additional_message => "fa"
-
+        response.should_not be_success
 
         response.should redirect_to members_path
+
       end
     end
   end
 
   describe "#update" do
 
-    it "should update an e-mail" do
+    it "should update an e-mail with valid attributes" do
       file = mock('file')
       File.should_receive(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "w").and_yield(file)
       file.should_receive(:puts).with("text")
       post :update, :template => "text"
+      response.should redirect_to settings_path
 
     end
   end
@@ -54,16 +55,17 @@ describe InvoiceController do
     File.stub(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "w").and_yield(file)
 
     post :update, :template => "             text"
-    response.should_not be_success
+    flash[:error].should include ("Virheellinen sisennys rivillä")
 
 
   end
 
-  it "should do something with %" do
+  it "should work with a line starting with %" do
     file = mock('file')
     File.stub(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "w").and_yield(file)
     file.should_receive(:puts).with("%br")
     post :update, :template => "%br"
+    response.should redirect_to settings_path
 
 
   end

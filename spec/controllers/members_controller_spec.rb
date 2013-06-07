@@ -43,10 +43,10 @@ describe MembersController do
       it "member will be created" do
         post :create
         flash[:notice].should == @member
+
       end
     end
   end
-
 
   describe "GET #index" do
 
