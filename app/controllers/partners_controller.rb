@@ -14,10 +14,11 @@ class PartnersController < ApplicationController
     if params[:number]
       member = Member.find_by_membernumber(params[:number])
       if member && member.membership
-        @message[:notice] = "Henkilön jäsenyys on voimassa."
+        flash[:notice] = "Henkilön jäsenyys on voimassa."
       else
-        @message[:notice] = "Henkilön jäsenyys ei ole voimassa."
+        flash[:notice] = "Henkilön jäsenyys ei ole voimassa."
       end
+      redirect_to partners_path
     end
   end
 
