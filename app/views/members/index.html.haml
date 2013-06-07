@@ -38,7 +38,7 @@
       %div{:class => "clear"}
       %div{:id => "submit_button"}
         = submit_tag "Hae", :class => "submit"
-      %div
+      %div{:id => "tulosmaara"}
         Hakutulosten määrä:
         =@members.count
   = flash[:notice]

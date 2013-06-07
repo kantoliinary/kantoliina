@@ -8,8 +8,8 @@
       %div{:id => "textarea"}
         = text_area_tag "template", @template, :class => "lined"
 
-      %div
-        = submit_tag "Muokkaa"
+      %div{:id => "invoice_template_button"}
+        = submit_tag "Tallenna"
   :javascript
     $(document).ready(function(){
       $(".lined").linedtextarea({selectedLine:#{@errorline}})
