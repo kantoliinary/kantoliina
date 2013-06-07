@@ -5,10 +5,10 @@ Feature: reset password
   Background: admins in database
 
     Given the following admins exist:
-      | username | password  | email                    |
-      | admin    | qwerty123 | kantoliinatesti@gmail.com |
+      | username | password  | email               |
+      | admin    | qwerty123 | example@example.com |
 
-#    Given a clear email queue
+    Given a clear email queue
 
 
     When I am on the login page
@@ -17,23 +17,19 @@ Feature: reset password
 
   Scenario: I submit the correct e-mail address
     When I am on the new_password_reset page
-    And I fill in "Sähköposti" with "kantoliinatesti@gmail.com"
-    Then I press "Palauta"
-    Then "kantoliinatesti@gmail.com" should receive 1 emails
+    And I fill in "Sähköposti" with "example@example.com"
+    And I press "Palauta"
+    And I should receive an email
     When I open the email
-    Then I should see "Saajan tilinumero: FI22 1228 3000 0038 46"
+    Then I should see "Uusi salasana" in the email body
 
 
 
-#    When I open the email
-#    Then I should see "confirm" in the email body
-#    When I follow "confirm" in the email
-#    Then I should see "Confirm your new account"
-
-
-
-#  Scenario: I submit an incorrect e-mail address
-
+  Scenario: I submit an incorrect e-mail address
+    When I am on the new_password_reset page
+    And I fill in "Sähköposti" with "exampl@example.com"
+    And I press "Palauta"
+    And I should receive no emails
 
 
 
