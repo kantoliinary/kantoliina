@@ -17,6 +17,8 @@ class InvoiceController < ApplicationController
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
       member.invoicedate = Time.now
+      member.paymentstatus = false;
+      member.save(:validate => false)
       Billing.bill_email(member, params[:additional_message]).deliver
     end
     redirect_to members_path
