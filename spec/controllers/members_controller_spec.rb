@@ -43,10 +43,10 @@ describe MembersController do
       it "member will be created" do
         post :create
         flash[:notice].should == @member
+
       end
     end
   end
-
 
   describe "GET #index" do
 
@@ -78,7 +78,7 @@ describe MembersController do
         member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         get :update, FactoryGirl.attributes_for(:member)
-        flash[:notice] == "Tiedot muutettu!"
+        flash[:notice].should == "Tiedot muutettu"
       end
 
       it "redirects to edit_member_path" do
@@ -104,7 +104,7 @@ describe MembersController do
       member = FactoryGirl.create(:member)
       Member.stub(:find).and_return(member)
       post :payment, :ids => "{\"ids\":[\"1\"]}"
-      flash[:notice] == "Maksustatus muutettu!"
+      flash[:notice].should == "Maksustatus muutettu"
     end
   end
 
@@ -113,23 +113,9 @@ describe MembersController do
       member = FactoryGirl.create(:member)
       Member.stub(:find).and_return(member)
       post :delete, :ids => "{\"ids\":[\"1\"]}"
-      flash[:notice] = "Jäsen poistettu"
+      flash[:notice].should == "Jäsen poistettu"
     end
   end
-
-  #describe "GET #send_invoices" do
-  #  context "with valid attributes" do
-  #    it "uses invoice" do
-  #      member = FactoryGirl.build(:member)
-  #      Member.stub(:find).and_return(member)
-  #      member2 = FactoryGirl.build(:member, id: 2)
-  #      Member.stub(:find).and_return(member2)
-  #      FactoryGirl.create(:name)
-  #      Billing.should_receive(:send_invoices).with(member)
-  #      post :send_invoices, {:a => FactoryGirl.attributes_for(:member)}
-  #    end
-  #  end
-  #end
 end
 
 
