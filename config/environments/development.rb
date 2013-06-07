@@ -37,13 +37,14 @@ Kantoliina::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
+      :tls => true,
       :address => "smtp.gmail.com",
       :port => 587,
-      :domain => 'gmail.com',
+      :domain => "smtp.gmail.com",
+      :authentication => "plain",
+      :enable_starttls_auto => true,
       :user_name => "kantoliinatesti@gmail.com",
-      :password => "kant0liina",
-      :authentication => 'plain',
-      :enable_starttls_auto => true  }
+      :password => "kant0liina" }
   # Rest of file omitted.
 
 end
