@@ -30,35 +30,22 @@ describe MembersController do
 
 
   describe "POST #create" do
-
     context "with valid attributes" do
       it "member will be created" do
         FactoryGirl.create(:membergroup)
-        member = FactoryGirl.create(:member)
-        post :create, :id => member.id
+        post :create, :member => {:id => "1", :firstnames => "joku", :surname => "jokinen", :municipality => "helsinki", :zipcode => "12346",
+                                  :address => "puutie", :postoffice => "stadi", :email => "jokin@jotain.com", :membergroup_id => 1, :membernumber => "54321",
+                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :membership => "t"}
+        flash[:notice].should == "Jäsen lisätty"
+      end
+    end
+    context "with invalid attributes" do
+      it "member will be created" do
+        post :create
+        flash[:notice].should == @member
       end
     end
   end
-
-
-  #describe "POST #destroy" do
-  #  context "with valid attributes" do
-  #    it "member shall be removed" do
-  #      member = FactoryGirl.create(:member)
-  #      Member.stub(:find).and_return(member)
-  #      post :delete, FactoryGirl.attributes_for(:member)
-  #      flash[:notice] == "Jasen poistettu"
-  #    end
-  #
-  #    it "member shall be removed" do
-  #      member = FactoryGirl.create(:member, membership: false)
-  #      Member.stub(:find).and_return(member)
-  #      post :delete, FactoryGirl.attributes_for(:member)
-  #      flash[:notice] == "Jasen aktivoitu"
-  #    end
-  #
-  #  end
-  #end
 
 
   describe "GET #index" do
