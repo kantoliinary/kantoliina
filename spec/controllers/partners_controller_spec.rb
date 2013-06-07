@@ -4,6 +4,27 @@ require 'spec_helper'
 
 describe PartnersController do
 
+  #
+  #describe "require_partner_login" do
+  #  context "invalid session" do
+  #    it "redirects to partner_login_path" do
+  #      partner = FactoryGirl.create(:invalid_partner)
+  #      session[:partner_id] = partner.id
+  #      admin = FactoryGirl.create(:admin)
+  #      session[:admin_id] = admin.id
+  #    end
+  #  end
+  #end
+
+  describe "require_partner_login" do
+    context "invalid login" do
+      it "does nothing" do
+        get :index
+        response.should redirect_to partner_login_path
+      end
+    end
+
+  end
 
   describe "GET #index" do
 

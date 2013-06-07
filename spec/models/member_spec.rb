@@ -91,22 +91,19 @@ describe Member do
     FactoryGirl.build(:member, paymentstatus: true).should be_valid
   end
 
-  #it "is valid with a right form invoicedate" do
-  #  FactoryGirl.build(:member, invoicedate: Time.now.year).should be_valid
-  #end
-  #
-  #it "is invalid with a wrong form invoicedate" do
-  #  FactoryGirl.build(:member, invoicedate: "dfadsf").should_not be_valid
-  #end
-
   it "generates ref_number" do
     member = FactoryGirl.build(:member, membernumber: "12345")
-    Member.generate_refnumber(member.membernumber)  == "123453"
+    Member.generate_refnumber(member.membernumber) == "123453"
   end
 
   it "generates ref_number" do
     member = FactoryGirl.build(:member, membernumber: nil)
-    Member.generate_refnumber(member.membernumber)  != "123453"
+    Member.generate_refnumber(member.membernumber) != "123453"
+  end
+
+  it "searches all fields" do
+    member = FactoryGirl.create(:member)
+    Member.has_field?(:email).should be_true
   end
 
 
