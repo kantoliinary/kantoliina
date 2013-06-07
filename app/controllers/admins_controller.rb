@@ -1,9 +1,11 @@
 #encoding: utf-8
 ##
-# The controller for Admin class.
+# The controller for account editing functionality.
 
 class AdminsController < ApplicationController
 
+  ##
+  #  Checks if the account changes submitted by the admin are valid, executes them if they are and returns appropriate messages to the admin.
   def update
     admin = Admin.find(params[:id]).try(:authenticate, params[:old_password])
     if admin
