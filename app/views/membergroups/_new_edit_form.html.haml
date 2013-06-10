@@ -8,7 +8,7 @@
     %div{:class => "left"}
       = f.label "fee", "Jäsenmaksu (€)"
     %div{:class => "left right_field"}
-      = f.input :fee
+      = f.input :fee, as: :string
   %div{:class => "row"}
     %div{:class => "left"}
       = f.label "onetimefee", "Kertamaksu"
