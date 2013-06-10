@@ -122,7 +122,7 @@ class MembersController < ApplicationController
       @all_search_fields.keys.each do |field|
         if Member.has_field?(field)
           query += (query.empty? ? "" : " OR ") + "#{field} LIKE :#{counter.chr}"
-          query_keywords[counter.chr.to_sym] = "#{word}%"
+          query_keywords[counter.chr.to_sym] = "#{word.strip}%"
           counter += 1
         end
       end
