@@ -85,7 +85,7 @@ describe MembersController do
         member = FactoryGirl.build(:member)
         Member.stub(:find).and_return(member)
         get :update, FactoryGirl.attributes_for(:member)
-        response.should redirect_to edit_member_path
+        response.should redirect_to members_path
       end
     end
     context "with valid attributes" do
@@ -94,7 +94,7 @@ describe MembersController do
         get :update,
             :id => member.id,
             :member => {:surname => ""}
-        response.should redirect_to edit_member_path
+        response.should redirect_to members_path
       end
     end
   end
