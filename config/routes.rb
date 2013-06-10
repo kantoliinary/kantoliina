@@ -22,6 +22,10 @@ Kantoliina::Application.routes.draw do
   post "delete" => 'members#delete'
   post "payment" => 'members#payment'
 
+  post "mailer/confirm" => 'mailer#index', :as => 'mailer_confirm'
+  post "mailer" => 'mailer#create'
+  put 'mailer' => 'mailer#update'
+
   resources :settings, :only => [:index]
   resources :accountcontrols, :only => [:index]
   resources :admins, :only => [:update]
