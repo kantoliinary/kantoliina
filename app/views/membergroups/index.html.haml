@@ -5,7 +5,7 @@
       %th Hinta (€)
       %th Maksutyyppi
       %th Jäseniä
-    - @membergroups.each do | membergroup |
+    - @membergroups.each do |membergroup|
       %tr
         %td= link_to membergroup.name, edit_membergroup_path(membergroup)
         %td= membergroup.fee
