@@ -75,12 +75,11 @@ class MembersController < ApplicationController
   def index
     @membergroups = Membergroup.all
     @all_search_fields = Member.all_search_fields
-    @selected_search_fields = params[:search_fields] || {}
     @keyword = params[:keyword] || ""
     @membership = params[:membership] || "1"
     s_membergroups = params[:membergroups]
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
-    @members = search_with_filter(@keyword, @selected_search_fields, @membership, @selected_membergroups)
+    @members = search_with_filter(@keyword, @membership)
   end
 
   ##
@@ -111,14 +110,16 @@ class MembersController < ApplicationController
 # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
-  def search_with_filter keyword, search_fields, membership, membergroups
+  def search_with_filter keyword, membership
+
     keywords = keyword.split(" ")
     member = Member.includes(:membergroup)
+
     keywords.each do |word|
       query = ""
       query_keywords = {}
       counter = 65;
-      search_fields.keys.each do |field|
+      @all_search_fields.keys.each do |field|
         if Member.has_field?(field)
           query += (query.empty? ? "" : " OR ") + "#{field} LIKE :#{counter.chr}"
           query_keywords[counter.chr.to_sym] = "#{word}%"
@@ -130,15 +131,11 @@ class MembersController < ApplicationController
     if membership.length > 0
       member = member.where(:membership => membership.at(0) == "1")
     end
-    query = ""
-    query_keywords = {}
-    counter = 65;
-    membergroups.each do |id|
-      query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{counter.chr}"
-      query_keywords[counter.chr.to_sym] = id
-      counter += 1
-    end
-    member.where(query, query_keywords)
+    #query = ""
+    #query_keywords = {}
+    #member.where(query, query_keywords)
+    #
+    member
   end
 
 end
