@@ -5,24 +5,6 @@
     = form_tag members_path, :method => :get, :id => 'filter_form' do
       %div{:id => "keyword_field"}
         = text_field_tag "keyword", "#{@keyword}"
-      %div{:id => "search_fields"}
-        - i = 0
-        - @all_search_fields.each do |key, field|
-          - if i%4 == 0
-            %div{:class => "clear"}
-          %div{:class => "left"}
-
-            = check_box_tag "search_fields[#{key}]", 1, @selected_search_fields.include?(key), :class => "checkbox", :id => "search_fields_#{key}"
-            = field
-          - i += 1
-        %div{:class => "clear"}
-      %hr
-      %div{:id => "membergroup_fields"}
-        - @membergroups.each do |group|
-          %div{:class => "left"}
-            = check_box_tag "membergroups[#{group.id}]", 1, @selected_membergroups.include?("#{group.id}"), :id => "membergroups_#{group.id}", :class => "checkbox"
-            = group.name
-        %div{:class => "clear"}
       %hr
       %div{:id => "membership_fields", :class => "left"}
         %span{:class => "bold"}

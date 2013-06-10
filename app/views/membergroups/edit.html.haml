@@ -1,0 +1,7 @@
+%div{:id => "edit_membergroup_page"}
+  %div{:id => "notice"}
+    = flash[:notice]
+  %h1 Jäsenryhmien muokkaus
+
+  %div{:id => "form"}
+    = render "new_edit_form", :formats => [:html]
