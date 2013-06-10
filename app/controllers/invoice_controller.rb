@@ -58,6 +58,7 @@ class InvoiceController < ApplicationController
       end
       line_number += 1
     end
+    flash[:notice] = "Muutokset Tallennettu"
     true
   end
 end
