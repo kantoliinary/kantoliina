@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
   end
 
   create_table "membergroups", :force => true do |t|
-    t.string "name"
-    t.float  "fee"
+    t.string  "name"
+    t.float   "fee"
+    t.boolean "onetimefee"
   end
 
   create_table "members", :force => true do |t|
