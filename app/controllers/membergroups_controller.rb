@@ -34,7 +34,7 @@ class MembergroupsController < ApplicationController
     redirect_to membergroups_path
   end
 
-  def delete
+  def destroy
 
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
     @membergroups = Membergroup.find_all_by_id(parsed_json["ids"])
