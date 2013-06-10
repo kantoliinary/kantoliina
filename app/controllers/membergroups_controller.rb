@@ -7,6 +7,7 @@ class MembergroupsController < ApplicationController
   end
 
   def new
+    @editpage = false
     @membergroup = flash[:membergroup] || Membergroup.new
     @submit_text = "Lisää"
   end
@@ -39,9 +40,9 @@ class MembergroupsController < ApplicationController
   end
 
   def destroy
-    membergroup = Membergroup.find(params[:id])
-    membergroup.destroy()
-    flash[:notice] = "Jäsenryhmä" + (@membergroups.count > 1 ? "et" : "") +" poistettu"
+    @membergroup = Membergroup.find(params[:id])
+    @membergroup.destroy()
+    flash[:notice] = "Jäsenryhmä poistettu"
     redirect_to membergroups_path
   end
 
