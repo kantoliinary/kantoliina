@@ -33,6 +33,7 @@ class MembergroupsController < ApplicationController
       flash[:notice] = "Tiedot muutettu"
     else
       flash[:membergroup] = @membergroup
+      redirect_to edit_membergroup_path @membergroup and return
     end
     redirect_to membergroups_path
   end

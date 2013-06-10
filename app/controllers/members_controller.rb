@@ -98,6 +98,7 @@ class MembersController < ApplicationController
       flash[:notice] = "Tiedot muutettu"
     else
       flash[:member] = @member
+      redirect_to edit_member_path @member and return
     end
     redirect_to members_path
   end
