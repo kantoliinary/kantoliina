@@ -3,7 +3,7 @@
 class MembergroupsController < ApplicationController
 
   def index
-    @membergroups = Membergroup.all
+    @membergroups = Membergroup.includes(:members)
   end
 
   def edit
