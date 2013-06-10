@@ -139,6 +139,7 @@ class MembersController < ApplicationController
       counter += 1
     end
     member.where(query, query_keywords)
+
   end
 
 end
