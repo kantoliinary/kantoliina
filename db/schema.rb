@@ -40,8 +40,10 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
     t.boolean  "paymentstatus"
     t.date     "invoicedate"
     t.boolean  "membership",     :default => true
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.boolean  "lender",         :default => false
+    t.boolean  "support",        :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "partners", :force => true do |t|
