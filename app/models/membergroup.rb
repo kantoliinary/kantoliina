@@ -5,4 +5,5 @@
 #
 class Membergroup < ActiveRecord::Base
   attr_accessible :name, :fee, :onetimefee
+  has_many :members
 end
