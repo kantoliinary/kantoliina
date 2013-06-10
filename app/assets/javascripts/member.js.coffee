@@ -42,3 +42,5 @@ $(document).ready ->
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
     invoice.find("#invoice_form").find(".member_"+id).remove()
+  $(".column_menu").find(".header").click (e) ->
+    $(this).parent().find(".choices").toggle()

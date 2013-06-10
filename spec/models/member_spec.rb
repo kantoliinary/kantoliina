@@ -91,6 +91,22 @@ describe Member do
     FactoryGirl.build(:member, paymentstatus: true).should be_valid
   end
 
+  it "is valid with right lenderstatus" do
+    FactoryGirl.build(:member, lender: true).should be_valid
+  end
+
+  it "is invalid with wrong lenderstatus" do
+    FactoryGirl.build(:member, lender: nil).should_not be_valid
+  end
+
+  it "is valid with right supportstatus" do
+    FactoryGirl.build(:member, support: true).should be_valid
+  end
+
+  it "is invalid with wrong supportstatus" do
+    FactoryGirl.build(:member, support: nil).should_not be_valid
+  end
+
   it "generates ref_number" do
     member = FactoryGirl.build(:member, membernumber: "12345")
     Member.generate_refnumber(member.membernumber) == "123453"

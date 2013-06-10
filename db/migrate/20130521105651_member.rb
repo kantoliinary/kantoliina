@@ -14,6 +14,8 @@ class Member < ActiveRecord::Migration
       t.boolean     :paymentstatus
       t.date        :invoicedate
       t.boolean     :membership, :default => true
+      t.boolean     :lender, :default => false
+      t.boolean     :support, :default => false
 
       t.timestamps
     end

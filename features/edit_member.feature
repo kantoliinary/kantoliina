@@ -29,6 +29,8 @@ Feature: edit member
       | Jäsennumero      | 12345    |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
+    And I check "member_lender"
+    And I check "member_support"
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
@@ -37,6 +39,7 @@ Feature: edit member
     When I am on the members page
     And I follow "12345"
     Then I should see "Jäsenen tietojen muokkaus"
+    And I uncheck "member_lender"
     And I fill in "member[firstnames]" with "Janne"
     And I fill in "member[surname]" with "Jäsen"
     And I press "Tallenna"
@@ -45,6 +48,7 @@ Feature: edit member
     When I am on the members page
     Then I should see "Janne"
     Then I should see "Jäsen"
+    Then I should see "false"
 
 
   Scenario: edit member with incorrect values
