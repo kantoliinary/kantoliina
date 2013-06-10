@@ -1,12 +1,14 @@
 %div
   %table{:class => "center", :id => "members"}
     %tr
+      %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
       %th Jäsenryhmä
       %th Hinta (€)
       %th Maksutyyppi
       %th Jäseniä
     - @membergroups.each do |membergroup|
       %tr
+        %td= check_box_tag "membergroup_#{membergroup.id }", membergroup.id, false, :class => "checkbox"
         %td= link_to membergroup.name, edit_membergroup_path(membergroup)
         %td= membergroup.fee
         - if(!membergroup.onetimefee)
@@ -16,3 +18,8 @@
           %td
             Kerta
         %td= membergroup.members.count
+        %div{:id => "bottom_forms"}
+          = form_tag delete_path, :id => "delete_active_form" do
+          = hidden_field_tag "ids"
+          = button_tag "Poista", :class => "submit send confirm"
+        %div{:class => "clear"}

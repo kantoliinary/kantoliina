@@ -21,4 +21,15 @@ class MembergroupsController < ApplicationController
     redirect_to membergroups_path
   end
 
+  def delete
+
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @membergroups = Membergroup.find_all_by_id(parsed_json["ids"])
+    @membergroups.each do |membergroup|
+      membergroup.destroy()
+    end
+    flash[:notice] = "Jäsenryhmä" + (@membergroups.count > 1 ? "et" : "") +" poistettu"
+    redirect_to membergroups_path
+  end
+
 end
