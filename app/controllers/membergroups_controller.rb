@@ -18,7 +18,7 @@ class MembergroupsController < ApplicationController
     else
       flash[:membergroup] = @membergroup
     end
-    redirect_to edit_membergroup_path
+    redirect_to membergroups_path
   end
 
 end

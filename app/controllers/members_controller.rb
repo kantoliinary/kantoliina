@@ -100,7 +100,7 @@ class MembersController < ApplicationController
     else
       flash[:member] = @member
     end
-    redirect_to edit_member_path
+    redirect_to members_path
   end
 
 
