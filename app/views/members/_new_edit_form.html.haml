@@ -41,6 +41,14 @@
       = f.input :membernumber, as: :string
   %div{:class => "row"}
     %div{:class => "left"}
+    %div{:class => "left right_field"}
+      = f.input :lender, label: "Lainaamo"
+  %div{:class => "row"}
+    %div{:class => "left"}
+    %div{:class => "left right_field"}
+      = f.input :support, label: "Tukihenkilö"
+  %div{:class => "row"}
+    %div{:class => "left"}
       = f.label "membergroup_id", 'Jäsenryhmä'
     %div{:class => "left right_field"}
       = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)

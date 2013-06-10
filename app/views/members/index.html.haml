@@ -25,10 +25,10 @@
         =@members.count
   = flash[:notice]
   %div{:id => "centered"}
-    %div{:id => "column_menu"}
-      %div{:id => "header"}
+    %div{:class => "column_menu"}
+      %div{:class => "header"}
         Valitse sarakkeet
-      %div{:id => "choices"}
+      %div{:class => "choices"}
         %label
           = check_box_tag "membernumber", "1", true
           Jäsennumero
@@ -39,13 +39,13 @@
           = check_box_tag "municipality", "1", true
           Kunta
         %label
-          = check_box_tag "address", "1", true
+          = check_box_tag "address", "1", false
           Osoite
         %label
-          = check_box_tag "zipcode", "1", true
+          = check_box_tag "zipcode", "1", false
           Postinumero
         %label
-          = check_box_tag "postoffice", "1", true
+          = check_box_tag "postoffice", "1", false
           Postitoimipaikka
         %label
           = check_box_tag "membergroup", "1", true
@@ -57,49 +57,51 @@
           = check_box_tag "paymentstatus", "1", true
           Maksustatus
         %label
-          = check_box_tag "membershipstatus", "1", true
+          = check_box_tag "membershipstatus", "1", false
           Poistettu
         %label
-          = check_box_tag "supportmember", "1", true
+          = check_box_tag "support", "1", false
           Tukihenkilö
         %label
-          = check_box_tag "lender", "1", true
+          = check_box_tag "lender", "1", false
           Lainaamo
 
     %table{:class => "center", :id => "members"}
       %tr
         %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
-        %th Jäsennumero
-        %th Nimi
-        %th Kunta
-        %th Osoite
-        %th Postinumero
-        %th Postitoimipaikka
-        %th Sähköposti
-        %th Jäsenryhmä
-        %th Jäsenyysvuosi
-        %th Maksustatus
+        %th{:class => "membernumber"} Jäsennumero
+        %th{:class => "name"} Nimi
+        %th{:class => "municipality"} Kunta
+        %th{:class => "address hidden"} Osoite
+        %th{:class => "zipcode hidden"} Postinumero
+        %th{:class => "postoffice hidden"} Postitoimipaikka
+        %th{:class => "membergroup"} Jäsenryhmä
+        %th{:class => "membershipyear"} Jäsenyys voimassa
+        %th{:class => "paymentstatus"} Maksustatus
+        %th{:class => "membershipstatus hidden"} Poistettu
+        %th{:class => "support"} Lainaamo
+        %th{:class => "lender"} Tukihenkilö
 
       - @members.each do | member|
         %tr
           %td= check_box_tag "member_#{member.id }", member.id, false, :class => "checkbox"
-          %td= link_to member.membernumber, edit_member_path(member)
-          %td
+          %td{:class => "membernumber"}= link_to member.membernumber, edit_member_path(member)
+          %td{:class => "name"}
             = member.firstnames
             = member.surname
-          %td= member.municipality
-          %td= member.address
-          %td= member.zipcode
-          %td= member.postoffice
-          %td= member.email
-          %td= member.membergroup.name
-          %td= member.membershipyear
-          - if(!member.paymentstatus)
-            %td
+          %td{:class => "municipality"}= member.municipality
+          %td{:class => "address hidden"}= member.address
+          %td{:class => "zipcode hidden"}= member.zipcode
+          %td{:class => "postoffice hidden"}= member.postoffice
+          %td{:class => "membergroup"}= member.membergroup.name
+          %td{:class => "membershipyear"}= member.membershipyear
+          %td{:class => "paymentstatus"}
+            - if(!member.paymentstatus)
               %img{:src => "/assets/x-mark.png"}
-          - else
-            %td
+            - else
               %img{:src => "/assets/green-mark.png"}
+          %td= member.lender
+          %td= member.support
 
     %div{:id => "bottom_forms"}
       = form_tag invoice_confirm_path, :id => "invoice_form" do

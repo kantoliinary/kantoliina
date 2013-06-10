@@ -33,6 +33,8 @@ Feature: Add a new member
       | Jäsennumero      | 12345    |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
+    And I check "member_lender"
+    And I check "member_support"
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
 
@@ -47,6 +49,7 @@ Feature: Add a new member
       | Sähköposti       | gf.com |
       | Jäsennumero      | 12345  |
     And I press "Lisää"
+    And I check "member_lender"
     Then I should see "Sähköpostiosoitteen muoto on väärä"
 
   Scenario: Add a new member with too short member number

@@ -26,9 +26,10 @@
   #centered {
     display: inline-block;
     text-align: left;
-    #column_menu {
+    .column_menu {
       display: inline-block;
-      #header {
+      .header {
+        cursor: default;
         height: auto;
         width: auto;
         background-color: #74A846;
@@ -37,13 +38,18 @@
         padding: 4px;
         color: #ffffff;
       }
-      #choices {
-        //display: none;
+      .choices {
+        position: absolute;
+        display: none;
         border: 1px solid #bbbbbb;
         label {
+          background-color: #EFEFEF;
           padding: 4px;
           display: block;
           border-bottom: 1px solid #bbbbbb;
+        }
+        label:hover{
+          background-color: #74A846;
         }
       }
     }
@@ -99,11 +105,15 @@
     display: table;
     width: 130px;
     text-align: left;
+    min-height: 1px;
   }
 
   .right_field {
     width: auto;
     text-align: left;
+    input[type = "checkbox"]{
+      margin-right: 10px;
+    }
   }
 
   #edit_form select {
