@@ -6,11 +6,14 @@ class MembergroupsController < ApplicationController
     @membergroups = Membergroup.includes(:members)
   end
 
+  def new
+    @membergroup = flash[:membergroup] || Membergroup.new
+    @submit_text = "Lisää"
+  end
 
   def create
     @membergroup = Membergroup.new(params[:membergroup])
-    @membergroup.membershipyear = (Time.now.year+1).to_i
-    @membergroup.paymentstatus = false
+
     if @membergroup.save
       flash[:notice] = "Jäsenryhmä lisätty"
     else
