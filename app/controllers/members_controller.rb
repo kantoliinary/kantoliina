@@ -133,8 +133,13 @@ class MembersController < ApplicationController
     end
     #query = ""
     #query_keywords = {}
+    #counter = 65;
+    #membergroups.each do |id|
+    #  query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{counter.chr}"
+    #  query_keywords[counter.chr.to_sym] = id
+    #  counter += 1
+    #end
     #member.where(query, query_keywords)
-    #
     member
   end
 
