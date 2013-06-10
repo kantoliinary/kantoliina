@@ -51,7 +51,7 @@
   }
 }
 
-#new_member_page, #edit_member_page {
+#new_member_page, #edit_member_page, #edit_membergroup_page {
   #form {
     width: auto;
     display: inline-table;
@@ -62,6 +62,10 @@
     margin: 0;
     padding: 0;
   }
+
+  //#checkbox {
+  //  float: left;
+  //}
 
   #expirationdate {
     padding-top: 12px;
