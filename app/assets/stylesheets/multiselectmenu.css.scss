@@ -1,0 +1,28 @@
+.multiselectmenu {
+  display: inline-block;
+  .header {
+    cursor: default;
+    height: auto;
+    width: auto;
+    background-color: #74A846;
+    border: 1px solid #bbbbbb;
+    margin: 0;
+    padding: 4px;
+    color: #ffffff;
+  }
+  .choices {
+    position: absolute;
+    display: none;
+    border: 1px solid #bbbbbb;
+    color: #555;
+    label {
+      background-color: #EFEFEF;
+      padding: 4px;
+      display: block;
+      border-bottom: 1px solid #bbbbbb;
+    }
+    label:hover{
+      background-color: #74A846;
+    }
+  }
+}

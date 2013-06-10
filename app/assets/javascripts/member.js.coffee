@@ -5,19 +5,19 @@ $(document).ready ->
     e.preventDefault()
     if $(this).hasClass("confirm") && !confirm("Oletko varma?")
       return false
-    checkboxs = index.find("#members").find(":checkbox")
-    ids = []
-    $(checkboxs).each (index, value) ->
-      checkbox = $(value)
-      if !!checkbox.attr("checked") && checkbox.attr("name") != "check_all"
-        ids.push checkbox.val()
+  checkboxs = index.find("#members").find(":checkbox")
+  ids = []
+  $(checkboxs).each (index, value) ->
+    checkbox = $(value)
+    if !!checkbox.attr("checked") && checkbox.attr("name") != "check_all"
+      ids.push checkbox.val()
 
-    form = $(this).parent("form")
-    form.children("#ids").val(JSON.stringify({
-      ids: ids
-    }))
-    if ids.length != 0
-      form.submit()
+  form = $(this).parent("form")
+  form.children("#ids").val(JSON.stringify({
+    ids: ids
+  }))
+  if ids.length != 0
+    form.submit()
   index.find("#check_all").click ->
     checkboxs = index.children("#centered").children("#members").find(":checkbox")
     check_state = !!$(this).attr "checked"
@@ -41,13 +41,14 @@ $(document).ready ->
     e.preventDefault
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
-    invoice.find("#invoice_form").find(".member_"+id).remove()
-  $(".column_menu").find(".header").click (e) ->
-    $(this).parent().find(".choices").toggle()
-  $(".column_menu").find(".choices").find("input").click (e) ->
-    name = $(this).attr("name")
-    $("#members").find("."+name).each (index, element) ->
-      if $(element).hasClass("hidden")
-        $(element).removeClass("hidden")
+    invoice.find("#invoice_form").find(".member_" + id).remove()
+  multiselect("#index_member_page .column_menu", (element) ->
+    $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
+      if $(item).hasClass("hidden")
+        $(item).removeClass("hidden")
       else
-        $(element).addClass("hidden")
+        $(item).addClass("hidden")
+  )
+  multiselect("#index_member_page .membergroup_menu", (element) ->
+    console.log("ok")
+  )

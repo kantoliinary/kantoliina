@@ -25,33 +25,6 @@
   }
   #centered {
     display: inline-block;
-    .column_menu {
-      display: inline-block;
-      .header {
-        cursor: default;
-        height: auto;
-        width: auto;
-        background-color: #74A846;
-        border: 1px solid #bbbbbb;
-        margin: 0;
-        padding: 4px;
-        color: #ffffff;
-      }
-      .choices {
-        position: absolute;
-        display: none;
-        border: 1px solid #bbbbbb;
-        label {
-          background-color: #EFEFEF;
-          padding: 4px;
-          display: block;
-          border-bottom: 1px solid #bbbbbb;
-        }
-        label:hover{
-          background-color: #74A846;
-        }
-      }
-    }
     #members{
       display: inline-block;
       text-align: left;
@@ -59,6 +32,8 @@
     table{
       margin-top: 0px;
       text-align: center;
+    }
+    #membergroup_menu_content{
     }
     #bottom_forms {
       width: 650px;
