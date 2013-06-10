@@ -6,6 +6,19 @@ class MembergroupsController < ApplicationController
     @membergroups = Membergroup.includes(:members)
   end
 
+
+  def create
+    @membergroup = Membergroup.new(params[:membergroup])
+    @membergroup.membershipyear = (Time.now.year+1).to_i
+    @membergroup.paymentstatus = false
+    if @membergroup.save
+      flash[:notice] = "Jäsenryhmä lisätty"
+    else
+      flash[:membergroup] = @membergroup
+    end
+    redirect_to new_membergroup_path
+  end
+
   def edit
     @membergroup = flash[:membergroup] || Membergroup.find(params[:id])
     @submit_text = "Tallenna muutokset"
