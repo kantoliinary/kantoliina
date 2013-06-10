@@ -112,7 +112,7 @@ class MembersController < ApplicationController
 
   def search_with_filter keyword, membership
 
-    keywords = keyword.split(" ")
+    keywords = keyword.split(",")
     member = Member.includes(:membergroup)
 
     keywords.each do |word|
