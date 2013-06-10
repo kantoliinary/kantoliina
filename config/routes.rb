@@ -28,6 +28,7 @@ Kantoliina::Application.routes.draw do
   resources :partners, :only => [:index, :update]
   resources :password_resets, :only => [:new, :create]
   resources :members
+  resources :membergroups
 
 
 
