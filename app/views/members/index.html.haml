@@ -55,6 +55,8 @@
       %th Jäsenryhmä
       %th Jäsenyysvuosi
       %th Maksustatus
+      %th Lainaamo
+      %th Tukihenkilö
 
     - @members.each do | member|
       %tr
@@ -76,6 +78,10 @@
         - else
           %td
             %img{:src => "/assets/green-mark.png"}
+        %td= member.lender
+        %td= member.support
+
+
 
   %div{:id => "bottom_forms"}
     = form_tag invoice_confirm_path, :id => "invoice_form" do
