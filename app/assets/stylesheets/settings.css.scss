@@ -13,7 +13,24 @@
       }
     }
   }
+  #mailer_template_editor {
+    text-aling: center;
+
+    #textarea {
+      width: 706px;
+      margin: 0 auto;
+
+      textarea {
+        width: 700px;
+        height: 400px;
+        display: inline-block;
+      }
+    }
+  }
   #invoice_template_button {
+    padding: 10px;
+  }
+  #mailer_template_button {
     padding: 10px;
   }
 }

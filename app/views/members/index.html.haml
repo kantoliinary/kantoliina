@@ -140,6 +140,10 @@
       = form_tag payment_path, :id => "payment_form" do
         = hidden_field_tag "ids"
         = button_tag "Maksettu", :class => "submit send"
+
+      = form_tag mailer_confirm_path, :id => "mailer_form" do
+        = hidden_field_tag "ids"
+        = button_tag "Lähetä sähköpostia", :class => "submit send"
       %div{:class => "clear"}
 
 

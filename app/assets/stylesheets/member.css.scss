@@ -40,7 +40,7 @@
       margin: 0 auto;
       display: none;
 
-      #invoice_form, #delete_active_form, #payment_form {
+      #invoice_form, #delete_active_form, #payment_form, #mailer_form {
         width: 210px;
         float: left;
         margin: 0;
@@ -52,11 +52,11 @@
   }
 }
 
-#index_member_page .delete_or_active, #invoice_member_page .delete_button {
+#index_member_page .delete_or_active, #invoice_member_page, #mailer_member_page .delete_button {
   width: 70px;
 }
 
-#invoice_member_page {
+#invoice_member_page, #mailer_member_page {
   #additional_message {
     display: inline-block;
     width: 895px;
