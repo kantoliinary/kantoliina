@@ -24,7 +24,7 @@ class Member < ActiveRecord::Base
   validates :paymentstatus, :inclusion => {:in => [true, false]}
 
   @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membernumber => "Jäsennumero"}
-
+  @@refernumberprefix = '6004'
   ##
   #  Searches all search fields and returns them.
   def self.all_search_fields
@@ -42,8 +42,8 @@ class Member < ActiveRecord::Base
   # Generates a reference number from a member number using a mathematical formula.
   def self.generate_refnumber membernumber
 
-    input = membernumber.to_s.reverse!
-    base = "731" * 50
+    input = (@@refernumberprefix + membernumber.to_s).reverse!
+    base = "731"
 
     index = 0
     sum = 0

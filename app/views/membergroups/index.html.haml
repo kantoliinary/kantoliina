@@ -1,0 +1,9 @@
+%div
+  %table{:class => "center", :id => "members"}
+    %tr
+      %th Jäsenryhmä
+      %th hinta
+    - @membergroups.each do | membergroup |
+      %tr
+        %td= link_to membergroup.name, edit_membergroup_path(membergroup)
+        %td= membergroup.fee
