@@ -42,59 +42,99 @@
         Hakutulosten määrä:
         =@members.count
   = flash[:notice]
-  %table{:class => "center", :id => "members"}
-    %tr
-      %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
-      %th Jäsennumero
-      %th Nimi
-      %th Kunta
-      %th Osoite
-      %th Postinumero
-      %th Postitoimipaikka
-      %th Sähköposti
-      %th Jäsenryhmä
-      %th Jäsenyysvuosi
-      %th Maksustatus
-      %th Lainaamo
-      %th Tukihenkilö
+  %div{:id => "centered"}
+    %div{:id => "column_menu"}
+      %div{:id => "header"}
+        Valitse sarakkeet
+      %div{:id => "choices"}
+        %label
+          = check_box_tag "membernumber", "1", true
+          Jäsennumero
+        %label
+          = check_box_tag "name", "1", true
+          Nimi
+        %label
+          = check_box_tag "municipality", "1", true
+          Kunta
+        %label
+          = check_box_tag "address", "1", true
+          Osoite
+        %label
+          = check_box_tag "zipcode", "1", true
+          Postinumero
+        %label
+          = check_box_tag "postoffice", "1", true
+          Postitoimipaikka
+        %label
+          = check_box_tag "membergroup", "1", true
+          Jäsenryhmä
+        %label
+          = check_box_tag "membershipyear", "1", true
+          Jäsenyys voimassa
+        %label
+          = check_box_tag "paymentstatus", "1", true
+          Maksustatus
+        %label
+          = check_box_tag "membershipstatus", "1", true
+          Poistettu
+        %label
+          = check_box_tag "support", "1", true
+          Tukihenkilö
+        %label
+          = check_box_tag "lender", "1", true
+          Lainaamo
 
-    - @members.each do | member|
+    %table{:class => "center", :id => "members"}
       %tr
-        %td= check_box_tag "member_#{member.id }", member.id, false, :class => "checkbox"
-        %td= link_to member.membernumber, edit_member_path(member)
-        %td
-          = member.firstnames
-          = member.surname
-        %td= member.municipality
-        %td= member.address
-        %td= member.zipcode
-        %td= member.postoffice
-        %td= member.email
-        %td= member.membergroup.name
-        %td= member.membershipyear
-        - if(!member.paymentstatus)
+        %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
+        %th Jäsennumero
+        %th Nimi
+        %th Kunta
+        %th Osoite
+        %th Postinumero
+        %th Postitoimipaikka
+        %th Sähköposti
+        %th Jäsenryhmä
+        %th Jäsenyysvuosi
+        %th Maksustatus
+        %th Lainaamo
+        %th Tukihenkilö
+
+      - @members.each do | member|
+        %tr
+          %td= check_box_tag "member_#{member.id }", member.id, false, :class => "checkbox"
+          %td= link_to member.membernumber, edit_member_path(member)
           %td
-            %img{:src => "/assets/x-mark.png"}
-        - else
-          %td
-            %img{:src => "/assets/green-mark.png"}
-        %td= member.lender
-        %td= member.support
+            = member.firstnames
+            = member.surname
+          %td= member.municipality
+          %td= member.address
+          %td= member.zipcode
+          %td= member.postoffice
+          %td= member.email
+          %td= member.membergroup.name
+          %td= member.membershipyear
+          - if(!member.paymentstatus)
+            %td
+              %img{:src => "/assets/x-mark.png"}
+          - else
+            %td
+              %img{:src => "/assets/green-mark.png"}
+          %td= member.lender
+          %td= member.support
 
+    %div{:id => "bottom_forms"}
+      = form_tag invoice_confirm_path, :id => "invoice_form" do
+        = hidden_field_tag "ids"
+        = button_tag "Luo laskut", :class => "submit send"
 
+      = form_tag delete_path, :id => "delete_active_form" do
+        = hidden_field_tag "ids"
+        = button_tag (@membership == "0" ? "Aktivoi" : "Poista"), :class => "submit send confirm"
 
-  %div{:id => "bottom_forms"}
-    = form_tag invoice_confirm_path, :id => "invoice_form" do
-      = hidden_field_tag "ids"
-      = button_tag "Luo laskut", :class => "submit send"
-
-    = form_tag delete_path, :id => "delete_active_form" do
-      = hidden_field_tag "ids"
-      = button_tag (@membership == "0" ? "Aktivoi" : "Poista"), :class => "submit send confirm"
-
-    = form_tag payment_path, :id => "payment_form" do
-      = hidden_field_tag "ids"
-      = button_tag "Maksettu", :class => "submit send"
-    %div{:class => "clear"}
+      = form_tag payment_path, :id => "payment_form" do
+        = hidden_field_tag "ids"
+        = button_tag "Maksettu", :class => "submit send"
+      %div{:class => "clear"}
 
 

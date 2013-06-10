@@ -41,14 +41,12 @@
       = f.input :membernumber, as: :string
   %div{:class => "row"}
     %div{:class => "left"}
-      = f.label "lender", 'Lainaamo'
     %div{:class => "left right_field"}
-      = f.input :lender
+      = f.input :lender, label: "Lainaamo"
   %div{:class => "row"}
     %div{:class => "left"}
-      = f.label "lender", 'Tukihenkilö'
     %div{:class => "left right_field"}
-      = f.input :support
+      = f.input :support, label: "Tukihenkilö"
   %div{:class => "row"}
     %div{:class => "left"}
       = f.label "membergroup_id", 'Jäsenryhmä'

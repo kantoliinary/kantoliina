@@ -23,21 +23,45 @@
       width: 150px;
     }
   }
-  #bottom_forms {
-    width: 650px;
-    margin: 0 auto;
-    display: none;
+  #centered {
+    display: inline-block;
+    text-align: left;
+    #column_menu {
+      display: inline-block;
+      #header {
+        height: auto;
+        width: auto;
+        background-color: #74A846;
+        border: 1px solid #bbbbbb;
+        margin: 0;
+        padding: 4px;
+        color: #ffffff;
+      }
+      #choices {
+        //display: none;
+        border: 1px solid #bbbbbb;
+        label {
+          padding: 4px;
+          display: block;
+          border-bottom: 1px solid #bbbbbb;
+        }
+      }
+    }
+    #bottom_forms {
+      width: 650px;
+      margin: 0 auto;
+      display: none;
 
-    #invoice_form, #delete_active_form, #payment_form {
-      width: 210px;
-      float: left;
-      margin: 0;
+      #invoice_form, #delete_active_form, #payment_form {
+        width: 210px;
+        float: left;
+        margin: 0;
+      }
+    }
+    #tulosmaara {
+      margin-top: 10px;
     }
   }
-  #tulosmaara {
-    margin-top: 10px;
-  }
-
 }
 
 #index_member_page .delete_or_active, #invoice_member_page .delete_button {
@@ -71,11 +95,15 @@
     display: table;
     width: 130px;
     text-align: left;
+    min-height: 1px;
   }
 
   .right_field {
     width: auto;
     text-align: left;
+    input[type = "checkbox"]{
+      margin-right: 10px;
+    }
   }
 
   #edit_form select {
