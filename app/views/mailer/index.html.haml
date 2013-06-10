@@ -15,13 +15,14 @@
           = member.firstnames
           = member.surname
         %td= member.email
+        %td= member.membergroup.name
         %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
 
-  -#%h1 Lisätietoa laskuun
+  %h1 Lähtevä maili
 
-    -#= form_tag mailer_path, :id => "mailer_form" do
-    -#  -@members.each do |member|
-    -#    = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
-    -#  %div{:id => "textarea"}
-    -#    = text_area_tag "additional_message", "", :id => "additional_message"
-    -#  = button_tag "Lähetä mailia", :id => "send_invoice"
+  = form_tag mailer_path, :id => "mailer_form" do
+    -@members.each do |member|
+      = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+    %div{:id => "textarea"}
+      = text_area_tag "additional_message", "", :id => "additional_message"
+    = button_tag "Lähetä mailia", :id => "send_invoice"

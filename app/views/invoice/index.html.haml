@@ -22,7 +22,7 @@
         %td= Member.generate_refnumber(member.membernumber)
         %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
 
-  %h1 Lisätietoa laskuun
+  %hl Lisätietoa laskuun
 
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
