@@ -1,5 +1,7 @@
 %div{:id => "settings_page"}
+
   %h1 Laskupohjan muokkaus
+  = flash[:notice]
   %div{:id => "invoice_template_editor"}
     %div{:class => "error"}
       = @error

@@ -44,3 +44,10 @@ $(document).ready ->
     invoice.find("#invoice_form").find(".member_"+id).remove()
   $(".column_menu").find(".header").click (e) ->
     $(this).parent().find(".choices").toggle()
+  $(".column_menu").find(".choices").find("input").click (e) ->
+    name = $(this).attr("name")
+    $("#members").find("."+name).each (index, element) ->
+      if $(element).hasClass("hidden")
+        $(element).removeClass("hidden")
+      else
+        $(element).addClass("hidden")
