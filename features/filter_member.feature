@@ -66,7 +66,6 @@ Feature: filter members
   Scenario: I filter members by first name
     When I am on the members page
     And I fill in "keyword" with "Ja"
-#    And I check "search_fields[firstnames]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -75,7 +74,6 @@ Feature: filter members
   Scenario: I filter members by last name
     When I am on the members page
     And I fill in "keyword" with "Jäsen"
-#    And I check "search_fields[surname]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -84,7 +82,6 @@ Feature: filter members
   Scenario: I filter members by municipality
     When I am on the members page
     And I fill in "keyword" with "Espoo"
-#    And I check "search_fields[municipality]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
@@ -93,7 +90,6 @@ Feature: filter members
   Scenario: I filter members by address
     When I am on the members page
     And I fill in "keyword" with "jokin"
-#    And I check "search_fields[address]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -102,7 +98,6 @@ Feature: filter members
   Scenario: I filter members by address
     When I am on the members page
     And I fill in "keyword" with "espoo"
-#    And I check "search_fields[municipality]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
@@ -111,7 +106,6 @@ Feature: filter members
   Scenario: I filter members by zipcode
     When I am on the members page
     And I fill in "keyword" with "12345"
-#    And I check "search_fields[zipcode]"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -120,7 +114,6 @@ Feature: filter members
   Scenario: I filter members by post office
     When I am on the members page
     And I fill in "keyword" with "helsinki"
-#    And I check "search_fields[postoffice]"
     And I press "Hae"
     Then I should not see "Jaana"
     Then I should not see "Janne"
@@ -129,7 +122,6 @@ Feature: filter members
   Scenario: I filter members by e-mail
     When I am on the members page
     And I fill in "keyword" with "liisa"
-#    And I check "search_fields[email]"
     And I press "Hae"
     Then I should not see "Jaana"
     Then I should not see "Janne"
@@ -138,8 +130,6 @@ Feature: filter members
   Scenario: I filter members by member number
     When I am on the members page
     And I fill in "keyword" with "125"
-#    And I check "search_fields[membernumber]"
-    And I press "Hae"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
@@ -148,8 +138,7 @@ Feature: filter members
   Scenario: I filter members by membergroup
     When I am on the members page
     And I fill in "keyword" with "125"
-#    And I check "search_fields[membernumber]"
-    And I press "Hae"
+   And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
     Then I should not see "Liisa"
@@ -170,3 +159,20 @@ Feature: filter members
     Then I should not see "Jaana"
     Then I should not see "Janne"
     Then I should not see "Liisa"
+
+  Scenario: I try to search with two parametres
+    When I am on the members page
+    And I fill in "keyword" with "Janne,Vantaa"
+    And I press "Hae"
+    Then I should not see "Jaana"
+    Then I should see "Janne"
+    Then I should not see "Liisa"
+
+  Scenario: I try to search with tree parametres and extra whitespaces
+    When I am on the members page
+    And I fill in "keyword" with "Janne,    Vantaa   ,     Stadi     "
+    And I press "Hae"
+    Then I should not see "Jaana"
+    Then I should see "Janne"
+    Then I should not see "Liisa"
+
