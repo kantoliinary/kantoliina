@@ -3,6 +3,7 @@ class Membergroup < ActiveRecord::Migration
     create_table :membergroups do |t|
       t.string :name
       t.float  :fee
+      t.boolean :onetimefee
     end
   end
 
