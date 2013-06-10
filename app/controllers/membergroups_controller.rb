@@ -20,6 +20,7 @@ class MembergroupsController < ApplicationController
   end
 
   def edit
+    @editpage = true
     @membergroup = flash[:membergroup] || Membergroup.find(params[:id])
     @submit_text = "Tallenna muutokset"
   end
@@ -35,12 +36,8 @@ class MembergroupsController < ApplicationController
   end
 
   def destroy
-
-    parsed_json = ActiveSupport::JSON.decode(params[:ids])
-    @membergroups = Membergroup.find_all_by_id(parsed_json["ids"])
-    @membergroups.each do |membergroup|
-      membergroup.destroy()
-    end
+    membergroup = Membergroup.find(params[:id])
+    membergroup.destroy()
     flash[:notice] = "Jäsenryhmä" + (@membergroups.count > 1 ? "et" : "") +" poistettu"
     redirect_to membergroups_path
   end
