@@ -1,0 +1,27 @@
+%div{:id => "mailer_member_page"}
+  %h1 Sähköpostin varmistus
+
+  %table{:class => "center", :id => "members"}
+    %tr
+      %th Jäsennro.
+      %th Nimi
+      %th Sähköposti
+      %th Jäsenryhmä
+      %th
+    - @members.each do |member|
+      %tr
+        %td= link_to member.membernumber, edit_member_path(member)
+        %td
+          = member.firstnames
+          = member.surname
+        %td= member.email
+        %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
+
+  %h1 Mailsi:
+
+    = form_tag invoice_path, :id => "invoice_form" do
+      -@members.each do |member|
+        = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+      %div{:id => "textarea"}
+        = text_area_tag "additional_message", "", :id => "additional_message"
+      = button_tag "Lähetä mailia", :id => "send_invoice"
