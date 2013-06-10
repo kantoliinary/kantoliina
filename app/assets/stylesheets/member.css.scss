@@ -81,7 +81,7 @@
   }
 }
 
-#new_member_page, #edit_member_page {
+#new_member_page, #edit_member_page, #edit_membergroup_page {
   #form {
     width: auto;
     display: inline-table;
@@ -93,6 +93,10 @@
     padding: 0;
   }
 
+  //#checkbox {
+  //  float: left;
+  //}
+
   #expirationdate {
     padding-top: 12px;
   }
@@ -101,11 +105,15 @@
     display: table;
     width: 130px;
     text-align: left;
+    min-height: 1px;
   }
 
   .right_field {
     width: auto;
     text-align: left;
+    input[type = "checkbox"]{
+      margin-right: 10px;
+    }
   }
 
   #edit_form select {

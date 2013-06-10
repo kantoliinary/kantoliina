@@ -5,24 +5,6 @@
     = form_tag members_path, :method => :get, :id => 'filter_form' do
       %div{:id => "keyword_field"}
         = text_field_tag "keyword", "#{@keyword}"
-      %div{:id => "search_fields"}
-        - i = 0
-        - @all_search_fields.each do |key, field|
-          - if i%4 == 0
-            %div{:class => "clear"}
-          %div{:class => "left"}
-
-            = check_box_tag "search_fields[#{key}]", 1, @selected_search_fields.include?(key), :class => "checkbox", :id => "search_fields_#{key}"
-            = field
-          - i += 1
-        %div{:class => "clear"}
-      %hr
-      %div{:id => "membergroup_fields"}
-        - @membergroups.each do |group|
-          %div{:class => "left"}
-            = check_box_tag "membergroups[#{group.id}]", 1, @selected_membergroups.include?("#{group.id}"), :id => "membergroups_#{group.id}", :class => "checkbox"
-            = group.name
-        %div{:class => "clear"}
       %hr
       %div{:id => "membership_fields", :class => "left"}
         %span{:class => "bold"}
@@ -78,7 +60,7 @@
           = check_box_tag "membershipstatus", "1", false
           Poistettu
         %label
-          = check_box_tag "supportmember", "1", false
+          = check_box_tag "support", "1", false
           Tukihenkilö
         %label
           = check_box_tag "lender", "1", false
@@ -97,6 +79,8 @@
         %th{:class => "membershipyear"} Jäsenyys voimassa
         %th{:class => "paymentstatus"} Maksustatus
         %th{:class => "membershipstatus hidden"} Poistettu
+        %th{:class => "support"} Lainaamo
+        %th{:class => "lender"} Tukihenkilö
 
       - @members.each do | member|
         %tr
@@ -116,6 +100,8 @@
               %img{:src => "/assets/x-mark.png"}
             - else
               %img{:src => "/assets/green-mark.png"}
+          %td= member.lender
+          %td= member.support
 
     %div{:id => "bottom_forms"}
       = form_tag invoice_confirm_path, :id => "invoice_form" do
