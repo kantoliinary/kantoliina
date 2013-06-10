@@ -53,6 +53,9 @@
         }
       }
     }
+    #members{
+      text-align: center;
+    }
     #bottom_forms {
       width: 650px;
       margin: 0 auto;
@@ -81,7 +84,7 @@
   }
 }
 
-#new_member_page, #edit_member_page, #edit_membergroup_page {
+#new_member_page, #edit_member_page, #edit_membergroup_page,  #new_membergroup_page {
   #form {
     width: auto;
     display: inline-table;

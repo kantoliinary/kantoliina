@@ -57,7 +57,7 @@
           = check_box_tag "paymentstatus", "1", true
           Maksustatus
         %label
-          = check_box_tag "membershipstatus", "1", false
+          = check_box_tag "membership", "1", false
           Poistettu
         %label
           = check_box_tag "support", "1", false
@@ -78,9 +78,9 @@
         %th{:class => "membergroup"} Jäsenryhmä
         %th{:class => "membershipyear"} Jäsenyys voimassa
         %th{:class => "paymentstatus"} Maksustatus
-        %th{:class => "membershipstatus hidden"} Poistettu
-        %th{:class => "support"} Lainaamo
-        %th{:class => "lender"} Tukihenkilö
+        %th{:class => "membership hidden"} Poistettu
+        %th{:class => "support hidden"} Lainaamo
+        %th{:class => "lender hidden"} Tukihenkilö
 
       - @members.each do | member|
         %tr
@@ -96,12 +96,25 @@
           %td{:class => "membergroup"}= member.membergroup.name
           %td{:class => "membershipyear"}= member.membershipyear
           %td{:class => "paymentstatus"}
-            - if(!member.paymentstatus)
+            - if(!member.membership)
               %img{:src => "/assets/x-mark.png"}
             - else
               %img{:src => "/assets/green-mark.png"}
-          %td= member.lender
-          %td= member.support
+          %td{:class => "membership hidden"}
+            - if(!member.membership)
+              %img{:src => "/assets/x-mark.png"}
+            - else
+              %img{:src => "/assets/green-mark.png"}
+          %td{:class => "support hidden"}
+            - if(!member.support)
+              %img{:src => "/assets/x-mark.png"}
+            - else
+              %img{:src => "/assets/green-mark.png"}
+          %td{:class => "lender hidden"}
+            - if(!member.lender)
+              %img{:src => "/assets/x-mark.png"}
+            - else
+              %img{:src => "/assets/green-mark.png"}
 
     %div{:id => "bottom_forms"}
       = form_tag invoice_confirm_path, :id => "invoice_form" do
