@@ -27,14 +27,27 @@ class InvoiceController < ApplicationController
   ##
   # Loads the invoice template to the interface
   def update
-    template = params[:template]
-    if validate_invoice_template template
-      File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'w') do |f|
-        f.puts template
+
+    unless (params[:temp] == "2")
+      template = params[:template]
+      if validate_invoice_template template
+        File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'w') do |f|
+          f.puts template
+        end
       end
+      redirect_to settings_path
+
+    else
+      template = params[:template]
+      if validate_invoice_template template
+        File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'w') do |f|
+          f.puts template
+        end
+      end
+      redirect_to settings_path(:temp => 2)
     end
-    redirect_to settings_path
   end
+
 
   private
 

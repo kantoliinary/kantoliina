@@ -7,10 +7,19 @@ describe SettingsController do
   describe "GET #index" do
 
     context "get :index" do
-      it "shows member" do
+      it "shows billing-email template" do
         admin = FactoryGirl.create(:admin)
         session[:admin_id] = admin.id
-        get :index, FactoryGirl.attributes_for(:admin)
+        get :index
+      end
+    end
+
+
+    context "get :index" do
+      it "shows reminder-email template when :temp == 2" do
+        admin = FactoryGirl.create(:admin)
+        session[:admin_id] = admin.id
+        get :index, :temp => "2"
       end
     end
   end
