@@ -13,6 +13,7 @@ class MembersController < ApplicationController
     @member = flash[:member] || Member.new
     @member.membershipyear = (Time.now.year).to_i
     @member.membernumber = get_smallest_available_membernumber
+    @member.paymentstatus = false
     @submit_text = "Lisää"
   end
 
@@ -35,7 +36,6 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(params[:member])
     #@member.membershipyear = (Time.now.year).to_i
-    @member.paymentstatus = false
     if @member.save
       flash[:notice] = "Jäsen lisätty"
     else
