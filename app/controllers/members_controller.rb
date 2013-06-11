@@ -36,12 +36,21 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(params[:member])
     #@member.membershipyear = (Time.now.year).to_i
+    membernumber = @member.membernumber
     if @member.save
       flash[:notice] = "Jäsen lisätty"
     else
       flash[:member] = @member
     end
-    redirect_to new_member_path
+
+    member = Member.find_by_membernumber(membernumber)
+
+
+    if params[:sendinvoice]
+      redirect_to invoice_confirm_path(:id => member.id)
+    else
+      redirect_to new_member_path
+    end
   end
 
   ##

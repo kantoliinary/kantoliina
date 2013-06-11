@@ -54,6 +54,14 @@
     %div{:class => "left"}
     %div{:class => "left right_field"}
       = f.input :support, label: "Tukihenkilö"
+
+  %div{:class => "row"}
+    %div{:class => "left"}
+    %div{:class => "left right_field"}
+      = check_box_tag :sendinvoice
+      = hidden_field_tag "ids"
+      = label_tag :sendinvoice, "Lähetä lasku"
+
   %div{:class => "row"}
     %div{:class => "left"}
     %div{:class => "left right_field"}
