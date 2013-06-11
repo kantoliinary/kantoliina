@@ -8,7 +8,8 @@ class InvoiceController < ApplicationController
   # Parses an array of IDs from JSON code given as a parameter and selects an array of members based on those IDs.
   def index
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
-    @members = Member.find_all_by_id(parsed_json["ids"])
+
+    @members = Member.find_all_by_id(parsed_json["ids"], :conditions => "membergroup_id != 3")
   end
 
   ##
@@ -20,6 +21,18 @@ class InvoiceController < ApplicationController
       member.paymentstatus = false;
       member.save(:validate => false)
       Billing.bill_email(member, params[:additional_message]).deliver
+    end
+    redirect_to members_path
+  end
+
+
+  def create_reminder
+    @members = Member.find_all_by_id(params[:member])
+    @members.each do |member|
+      member.invoicedate = Time.now
+      member.paymentstatus = false;
+      member.save(:validate => false)
+      Billing.reminder_email(member).deliver
     end
     redirect_to members_path
   end
