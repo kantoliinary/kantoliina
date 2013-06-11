@@ -11,7 +11,20 @@ class MembersController < ApplicationController
 
   def new
     @member = flash[:member] || Member.new
+
+    @member.membernumber = get_smallest_available_membernumber
     @submit_text = "Lisää"
+  end
+
+  def get_smallest_available_membernumber
+    members = Member.select(:membernumber).order(:membernumber)
+    number = 10000
+
+    members.each do |member|
+      return number unless number == member.membernumber
+      number+=1
+    end
+    return number
   end
 
   ##
