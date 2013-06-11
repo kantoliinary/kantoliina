@@ -32,28 +32,22 @@ Feature: Edit a membergroup
     And I press "Tallenna muutokset"
     Then I should see "Tiedot muutettu"
     And I should see "Bilejäsen"
-    And I should see "8.0"
+    And I should see "2.0"
     And I should see "Kerta"
 
-  Scenario: Edit a membergroup with valid values and a permanent fee
+  Scenario: Edit a membergroup with empty values
+    When I fill in the following:
+      | Nimi           |  |
+      | Jäsenmaksu (€) |  |
+    And I press "Tallenna muutokset"
+    Then I should see "Ryhmän nimi puuttuu"
+    And I should see "Hinta puuttuu"
+
+
+
+  Scenario: Edit a membergroup with invalid values
     When I fill in the following:
       | Nimi           | Rivijäsen |
-      | Jäsenmaksu (€) | 10        |
-    And I check "Kertamaksu"
-    And I press "Lisää"
-    Then I should see "Jäsenryhmä lisätty"
-    And I follow "Jäsenryhmät"
-    And I should see "Rivijäsen"
-    And I should see "Kerta"
-
-#  Scenario: Add a new membergroup with empty values
-#    When I press "Lisää"
-#    Then I should see "Ryhmän nimi puuttuu"
-#    And I should see "Hinta puuttuu"
-#
-#  Scenario: Add a new membergroup with invalid values
-#    When I fill in the following:
-#      | Nimi           | Rivijäsen |
-#      | Jäsenmaksu (€) | abba      |
-#    And I press "Lisää"
-#    Then I should see "Hinnan tulee olla numero"
+      | Jäsenmaksu (€) | abba      |
+    And I press "Tallenna muutokset"
+    Then I should see "Hinnan tulee olla numero"
