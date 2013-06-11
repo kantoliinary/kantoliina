@@ -26,6 +26,17 @@
         display: inline-block;
       }
     }
+
+    #subjectarea {
+      width: 10px;
+      margin: 0 auto;
+
+      subjectarea {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+      }
+    }
   }
   #invoice_template_button {
     padding: 10px;
