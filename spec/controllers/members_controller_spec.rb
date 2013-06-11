@@ -94,7 +94,7 @@ describe MembersController do
         get :update,
             :id => member.id,
             :member => {:surname => ""}
-        response.should redirect_to members_path
+        response.should redirect_to edit_member_path
       end
     end
   end
