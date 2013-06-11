@@ -67,6 +67,12 @@ describe MembergroupsController do
         response.should render_template :edit
       end
 
+      #it "renders the :edit view with delete button" do
+      #  membergroup = FactoryGirl.create(:membergroup)
+      #  get :edit, FactoryGirl.attributes_for(:membergroup)
+      #  @editpage.should be_false
+      #  response.should render_template :edit
+      #end
     end
 
 
