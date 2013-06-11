@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
     t.integer  "membershipyear"
     t.boolean  "paymentstatus"
     t.date     "invoicedate"
-    t.boolean  "membership",     :default => true
+    t.boolean  "deleted",        :default => false
     t.boolean  "lender",         :default => false
     t.boolean  "support",        :default => false
     t.datetime "created_at",                        :null => false
