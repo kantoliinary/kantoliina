@@ -24,8 +24,8 @@
   = form_tag mailer_path, :id => "mailer_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
-    %div{:id => "subjectarea"}
-      = text_area_tag "subject", "otsikko", :id => "subject"
     %div{:id => "textarea"}
       = text_area_tag "additional_message", "", :id => "additional_message"
+    %div{:id => "subjectarea"}
+      = text_area_tag "subject", "otsikko", :id => "subject"
     = button_tag "Lähetä mailia", :id => "send_mailer"
