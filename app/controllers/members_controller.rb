@@ -73,7 +73,7 @@ class MembersController < ApplicationController
   end
 
   ##
-  # Changes the membership status and shows the changes on the screen.
+  # Changes the deleted status and shows the changes on the screen.
 
   def delete
 
@@ -82,7 +82,7 @@ class MembersController < ApplicationController
     @members.each do |member|
 
       if member
-        member.membership = "#{!member.membership}"
+        member.deleted = "#{!member.deleted}"
         member.save!(:validate => false)
 
       end
@@ -98,12 +98,18 @@ class MembersController < ApplicationController
     @membergroups = Membergroup.all
     @all_search_fields = Member.all_search_fields
     @keyword = params[:keyword] || ""
-    @membership = params[:membership] || "1"
+    @deleted = params[:deleted] || "1"
     s_membergroups = params[:membergroups]
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
-    @members = search_with_filter(@keyword, @membership)
+    @members = search_with_filter(@keyword, @deleted)
   end
 
+  def search
+    @members = Member.includes(:membergroup)
+    respond_to do |format|
+      format.json { render :json => @members}
+    end
+  end
   ##
   #Edits the current Member with right parameters.
 
@@ -129,11 +135,11 @@ class MembersController < ApplicationController
   private
 
 ##
-# Filters members by selected radio buttons. Values are membership and payment status with OR operation.
+# Filters members by selected radio buttons. Values are deleted and payment status with OR operation.
 # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
-  def search_with_filter keyword, membership
+  def search_with_filter keyword, deleted
 
     keywords = keyword.split(",")
     member = Member.includes(:membergroup)
@@ -151,8 +157,8 @@ class MembersController < ApplicationController
       end
       member = member.where(query, query_keywords)
     end
-    if membership.length > 0
-      member = member.where(:membership => membership.at(0) == "1")
+    if deleted.length > 0
+      member = member.where(:deleted => deleted.at(0) == "1")
     end
     #query = ""
     #query_keywords = {}

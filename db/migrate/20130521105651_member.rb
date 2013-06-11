@@ -13,7 +13,7 @@ class Member < ActiveRecord::Migration
       t.integer     :membershipyear
       t.boolean     :paymentstatus
       t.date        :invoicedate
-      t.boolean     :membership, :default => true
+      t.boolean     :deleted, :default => false
       t.boolean     :lender, :default => false
       t.boolean     :support, :default => false
 

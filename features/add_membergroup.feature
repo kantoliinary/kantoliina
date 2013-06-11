@@ -9,9 +9,7 @@ Feature: Add a new membergroup
       | username | password  | email          |
       | admin    | qwerty123 | testi@testi.fi |
 
-    Given the following membergroups exist:
-      | id | name        | fee  |
-      | 1  | Ainaisjäsen | 10.0 |
+
 
 
 
@@ -32,6 +30,7 @@ Feature: Add a new membergroup
     And I follow "Jäsenryhmät"
     And I should see "Rivijäsen"
     And I should see "Vuosittainen"
+    And I should see "10.0"
 
   Scenario: Add a new membergroup with valid values and a permanent fee
     When I fill in the following:
