@@ -87,20 +87,19 @@ class MembersController < ApplicationController
 
   def index
     @membergroups = Membergroup.all
-    @all_search_fields = Member.all_search_fields
-    @keyword = params[:keyword] || ""
     @deleted = params[:deleted] || "1"
     s_membergroups = params[:membergroups]
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
-    @members = search_with_filter(@keyword, @deleted)
   end
 
   def search
-    @members = Member.includes(:membergroup)
+    @members = search_with_filters params[:keyword], params[:membergroups]
+    puts @members
     respond_to do |format|
-      format.json { render :json => @members}
+      format.json { render :json => @members }
     end
   end
+
   ##
   #Edits the current Member with right parameters.
 
@@ -130,37 +129,40 @@ class MembersController < ApplicationController
 # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
-  def search_with_filter keyword, deleted
+  def search_with_filters keyword, membergroups
+    all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber"]
 
-    keywords = keyword.split(",")
-    member = Member.includes(:membergroup)
-
-    keywords.each do |word|
-      query = ""
-      query_keywords = {}
-      counter = 65;
-      @all_search_fields.keys.each do |field|
-        if Member.has_field?(field)
+    keywords = keyword.split("|")
+    members = Member.includes(:membergroup)
+    if keywords.length > 0
+      keywords.each do |word|
+        query = ""
+        query_keywords = {}
+        counter = 65;
+        all_search_fields.each do |field|
           query += (query.empty? ? "" : " OR ") + "#{field} LIKE :#{counter.chr}"
           query_keywords[counter.chr.to_sym] = "#{word.strip}%"
           counter += 1
         end
+        members = members.where(query, query_keywords)
       end
-      member = member.where(query, query_keywords)
     end
-    if deleted.length > 0
-      member = member.where(:deleted => deleted.at(0) == "1")
+
+#if deleted.length > 0
+#  members = members.where(:deleted => deleted.at(0) == "1")
+#end
+    if membergroups && membergroups.length > 0
+      query = ""
+      query_keywords = {}
+      counter = 65;
+      membergroups.each do |id|
+        query += (query.empty? ? "" : " OR ") + "membergroups.name = :#{counter.chr}"
+        query_keywords[counter.chr.to_sym] = id
+        counter += 1
+      end
+      members = members.joins(:membergroup).where(query, query_keywords)
     end
-    #query = ""
-    #query_keywords = {}
-    #counter = 65;
-    #membergroups.each do |id|
-    #  query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{counter.chr}"
-    #  query_keywords[counter.chr.to_sym] = id
-    #  counter += 1
-    #end
-    #member.where(query, query_keywords)
-    member
+    members
   end
 
 end
