@@ -88,7 +88,7 @@ describe MembersController do
         response.should redirect_to members_path
       end
     end
-    context "with valid attributes" do
+    context "with invalid attributes" do
       it "update doesn't work" do
         member = FactoryGirl.create(:member)
         get :update,
