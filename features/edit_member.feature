@@ -46,9 +46,9 @@ Feature: edit member
     Then I should see "Tiedot muutettu"
     And I follow "Listaa jäsenet"
     When I am on the members page
+    And I choose "membership_0"
     Then I should see "Janne"
-    Then I should see "Jäsen"
-    Then I should see "false"
+    And I should see "Jäsen"
 
 
   Scenario: edit member with incorrect values

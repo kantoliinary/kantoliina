@@ -106,10 +106,11 @@
             %td{:class => "membergroup"}= member.membergroup.name
             %td{:class => "membershipyear"}= member.membershipyear
             %td{:class => "paymentstatus"}
-              - unless member.membership
-                %img{:src => "/assets/x-mark.png"}
-              - else
+              - if member.membership
                 %img{:src => "/assets/green-mark.png"}
+
+              - else
+                %img{:src => "/assets/x-mark.png"}
             %td{:class => "membership hidden"}
               - if member.membership
                 %img{:src => "/assets/x-mark.png"}
@@ -142,6 +143,8 @@
       = form_tag mailer_confirm_path, :id => "mailer_form" do
         = hidden_field_tag "ids"
         = button_tag "Lähetä sähköpostia", :class => "submit send"
+
+
       %div{:class => "clear"}
 
 
