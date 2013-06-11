@@ -39,6 +39,13 @@
       = f.label "membernumber", "Jäsennumero"
     %div{:class => "left right_field"}
       = f.input :membernumber, as: :string
+
+  %div{:class => "row"}
+    %div{:class => "left"}
+      = f.label "membershipyear", "Jäsenyysvuosi"
+    %div{:class => "left right_field"}
+      = f.input :membershipyear, as: :string
+
   %div{:class => "row"}
     %div{:class => "left"}
     %div{:class => "left right_field"}
@@ -47,6 +54,12 @@
     %div{:class => "left"}
     %div{:class => "left right_field"}
       = f.input :support, label: "Tukihenkilö"
+  %div{:class => "row"}
+    %div{:class => "left"}
+    %div{:class => "left right_field"}
+      = f.input :paymentstatus, label: "Maksanut tämän vuoden jäsenmaksun"
+
+
   %div{:class => "row"}
     %div{:class => "left"}
       = f.label "membergroup_id", 'Jäsenryhmä'
