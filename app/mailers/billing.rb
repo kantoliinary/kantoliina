@@ -17,4 +17,8 @@ class Billing < ActionMailer::Base
     mail(:to => member.email, :subject => subject)
   end
 
+  def reminder_email member
+    @member = member
+    mail(:to => member.email, :subject => "Kantoliinayhdistyksen jäsenmaksu - Maksumuistutus")
+  end
 end
