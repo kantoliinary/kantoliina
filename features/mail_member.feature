@@ -1,6 +1,7 @@
-Feature: invoice members
+Feature: send mail to members
 
-  I want to see if we are billing the right members
+  I want to see if we are sending mail to the right members
+
 
   Background: admins in database
 
@@ -26,42 +27,29 @@ Feature: invoice members
       | Katuosoite       | Jokiniementie         |
       | Postinumero      | 54321                 |
       | Postitoimipaikka | Stadi                 |
-      | Sähköposti       | janne.jasen@yahoo.com |
+      | Sähköposti       | jggggg@hhhhhhh.com    |
       | Jäsennumero      | 12345                 |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
     And I follow "Listaa jäsenet"
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | Liisa                      |
-      | Sukunimi         | Mehiläinen                 |
-      | Kunta            | Espoo                      |
-      | Katuosoite       | Jokintie                   |
-      | Postinumero      | 12345                      |
-      | Postitoimipaikka | Stadi                      |
-      | Sähköposti       | liisa.mehilainen@gmail.com |
-      | Jäsennumero      | 12466                      |
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty"
-    And I follow "Listaa jäsenet"
 
 
-
-  Scenario: Select all
-    And I should see "Liisa"
+  Scenario: Select all to mail page and send mail
     And I should see "Janne"
     And I check "check_all"
-    And I press "Luo laskut"
-    And I should see "Laskun varmistus"
+    And I press "Lähetä sähköpostia"
+    And I should see "Sähköpostin varmistus"
+    And I fill in "subject" with "Otsikko"
+    And I fill in "additional_message" with "viestia"
+    And I press "Lähetä sähköposti"
+    Then I should see "Sähköposti lähetetty"
 
-  Scenario: Select one
-#    And I check "1"
-#    And I press "Lähetä laskut"
-#    And I should not see "Liisa"
-#    And I should see "Janne"
-#    And I should see "Laskunlähetys"
-#
-
+  Scenario: Delete one on mail page
+    And I should see "Janne"
+    And I check "check_all"
+    And I press "Lähetä sähköpostia"
+    And I should see "Sähköpostin varmistus"
+    And I press "Poista"
+    Then I should not see "Janne"
