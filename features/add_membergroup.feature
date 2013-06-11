@@ -9,9 +9,7 @@ Feature: Add a new membergroup
       | username | password  | email          |
       | admin    | qwerty123 | testi@testi.fi |
 
-    Given the following membergroups exist:
-      | id | name        | fee  |
-      | 1  | Ainaisjäsen | 10.0 |
+
 
 
 
