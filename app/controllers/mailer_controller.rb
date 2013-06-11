@@ -17,22 +17,9 @@ class MailerController < ApplicationController
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
       member.save(:validate => false)
-      Billing.send_email(member, params[:additional_message], params[:subject]).deliver
+      Billing.mailer(member, params[:additional_message], params[:subject]).deliver
     end
+    flash[:notice] = "Sähköposti lähetetty"
     redirect_to members_path
-  end
-
-  ##
-  # Loads the mailer haml
-  def update
-    unless (params[:temp] == "2")
-      mail = params[:template]
-      File.open(Rails.root.join("app", "views", "mailer", "mailer.html.haml").to_s, 'w') do |f|
-        f.puts mail
-      end
-      redirect_to settings_path
-    else
-      redirect_to settings_path
-    end
   end
 end

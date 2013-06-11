@@ -10,9 +10,8 @@ class Billing < ActionMailer::Base
     mail(:to => member.email, :subject => "Kantoliinayhdistyksen jäsenmaksu - lasku")
   end
 
-  def send_email member, message, subject
+  def mailer member, message, subject
     @message2 = message
-    puts subject
     @member = member
     mail(:to => member.email, :subject => subject)
   end

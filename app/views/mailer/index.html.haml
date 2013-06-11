@@ -19,13 +19,15 @@
         %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
 
 
-  %h1 Lähtevä maili
+  %h3 Lähtevä viesti
 
   = form_tag mailer_path, :id => "mailer_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+    Otsikko
+    %div{:id => "subjectarea"}
+      = text_field_tag "subject", "", :id => "subject"
+    Viesti
     %div{:id => "textarea"}
       = text_area_tag "additional_message", "", :id => "additional_message"
-    %div{:id => "subjectarea"}
-      = text_area_tag "subject", "otsikko", :id => "subject"
-    = button_tag "Lähetä mailia", :id => "send_mailer"
+    = button_tag "Lähetä sähköposti", :id => "send_mailer"

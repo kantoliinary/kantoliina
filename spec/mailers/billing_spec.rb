@@ -1,4 +1,3 @@
-require "spec_helper"
 
 describe Billing do
   describe "GET #billing" do
@@ -14,7 +13,7 @@ describe Billing do
       Member.stub(:find).and_return(member)
       viesti = "joo"
       otsikko = "topic"
-      Billing.send_email(member, viesti, otsikko).should be_true
+      Billing.mailer(member, viesti, otsikko).should be_true
     end
   end
 end
