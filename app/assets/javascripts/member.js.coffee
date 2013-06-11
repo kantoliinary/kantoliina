@@ -5,19 +5,20 @@ $(document).ready ->
     e.preventDefault()
     if $(this).hasClass("confirm") && !confirm("Oletko varma?")
       return false
-  checkboxs = index.find("#members").find(":checkbox")
-  ids = []
-  $(checkboxs).each (index, value) ->
-    checkbox = $(value)
-    if !!checkbox.attr("checked") && checkbox.attr("name") != "check_all"
-      ids.push checkbox.val()
+    checkboxs = index.find("#members").find(":checkbox")
+    ids = []
+    $(checkboxs).each (index, value) ->
+      checkbox = $(value)
+      if !!checkbox.attr("checked") && checkbox.attr("name") != "check_all"
+        ids.push checkbox.val()
 
-  form = $(this).parent("form")
-  form.children("#ids").val(JSON.stringify({
-    ids: ids
-  }))
-  if ids.length != 0
-    form.submit()
+    form = $(this).parent("form")
+    form.children("#ids").val(JSON.stringify({
+      ids: ids
+    }))
+    if ids.length != 0
+      form.submit()
+
   index.find("#check_all").click ->
     checkboxs = index.children("#centered").children("#members").find(":checkbox")
     check_state = !!$(this).attr "checked"
@@ -26,7 +27,6 @@ $(document).ready ->
 
   index.find("#members").find("table").find(":checkbox").click (e) ->
     checkboxs = index.find("#members").find(":checkbox")
-
     $("#bottom_forms").show()
     checked = false
     $(checkboxs).each (index, value) ->
