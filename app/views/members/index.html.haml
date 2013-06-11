@@ -26,7 +26,7 @@
   = flash[:notice]
   %div{:id => "centered"}
     %div{:id => "members"}
-      %div{:class => "column_menu_content"}
+      %div{:id => "column_menu_content"}
         %div{:class => "column_menu multiselectmenu"}
           %div{:class => "header"}
             Valitse sarakkeet
@@ -59,7 +59,7 @@
               = check_box_tag "paymentstatus", "1", true
               Maksustatus
             %label
-              = check_box_tag "membership", "1", false
+              = check_box_tag "deleted", "1", false
               Poistettu
             %label
               = check_box_tag "support", "1", false
@@ -68,7 +68,7 @@
               = check_box_tag "lender", "1", false
               Lainaamo
 
-      %table{:class => "center", :id => "members"}
+      %table{:class => "center", :id => "members_table"}
         %tr
           %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
           %th{:class => "membernumber"} Jäsennumero
@@ -78,21 +78,19 @@
           %th{:class => "zipcode hidden"} Postinumero
           %th{:class => "postoffice hidden"} Postitoimipaikka
           %th{:class => "membergroup"}
-            Jäsenryhmä
-            %div{:class => "membergroup_menu_content"}
-              %div{:class => "membergroup_menu multiselectmenu"}
-                %div{:class => "header"}
-                  %img{:src => "/assets/arrow-down.png"}
-                %div{:class => "choices"}
-                  -@membergroups.each do |membergroup|
-                    %label
-                      = check_box_tag membergroup.class, "1", true
-                      = membergroup.name
+            %div{:class => "membergroup_menu multiselectmenu"}
+              %div{:class => "header"}
+                Jäsenryhmä
+              %div{:class => "choices"}
+                -@membergroups.each do |membergroup|
+                  %label
+                    = check_box_tag membergroup.name, "1", true
+                    = membergroup.name
           %th{:class => "membershipyear"} Jäsenyys voimassa
           %th{:class => "paymentstatus"} Maksustatus
-          %th{:class => "membership hidden"} Poistettu
-          %th{:class => "support hidden"} Lainaamo
-          %th{:class => "lender hidden"} Tukihenkilö
+          %th{:class => "deleted hidden"} Poistettu
+          %th{:class => "support hidden"} Tukihenkilö
+          %th{:class => "lender hidden"} Lainaamo
 
         - @members.each do | member|
           %tr

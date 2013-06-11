@@ -26,6 +26,8 @@ Kantoliina::Application.routes.draw do
   post "mailer" => 'mailer#create'
   put 'mailer' => 'mailer#update'
 
+  get 'members/search' => "members#search"
+
   resources :settings, :only => [:index]
   resources :accountcontrols, :only => [:index]
   resources :admins, :only => [:update]
