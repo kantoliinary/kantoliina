@@ -33,7 +33,14 @@
       margin-top: 0px;
       text-align: center;
     }
-    #membergroup_menu_content{
+    #column_menu_content{
+      .header{
+        background-color: #74A846;
+        border: 1px solid #bbbbbb;
+        margin: 0;
+        padding: 4px;
+        color: #ffffff;
+      }
     }
     #bottom_forms {
       width: 650px;

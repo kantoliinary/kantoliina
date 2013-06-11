@@ -48,13 +48,17 @@ $(document).ready ->
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
     invoice.find("#mailer_form").find(".member_" + id).remove()
-  multiselect("#index_member_page .column_menu", (element) ->
+  multiselect("#index_member_page .column_menu", {}, (element) ->
     $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
       if $(item).hasClass("hidden")
         $(item).removeClass("hidden")
       else
         $(item).addClass("hidden")
-  )
-  multiselect("#index_member_page .membergroup_menu", (element) ->
-    console.log("ok")
+  , null)
+  multiselect("#index_member_page .membergroup_menu", {contextmenu: true}, null, (element) ->
+    search({
+      selectgroups: [[".membergroup_menu", "membergroup"]],
+      outputtable: "#members_table",
+      column_menu: ".column_menu"
+    })
   )

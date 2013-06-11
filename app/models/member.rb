@@ -5,7 +5,7 @@
 #
 
 class Member < ActiveRecord::Base
-  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :membership, :membershipyear, :paymentstatus, :invoicedate, :lender, :support
+  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :deleted, :membershipyear, :paymentstatus, :invoicedate, :lender, :support
   belongs_to :membergroup
   validates :firstnames, :presence => {:message => "Etunimi puuttuu"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu"}
@@ -64,6 +64,21 @@ class Member < ActiveRecord::Base
 
   end
 
-
+  def as_json(options={})
+    { :id => self.id,
+      :membernumber => self.membernumber,
+      :name => self.firstnames + self.surname,
+      :municipality => self.municipality,
+      :address => self.address,
+      :zipcode => self.zipcode,
+      :postoffice => self.postoffice,
+      :membergroup => self.membergroup.name,
+      :membershipyear => self.membershipyear,
+      :paymentstatus => self.paymentstatus,
+      :deleted => self.deleted,
+      :support => self.support,
+      :lender => self.lender
+    }
+  end
 end
 

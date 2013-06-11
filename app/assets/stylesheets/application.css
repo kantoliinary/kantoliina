@@ -606,6 +606,7 @@ ul#SearchResults li {
 }
 .error{
     color: #ff0000;
+    padding: 10px;
 }
 .notice{
     color: #00FF00;

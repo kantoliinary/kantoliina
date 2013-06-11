@@ -20,7 +20,7 @@ Feature: account controls
 
   Scenario: I submit empty admin account values
     When I am on the accountcontrols page
-    And I press the button "Muokkaa" inside "adminaccount"
+    And I press the button "Tallenna muutokset" inside "adminaccount"
     Then I should see "Tunnuksen muokkaus ei onnistunut"
 
   Scenario: I submit valid admin account changes with a correct password
@@ -30,7 +30,7 @@ Feature: account controls
       | Uusi salasana             | 123qwerty |
       | Uuden salasanan vahvistus | 123qwerty |
       | Vanha salasana            | qwerty123 |
-    And I press the button "Muokkaa" inside "adminaccount"
+    And I press the button "Tallenna muutokset" inside "adminaccount"
     Then I should see "Tiedot päivitetty"
     And I follow "Kirjaudu ulos"
     And I am on the login page
@@ -45,7 +45,7 @@ Feature: account controls
       | Uusi salasana             | 123qwerty |
       | Uuden salasanan vahvistus | 123qwerty |
       | Vanha salasana            | qwerty123 |
-    And I press the button "Muokkaa" inside "adminaccount"
+    And I press the button "Tallenna muutokset" inside "adminaccount"
     Then I should see "Tiedot päivitetty"
     And I follow "Kirjaudu ulos"
     And I am on the login page
@@ -59,7 +59,7 @@ Feature: account controls
     And I fill inside "adminaccount" the following:
       | Uusi käyttäjätunnus       | admi      |
       | Vanha salasana            | qwerty123 |
-    And I press the button "Muokkaa" inside "adminaccount"
+    And I press the button "Tallenna muutokset" inside "adminaccount"
     Then I should see "Käyttäjätunnus päivitetty"
     And I follow "Kirjaudu ulos"
     And I am on the login page
@@ -76,7 +76,7 @@ Feature: account controls
       | Uusi salasana             | 123qwerty |
       | Uuden salasanan vahvistus | 123qwerty |
       | Vanha salasana            | qwerty124 |
-    And I press the button "Muokkaa" inside "adminaccount"
+    And I press the button "Tallenna muutokset" inside "adminaccount"
     Then I should see "Tunnuksen muokkaus ei onnistunut"
 
   Scenario: I submit valid admin account changes with an incorrect verification for the new password
@@ -86,12 +86,12 @@ Feature: account controls
       | Uusi salasana             | 123qwerty |
       | Uuden salasanan vahvistus | 123qwertu |
       | Vanha salasana            | qwerty123 |
-    And I press the button "Muokkaa" inside "adminaccount"
+    And I press the button "Tallenna muutokset" inside "adminaccount"
     Then I should see "Salasanan vahvistus on virheellinen"
 
   Scenario: I submit partner account changes with empty values
     When I am on the accountcontrols page
-    And I press the button "Muokkaa" inside "partneraccount"
+    And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Tunnuksen muokkaus ei onnistunut"
 
   Scenario: I submit valid partner account changes with a correct password
@@ -101,7 +101,7 @@ Feature: account controls
       | partner[password]         | 123qwerty |
       | Uuden salasanan vahvistus | 123qwerty |
       | Ylläpitäjän salasana      | qwerty123 |
-    And I press the button "Muokkaa" inside "partneraccount"
+    And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Tiedot päivitetty"
     And I follow "Kirjaudu ulos"
     When I am on the partner_login page
@@ -116,7 +116,7 @@ Feature: account controls
       | partner[password]         | 123qwerty |
       | Uuden salasanan vahvistus | 123qwerty |
       | Ylläpitäjän salasana      | qwerty123 |
-    And I press the button "Muokkaa" inside "partneraccount"
+    And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Tiedot päivitetty"
     And I follow "Kirjaudu ulos"
     When I am on the partner_login page
@@ -130,7 +130,7 @@ Feature: account controls
     And I fill inside "partneraccount" the following:
       | Uusi käyttäjätunnus       | partneo   |
       | Ylläpitäjän salasana      | qwerty123 |
-    And I press the button "Muokkaa" inside "partneraccount"
+    And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Käyttäjätunnus päivitetty"
     And I follow "Kirjaudu ulos"
     When I am on the partner_login page
@@ -146,7 +146,7 @@ Feature: account controls
       | partner[password]         | 123qwerty |
       | Uuden salasanan vahvistus | 123qwerty |
       | Ylläpitäjän salasana      | qwerty124 |
-    And I press the button "Muokkaa" inside "partneraccount"
+    And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Tunnuksen muokkaus ei onnistunut"
 
   Scenario: I submit valid admin account changes with an incorrect verification for the new password
@@ -156,5 +156,5 @@ Feature: account controls
       | partner[password]         | 123qwerty |
       | Uuden salasanan vahvistus | 123qwertu |
       | Ylläpitäjän salasana      | qwerty123 |
-    And I press the button "Muokkaa" inside "adminaccount"
+    And I press the button "Tallenna muutokset" inside "adminaccount"
     Then I should see "Tunnuksen muokkaus ei onnistunut"
