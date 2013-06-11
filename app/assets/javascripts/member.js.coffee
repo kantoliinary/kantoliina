@@ -18,15 +18,15 @@ $(document).ready ->
     }))
     if ids.length != 0
       form.submit()
-    index.find("#check_all").click ->
-      checkboxs = index.children("#centered").children("#members").find(":checkbox")
-      check_state = !!$(this).attr "checked"
-      $(checkboxs).each (index, value) ->
-        $(value).attr "checked", check_state
+
+  index.find("#check_all").click ->
+    checkboxs = index.children("#centered").children("#members").find(":checkbox")
+    check_state = !!$(this).attr "checked"
+    $(checkboxs).each (index, value) ->
+      $(value).attr "checked", check_state
 
   index.find("#members").find("table").find(":checkbox").click (e) ->
     checkboxs = index.find("#members").find(":checkbox")
-
     $("#bottom_forms").show()
     checked = false
     $(checkboxs).each (index, value) ->
