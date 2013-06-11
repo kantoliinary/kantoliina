@@ -19,6 +19,8 @@ Kantoliina::Application.routes.draw do
   post "invoice" => 'invoice#create'
   put 'invoice' => 'invoice#update'
 
+  post "reminder_invoice" => 'invoice#create_reminder'
+
   post "delete" => 'members#delete'
   post "payment" => 'members#payment'
 
