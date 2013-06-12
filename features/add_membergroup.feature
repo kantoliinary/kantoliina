@@ -17,7 +17,7 @@ Feature: Add a new membergroup
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Jäsenryhmät"
+    And I am on the membergroups page
     Then I should see "Jäsenmaksu (€)"
     And I follow "Lisää jäsenryhmä"
 
@@ -27,7 +27,6 @@ Feature: Add a new membergroup
       | Jäsenmaksu (€) | 10        |
     And I press "Lisää"
     Then I should see "Jäsenryhmä lisätty"
-    And I follow "Jäsenryhmät"
     And I should see "Rivijäsen"
     And I should see "Vuosittainen"
     And I should see "10.0"
@@ -39,7 +38,6 @@ Feature: Add a new membergroup
     And I check "Kertamaksu"
     And I press "Lisää"
     Then I should see "Jäsenryhmä lisätty"
-    And I follow "Jäsenryhmät"
     And I should see "Rivijäsen"
     And I should see "Kerta"
 
