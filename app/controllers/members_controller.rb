@@ -11,10 +11,10 @@ class MembersController < ApplicationController
 
   def new
     @member = flash[:member] || Member.new
-    @member.membershipyear = (Time.now.year).to_i
     @member.membernumber = get_smallest_available_membernumber
     @member.paymentstatus = false
     @submit_text = "Lisää"
+    @isnew = true
   end
 
   def get_smallest_available_membernumber
@@ -37,6 +37,14 @@ class MembersController < ApplicationController
     @member = Member.new(params[:member])
     #@member.membershipyear = (Time.now.year).to_i
     membernumber = @member.membernumber
+
+    #Sets membership for next year
+    if params[:nextyear]
+      @member.membershipyear = (Time.now.year + 1).to_i
+    else
+      @member.membershipyear = (Time.now.year).to_i
+    end
+
     if @member.save
       flash[:notice] = "Jäsen lisätty"
     else
@@ -44,7 +52,6 @@ class MembersController < ApplicationController
     end
 
     member = Member.find_by_membernumber(membernumber)
-
 
     if params[:sendinvoice]
       redirect_to invoice_confirm_path(:id => member.id)
