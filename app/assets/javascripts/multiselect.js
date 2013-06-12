@@ -10,7 +10,7 @@ var multiselect = function (options, itemcallback, callback) {
     $(settings.elements).each(function (index, item) {
         var checboxs = $(item).find(".choices").find(":checkbox")
         $(checboxs).each(function (index, checkbox) {
-            if (readCookie($(checkbox).attr("name") != undefined)) {
+            if (readCookie($(checkbox).attr("name")) != undefined) {
                 $(checkbox).attr("checked", readCookie($(checkbox).attr("name")) == 1)
             }
             settings.callback(checkbox)

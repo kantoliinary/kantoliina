@@ -81,6 +81,21 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+  def unpayment
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @members = Member.find_all_by_id(parsed_json["ids"])
+    @members.each do |member|
+      if member.paymentstatus == true
+        member.paymentstatus = false
+        member.save!(:validate => false)
+        flash[:notice] = "Maksustatus muutettu maksamattomaksi"
+      else
+        flash[:notice] = "Jäsen on jo maksamaton!"
+      end
+    end
+    redirect_to members_path
+  end
+
   ##
   # Changes the deleted status and shows the changes on the screen.
 
@@ -111,7 +126,7 @@ class MembersController < ApplicationController
   end
 
   def search
-    @members = search_with_filters params[:keyword], params[:membergroups], params[:paymentstatus], params[:support], params[:lender], params[:deleted]
+    @members = search_with_filters params
     respond_to do |format|
       format.json { render :json => @members }
     end
@@ -146,10 +161,10 @@ class MembersController < ApplicationController
 # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
-  def search_with_filters keyword, membergroups, paymentstatus, support, lender, deleted
+  def search_with_filters filters
     all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber"]
 
-    keywords = (keyword ? keyword.split("|") : "")
+    keywords = (filters[:keyword] ? filters[:keyword].split("|") : "")
     members = Member.includes(:membergroup)
     if keywords.length > 0
       keywords.each do |word|
@@ -165,28 +180,28 @@ class MembersController < ApplicationController
       end
     end
 
-    if deleted && deleted.length > 0
-      members = members.where(:deleted => deleted.at(0) == "deleted[1]")
+    if filters[:deleted] && filters[:deleted].length == 1
+      members = members.where(:deleted => filters[:deleted].at(0) == "1")
     end
-    if paymentstatus && paymentstatus.length == 1
-      members = members.where(:paymentstatus => paymentstatus.at(0) == "paymentstatus[1]")
-      end
-    if support && support.length == 1
-      members = members.where(:support => support.at(0) == "support[1]")
-      end
-    if lender && lender.length == 1
-      members = members.where(:lender => lender.at(0) == "lender[1]")
+    if filters[:paymentstatus] && filters[:paymentstatus].length == 1
+      members = members.where(:paymentstatus => filters[:paymentstatus].at(0) == "1")
     end
-    if membergroups && membergroups.length > 0
+    if filters[:support] && filters[:support].length == 1
+      members = members.where(:support => filters[:support].at(0) == "1")
+    end
+    if filters[:lender] && filters[:lender].length == 1
+      members = members.where(:lender => filters[:lender].at(0) == "1")
+    end
+    if filters[:membergroups]
       query = ""
       query_keywords = {}
       counter = 65;
-      membergroups.each do |id|
-        query += (query.empty? ? "" : " OR ") + "membergroups.name = :#{counter.chr}"
+      filters[:membergroups].each do |id|
+        query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{counter.chr}"
         query_keywords[counter.chr.to_sym] = id
         counter += 1
       end
-      members = members.joins(:membergroup).where(query, query_keywords)
+      members = members.where(query, query_keywords)
     end
     members
   end
