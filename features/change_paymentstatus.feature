@@ -12,23 +12,11 @@ Feature: Change paymentstatus to false
       | id | name        | fee  |
       | 1  | Ainaisjäsen | 10.0 |
 
+      | id | firstnames | surname          | municipality | address       | zipcode | postoffice | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted    |
+      | 1  | Janne      | Jäsen            | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 3              | 2013           | true          | 2013.01.01  | false      |
 
-    When I am on the login page
-    And I fill in "username" with "admin"
-    And I fill in "password" with "qwerty123"
-    And I press "Login"
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | jasen    |
-      | Sukunimi         | aaa      |
-      | Kunta            | gfdal    |
-      | Katuosoite       | gda      |
-      | Postinumero      | 12345    |
-      | Postitoimipaikka | gda      |
-      | Sähköposti       | gf@a.com |
-      | Jäsennumero      | 12345    |
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I press "Lisää"
+
+
 
   @javascript
   Scenario: I check all members and change their paymentstatus to false

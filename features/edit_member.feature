@@ -12,28 +12,15 @@ Feature: edit member
       | id | name        | fee  |
       | 1  | Ainaisjäsen | 10.0 |
 
+    Given the following members exist:
+      | id | firstnames | surname     | municipality | address  | zipcode | postoffice | email              | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
+      | 1  | Matti      | Meikeläinen | Vaasa        | zigtie 5 | 00666   | Vaasa      | Matti.M@jeejee.com | 11111        | 3              | 2013           | true          | 2013.01.01  | false   |
+
 
     When I am on the login page
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | jasen    |
-      | Sukunimi         | aaa      |
-      | Kunta            | gfdal    |
-      | Katuosoite       | gda      |
-      | Postinumero      | 12345    |
-      | Postitoimipaikka | gda      |
-      | Sähköposti       | gf@a.com |
-      | Jäsennumero      | 12345    |
-
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I check "member_lender"
-    And I check "member_support"
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty"
-    And I follow "Listaa jäsenet"
 
   Scenario: edit member with correct values
     When I am on the members page

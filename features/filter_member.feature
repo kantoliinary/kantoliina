@@ -12,60 +12,22 @@ Feature: filter members
       | id | name        | fee  |
       | 1  | Ainaisjäsen | 10.0 |
 
+    Given the following members exist:
+      | id | firstnames | surname          | municipality | address       | zipcode | postoffice | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted    |
+      | 1  | Janne      | Jäsen            | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | false      |
+      | 2  | Liisa      | Mehiläinen       | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false      |
+      | 3  | Jaana      | Jäsen            | Espoo        | Jokintie      | 12345   | Stadi      | jaana.jasen@hotmail.com    | 12543        | 1              | 2013           | false         | 2013.01.01  | false      |
+      | 4  | Janne      | Jäsen            | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 99999        | 1              | 2013           | true          | 2013.01.01  | true       |
+
 
     When I am on the login page
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | Janne                 |
-      | Sukunimi         | Jäsen                 |
-      | Kunta            | Vantaa                |
-      | Katuosoite       | Jokiniementie         |
-      | Postinumero      | 54321                 |
-      | Postitoimipaikka | Stadi                 |
-      | Sähköposti       | janne.jasen@yahoo.com |
-      | Jäsennumero      | 12345                 |
-
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty"
-    And I follow "Listaa jäsenet"
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | Liisa                      |
-      | Sukunimi         | Mehiläinen                 |
-      | Kunta            | Espoo                      |
-      | Katuosoite       | Jokintie                   |
-      | Postinumero      | 12345                      |
-      | Postitoimipaikka | Stadi                      |
-      | Sähköposti       | liisa.mehilainen@gmail.com |
-      | Jäsennumero      | 12466                      |
-
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty"
-    And I follow "Listaa jäsenet"
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | Jaana                   |
-      | Sukunimi         | Jäsen                   |
-      | Kunta            | Espoo                   |
-      | Katuosoite       | Jokintie                |
-      | Postinumero      | 12345                   |
-      | Postitoimipaikka | Stadi                   |
-      | Sähköposti       | jaana.jasen@hotmail.com |
-      | Jäsennumero      | 12543                   |
-
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty"
-    And I follow "Listaa jäsenet"
 
   Scenario: I filter members by first name
     When I am on the members page
-    And I fill in "keyword" with "Ja"
+    And I fill in "searchfield" with "Ja"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -73,7 +35,7 @@ Feature: filter members
 
   Scenario: I filter members by last name
     When I am on the members page
-    And I fill in "keyword" with "Jäsen"
+    And I fill in "searchfield" with "Jäsen"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -81,7 +43,7 @@ Feature: filter members
 
   Scenario: I filter members by municipality
     When I am on the members page
-    And I fill in "keyword" with "Espoo"
+    And I fill in "searchfield" with "Espoo"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
@@ -89,7 +51,7 @@ Feature: filter members
 
   Scenario: I filter members by address
     When I am on the members page
-    And I fill in "keyword" with "jokin"
+    And I fill in "searchfield" with "jokin"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -97,7 +59,7 @@ Feature: filter members
 
   Scenario: I filter members by address
     When I am on the members page
-    And I fill in "keyword" with "espoo"
+    And I fill in "searchfield" with "espoo"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
@@ -105,7 +67,7 @@ Feature: filter members
 
   Scenario: I filter members by zipcode
     When I am on the members page
-    And I fill in "keyword" with "12345"
+    And I fill in "searchfield" with "12345"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should see "Janne"
@@ -113,7 +75,7 @@ Feature: filter members
 
   Scenario: I filter members by post office
     When I am on the members page
-    And I fill in "keyword" with "helsinki"
+    And I fill in "searchfield" with "helsinki"
     And I press "Hae"
     Then I should not see "Jaana"
     Then I should not see "Janne"
@@ -121,7 +83,7 @@ Feature: filter members
 
   Scenario: I filter members by e-mail
     When I am on the members page
-    And I fill in "keyword" with "liisa"
+    And I fill in "searchfield" with "liisa"
     And I press "Hae"
     Then I should not see "Jaana"
     Then I should not see "Janne"
@@ -129,7 +91,7 @@ Feature: filter members
 
   Scenario: I filter members by member number
     When I am on the members page
-    And I fill in "keyword" with "125"
+    And I fill in "searchfield" with "125"
     And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
@@ -137,42 +99,41 @@ Feature: filter members
 
   Scenario: I filter members by membergroup
     When I am on the members page
-    And I fill in "keyword" with "125"
+    And I fill in "searchfield" with "125"
    And I press "Hae"
     Then I should see "Jaana"
     Then I should not see "Janne"
     Then I should not see "Liisa"
+#
+#  Scenario: I try to see deleted members
+#    When I am on the members page
+#    And I uncheck "Jäsenyys Voimassa"
+#    Then I should see "Jaana"
+#    Then I should see "Janne"
+#    Then I should see "Liisa"
 
-  Scenario: I try to see deleted members
-    When I am on the members page
-    And I choose "membership_1"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should see "Janne"
-    Then I should see "Liisa"
 
-
-  Scenario: I try to see existing members
-    When I am on the members page
-    And I choose "membership_0"
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should not see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: I try to search with two parametres
-    When I am on the members page
-    And I fill in "keyword" with "Janne,Vantaa"
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: I try to search with tree parametres and extra whitespaces
-    When I am on the members page
-    And I fill in "keyword" with "Janne,    Vantaa   ,     Stadi     "
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should see "Janne"
-    Then I should not see "Liisa"
+#  Scenario: I try to see existing members
+#    When I am on the members page
+#    And I choose "membership_0"
+#    And I press "Hae"
+#    Then I should not see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should not see "Liisa"
+#
+#  Scenario: I try to search with two parametres
+#    When I am on the members page
+#    And I fill in "searchfield" with "Janne,Vantaa"
+#    And I press "Hae"
+#    Then I should not see "Jaana"
+#    Then I should see "Janne"
+#    Then I should not see "Liisa"
+#
+#  Scenario: I try to search with three parametres and extra whitespaces
+#    When I am on the members page
+#    And I fill in "searchfield" with "Janne,    Vantaa   ,     Stadi     "
+#    And I press "Hae"
+#    Then I should not see "Jaana"
+#    Then I should see "Janne"
+#    Then I should not see "Liisa"
 

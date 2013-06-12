@@ -2,6 +2,7 @@ $(document).ready ->
   index = $("#index_member_page")
   invoice = $("#invoice_member_page")
   mailer = $("#mailer_member_page")
+  reminder = $("#reminder_member_page")
   index.find(".send").click (e) ->
     e.preventDefault()
     if $(this).hasClass("confirm") && !confirm("Oletko varma?")
@@ -38,7 +39,13 @@ $(document).ready ->
     e.preventDefault
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
-    invoice.find("#mailer_form").find(".member_" + id).remove()
+    mailer.find("#mailer_form").find(".member_" + id).remove()
+
+  reminder.find("#members").find(".delete_button").click (e) ->
+    e.preventDefault
+    id = $(this).data("id")
+    parent = $(this).parent("td").parent("tr").remove()
+    reminder.find("#reminder_form").find(".member_" + id).remove()
 
   multiselect({
       elements: ["#index_member_page .column_menu"],
