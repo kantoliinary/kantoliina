@@ -54,7 +54,7 @@ class Member < ActiveRecord::Base
   def as_json(options={})
     { :id => self.id,
       :membernumber => self.membernumber,
-      :name => self.firstnames + self.surname,
+      :name => "#{self.firstnames} #{self.surname}",
       :municipality => self.municipality,
       :address => self.address,
       :zipcode => self.zipcode,

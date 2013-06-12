@@ -74,7 +74,7 @@
               %div{:class => "choices"}
                 -@membergroups.each do |membergroup|
                   %label
-                    = check_box_tag membergroup.name, "1", true, :id => "membergroup_#{membergroup.id}"
+                    = check_box_tag "membergroup_#{membergroup.id}", membergroup.id, true, :id => "membergroup_#{membergroup.id}"
                     = membergroup.name
           %th{:class => "membershipyear"} Jäsenyys voimassa
           %th{:class => "invoicedate"} Laskun lähetyspäivä
@@ -84,10 +84,10 @@
                 Maksustatus
               %div{:class => "choices"}
                 %label
-                  = check_box_tag "paymentstatus[1]", "1", true
+                  = check_box_tag "paymentstatus_yes", "1", true
                   Kyllä
                 %label
-                  = check_box_tag "paymentstatus[0]", "1", true
+                  = check_box_tag "paymentstatus_no", "0", true
                   Ei
           %th{:class => "deleted hidden"} Poistettu
           %th{:class => "support hidden"}
@@ -96,10 +96,10 @@
                 Tukihenkilö
               %div{:class => "choices"}
                 %label
-                  = check_box_tag "support[1]", "1", true
+                  = check_box_tag "support_yes", "1", true
                   Kyllä
                 %label
-                  = check_box_tag "support[0]", "1", true
+                  = check_box_tag "support[0]", "0", true
                   Ei
           %th{:class => "lender hidden"}
             %div{:class => "lender_menu multiselectmenu"}
@@ -107,10 +107,10 @@
                 Lainaamo
               %div{:class => "choices"}
                 %label
-                  = check_box_tag "lender[1]", "1", true
+                  = check_box_tag "lender_yes", "1", true
                   Kyllä
                 %label
-                  = check_box_tag "lender[0]", "1", true
+                  = check_box_tag "lender_no", "0", true
                   Ei
 
     %div{:id => "bottom_forms"}
