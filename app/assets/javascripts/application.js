@@ -55,3 +55,4 @@ function readCookie(name) {
         if (!ca[i].indexOf(name))
             return ca[i].replace(name, '');
 }
+console.log(document.cookie)

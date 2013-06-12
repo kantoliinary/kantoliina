@@ -63,7 +63,16 @@
           %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
           %th{:class => "membernumber"} Jäsennumero
           %th{:class => "name"} Nimi
-          %th{:class => "municipality"} Kunta
+          %th{:class => "municipality"}
+            %div{:class => "municipality_menu multiselectmenu"}
+              %div{:class => "header"}
+                Kunta
+              %div{:class => "choices"}
+                -@municipalitys.each do |member|
+                  %label
+                    - municipality = member.municipality.gsub(/ä/, "a").gsub(/ö/, "o")
+                    = check_box_tag "municipality_#{municipality}", member.municipality, true, :id => "municipality_#{municipality}"
+                    = member.municipality
           %th{:class => "address hidden"} Osoite
           %th{:class => "zipcode hidden"} Postinumero
           %th{:class => "postoffice hidden"} Postitoimipaikka
@@ -89,7 +98,17 @@
                 %label
                   = check_box_tag "paymentstatus_no", "0", true
                   Ei
-          %th{:class => "deleted hidden"} Poistettu
+          %th{:class => "deleted hidden"}
+            %div{:class => "deleted_menu multiselectmenu"}
+              %div{:class => "header"}
+                Poistettu
+              %div{:class => "choices"}
+                %label
+                  = check_box_tag "deleted_yes", "1", false
+                  Kyllä
+                %label
+                  = check_box_tag "deleted_no", "0", true
+                  Ei
           %th{:class => "support hidden"}
             %div{:class => "support_menu multiselectmenu"}
               %div{:class => "header"}
@@ -99,7 +118,7 @@
                   = check_box_tag "support_yes", "1", true
                   Kyllä
                 %label
-                  = check_box_tag "support[0]", "0", true
+                  = check_box_tag "support_no", "0", true
                   Ei
           %th{:class => "lender hidden"}
             %div{:class => "lender_menu multiselectmenu"}

@@ -17,7 +17,7 @@ Feature: filter members
       | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | false   |
       | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false   |
       | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | jaana.jasen@hotmail.com    | 12543        | 1              | 2013           | false         | 2013.01.01  | false   |
-      | 4  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 99999        | 1              | 2013           | true          | 2013.01.01  | true    |
+      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | true    |
 
 
     When I am on the login page
@@ -104,15 +104,20 @@ Feature: filter members
     Then I should see "Jaana"
     Then I should not see "Janne"
     Then I should not see "Liisa"
-#
+
+
+# feilaa
 #  Scenario: I try to see deleted members
 #    When I am on the members page
-#    And I uncheck "Jäsenyys Voimassa"
-#    Then I should see "Jaana"
-#    Then I should see "Janne"
-#    Then I should see "Liisa"
+#    Then I press "Valitse sarakkeet"
+#    And I uncheck "Jäsenyys voimassa"
+#    Then I should not see "Jaana"
+#    And I should not see "Janne"
+#    And I should not see "Liisa"
+#    And I should see "Pelle"
 
 
+# feilaa
 #  Scenario: I try to see existing members
 #    When I am on the members page
 #    And I choose "membership_0"
@@ -121,19 +126,19 @@ Feature: filter members
 #    Then I should not see "Janne"
 #    Then I should not see "Liisa"
 #
-#  Scenario: I try to search with two parametres
-#    When I am on the members page
-#    And I fill in "searchfield" with "Janne,Vantaa"
-#    And I press "Hae"
-#    Then I should not see "Jaana"
-#    Then I should see "Janne"
-#    Then I should not see "Liisa"
-#
-#  Scenario: I try to search with three parametres and extra whitespaces
-#    When I am on the members page
-#    And I fill in "searchfield" with "Janne,    Vantaa   ,     Stadi     "
-#    And I press "Hae"
-#    Then I should not see "Jaana"
-#    Then I should see "Janne"
-#    Then I should not see "Liisa"
+  Scenario: I try to search with two parameters
+    When I am on the members page
+    And I fill in "searchfield" with "Janne|Vantaa"
+    And I press "Hae"
+    Then I should not see "Jaana"
+    Then I should see "Janne"
+    Then I should not see "Liisa"
+
+  Scenario: I try to search with three parameters and extra whitespaces
+    When I am on the members page
+    And I fill in "searchfield" with "Janne|    Vantaa   |     Stadi     "
+    And I press "Hae"
+    Then I should not see "Jaana"
+    Then I should see "Janne"
+    Then I should not see "Liisa"
 
