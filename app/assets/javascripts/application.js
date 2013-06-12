@@ -25,7 +25,7 @@ Array.prototype.contains = function (obj) {
 }
 
 function member_bottom_form_show(e) {
-    var checkboxs = $("#index_member_page").find("#members").find(":checkbox")
+    var checkboxs = $("#index_member_page").find("#members").find("table").find("tr").find(":checkbox")
     $("#bottom_forms").show()
     $(checkboxs).each(function (index, value) {
         var checkbox = $(value)
@@ -37,4 +37,11 @@ function member_bottom_form_show(e) {
     if (!checked) {
         $("#bottom_forms").hide()
     }
+}
+function un_select_all_mmembers(e) {
+    checkboxs = $("#index_member_page").children("#centered").children("#members").find("table").find("tr").find("td").find(":checkbox")
+    check_state = $(e.target).is(":checked")
+    $(checkboxs).each(function (index, value) {
+        $(value).attr("checked", check_state)
+    })
 }
