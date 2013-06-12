@@ -36,4 +36,18 @@
     = button_tag "Lähetä laskut", :id => "send_invoice"
 
 
+<<<<<<< HEAD
+=======
+  = form_tag reminder_invoice_path, :id => "reminder_invoice_form" do
+    -@members.each do |member|
+      = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+
+    %div{:id => "textarea"}
+      = text_area_tag "top_message", "", :id => "top_message"
+
+    %div{:id => "textarea"}
+      = text_area_tag "bottom_message", "", :id => "bottom_message"
+
+    = button_tag "Lähetä Karhut", :id => "send_reminder_invoice"
+>>>>>>> e11bef517a9d5464bdd6c214dbcf929f34afbbfc
 
