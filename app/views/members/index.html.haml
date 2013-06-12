@@ -126,6 +126,10 @@
         = hidden_field_tag "ids"
         = button_tag "Maksettu", :class => "submit send"
 
+      = form_tag unpayment_path, :id => "unpayment_form" do
+        = hidden_field_tag "ids"
+        = button_tag "Maksamaton", :class => "submit send"
+
       = form_tag mailer_confirm_path, :id => "mailer_form" do
         = hidden_field_tag "ids"
         = button_tag "Lähetä sähköpostia", :class => "submit send"
