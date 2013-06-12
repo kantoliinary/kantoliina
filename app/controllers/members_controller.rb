@@ -122,6 +122,7 @@ class MembersController < ApplicationController
     @membergroups = Membergroup.all
     @deleted = params[:deleted] || "1"
     s_membergroups = params[:membergroups]
+    @municipalitys = Member.select(:municipality).uniq
     @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
   end
 
@@ -199,6 +200,17 @@ class MembersController < ApplicationController
       filters[:membergroups].each do |id|
         query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{counter.chr}"
         query_keywords[counter.chr.to_sym] = id
+        counter += 1
+      end
+      members = members.where(query, query_keywords)
+    end
+    if filters[:municipalitys]
+      query = ""
+      query_keywords = {}
+      counter = 65;
+      filters[:municipalitys].each do |municipality|
+        query += (query.empty? ? "" : " OR ") + "municipality = :#{counter.chr}"
+        query_keywords[counter.chr.to_sym] = municipality
         counter += 1
       end
       members = members.where(query, query_keywords)

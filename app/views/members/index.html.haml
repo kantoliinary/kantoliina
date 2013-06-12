@@ -63,7 +63,16 @@
           %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
           %th{:class => "membernumber"} Jäsennumero
           %th{:class => "name"} Nimi
-          %th{:class => "municipality"} Kunta
+          %th{:class => "municipality"}
+            %div{:class => "municipality_menu multiselectmenu"}
+              %div{:class => "header"}
+                Kunta
+              %div{:class => "choices"}
+                -@municipalitys.each do |member|
+                  %label
+                    - municipality = member.municipality.gsub(/ä/, "a").gsub(/ö/, "o")
+                    = check_box_tag "municipality_#{municipality}", member.municipality, true, :id => "municipality_#{municipality}"
+                    = member.municipality
           %th{:class => "address hidden"} Osoite
           %th{:class => "zipcode hidden"} Postinumero
           %th{:class => "postoffice hidden"} Postitoimipaikka

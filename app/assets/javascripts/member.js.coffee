@@ -65,25 +65,21 @@ $(document).ready ->
 
   multiselect({
       contextmenu: true,
-      elements: ["#index_member_page .membergroup_menu", "#index_member_page .paymentstatus_menu", "#index_member_page .support_menu", "#index_member_page .lender_menu" ]
+      elements: ["#index_member_page .membergroup_menu", "#index_member_page .paymentstatus_menu", "#index_member_page .support_menu", "#index_member_page .lender_menu", "#index_member_page .municipality_menu"]
     }, null, (element) ->
-      search({
-        selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
-        outputtable: "#members_table",
-        column_menu: ".column_menu"
-      })
+      do_search()
   )
 
   $("#search_button").click( (e) ->
-    search({
-      selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
-      outputtable: "#members_table",
-      column_menu: ".column_menu"
-    })
+    do_search()
   )
 
+  do_search()
+
+do_search = ->
   search({
-    selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
+    selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
     outputtable: "#members_table",
     column_menu: ".column_menu"
   })
+
