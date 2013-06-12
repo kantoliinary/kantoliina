@@ -147,7 +147,7 @@ class MembersController < ApplicationController
   def search_with_filters keyword, membergroups, paymentstatus, support, lender, deleted
     all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber"]
 
-    keywords = keyword.split("|")
+    keywords = (keyword ? keyword.split("|") : "")
     members = Member.includes(:membergroup)
     if keywords.length > 0
       keywords.each do |word|
