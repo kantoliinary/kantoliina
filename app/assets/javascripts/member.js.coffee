@@ -20,12 +20,9 @@ $(document).ready ->
     if ids.length != 0
       form.submit()
 
-  index.find("#check_all").click ->
-    checkboxs = index.children("#centered").children("#members").find(":checkbox")
-    check_state = !!$(this).attr "checked"
-    $(checkboxs).each (index, value) ->
-      $(value).attr "checked", check_state
-
+  index.find("#members").find("#check_all").click( (e) ->
+    un_select_all_mmembers(e)
+  )
   index.find("#members").find("table").find("td").find(".member_select_checkbox").click( (e) ->
     member_bottom_form_show(e)
   )
@@ -35,11 +32,13 @@ $(document).ready ->
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
     invoice.find("#invoice_form").find(".member_" + id).remove()
+
   mailer.find("#members").find(".delete_button").click (e) ->
     e.preventDefault
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
     invoice.find("#mailer_form").find(".member_" + id).remove()
+
   multiselect("#index_member_page .column_menu", {}, (element) ->
     $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
       if $(item).hasClass("hidden")
@@ -47,6 +46,7 @@ $(document).ready ->
       else
         $(item).addClass("hidden")
   , null)
+
   multiselect("#index_member_page .membergroup_menu", {contextmenu: true}, null, (element) ->
     search({
       selectgroups: [[".membergroup_menu", "membergroups"]],

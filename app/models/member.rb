@@ -64,7 +64,8 @@ class Member < ActiveRecord::Base
       :paymentstatus => self.paymentstatus,
       :deleted => self.deleted,
       :support => self.support,
-      :lender => self.lender
+      :lender => self.lender,
+      :invoicedate => self.invoicedate
     }
   end
 end

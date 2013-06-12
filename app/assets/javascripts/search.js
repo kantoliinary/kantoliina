@@ -40,7 +40,7 @@ var search = function (options) {
                 $(item).remove()
             }
         })
-        var columns = ["membernumber", "name", "municipality", "address", "zipcode", "postoffice", "membergroup", "membershipyear", "paymentstatus", "deleted", "lender", "support"]
+        var columns = ["membernumber", "name", "municipality", "address", "zipcode", "postoffice", "membergroup", "membershipyear", "invoicedate", "paymentstatus", "deleted", "lender", "support"]
         var images= ["paymentstatus", "deleted", "lender", "support"]
         $(data).each(function (index, member) {
             var tr = jQuery("<tr/>")
