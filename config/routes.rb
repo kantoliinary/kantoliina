@@ -21,6 +21,12 @@ Kantoliina::Application.routes.draw do
   post "invoice" => 'invoice#create'
   put 'invoice' => 'invoice#update'
 
+  get "reminder/confirm" => 'reminder#index', :as => 'reminder_confirm'
+  post "reminder/confirm" => 'reminder#index', :as => 'reminder_confirm'
+  get "reminder" => 'reminder#create'
+  post "reminder" => 'reminder#create'
+
+
   post "reminder_invoice" => 'invoice#create_reminder'
 
   post "delete" => 'members#delete'

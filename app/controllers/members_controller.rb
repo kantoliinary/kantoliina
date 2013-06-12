@@ -70,12 +70,14 @@ class MembersController < ApplicationController
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
     @members = Member.find_all_by_id(parsed_json["ids"])
     @members.each do |member|
-      if member
-        member.paymentstatus = "#{!member.paymentstatus}"
+      if member.paymentstatus == false
+        member.paymentstatus = true
         member.save!(:validate => false)
+        flash[:notice] = "Maksustatus muutettu maksaneeksi"
+      else
+        flash[:notice] = "Jäsen on jo maksanut!"
       end
     end
-    flash[:notice] = "Maksustatus muutettu"
     redirect_to members_path
   end
 
