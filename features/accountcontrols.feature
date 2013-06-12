@@ -16,8 +16,7 @@ Feature: account controls
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And
-    And I follow "Hallitse tunnuksia"
+    And I am on the accountcontrols page
 
   Scenario: I submit empty admin account values
     When I am on the accountcontrols page
@@ -105,11 +104,11 @@ Feature: account controls
     And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Tiedot päivitetty"
     And I follow "Kirjaudu ulos"
-    When I am on the partner_login page
+    When I am on the partners page
     And I fill in "Käyttäjätunnus" with "partra"
     And I fill in "Salasana" with "123qwerty"
     And I press "Login"
-    Then I should see "Jäsenen haku"
+    Then I should see "Syötä jäsennumero"
 
   Scenario: I submit valid new partner password with a correct password
     When I am on the accountcontrols page
@@ -120,11 +119,11 @@ Feature: account controls
     And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Tiedot päivitetty"
     And I follow "Kirjaudu ulos"
-    When I am on the partner_login page
+    When I am on the partners page
     And I fill in "Käyttäjätunnus" with "partner"
     And I fill in "Salasana" with "123qwerty"
     And I press "Login"
-    Then I should see "Jäsenen haku"
+    Then I should see "Syötä jäsennumero"
 
   Scenario: I submit valid new partner username with a correct password
     When I am on the accountcontrols page
@@ -134,11 +133,11 @@ Feature: account controls
     And I press the button "Tallenna muutokset" inside "partneraccount"
     Then I should see "Käyttäjätunnus päivitetty"
     And I follow "Kirjaudu ulos"
-    When I am on the partner_login page
+    When I am on the partners page
     And I fill in "Käyttäjätunnus" with "partneo"
     And I fill in "Salasana" with "qwerty123"
     And I press "Login"
-    Then I should see "Jäsenen haku"
+    Then I should see "Syötä jäsennumero"
 
   Scenario: I submit valid partner account changes with an incorrect password
     When I am on the accountcontrols page
