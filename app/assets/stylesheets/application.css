@@ -161,6 +161,9 @@ input[type = "checkbox"]{
     width: auto;
     padding:0px
 }
+input[type = "radio"]{
+    width: auto;
+}
 .checkbox{
     width:auto;
 }
