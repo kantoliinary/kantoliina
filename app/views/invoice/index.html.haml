@@ -22,17 +22,26 @@
         %td= Member.generate_refnumber(member.membernumber)
         %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
 
-  %hl Lisätietoa laskuun
 
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+
+    %h3 Lisätietoa laskun yläosaan
     %div{:id => "textarea"}
-      = text_area_tag "additional_message", "", :id => "additional_message"
+      = text_area_tag "top_message", "", :id => "top_message"
+    %h3 Lisätietoa laskun alaosaan
+    %div{:id => "textarea"}
+      = text_area_tag "bottom_message", "", :id => "bottom_message"
     = button_tag "Lähetä laskut", :id => "send_invoice"
+
+  %hr{:id => "viiva"}
 
   = form_tag reminder_invoice_path, :id => "reminder_invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
-    = button_tag "Lähetä Karhut", :id => "send_invoice"
+    %div{:id => "textarea"}
+      = text_area_tag "additional_message", "", :id => "additional_message"
+
+    = button_tag "Lähetä Karhut", :id => "send_reminder_invoice"
 

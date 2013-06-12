@@ -15,7 +15,7 @@ FactoryGirl.define do
     f.membershipyear "2014"
     f.paymentstatus "f"
     f.invoicedate "08/08/2013"
-    f.membership "true"
+    f.deleted "f"
     f.lender "f"
     f.support "f"
 

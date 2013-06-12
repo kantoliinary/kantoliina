@@ -16,7 +16,6 @@ class Member < ActiveRecord::Migration
       t.boolean     :deleted, :default => false
       t.boolean     :lender, :default => false
       t.boolean     :support, :default => false
-
       t.timestamps
     end
   end

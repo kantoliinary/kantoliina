@@ -59,14 +59,26 @@
   }
 }
 
-#index_member_page .delete_or_active, #invoice_member_page, #mailer_member_page .delete_button {
+#invoice_member_page .delete_button, #mailer_member_page .delete_button {
   width: 70px;
 }
 
 #invoice_member_page, #mailer_member_page {
   #additional_message {
     display: inline-block;
-    width: 895px;
+    width: 700px;
+  }
+  #top_message {
+    display: inline-block;
+    width: 700px;
+  }
+  #bottom_message {
+    display: inline-block;
+    width: 700px;
+  }
+  #viiva {
+    display: inline-block;
+    width: 700px;
   }
 }
 
