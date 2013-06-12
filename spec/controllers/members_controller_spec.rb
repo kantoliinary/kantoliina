@@ -35,7 +35,7 @@ describe MembersController do
         FactoryGirl.create(:membergroup)
         post :create, :member => {:id => "1", :firstnames => "joku", :surname => "jokinen", :municipality => "helsinki", :zipcode => "12346",
                                   :address => "puutie", :postoffice => "stadi", :email => "jokin@jotain.com", :membergroup_id => 1, :membernumber => "54321",
-                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :membership => "t"}
+                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :deleted => "f"}
         flash[:notice].should == "Jäsen lisätty"
       end
     end

@@ -13,7 +13,7 @@ class PartnersController < ApplicationController
     @message = Hash.new
     if params[:number]
       member = Member.find_by_membernumber(params[:number])
-      if member && member.membership
+      if member && !member.deleted
         flash[:notice] = "Henkilön jäsenyys on voimassa."
       else
         flash[:notice] = "Henkilön jäsenyys ei ole voimassa."
