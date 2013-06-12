@@ -117,10 +117,5 @@ describe Member do
     Member.generate_refnumber(member.membernumber) != "123453"
   end
 
-  it "searches all fields" do
-    member = FactoryGirl.create(:member)
-    Member.has_field?(:email).should be_true
-  end
-
 
 end

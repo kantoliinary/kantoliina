@@ -5,8 +5,9 @@ describe Billing do
       member = FactoryGirl.build(:member)
       Member.stub(:find).and_return(member)
       FactoryGirl.create(:membergroup)
-      lasku = "ddd \n --- \n jee"
-      Billing.bill_email(member, lasku).should be_true
+      yla = "ddd"
+      ala = "jee"
+      Billing.bill_email(member, yla, ala).should be_true
     end
     it "sends mail" do
       member = FactoryGirl.build(:member)
