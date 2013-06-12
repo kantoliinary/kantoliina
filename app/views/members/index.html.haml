@@ -57,6 +57,7 @@
               Jäsenyys voimassa
             %label
               =check_box_tag "invoicedate", "1", true
+              Laskun lähetys päivä
             %label
               = check_box_tag "paymentstatus", "1", true
               Maksustatus
@@ -90,10 +91,40 @@
                     = membergroup.name
           %th{:class => "membershipyear"} Jäsenyys voimassa
           %th{:class => "invoicedate"} Laskun lähetys päivä
-          %th{:class => "paymentstatus"} Maksustatus
+          %th{:class => "paymentstatus"}
+            %div{:class => "paymentstatus_menu multiselectmenu"}
+              %div{:class => "header"}
+                Maksustatus
+              %div{:class => "choices"}
+                %label
+                  = check_box_tag "paymentstatus[1]", "1", true
+                  Kyllä
+                %label
+                  = check_box_tag "paymentstatus[0]", "1", true
+                  Ei
           %th{:class => "deleted hidden"} Poistettu
-          %th{:class => "support hidden"} Tukihenkilö
-          %th{:class => "lender hidden"} Lainaamo
+          %th{:class => "support hidden"}
+            %div{:class => "support_menu multiselectmenu"}
+              %div{:class => "header"}
+                Tukihenkilö
+              %div{:class => "choices"}
+                %label
+                  = check_box_tag "support[1]", "1", true
+                  Kyllä
+                %label
+                  = check_box_tag "support[0]", "1", true
+                  Ei
+          %th{:class => "lender hidden"}
+            %div{:class => "lender_menu multiselectmenu"}
+              %div{:class => "header"}
+                Lainaamo
+              %div{:class => "choices"}
+                %label
+                  = check_box_tag "lender[1]", "1", true
+                  Kyllä
+                %label
+                  = check_box_tag "lender[0]", "1", true
+                  Ei
 
     %div{:id => "bottom_forms"}
       = form_tag invoice_confirm_path, :id => "invoice_form" do

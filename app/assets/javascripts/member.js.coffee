@@ -49,7 +49,7 @@ $(document).ready ->
 
   multiselect("#index_member_page .membergroup_menu", {contextmenu: true}, null, (element) ->
     search({
-      selectgroups: [[".membergroup_menu", "membergroups"]],
+      selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], ["support_menu", "support"], ["lender_menu", "lender"]],
       outputtable: "#members_table",
       column_menu: ".column_menu"
     })
