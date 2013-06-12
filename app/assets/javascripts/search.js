@@ -15,7 +15,7 @@ var search = function (options) {
         var selected = []
         $(item[0]).find(":checkbox").each(function (index, checkbox) {
             if ($(checkbox).attr("checked")) {
-                selected.push($(checkbox).attr("name"))
+                selected.push($(checkbox).val())
             }
         })
         data[item[1]] = selected
