@@ -18,7 +18,7 @@ Feature: Edit a membergroup
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Jäsenryhmät"
+    And I am on the membergroups page
     Then I should see "Jäsenmaksu (€)"
     Then I follow "Rivijäsen"
 
@@ -36,5 +36,5 @@ Feature: Edit a membergroup
     Given I expect to click "cancel" on a confirmation box
     When I press "Poista jäsenryhmä"
     Then I should see "Jäsenryhmän muokkaus"
-    And I follow "Jäsenryhmät"
+    And I am on the membergroups page
     And I should see "Rivijäsen"
