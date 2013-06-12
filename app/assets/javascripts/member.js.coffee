@@ -40,12 +40,20 @@ $(document).ready ->
     parent = $(this).parent("td").parent("tr").remove()
     invoice.find("#mailer_form").find(".member_" + id).remove()
 
-  multiselect({elements: ["#index_member_page .column_menu"]}, (element) ->
-    $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
-      if $(item).hasClass("hidden")
-        $(item).removeClass("hidden")
-      else
-        $(item).addClass("hidden")
+  multiselect({
+      elements: ["#index_member_page .column_menu"],
+      callback: (checkbox) ->
+        th = index.find("#members").find("table").find("."+$(checkbox).attr("name"))
+        if $(checkbox).is(":checked")
+          th.removeClass("hidden")
+        else
+          th.addClass("hidden")
+    }, (element) ->
+      $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
+        if $(item).hasClass("hidden")
+          $(item).removeClass("hidden")
+        else
+          $(item).addClass("hidden")
   , null)
 
   multiselect({
@@ -66,6 +74,7 @@ $(document).ready ->
       column_menu: ".column_menu"
     })
   )
+
   search({
     selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
     outputtable: "#members_table",
