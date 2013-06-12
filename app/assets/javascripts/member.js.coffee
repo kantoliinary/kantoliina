@@ -2,6 +2,7 @@ $(document).ready ->
   index = $("#index_member_page")
   invoice = $("#invoice_member_page")
   mailer = $("#mailer_member_page")
+  reminder = $("#reminder_member_page")
   index.find(".send").click (e) ->
     e.preventDefault()
     if $(this).hasClass("confirm") && !confirm("Oletko varma?")
@@ -23,6 +24,7 @@ $(document).ready ->
   index.find("#members").find("#check_all").click( (e) ->
     un_select_all_mmembers(e)
   )
+
   index.find("#members").find("table").find("td").find(".member_select_checkbox").click( (e) ->
     member_bottom_form_show(e)
   )
@@ -37,14 +39,28 @@ $(document).ready ->
     e.preventDefault
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
-    invoice.find("#mailer_form").find(".member_" + id).remove()
+    mailer.find("#mailer_form").find(".member_" + id).remove()
 
-  multiselect({elements: ["#index_member_page .column_menu"]}, (element) ->
-    $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
-      if $(item).hasClass("hidden")
-        $(item).removeClass("hidden")
-      else
-        $(item).addClass("hidden")
+  reminder.find("#members").find(".delete_button").click (e) ->
+    e.preventDefault
+    id = $(this).data("id")
+    parent = $(this).parent("td").parent("tr").remove()
+    reminder.find("#reminder_form").find(".member_" + id).remove()
+
+  multiselect({
+      elements: ["#index_member_page .column_menu"],
+      callback: (checkbox) ->
+        th = index.find("#members").find("table").find("."+$(checkbox).attr("name"))
+        if $(checkbox).is(":checked")
+          th.removeClass("hidden")
+        else
+          th.addClass("hidden")
+    }, (element) ->
+      $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
+        if $(item).hasClass("hidden")
+          $(item).removeClass("hidden")
+        else
+          $(item).addClass("hidden")
   , null)
 
   multiselect({
@@ -57,6 +73,15 @@ $(document).ready ->
         column_menu: ".column_menu"
       })
   )
+
+  $("#search_button").click( (e) ->
+    search({
+      selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
+      outputtable: "#members_table",
+      column_menu: ".column_menu"
+    })
+  )
+
   search({
     selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
     outputtable: "#members_table",

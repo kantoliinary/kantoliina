@@ -16,6 +16,7 @@
         = hidden_field_tag :temp, params[:temp]
       %div{:id => "invoice_template_button"}
         = submit_tag "Tallenna"
+      = button_tag "Esikatsele", :id => "preview"
   :javascript
     $(document).ready(function(){
       $(".lined").linedtextarea({selectedLine:#{@errorline}})

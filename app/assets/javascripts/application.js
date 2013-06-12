@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
 Array.prototype.contains = function (obj) {
     var i = this.length;
     while (i--) {
@@ -47,3 +46,13 @@ function un_select_all_mmembers(e) {
     })
     member_bottom_form_show(e)
 }
+function SetCookie(name, value) {
+    document.cookie = name + "=" + value
+}
+function readCookie(name) {
+    name += '=';
+    for (var ca = document.cookie.split(/;\s*/), i = ca.length - 1; i >= 0; i--)
+        if (!ca[i].indexOf(name))
+            return ca[i].replace(name, '');
+}
+console.log(document.cookie)
