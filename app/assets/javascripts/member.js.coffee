@@ -57,3 +57,8 @@ $(document).ready ->
         column_menu: ".column_menu"
       })
   )
+  search({
+    selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
+    outputtable: "#members_table",
+    column_menu: ".column_menu"
+  })
