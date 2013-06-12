@@ -65,7 +65,7 @@ class Member < ActiveRecord::Base
       :deleted => self.deleted,
       :support => self.support,
       :lender => self.lender,
-      :invoicedate => self.invoicedate
+      :invoicedate => (self.invoicedate ? self.invoicedate.strftime("%d.%m.%Y") : "")
     }
   end
 end
