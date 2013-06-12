@@ -104,7 +104,31 @@ describe MembersController do
       member = FactoryGirl.create(:member)
       Member.stub(:find).and_return(member)
       post :payment, :ids => "{\"ids\":[\"1\"]}"
-      flash[:notice].should == "Maksustatus muutettu"
+      flash[:notice].should == "Maksustatus muutettu maksaneeksi"
+    end
+
+    it "doesn't change paymentstatus" do
+      member = FactoryGirl.create(:member)
+      Member.stub(:find).and_return(member)
+      post :payment, :ids => "{\"ids\":[\"1\"]}"
+      post :payment, :ids => "{\"ids\":[\"1\"]}"
+      flash[:notice].should == "Jäsen on jo maksanut!"
+    end
+  end
+
+  describe "POST #unpayment" do
+    it "changes paymentstatus" do
+      member = FactoryGirl.create(:member, paymentstatus: true)
+      Member.stub(:find).and_return(member)
+      post :unpayment, :ids => "{\"ids\":[\"1\"]}"
+      flash[:notice].should == "Maksustatus muutettu maksamattomaksi"
+    end
+
+    it "doesn't change paymentstatus" do
+      member = FactoryGirl.create(:member, paymentstatus: false)
+      Member.stub(:find).and_return(member)
+      post :unpayment, :ids => "{\"ids\":[\"1\"]}"
+      flash[:notice].should == "Jäsen on jo maksamaton!"
     end
   end
 

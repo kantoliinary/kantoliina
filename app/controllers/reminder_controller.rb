@@ -17,7 +17,6 @@ class ReminderController < ApplicationController
     end
   end
 
-
   def create
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
@@ -28,4 +27,5 @@ class ReminderController < ApplicationController
     end
     redirect_to members_path
   end
+
 end
