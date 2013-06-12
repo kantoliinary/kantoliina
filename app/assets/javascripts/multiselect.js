@@ -14,11 +14,14 @@ var multiselect = function (options, itemcallback, callback) {
                 callback(this)
             }
         })
-        $(item).find(".choices").find("input").click(function () {
+        $(item).find(".choices").find("input").click(function (e) {
+            setcookie(e.target)
             if (itemcallback != null) {
-                itemcallback(this)
+                itemcallback(e.target)
             }
         })
     })
+    function setcookie(e){
+        SetCookie($(e).attr("name"), ($(e).is(":checked") ? "1" : "0"))
+    }
 }
-

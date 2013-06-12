@@ -2,27 +2,14 @@
   %h1 Jäsenten listaus
 
   %div{:id => "search_form"}
-    = form_tag members_path, :method => :get, :id => 'filter_form' do
-      %div{:id => "keyword_field"}
-        = text_field_tag "searchfield", "#{@keyword}"
-      %hr
-      %div{:id => "membership_fields", :class => "left"}
-        %span{:class => "bold"}
-          Poistettu
-        %div{:class => "field"}
-          = radio_button_tag "membership", 0, @membership == "0", :class => "checkbox"
-          %span
-            Kyllä
-        %div{:class => "field"}
-          = radio_button_tag "membership", 1, @membership == "1", :class => "checkbox"
-          %span
-            Ei
-      %div{:class => "clear"}
-      %div{:id => "submit_button"}
-        = submit_tag "Hae", :class => "submit"
-      %div{:id => "tulosmaara"}
-        Hakutulosten määrä:
-        -#=@members.count
+    %div{:id => "keyword_field"}
+      = text_field_tag "searchfield", "#{@keyword}"
+    %div{:class => "clear"}
+    %div{:id => "submit_button"}
+      = submit_tag "Hae", :class => "submit", :id => "search_button"
+    %div{:id => "tulosmaara"}
+      Hakutulosten määrä:
+    -#=@members.count
   = flash[:notice]
   %div{:id => "centered"}
     %div{:id => "members"}
@@ -87,7 +74,7 @@
               %div{:class => "choices"}
                 -@membergroups.each do |membergroup|
                   %label
-                    = check_box_tag membergroup.name, "1", true
+                    = check_box_tag membergroup.name, "1", true, :id => "membergroup_#{membergroup.id}"
                     = membergroup.name
           %th{:class => "membershipyear"} Jäsenyys voimassa
           %th{:class => "invoicedate"} Laskun lähetys päivä

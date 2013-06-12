@@ -23,6 +23,7 @@ $(document).ready ->
   index.find("#members").find("#check_all").click( (e) ->
     un_select_all_mmembers(e)
   )
+
   index.find("#members").find("table").find("td").find(".member_select_checkbox").click( (e) ->
     member_bottom_form_show(e)
   )
@@ -56,6 +57,14 @@ $(document).ready ->
         outputtable: "#members_table",
         column_menu: ".column_menu"
       })
+  )
+
+  $("#search_button").click( (e) ->
+    search({
+      selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
+      outputtable: "#members_table",
+      column_menu: ".column_menu"
+    })
   )
   search({
     selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
