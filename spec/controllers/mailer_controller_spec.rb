@@ -25,7 +25,7 @@ describe MailerController do
         member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
         members = [member, member2]
         Member.stub(:find_all_by_id).and_return(members)
-        post :create, :additional_message => "fa"
+        post :create, :additional_message => "fa", :subject => "topic"
         response.should_not be_success
         response.should redirect_to members_path
       end

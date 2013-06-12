@@ -17,8 +17,9 @@ class MailerController < ApplicationController
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
       member.save(:validate => false)
-      Billing.send_email(member, params[:additional_message]).deliver
+      Billing.mailer(member, params[:additional_message], params[:subject]).deliver
     end
+    flash[:notice] = "Sähköposti lähetetty"
     redirect_to members_path
   end
 end

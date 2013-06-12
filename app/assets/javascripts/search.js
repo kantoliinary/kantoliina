@@ -7,8 +7,9 @@ var search = function (options) {
         column_menu: ""
     }
     var settings = $.extend({}, defaults, options)
+    $("#" + settings.searchfield).val()
     var data = {
-        keyword: $("#" + settings.searchfield).text()
+        keyword: $("#" + settings.searchfield).val()
     }
     $(settings.selectgroups).each(function (index, item) {
         var selected = []
@@ -46,10 +47,13 @@ var search = function (options) {
             var td = jQuery("<td/>").appendTo(tr)
             jQuery("<input/>",{
                 type: "checkbox",
-                class: "checkbox",
+                class: "member_select_checkbox",
                 id: "member_"+member.id,
                 name: "member_"+member.id,
-                value: member.id
+                value: member.id,
+                click: function(e){
+                    member_bottom_form_show(e)
+                }
             }).appendTo(td)
             $(columns).each(function(index, column){
                 td = jQuery("<td/>",{

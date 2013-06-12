@@ -25,20 +25,7 @@ class Member < ActiveRecord::Base
   validates :lender, :inclusion => {:in => [true, false]}
   validates :support,:inclusion => {:in => [true, false]}
 
-  @@all_search_fields = {:firstnames => "Etunimi", :surname => "Sukunimi", :municipality => "Asuinkunta", :address => "Osoite", :zipcode => "Postinumero", :postoffice => "Postitoimipaikka", :email => "Sähköposti", :membernumber => "Jäsennumero"}
   @@refernumberprefix = '6004'
-  ##
-  #  Searches all search fields and returns them.
-  def self.all_search_fields
-    @@all_search_fields
-    #%w(Asuinkunta, Maksustatus Jäsenstatus)
-  end
-
-  ##
-  #  Ensures that the field exists.
-  def self.has_field? field
-    @@all_search_fields.has_key?(field.to_sym)
-  end
 
   ##
   # Generates a reference number from a member number using a mathematical formula.
