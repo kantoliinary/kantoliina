@@ -56,6 +56,8 @@
               = check_box_tag "membershipyear", "1", true
               Jäsenyys voimassa
             %label
+              =check_box_tag "invoicedate", "1", true
+            %label
               = check_box_tag "paymentstatus", "1", true
               Maksustatus
             %label
@@ -87,6 +89,7 @@
                     = check_box_tag membergroup.name, "1", true
                     = membergroup.name
           %th{:class => "membershipyear"} Jäsenyys voimassa
+          %th{:class => "invoicedate"} Laskun lähetys päivä
           %th{:class => "paymentstatus"} Maksustatus
           %th{:class => "deleted hidden"} Poistettu
           %th{:class => "support hidden"} Tukihenkilö
