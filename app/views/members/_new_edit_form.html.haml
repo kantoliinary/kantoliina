@@ -34,17 +34,24 @@
       = f.label "email", "Sähköposti"
     %div{:class => "left right_field"}
       = f.input :email
-  %div{:class => "row"}
-    %div{:class => "left"}
-      = f.label "membernumber", "Jäsennumero"
-    %div{:class => "left right_field"}
-      = f.input :membernumber, as: :string
+  - if @isnew
+    %div{:class => "row"}
+      %div{:class => "left"}
+        = f.label "membernumber", "Jäsennumero"
+      %div{:class => "left right_field"}
+        = f.input :membernumber, as: :string
 
   %div{:class => "row"}
     %div{:class => "left"}
-      = f.label "membershipyear", "Jäsenyysvuosi"
+      = f.label "membergroup_id", 'Jäsenryhmä'
     %div{:class => "left right_field"}
-      = f.input :membershipyear, as: :string
+      = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
+
+  -#%div{:class => "row"}
+  -#  %div{:class => "left"}
+  -#    = f.label "membershipyear", "Jäsenyysvuosi"
+  -#  %div{:class => "left right_field"}
+  -#    = f.input :membershipyear, as: :string
 
   %div{:class => "row"}
     %div{:class => "left"}
@@ -54,17 +61,32 @@
     %div{:class => "left"}
     %div{:class => "left right_field"}
       = f.input :support, label: "Tukihenkilö"
-  %div{:class => "row"}
-    %div{:class => "left"}
-    %div{:class => "left right_field"}
-      = f.input :paymentstatus, label: "Maksanut tämän vuoden jäsenmaksun"
+  - if @isnew
+    %div{:class => "row"}
+      %div{:class => "left"}
+      %div{:class => "left right_field"}
+        = check_box_tag :sendinvoice
+        = hidden_field_tag "ids"
+        = label_tag :sendinvoice, "Lähetä lasku"
+
+    %div{:class => "row"}
+      %div{:class => "left"}
+      %div{:class => "left right_field"}
+        = check_box_tag :nextyear
+        = hidden_field_tag "ids"
+        = label_tag :nextyear, "Anna jäsenyys ensivuodelle"
+
+    %div{:class => "row"}
+      %div{:class => "left"}
+      %div{:class => "left right_field"}
+        = f.input :paymentstatus, label: "Maksanut tämän vuoden jäsenmaksun"
 
 
-  %div{:class => "row"}
-    %div{:class => "left"}
-      = f.label "membergroup_id", 'Jäsenryhmä'
-    %div{:class => "left right_field"}
-      = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
+  -#%div{:class => "row"}
+  -#  %div{:class => "left"}
+  -#    = f.label "membergroup_id", 'Jäsenryhmä'
+  -#  %div{:class => "left right_field"}
+  -#    = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
   %div{:class => "clear"}
   %div{:class => "left"}
     = f.submit @submit_text, id:"update"

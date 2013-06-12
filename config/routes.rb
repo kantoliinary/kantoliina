@@ -15,7 +15,9 @@ Kantoliina::Application.routes.draw do
   post 'partnerlogin' => 'partner_sessions#create', :as =>'partner_login'
   get 'partnerlogout' => 'partner_sessions#destroy', :as => 'partner_logout'
 
+  get "invoice/confirm" => 'invoice#index', :as => 'invoice_confirm'
   post "invoice/confirm" => 'invoice#index', :as => 'invoice_confirm'
+  get "invoice" => 'invoice#create'
   post "invoice" => 'invoice#create'
   put 'invoice' => 'invoice#update'
 
