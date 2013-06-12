@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
     t.boolean  "deleted",        :default => false
     t.boolean  "lender",         :default => false
     t.boolean  "support",        :default => false
+    t.date     "latestinvoice"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end

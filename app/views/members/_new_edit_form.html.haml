@@ -34,7 +34,7 @@
       = f.label "email", "Sähköposti"
     %div{:class => "left right_field"}
       = f.input :email
-  - if @isnew
+  - if @isnew #Hides field for membernumber on editpage
     %div{:class => "row"}
       %div{:class => "left"}
         = f.label "membernumber", "Jäsennumero"
@@ -61,7 +61,8 @@
     %div{:class => "left"}
     %div{:class => "left right_field"}
       = f.input :support, label: "Tukihenkilö"
-  - if @isnew
+
+  - if @isnew #Hides following fields on editpage
     %div{:class => "row"}
       %div{:class => "left"}
       %div{:class => "left right_field"}
