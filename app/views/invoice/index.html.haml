@@ -26,6 +26,7 @@
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+
     %h3 Lisätietoa laskun yläosaan
     %div{:id => "textarea"}
       = text_area_tag "top_message", "", :id => "top_message"
@@ -33,6 +34,8 @@
     %div{:id => "textarea"}
       = text_area_tag "bottom_message", "", :id => "bottom_message"
     = button_tag "Lähetä laskut", :id => "send_invoice"
+
+  %hr{:id => "viiva"}
 
   = form_tag reminder_invoice_path, :id => "reminder_invoice_form" do
     -@members.each do |member|
