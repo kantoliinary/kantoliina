@@ -9,13 +9,12 @@ Feature: Change paymentstatus to false
       | admin    | qwerty123 | testi@testi.fi |
 
     Given the following membergroups exist:
-      | id | name        | fee  |
-      | 1  | Ainaisjäsen | 10.0 |
+      | id | name        | fee     |
+      | 1  | Ainaisjäsen | 10.0    |
 
-      | id | firstnames | surname          | municipality | address       | zipcode | postoffice | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted    |
-      | 1  | Janne      | Jäsen            | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 3              | 2013           | true          | 2013.01.01  | false      |
-
-
+    Given the following members exist:
+      | id | firstnames  | surname | municipality | address       | zipcode | postoffice | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
+      | 1  | Janne       | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com | 12345        | 3              | 2013           | true          | 2013.01.01  | false   |
 
 
   @javascript
