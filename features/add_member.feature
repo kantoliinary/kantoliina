@@ -30,7 +30,6 @@ Feature: Add a new member
       | Postinumero      | 12345    |
       | Postitoimipaikka | gda      |
       | Sähköposti       | gf@a.com |
-      | Jäsennumero      | 12345    |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
     And I check "member_lender"
@@ -49,7 +48,6 @@ Feature: Add a new member
       | Postinumero      | 12345  |
       | Postitoimipaikka | gda    |
       | Sähköposti       | gf.com |
-      | Jäsennumero      | 12345  |
     And I press "Lisää"
     And I check "member_lender"
     Then I should see "Sähköpostiosoitteen muoto on väärä"

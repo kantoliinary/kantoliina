@@ -31,6 +31,7 @@ Kantoliina::Application.routes.draw do
 
   post "delete" => 'members#delete'
   post "payment" => 'members#payment'
+  post "unpayment" => 'members#unpayment'
 
   post "mailer/confirm" => 'mailer#index', :as => 'mailer_confirm'
   post "mailer" => 'mailer#create'
@@ -38,6 +39,7 @@ Kantoliina::Application.routes.draw do
 
   get 'members/search' => "members#search"
 
+  put 'settings' => 'settings#update'
   resources :settings, :only => [:index]
   resources :accountcontrols, :only => [:index]
   resources :admins, :only => [:update]

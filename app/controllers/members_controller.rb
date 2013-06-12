@@ -81,6 +81,21 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+  def unpayment
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @members = Member.find_all_by_id(parsed_json["ids"])
+    @members.each do |member|
+      if member.paymentstatus == true
+        member.paymentstatus = false
+        member.save!(:validate => false)
+        flash[:notice] = "Maksustatus muutettu maksamattomaksi"
+      else
+        flash[:notice] = "Jäsen on jo maksamaton!"
+      end
+    end
+    redirect_to members_path
+  end
+
   ##
   # Changes the deleted status and shows the changes on the screen.
 
