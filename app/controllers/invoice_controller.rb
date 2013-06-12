@@ -15,7 +15,7 @@ class InvoiceController < ApplicationController
       parsed_json = ActiveSupport::JSON.decode(params[:ids])
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => "membergroup_id != 3")
     end
-    end
+  end
 
   ##
   # Selects a group of members by chosen ID and sends an invoice to their e-mails.

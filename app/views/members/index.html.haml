@@ -143,6 +143,10 @@
         = hidden_field_tag "ids"
         = button_tag "Lähetä sähköpostia", :class => "submit send"
 
+      = form_tag reminder_confirm_path, :id => "remainder_form" do
+        = hidden_field_tag "ids"
+        = button_tag "Lähetä sähköpostia", :class => "submit send"
+
 
       %div{:class => "clear"}
 
