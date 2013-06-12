@@ -104,7 +104,7 @@ describe MembersController do
       member = FactoryGirl.create(:member)
       Member.stub(:find).and_return(member)
       post :payment, :ids => "{\"ids\":[\"1\"]}"
-      flash[:notice].should == "Maksustatus muutettu"
+      flash[:notice].should == "Maksustatus muutettu maksaneeksi"
     end
   end
 
