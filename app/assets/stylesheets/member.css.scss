@@ -47,7 +47,7 @@
       margin: 0 auto;
       display: none;
 
-      #invoice_form, #delete_active_form, #payment_form, #mailer_form {
+      #invoice_form, #delete_active_form, #payment_form, #mailer_form, #reminder_form {
         width: 210px;
         float: left;
         margin: 0;
@@ -59,11 +59,11 @@
   }
 }
 
-#invoice_member_page .delete_button, #mailer_member_page .delete_button {
+#invoice_member_page .delete_button, #mailer_member_page .delete_button, #reminder_member_page .delete_button{
   width: 70px;
 }
 
-#invoice_member_page, #mailer_member_page {
+#invoice_member_page, #mailer_member_page, #reminder_member_page {
   #additional_message {
     display: inline-block;
     width: 700px;
@@ -73,10 +73,6 @@
     width: 700px;
   }
   #bottom_message {
-    display: inline-block;
-    width: 700px;
-  }
-  #viiva {
     display: inline-block;
     width: 700px;
   }

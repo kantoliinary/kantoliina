@@ -30,18 +30,6 @@ class InvoiceController < ApplicationController
     redirect_to members_path
   end
 
-
-  def create_reminder
-    @members = Member.find_all_by_id(params[:member])
-    @members.each do |member|
-      member.invoicedate = Time.now
-      member.paymentstatus = false;
-      member.save(:validate => false)
-      Billing.reminder_email(member, params[:top_message], params[:bottom_message]).deliver
-    end
-    redirect_to members_path
-  end
-
   ##
   # Loads the invoice template to the interface
   def update
