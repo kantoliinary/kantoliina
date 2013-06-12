@@ -17,10 +17,11 @@ class MembergroupsController < ApplicationController
 
     if @membergroup.save
       flash[:notice] = "Jäsenryhmä lisätty"
+      redirect_to membergroups_path
     else
       flash[:membergroup] = @membergroup
+      redirect_to new_membergroup_path
     end
-    redirect_to new_membergroup_path
   end
 
   def edit
