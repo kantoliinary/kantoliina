@@ -14,8 +14,8 @@ Feature: Delete a new member
 
     Given the following members exist:
       | id | firstnames | surname     | municipality | address  | zipcode | postoffice | email              | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
-      | 1  | Matti      | Meikeläinen | Vaasa        | zigtie 5 | 00666   | Vaasa      | Matti.M@jeejee.com | 11111        | 3              | 2013           | true          | 2013.01.01  | false   |
-      | 2  | Miska      | Meikeläinen | Vaasa        | zigtie 6 | 00666   | Vaasa      | Miska.M@jeejee.com | 11112        | 3              | 2012           | false         | 2013.01.01  | false   |
+      | 1  | Matti      | Meikeläinen | Vaasa        | zigtie 5 | 00666   | Vaasa      | Matti.M@jeejee.com | 11111        | 1              | 2013           | true          | 2013.01.01  | false   |
+      | 2  | Miska      | Meikeläinen | Vaasa        | zigtie 6 | 00666   | Vaasa      | Miska.M@jeejee.com | 11112        | 1              | 2012           | false         | 2013.01.01  | false   |
 
 
     When I am on the login page
@@ -26,7 +26,7 @@ Feature: Delete a new member
   @javascript
   Scenario: I try to delete a members from the list page
     When I am on the members page
-    Then I should see "jasen"
+    Then I should see "Matti"
     And I check "member_1"
     Given I expect to click "OK" on a confirmation box
     When I press "Poista"
@@ -35,7 +35,7 @@ Feature: Delete a new member
   @javascript
   Scenario: I try to delete all members from the list page and press cancel on conf
     When I am on the members page
-    Then I should see "jasen"
+    Then I should see "Matti"
     And I check "check_all"
     Given I expect to click "cancel" on a confirmation box
     When I press "Poista"
