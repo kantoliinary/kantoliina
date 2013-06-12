@@ -14,26 +14,15 @@ Feature: send mail to members
       | 1  | Ainaisjäsen    | 40.0 |
       | 2  | Varsinaisjäsen | 20.0 |
 
+    Given the following members exist:
+      | id | firstnames | surname | municipality | address       | zipcode | postoffice | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
+      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com | 12345        | 1              | 2013           | true          | 2013.01.01  | false   |
+
 
     When I am on the login page
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    And I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | Janne                 |
-      | Sukunimi         | Jäsen                 |
-      | Kunta            | Vantaa                |
-      | Katuosoite       | Jokiniementie         |
-      | Postinumero      | 54321                 |
-      | Postitoimipaikka | Stadi                 |
-      | Sähköposti       | jggggg@hhhhhhh.com    |
-      | Jäsennumero      | 12345                 |
-
-    And I select "Ainaisjäsen" from "member[membergroup_id]"
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty"
-    And I follow "Listaa jäsenet"
 
 
   Scenario: Select all to mail page and send mail

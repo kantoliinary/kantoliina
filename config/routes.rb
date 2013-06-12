@@ -39,6 +39,7 @@ Kantoliina::Application.routes.draw do
 
   get 'members/search' => "members#search"
 
+  put 'settings' => 'settings#update'
   resources :settings, :only => [:index]
   resources :accountcontrols, :only => [:index]
   resources :admins, :only => [:update]
