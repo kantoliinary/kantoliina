@@ -74,6 +74,7 @@ Feature: Add a new member
       | Postinumero      | 12345      |
       | Postitoimipaikka | gda        |
       | Sähköposti       | gf@kkk.com |
+      | Jäsennumero      | 12345      |
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
     When I fill in the following:
@@ -84,5 +85,6 @@ Feature: Add a new member
       | Postinumero      | 12345      |
       | Postitoimipaikka | gda        |
       | Sähköposti       | gf@ggg.com |
+      | Jäsennumero      | 12345      |
     And I press "Lisää"
     Then I should see "Jäsennumero on jo käytössä"

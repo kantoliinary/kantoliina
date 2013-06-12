@@ -258,7 +258,7 @@ input[type = "checkbox"]{
 /*
 	LEVEL TWO
 */
-#header-content ul.dropdown ul 						{ visibility: hidden; position: absolute; top: 100%; left: 0; }
+#header-content ul.dropdown ul 						{ width: 120px; visibility: hidden; position: absolute; top: 100%; left: 0; }
 #header-content ul.dropdown ul li 					{ font-weight: normal; background: #f6f6f6; color: #000;
     border-bottom: 1px solid #ccc; float: none; }
 
