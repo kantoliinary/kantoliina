@@ -16,6 +16,7 @@ Feature: account controls
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
+    And
     And I follow "Hallitse tunnuksia"
 
   Scenario: I submit empty admin account values
