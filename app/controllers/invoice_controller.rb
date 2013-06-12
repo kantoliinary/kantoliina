@@ -25,7 +25,7 @@ class InvoiceController < ApplicationController
       member.invoicedate = Time.now
       member.paymentstatus = false;
       member.save(:validate => false)
-      Billing.bill_email(member, params[:additional_message]).deliver
+      Billing.bill_email(member, params[:top_message], params[:bottom_message]).deliver
     end
     redirect_to members_path
   end
