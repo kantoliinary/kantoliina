@@ -39,7 +39,7 @@ $(document).ready ->
     parent = $(this).parent("td").parent("tr").remove()
     invoice.find("#mailer_form").find(".member_" + id).remove()
 
-  multiselect("#index_member_page .column_menu", {}, (element) ->
+  multiselect({elements: ["#index_member_page .column_menu"]}, (element) ->
     $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
       if $(item).hasClass("hidden")
         $(item).removeClass("hidden")
@@ -47,10 +47,13 @@ $(document).ready ->
         $(item).addClass("hidden")
   , null)
 
-  multiselect("#index_member_page .membergroup_menu", {contextmenu: true}, null, (element) ->
-    search({
-      selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], ["support_menu", "support"], ["lender_menu", "lender"]],
-      outputtable: "#members_table",
-      column_menu: ".column_menu"
-    })
+  multiselect({
+      contextmenu: true,
+      elements: ["#index_member_page .membergroup_menu", "#index_member_page .paymentstatus_menu", "#index_member_page .support_menu", "#index_member_page .lender_menu" ]
+    }, null, (element) ->
+      search({
+        selectgroups: [[".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"]],
+        outputtable: "#members_table",
+        column_menu: ".column_menu"
+      })
   )

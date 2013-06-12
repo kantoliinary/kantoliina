@@ -109,8 +109,7 @@ class MembersController < ApplicationController
   end
 
   def search
-    @members = search_with_filters params[:keyword], params[:membergroups]
-    puts @members
+    @members = search_with_filters params[:keyword], params[:membergroups], params[:paymentstatus], params[:support], params[:lender], params[:deleted]
     respond_to do |format|
       format.json { render :json => @members }
     end
@@ -145,7 +144,7 @@ class MembersController < ApplicationController
 # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
-  def search_with_filters keyword, membergroups
+  def search_with_filters keyword, membergroups, paymentstatus, support, lender, deleted
     all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber"]
 
     keywords = keyword.split("|")
@@ -164,9 +163,18 @@ class MembersController < ApplicationController
       end
     end
 
-#if deleted.length > 0
-#  members = members.where(:deleted => deleted.at(0) == "1")
-#end
+    if deleted && deleted.length > 0
+      members = members.where(:deleted => deleted.at(0) == "deleted[1]")
+    end
+    if paymentstatus && paymentstatus.length == 1
+      members = members.where(:paymentstatus => paymentstatus.at(0) == "paymentstatus[1]")
+      end
+    if support && support.length == 1
+      members = members.where(:support => support.at(0) == "support[1]")
+      end
+    if lender && lender.length == 1
+      members = members.where(:lender => lender.at(0) == "lender[1]")
+    end
     if membergroups && membergroups.length > 0
       query = ""
       query_keywords = {}
