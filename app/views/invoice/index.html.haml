@@ -37,5 +37,8 @@
   = form_tag reminder_invoice_path, :id => "reminder_invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
-    = button_tag "Lähetä Karhut", :id => "send_invoice"
+    %div{:id => "textarea"}
+      = text_area_tag "additional_message", "", :id => "additional_message"
+
+    = button_tag "Lähetä Karhut", :id => "send_reminder_invoice"
 
