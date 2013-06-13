@@ -64,12 +64,7 @@ class ReminderController < ApplicationController
     @f.each do |key, value|
       flash[key] = value
     end
-
-<<<<<<< HEAD
-    redirect_to reminder_editor_path
-=======
     redirect_to reminder_edit_path
->>>>>>> a943f747032566333afb8014076a7ecfe59907e0
   end
 
 end
