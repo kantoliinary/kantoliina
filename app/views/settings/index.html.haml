@@ -10,26 +10,25 @@
     %div{:class => "error"}
       = @error
 
-    = form_tag invoice_path, :method => "put" do
+    = form_tag invoice_path, :method => "put", :id => "invoice_template_form" do
+      = hidden_field_tag "action"
+
 
       %div{:id => "textarea"}
         = text_area_tag "template", @template, :class => "lined"
 
       %div{:id => "invoice_template_button"}
         = submit_tag "Tallenna"
-      = button_to "Esikatsele", settings_path
+
     %a{:href => "settings/loaddefault"}
       = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
-<<<<<<< HEAD
 
+    = button_tag "Esikatsele", :id => "preview"
 
     %h3 Esikatselunäkymä
     %div{:id => "textlook"}
-      = text_area_tag "template2", @template, :class => "lined", :readonly => true
+
       = hidden_field_tag :temp, params[:temp]
-=======
-    = button_tag "Esikatsele", :id => "preview"
->>>>>>> 94f381a7281199762ebec6225d6901f80976d9af
 
   :javascript
     $(document).ready(function(){
