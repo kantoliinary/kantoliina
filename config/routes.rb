@@ -20,12 +20,16 @@ Kantoliina::Application.routes.draw do
   get "invoice" => 'invoice#create'
   post "invoice" => 'invoice#create'
   put 'invoice' => 'invoice#update'
+  get "invoice/editor" => 'invoice#index_editor', :as => 'invoice_editor'
+
+
 
   get "reminder/confirm" => 'reminder#index', :as => 'reminder_confirm'
   post "reminder/confirm" => 'reminder#index', :as => 'reminder_confirm'
   get "reminder" => 'reminder#create'
   post "reminder" => 'reminder#create'
   put 'reminder' => 'reminder#update'
+  get "reminder/editor" => 'reminder#index_editor', :as => 'reminder_editor'
 
 
   post "reminder_invoice" => 'invoice#create_reminder'
@@ -41,7 +45,7 @@ Kantoliina::Application.routes.draw do
   get 'members/search' => "members#search"
 
   put 'settings' => 'settings#update'
-   get 'settings/reminder' => 'settings#index_reminder'
+  get 'settings/reminder' => 'settings#index_reminder'
   get 'settings/loaddefault' => 'settings#load_default'
 
   resources :settings, :only => [:index]

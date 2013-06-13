@@ -3,9 +3,9 @@
   %h1 Laskupohjan muokkaus
   = flash[:notice]
   %li
-    = link_to "Muokkaa Maksumuistutuspohjaa", settings_reminder_path
+    = link_to "Muokkaa Maksumuistutuspohjaa", reminder_editor_path
   %li
-    = link_to "Muokkaa Laskupohjaa", settings_path
+    = link_to "Muokkaa Laskupohjaa", invoice_editor_path
   %div{:id => "invoice_template_editor"}
     %div{:class => "error"}
       = @error
