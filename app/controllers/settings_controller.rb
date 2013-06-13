@@ -9,57 +9,32 @@ class SettingsController < ApplicationController
   # Loads the invoice template to the editor
   def index
 
+    @error = flash[:error] || ""
+    @errorline = flash[:errorline] || 0
+
+    template = EditorHelper.index
+    end
+
+
+
+  def index_reminder
 
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
 
-    unless (params[:temp] == "2")
-      @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r') do |f|
-        template = ""
-        while line = f.gets
-          template += line
-        end
-        template
+    @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
+      template = ""
+      while line = f.gets
+        template += line
       end
-
-    else
-      @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
-        template = ""
-        while line = f.gets
-          template += line
-        end
-        template
-      end
+      template
     end
 
+    render :reminder_edit
   end
 
   ##
   # Loads the invoice template to the interface
-
-  def update
-
-    unless (params[:temp] == "2")
-      template = params[:template]
-      if validate_invoice_template template
-        File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'w') do |f|
-          f.puts template
-        end
-      end
-      redirect_to settings_path
-
-    else
-      template = params[:template]
-      if validate_invoice_template template
-        File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'w') do |f|
-          f.puts template
-        end
-      end
-      redirect_to settings_path(:temp => 2)
-    end
-
-
-  end
 
 
   def load_default
