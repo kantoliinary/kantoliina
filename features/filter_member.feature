@@ -109,7 +109,7 @@ Feature: filter members
   @javascript
   Scenario: I try to see deleted members
     When I am on the members page
-    Then I click a menu "column_select"
+    Then I click a menu "column_menu_content"
     And I uncheck "deleted"
     Then I should not see "Jaana"
     And I should not see "Janne"
