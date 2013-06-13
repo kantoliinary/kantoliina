@@ -64,13 +64,17 @@ class InvoiceController < ApplicationController
 
 
     if params[:function] == "preview"
-      @member = Member.new
-      @member.membernumber = 90000
-      @member.invoicedate = Time.now
+      member = Member.new
+      member.membernumber = 90000
+      member.invoicedate = Time.now
 
-      flash[:template] = params[:template]
-      engine = Haml::Engine.new(params[:template])
-      flash[:preview] = engine.render(Object.new, :member => @member)
+      template = params[:template]
+      flash[:template] = template
+      template.delete "@"
+
+      flash[:template] = template
+      engine = Haml::Engine.new(template)
+      flash[:preview] = engine.render(Object.new, :member => member)
 
     end
 
