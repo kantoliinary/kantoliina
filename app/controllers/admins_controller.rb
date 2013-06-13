@@ -17,7 +17,8 @@ class AdminsController < ApplicationController
         end
       else
         admin.username = params[:admin][:username]
-        if admin.validate_username && admin.save(:validate => false)
+        admin.email = params[:admin][:email]
+        if admin.validate_username && admin.validate_email && admin.save(:validate => false)
           flash[:adminnotice] = "Käyttäjätunnus päivitetty"
         else
           flash[:admin] = admin
