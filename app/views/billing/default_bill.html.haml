@@ -18,10 +18,11 @@
   = Member.generate_refnumber(@member.membernumber)
   %br
   Summa:
-  = @member.membergroup.fee
+  = @member.membergroup.fee gee
 
 
-
+%p
+  = @bottom_additional_message
 
 
 %p
