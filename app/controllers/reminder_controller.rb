@@ -28,4 +28,17 @@ class ReminderController < ApplicationController
     redirect_to members_path
   end
 
+  def update
+    template = params[:template]
+    @f= Hash.new
+    EditorHelper.update template, Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, @f
+
+    @f.each do |key, value|
+      flash[key] = value
+    end
+
+
+    redirect_to settings_reminder_path
+  end
+
 end

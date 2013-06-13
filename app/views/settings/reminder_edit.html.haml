@@ -1,4 +1,4 @@
-%div{:id => "settings_page"}
+%div{:id => "reminder_settings_page"}
 
   %h1 Laskupohjan muokkaus
   = flash[:notice]
@@ -6,11 +6,14 @@
     = link_to "Muokkaa Maksumuistutuspohjaa", settings_reminder_path
   %li
     = link_to "Muokkaa Laskupohjaa", settings_path
-  %div{:id => "invoice_template_editor"}
+
+
+
+  %div{:id => "reminder_template_editor"}
     %div{:class => "error"}
       = @error
 
-    = form_tag invoice_path, :method => "put" do
+    = form_tag reminder_path, :method => "put" do
 
       %div{:id => "textarea"}
         = text_area_tag "template", @template, :class => "lined"
@@ -19,7 +22,6 @@
         = submit_tag "Tallenna"
     = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
     = button_tag "Esikatsele", :id => "preview"
-
   :javascript
     $(document).ready(function(){
       $(".lined").linedtextarea({selectedLine:#{@errorline}})
