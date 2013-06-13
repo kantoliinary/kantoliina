@@ -57,11 +57,15 @@ class SettingsController < ApplicationController
       end
       redirect_to settings_path(:temp => 2)
     end
+
+
   end
 
+
   def load_default
-    #unless (params[:temp] == "2")
     template = ""
+
+
     File.open(Rails.root.join("app", "views", "billing", "default_bill.html.haml").to_s, 'r') do |f|
       while line = f.gets
         template += line
@@ -70,18 +74,10 @@ class SettingsController < ApplicationController
 
     flash[:template] = template
 
-  redirect_to settings_path
-  end
-  #else
-  #  template = params[:template]
-  #  if validate_invoice_template template
-  #    File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'w') do |f|
-  #      f.puts template
-  #    end
-  #  end
-  #  redirect_to settings_path(:temp => 2)
-  #end
+    redirect_to settings_path
 
+
+  end
 
   private
 
