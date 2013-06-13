@@ -31,10 +31,7 @@ class SessionsController < ApplicationController
   ##
   # Clears all from sessions and redirects to login form page.
   def destroy
-    puts "aaaaaaaaaa"
-    puts cookies.class
     cookies.each do |k|
-      puts k
       cookies.delete(k.at(0))
     end
     reset_session

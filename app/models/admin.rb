@@ -8,17 +8,13 @@ class Admin < ActiveRecord::Base
   attr_accessible :username, :password, :password_confirmation, :password_digest, :email
   validates :username, :presence => {:message => "Käyttäjätunnus puuttuu"}
   validates :password, :presence => {:message => "Salasana puuttuu"}
-  validate :validate_username
+  validate :validate_username, :validate_email
   validates :password, :length => {
       :minimum => 8,
       :maximum => 20,
       :too_short => "Salasanan tulee olla vähintään 8 merkin pituinen",
       :too_long => "Salasanan tulee olla korkeintaan 20 merkin pituinen"
   }, :confirmation => {:message => "Salasanan vahvistus on virheellinen"}
-  validates :email, :presence => {:message => "Sähköpostiosoite puuttuu"},
-            :format => {
-                :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-                :message => "Sähköpostiosoitteen muoto on väärä"}
   has_secure_password
 
   ##
@@ -50,6 +46,18 @@ class Admin < ActiveRecord::Base
     end
     if username.length > 20
       errors.add(:username, "Käyttäjätunnuksen tulee olla korkeintaan 20 merkin pituinen")
+      return false
+    end
+    true
+  end
+
+  def validate_email
+    if email.nil?
+      errors.add(:email, "Sähköpostiosoite puuttuu")
+      return false
+    end
+    if !email.match(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i)
+      errors.add(:email, "Sähköpostiosoitteen muoto on väärä")
       return false
     end
     true

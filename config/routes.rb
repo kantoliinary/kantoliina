@@ -41,7 +41,9 @@ Kantoliina::Application.routes.draw do
   get 'members/search' => "members#search"
 
   put 'settings' => 'settings#update'
-  get 'settings/reminder' => 'settings#index_reminder'
+   get 'settings/reminder' => 'settings#index_reminder'
+  get 'settings/loaddefault' => 'settings#load_default'
+
   resources :settings, :only => [:index]
   resources :accountcontrols, :only => [:index]
   resources :admins, :only => [:update]
