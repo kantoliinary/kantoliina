@@ -19,11 +19,13 @@
       %div{:id => "reminder_template_button"}
     = button_tag "Tallenna", :id => "save"
 
-    %a{:href => "settings/loaddefault"}
-      = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
-    = button_tag "Esikatsele", :id => "preview"
+    %div
+      %a{:href => "settings/loaddefault"}
+        = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
+      = button_tag "Esikatsele", :id => "preview"
 
-    = flash[:preview]
+    %div{:id => "preview-view"}
+      = flash[:preview]
   :javascript
     $(document).ready(function(){
       $(".lined").linedtextarea({selectedLine:#{@errorline}})

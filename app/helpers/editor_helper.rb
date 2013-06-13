@@ -33,12 +33,14 @@ module EditorHelper
       member = Member.new
       member.membernumber = 90000
       member.invoicedate = Time.now
+      member.membergroup_id = 1
+      top_additional_message = "Yläosan viesti"
+      bottom_additional_message = "Alaosan viesti"
 
-      template.delete "@"
 
       f[:template] = template
-      engine = Haml::Engine.new(template)
-      f[:preview] = engine.render(Object.new, :member => member)
+      engine = Haml::Engine.new(template.gsub(/[@]/, ''))
+      f[:preview] = engine.render(Object.new, :member => member, :top_additional_message => top_additional_message, :bottom_additional_message => bottom_additional_message)
     end
 
 
