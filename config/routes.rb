@@ -20,7 +20,7 @@ Kantoliina::Application.routes.draw do
   get "invoice" => 'invoice#create'
   post "invoice" => 'invoice#create'
   put 'invoice' => 'invoice#update'
-  get "invoice/editor" => 'invoice#index_editor', :as => 'invoice_editor'
+  #get "invoice/editor" => 'invoice#index_editor', :as => 'invoice_editor'
 
 
 
@@ -29,7 +29,8 @@ Kantoliina::Application.routes.draw do
   get "reminder" => 'reminder#create'
   post "reminder" => 'reminder#create'
   put 'reminder' => 'reminder#update'
-  get "reminder/editor" => 'reminder#index_editor', :as => 'reminder_editor'
+
+  #get "reminder/editor" => 'reminder#index_editor', :as => 'reminder_editor'
 
 
   post "reminder_invoice" => 'invoice#create_reminder'

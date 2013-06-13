@@ -29,7 +29,7 @@ class InvoiceController < ApplicationController
       end
       template
     end
-    render "settings/index"
+    render "settings/invoice_edit"
   end
 
   ##
@@ -55,7 +55,7 @@ class InvoiceController < ApplicationController
       flash[key] = value
     end
 
-    redirect_to settings_path
+    redirect_to invoice_editor_path
   end
 
 

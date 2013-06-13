@@ -1,9 +1,7 @@
-%div{:id => "reminder_settings_page"}
+%div{:id => "reminder_editor_page"}
 
-  %h1 Laskupohjan muokkaus
+  %h1 Maksumuistutuspohjan muokkaus
   = flash[:notice]
-  %li
-    = link_to "Muokkaa Maksumuistutuspohjaa", reminder_editor_path
   %li
     = link_to "Muokkaa Laskupohjaa", invoice_editor_path
 

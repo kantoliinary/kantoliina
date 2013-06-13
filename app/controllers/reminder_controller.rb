@@ -51,7 +51,7 @@ class ReminderController < ApplicationController
     end
 
 
-    redirect_to settings_reminder_path
+    redirect_to reminder_editor_path
   end
 
 end
