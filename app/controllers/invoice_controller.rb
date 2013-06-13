@@ -48,7 +48,6 @@ class InvoiceController < ApplicationController
   def edit
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
-
     @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r') do |f|
       template = ""
       while line = f.gets
@@ -59,13 +58,10 @@ class InvoiceController < ApplicationController
   end
 
   def update
-    puts "aaaaaaaaaaaaaaaaaa"
-    puts params[:function]
     if params[:function] == "preview"
       flash[:template] = params[:template]
       engine = Haml::Engine.new(params[:template])
       flash[:preview] = engine.render
-
     end
 
     if params[:function] == "save"
