@@ -15,6 +15,21 @@ class ReminderController < ApplicationController
     end
   end
 
+  def index_editor
+
+    @error = flash[:error] || ""
+    @errorline = flash[:errorline] || 0
+
+    @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
+      template = ""
+      while line = f.gets
+        template += line
+      end
+      template
+    end
+    render "settings/reminder_edit"
+  end
+
   def create
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
@@ -24,6 +39,19 @@ class ReminderController < ApplicationController
       Billing.reminder_email(member, params[:top_message], params[:bottom_message]).deliver
     end
     redirect_to members_path
+  end
+
+  def update
+    template = params[:template]
+    @f= Hash.new
+    EditorHelper.update template, Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, @f
+
+    @f.each do |key, value|
+      flash[key] = value
+    end
+
+
+    redirect_to settings_reminder_path
   end
 
 end

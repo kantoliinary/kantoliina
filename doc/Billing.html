@@ -72,6 +72,10 @@
     
     <li><a href="#method-i-bill_email">#bill_email</a>
     
+    <li><a href="#method-i-mailer">#mailer</a>
+    
+    <li><a href="#method-i-reminder_email">#reminder_email</a>
+    
   </ul>
 </nav>
 
@@ -109,7 +113,11 @@
   
     <li><a href="./Kantoliina/Application.html">Kantoliina::Application</a>
   
+    <li><a href="./AccountcontrolsController.html">AccountcontrolsController</a>
+  
     <li><a href="./Admin.html">Admin</a>
+  
+    <li><a href="./AdminMailer.html">AdminMailer</a>
   
     <li><a href="./AdminTest.html">AdminTest</a>
   
@@ -125,17 +133,41 @@
   
     <li><a href="./CreateAdmins.html">CreateAdmins</a>
   
+    <li><a href="./CreatePartners.html">CreatePartners</a>
+  
+    <li><a href="./EmailHelpers.html">EmailHelpers</a>
+  
     <li><a href="./HtmlSelectorsHelpers.html">HtmlSelectorsHelpers</a>
+  
+    <li><a href="./InvoiceController.html">InvoiceController</a>
+  
+    <li><a href="./MailerController.html">MailerController</a>
   
     <li><a href="./Member.html">Member</a>
   
     <li><a href="./Membergroup.html">Membergroup</a>
+  
+    <li><a href="./MembergroupsController.html">MembergroupsController</a>
   
     <li><a href="./MembersController.html">MembersController</a>
   
     <li><a href="./NavigationHelpers.html">NavigationHelpers</a>
   
     <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Partner.html">Partner</a>
+  
+    <li><a href="./PartnerSessionsController.html">PartnerSessionsController</a>
+  
+    <li><a href="./PartnersController.html">PartnersController</a>
+  
+    <li><a href="./PasswordResetsController.html">PasswordResetsController</a>
+  
+    <li><a href="./ReminderController.html">ReminderController</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SettingsController.html">SettingsController</a>
   
     <li><a href="./WithinHelpers.html">WithinHelpers</a>
   
@@ -174,7 +206,7 @@
         
         <div class="method-heading">
           <span class="method-name">bill_email</span><span
-            class="method-args">(member)</span>
+            class="method-args">(member, top_message, bottom_message)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -187,7 +219,9 @@
           
           <div class="method-source-code" id="bill_email-source">
             <pre><span class="ruby-comment"># File app/mailers/billing.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">bill_email</span> <span class="ruby-identifier">member</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bill_email</span> <span class="ruby-identifier">member</span>, <span class="ruby-identifier">top_message</span>, <span class="ruby-identifier">bottom_message</span>
+  <span class="ruby-ivar">@top_additional_message</span> = <span class="ruby-identifier">top_message</span>
+  <span class="ruby-ivar">@bottom_additional_message</span> = <span class="ruby-identifier">bottom_message</span>
   <span class="ruby-ivar">@member</span> = <span class="ruby-identifier">member</span>
   <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Kantoliinayhdistyksen jäsenmaksu - lasku&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -199,6 +233,71 @@
 
         
       </div><!-- bill_email-method -->
+
+    
+      <div id="method-i-mailer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mailer</span><span
+            class="method-args">(member, message, subject)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mailer-source">
+            <pre><span class="ruby-comment"># File app/mailers/billing.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mailer</span> <span class="ruby-identifier">member</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">subject</span>
+  <span class="ruby-ivar">@message2</span> = <span class="ruby-identifier">message</span>
+  <span class="ruby-ivar">@member</span> = <span class="ruby-identifier">member</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">subject</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- mailer-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- mailer-method -->
+
+    
+      <div id="method-i-reminder_email" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">reminder_email</span><span
+            class="method-args">(member, top_message, bottom_message)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="reminder_email-source">
+            <pre><span class="ruby-comment"># File app/mailers/billing.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">reminder_email</span> <span class="ruby-identifier">member</span>, <span class="ruby-identifier">top_message</span>, <span class="ruby-identifier">bottom_message</span>
+  <span class="ruby-ivar">@top_additional_message</span> = <span class="ruby-identifier">top_message</span>
+  <span class="ruby-ivar">@bottom_additional_message</span> = <span class="ruby-identifier">bottom_message</span>
+  <span class="ruby-ivar">@member</span> = <span class="ruby-identifier">member</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-value">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">member</span>.<span class="ruby-identifier">email</span>, <span class="ruby-value">:subject</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Kantoliinayhdistyksen jäsenmaksu - Maksumuistutus&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- reminder_email-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- reminder_email-method -->
 
     
     </section><!-- public-instance-method-details -->
