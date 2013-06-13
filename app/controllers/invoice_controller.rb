@@ -70,6 +70,7 @@ class InvoiceController < ApplicationController
     @f.each do |key, value|
       flash[key] = value
     end
+
     redirect_to invoice_edit_path
 
   end
