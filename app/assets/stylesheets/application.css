@@ -156,6 +156,7 @@ textarea {
 input, button {
     width: 200px;
     padding: 5px;
+    margin: 10px;
 }
 input[type = "checkbox"]{
     width: auto;
@@ -184,7 +185,7 @@ input[type = "radio"]{
     width: 130px;
     color: #333;
     height: 20px;
-    padding: 2px;
+    padding: 5px;
     vertical-align: top;
 }
 
@@ -194,7 +195,7 @@ input[type = "radio"]{
     width: 60px;
     height: 26px;
     border: 1px solid #DADADA;
-    padding: 3px 5px;
+    padding: 5px 5px;
     vertical-align: top;
 }
 
@@ -214,12 +215,13 @@ input[type = "radio"]{
     text-align: left;
     background-color: #e1c45f; /*#f3a85f;*/
     border-bottom: 3px solid #74a846;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
+    margin: 15px;
 }
 
 #header-content {
     margin: 0 auto;
-    padding: 10px;
+    /*padding: 10px;*/
     position: relative;
 }
 
