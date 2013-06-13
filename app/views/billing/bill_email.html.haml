@@ -1,3 +1,4 @@
+
 %h3 Kantoliinayhdistyksen jäsenmaksu -lasku
 %p
   = @top_additional_message
@@ -17,10 +18,11 @@
   = Member.generate_refnumber(@member.membernumber)
   %br
   Summa:
-  = @member.membergroup.fee
+  = @member.membergroup.fee gee
 
 
-
+%p
+  = @bottom_additional_message
 
 
 %p
@@ -28,4 +30,3 @@
 
   %br
   Kantoliinayhdistys
-
