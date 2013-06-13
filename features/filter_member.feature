@@ -106,15 +106,12 @@ Feature: filter members
 #    Then I should not see "Liisa"
 
 
-  @javascript
-  Scenario: I try to see the column for deleted
-    When I am on the members page
-    Then I click a menu ".column_menu .header"
-    And I check "deleted"
-    Then I should not see "Jaana"
-    And I should not see "Janne"
-    And I should not see "Liisa"
-    And I should see "Pelle"
+#  @javascript
+#  Scenario: I try to see the column for membership status
+#    When I am on the members page
+#    Then I click a menu ".column_menu .header"
+#    And I check "deleted"
+#    Then I should see "Poistettu"
 
   @javascript
   Scenario: I try to see deleted members
