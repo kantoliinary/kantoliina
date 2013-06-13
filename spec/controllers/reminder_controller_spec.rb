@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe InvoiceController do
+describe ReminderController do
 
   before(:each) do
     admin = FactoryGirl.create(:admin)
@@ -31,6 +31,6 @@ describe InvoiceController do
       end
     end
   end
+
+
 end
-
-

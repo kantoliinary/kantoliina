@@ -9,8 +9,6 @@ class ReminderController < ApplicationController
   def index
     if params[:id]
       @members = [Member.find_by_id(params[:id])]
-      puts @members
-      puts "aaaaa"
     else
       parsed_json = ActiveSupport::JSON.decode(params[:ids])
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => "membergroup_id != 3")
