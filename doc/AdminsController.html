@@ -70,11 +70,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-login">#login</a>
-    
-    <li><a href="#method-i-loginform">#loginform</a>
-    
-    <li><a href="#method-i-logout">#logout</a>
+    <li><a href="#method-i-update">#update</a>
     
   </ul>
 </nav>
@@ -95,6 +91,8 @@
   
     <li class="file"><a href="./public/robots_txt.html">robots</a>
   
+    <li class="file"><a href="./spec/fixtures/billing/haml.html">haml</a>
+  
   </ul>
 </nav>
 
@@ -111,7 +109,11 @@
   
     <li><a href="./Kantoliina/Application.html">Kantoliina::Application</a>
   
+    <li><a href="./AccountcontrolsController.html">AccountcontrolsController</a>
+  
     <li><a href="./Admin.html">Admin</a>
+  
+    <li><a href="./AdminMailer.html">AdminMailer</a>
   
     <li><a href="./AdminTest.html">AdminTest</a>
   
@@ -121,19 +123,47 @@
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
   
+    <li><a href="./Billing.html">Billing</a>
+  
     <li><a href="./BrowsingTest.html">BrowsingTest</a>
   
     <li><a href="./CreateAdmins.html">CreateAdmins</a>
   
+    <li><a href="./CreatePartners.html">CreatePartners</a>
+  
+    <li><a href="./EmailHelpers.html">EmailHelpers</a>
+  
     <li><a href="./HtmlSelectorsHelpers.html">HtmlSelectorsHelpers</a>
   
+    <li><a href="./InvoiceController.html">InvoiceController</a>
+  
+    <li><a href="./MailerController.html">MailerController</a>
+  
     <li><a href="./Member.html">Member</a>
+  
+    <li><a href="./Membergroup.html">Membergroup</a>
+  
+    <li><a href="./MembergroupsController.html">MembergroupsController</a>
   
     <li><a href="./MembersController.html">MembersController</a>
   
     <li><a href="./NavigationHelpers.html">NavigationHelpers</a>
   
     <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Partner.html">Partner</a>
+  
+    <li><a href="./PartnerSessionsController.html">PartnerSessionsController</a>
+  
+    <li><a href="./PartnersController.html">PartnersController</a>
+  
+    <li><a href="./PasswordResetsController.html">PasswordResetsController</a>
+  
+    <li><a href="./ReminderController.html">ReminderController</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SettingsController.html">SettingsController</a>
   
     <li><a href="./WithinHelpers.html">WithinHelpers</a>
   
@@ -148,7 +178,7 @@
 
   <div id="description" class="description">
     
-<p>Controller for admin class</p>
+<p>The controller for account editing functionality.</p>
 
   </div><!-- description -->
 
@@ -170,10 +200,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-login" class="method-detail ">
+      <div id="method-i-update" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">login</span><span
+          <span class="method-name">update</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -181,95 +211,44 @@
 
         <div class="method-description">
           
-          <p>Saves logged admin to <a href="http://:admin">session</a> if login and
-password correct, and redirect to members list page. Add error to @<a
-href="http://:error">error</a> if incorrect username or password, and
-renders login form.</p>
+          <p>Checks if the account changes submitted by the admin are valid, executes
+them if they are and returns appropriate messages to the admin.</p>
           
 
           
-          <div class="method-source-code" id="login-source">
-            <pre><span class="ruby-comment"># File app/controllers/admins_controller.rb, line 17</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>
-  <span class="ruby-identifier">admin</span> = <span class="ruby-constant">Admin</span>.<span class="ruby-identifier">find_by_login</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:login</span>]).<span class="ruby-identifier">try</span>(<span class="ruby-value">:authenticate</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>])
-  <span class="ruby-ivar">@error</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-keyword">if</span>  <span class="ruby-identifier">admin</span>
-    <span class="ruby-identifier">session</span>[<span class="ruby-value">:admin</span>] = <span class="ruby-identifier">admin</span>
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">members_path</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File app/controllers/admins_controller.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
+  <span class="ruby-identifier">admin</span> = <span class="ruby-constant">Admin</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">try</span>(<span class="ruby-value">:authenticate</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:old_password</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">admin</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:admin</span>][<span class="ruby-value">:password</span>].<span class="ruby-identifier">empty?</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:admin</span>])
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:adminnotice</span>] = <span class="ruby-string">&quot;Tiedot päivitetty&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:admin</span>] = <span class="ruby-identifier">admin</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">username</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:admin</span>][<span class="ruby-value">:username</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">validate_username</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>)
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:adminnotice</span>] = <span class="ruby-string">&quot;Käyttäjätunnus päivitetty&quot;</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">flash</span>[<span class="ruby-value">:admin</span>] = <span class="ruby-identifier">admin</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:admin</span>] = <span class="ruby-identifier">admin</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:adminerror</span>] = <span class="ruby-string">&quot;Tunnuksen muokkaus ei onnistunut&quot;</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-ivar">@error</span>[<span class="ruby-value">:error</span>] = <span class="ruby-string">&quot;Virheellinen kayttajatunnus tai salasana&quot;</span>
-  <span class="ruby-identifier">render</span> <span class="ruby-string">&quot;loginform&quot;</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">accountcontrols_path</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">return</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- login-source -->
+          </div><!-- update-source -->
           
         </div>
 
         
 
         
-      </div><!-- login-method -->
-
-    
-      <div id="method-i-loginform" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">loginform</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Shows login form to user.</p>
-          
-
-          
-          <div class="method-source-code" id="loginform-source">
-            <pre><span class="ruby-comment"># File app/controllers/admins_controller.rb, line 9</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">loginform</span>
-  <span class="ruby-ivar">@error</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- loginform-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- loginform-method -->
-
-    
-      <div id="method-i-logout" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">logout</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Clears all from session and redirect to login form page.</p>
-          
-
-          
-          <div class="method-source-code" id="logout-source">
-            <pre><span class="ruby-comment"># File app/controllers/admins_controller.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">logout</span>
-  <span class="ruby-identifier">reset_session</span>
-  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Kirjauduttu ulos&quot;</span>
-  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_path</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- logout-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- logout-method -->
+      </div><!-- update-method -->
 
     
     </section><!-- public-instance-method-details -->

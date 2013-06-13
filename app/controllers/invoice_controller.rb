@@ -4,6 +4,8 @@
 #
 class InvoiceController < ApplicationController
 
+
+
   ##
   # Parses an array of IDs from JSON code given as a parameter and selects an array of members based on those IDs.
   def index
@@ -27,4 +29,19 @@ class InvoiceController < ApplicationController
     end
     redirect_to members_path
   end
+
+  def update
+
+    template = params[:template]
+    @f= Hash.new
+    EditorHelper.update template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
+
+    @f.each do |key, value|
+      flash[key] = value
+    end
+
+    redirect_to settings_path
+  end
+
+
 end
