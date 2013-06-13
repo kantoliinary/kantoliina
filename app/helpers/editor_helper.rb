@@ -21,19 +21,29 @@ module EditorHelper
 
 
   def update
+
     return EditorHelper.update
 
   end
 
-  def self.update template, file, f
+  def self.update function, template, file, f
 
-
-    if EditorHelper.validate_invoice_template template, f
-      File.open(file, 'w') do |f|
-        f.puts template
-      end
+    if function == "preview"
+      f[:template] = template
+      engine = Haml::Engine.new(template)
+      f[:preview] = engine.render
     end
 
+
+
+
+    if function == "save"
+      if EditorHelper.validate_invoice_template template, f
+        File.open(file, 'w') do |f|
+          f.puts template
+        end
+      end
+    end
   end
 
   def self.validate_invoice_template template, f
