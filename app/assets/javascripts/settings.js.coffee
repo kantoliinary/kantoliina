@@ -17,5 +17,18 @@ $(document).ready( ->
     $("#invoice_template_form #function").val("preview")
     $("#invoice_template_form").submit()
   )
+  $("#save").click((e)->
+    $("#invoice_template_form #function").val("save")
+    $("#invoice_template_form").submit()
+  )
+  $("#preview").click((e)->
+    $("#reminder_template_form #function").val("preview")
+    $("#reminder_template_form").submit()
+  )
+  $("#save").click((e)->
+    $("#reminder_template_form #function").val("save")
+    $("#reminder_template_form").submit()
+  )
 )
+
 
