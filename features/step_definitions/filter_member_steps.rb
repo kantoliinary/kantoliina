@@ -1,6 +1,7 @@
 
-#When /^(?:|I )click a menu "([^"]*)"$/ do |selector|
-#  find(selector).click
+When /^(?:|I )click a menu "([^"]*)"$/ do |selector|
+  find(selector).click
+  end
 
 When /^I click on "([^\"]+)"$/ do |text|
   matcher = ['*', { :text => text }]
