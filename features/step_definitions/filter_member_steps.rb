@@ -1,5 +1,5 @@
 
-When /^(?:|I )click a menu "([^"]*)"$/ do |selector|
+When /^(?:|I )click a text "([^"]*)"$/ do |selector|
   find(selector).click
   end
 
