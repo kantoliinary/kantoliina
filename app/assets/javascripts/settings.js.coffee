@@ -14,7 +14,7 @@ $(document).ready( ->
       $(this).get(0).selectionEnd = start + 2
   )
   $("#preview").click((e)->
-    $("#invoice_template_form").val("preview")
+    $("#invoice_template_form #function").val("preview")
     $("#invoice_template_form").submit()
   )
 )

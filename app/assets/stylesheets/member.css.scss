@@ -53,8 +53,8 @@
         margin: 0;
       }
     }
-    #tulosmaara {
-      margin-top: 10px;
+    #amount_of_results {
+      margin: 10px;
     }
   }
 }
@@ -123,7 +123,7 @@
   }
 
   #update {
-    margin: 20px 0px;
+    //margin: 20px 0px;
     width: 344px;
   }
 
@@ -135,6 +135,6 @@
 #recover_password_page {
   #submit_button {
     width: 214px;
-    margin-top: 10px;
+    //margin-top: 10px;
   }
 }
