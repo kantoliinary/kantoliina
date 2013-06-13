@@ -4,7 +4,8 @@ var search = function (options) {
         searchfield: "searchfield",
         selectgroups: [],
         outputtable: "",
-        column_menu: ""
+        column_menu: "",
+        callback: function(){}
     }
     var settings = $.extend({}, defaults, options)
     $("#" + settings.searchfield).val()
@@ -74,5 +75,6 @@ var search = function (options) {
             })
             tr.appendTo(table)
         })
+        settings.callback()
     }
 }

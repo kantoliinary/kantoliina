@@ -4,13 +4,10 @@
 
 class SettingsController < ApplicationController
 
-  ##
-  # Renders page
+
   def index
 
   end
-
-
 
 
   def load_default

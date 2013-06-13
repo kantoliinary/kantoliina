@@ -47,6 +47,7 @@ $(document).ready ->
     reminder.find("#reminder_form").find(".member_" + id).remove()
 
   multiselect({
+      contextmenu: true,
       elements: ["#index_member_page .column_menu"],
       callback: (checkbox) ->
         th = index.find("#members").find("table").find("."+$(checkbox).attr("name"))
@@ -74,11 +75,11 @@ $(document).ready ->
   )
 
   do_search()
-
 do_search = ->
   search({
     selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".deleted_menu", "deleted"]],
     outputtable: "#members_table",
     column_menu: ".column_menu"
   })
+
 
