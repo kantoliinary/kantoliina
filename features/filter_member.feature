@@ -25,85 +25,85 @@ Feature: filter members
     And I fill in "password" with "qwerty123"
     And I press "Login"
 
-  Scenario: I filter members by first name
-    When I am on the members page
-    And I fill in "searchfield" with "Ja"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: I filter members by last name
-    When I am on the members page
-    And I fill in "searchfield" with "Jäsen"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: I filter members by municipality
-    When I am on the members page
-    And I fill in "searchfield" with "Espoo"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should not see "Janne"
-    Then I should see "Liisa"
-
-  Scenario: I filter members by address
-    When I am on the members page
-    And I fill in "searchfield" with "jokin"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should see "Janne"
-    Then I should see "Liisa"
-
-  Scenario: I filter members by address
-    When I am on the members page
-    And I fill in "searchfield" with "espoo"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should not see "Janne"
-    Then I should see "Liisa"
-
-  Scenario: I filter members by zipcode
-    When I am on the members page
-    And I fill in "searchfield" with "12345"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should see "Janne"
-    Then I should see "Liisa"
-
-  Scenario: I filter members by post office
-    When I am on the members page
-    And I fill in "searchfield" with "helsinki"
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should not see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: I filter members by e-mail
-    When I am on the members page
-    And I fill in "searchfield" with "liisa"
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should not see "Janne"
-    Then I should see "Liisa"
-
-  Scenario: I filter members by member number
-    When I am on the members page
-    And I fill in "searchfield" with "125"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should not see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: I filter members by membergroup
-    When I am on the members page
-    And I fill in "searchfield" with "125"
-    And I press "Hae"
-    Then I should see "Jaana"
-    Then I should not see "Janne"
-    Then I should not see "Liisa"
+#  Scenario: I filter members by first name
+#    When I am on the members page
+#    And I fill in "searchfield" with "Ja"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should see "Janne"
+#    Then I should not see "Liisa"
+#
+#  Scenario: I filter members by last name
+#    When I am on the members page
+#    And I fill in "searchfield" with "Jäsen"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should see "Janne"
+#    Then I should not see "Liisa"
+#
+#  Scenario: I filter members by municipality
+#    When I am on the members page
+#    And I fill in "searchfield" with "Espoo"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should see "Liisa"
+#
+#  Scenario: I filter members by address
+#    When I am on the members page
+#    And I fill in "searchfield" with "jokin"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should see "Janne"
+#    Then I should see "Liisa"
+#
+#  Scenario: I filter members by address
+#    When I am on the members page
+#    And I fill in "searchfield" with "espoo"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should see "Liisa"
+#
+#  Scenario: I filter members by zipcode
+#    When I am on the members page
+#    And I fill in "searchfield" with "12345"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should see "Janne"
+#    Then I should see "Liisa"
+#
+#  Scenario: I filter members by post office
+#    When I am on the members page
+#    And I fill in "searchfield" with "helsinki"
+#    And I press "Hae"
+#    Then I should not see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should not see "Liisa"
+#
+#  Scenario: I filter members by e-mail
+#    When I am on the members page
+#    And I fill in "searchfield" with "liisa"
+#    And I press "Hae"
+#    Then I should not see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should see "Liisa"
+#
+#  Scenario: I filter members by member number
+#    When I am on the members page
+#    And I fill in "searchfield" with "125"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should not see "Liisa"
+#
+#  Scenario: I filter members by membergroup
+#    When I am on the members page
+#    And I fill in "searchfield" with "125"
+#    And I press "Hae"
+#    Then I should see "Jaana"
+#    Then I should not see "Janne"
+#    Then I should not see "Liisa"
 
 # odottavat kayttiksen muokkausta
 
@@ -115,35 +115,35 @@ Feature: filter members
 #    And I check "deleted"
 #    Then I should see "Poistettu"
 
-#  @javascript
-#  Scenario: I try to see deleted members
-#    Then I click a text ".column_menu .header"
-#    And I check "deleted"
-#    Then I click a text ".deleted_menu .header"
-#    And I check ".deleted_menu .deleted_yes"
-#    And I uncheck ".deleted_menu .deleted_no"
-#    Then I click a text ".deleted_menu .header"
-#    Then I should not see "Jaana"
-#    And I should not see "Janne"
-#    And I should not see "Liisa"
-#    And I should see "Pelle"
+  @javascript
+  Scenario: I try to see deleted members
+    Then I click a text ".column_menu .header"
+    And I check "deleted"
+    Then I click a text ".deleted_menu .header"
+    And I check ".deleted_menu .deleted_yes"
+    And I uncheck ".deleted_menu .deleted_no"
+    Then I click a text ".deleted_menu .header"
+    Then I should not see "Jaana"
+    And I should not see "Janne"
+    And I should not see "Liisa"
+    And I should see "Pelle"
 
 
 
 #
-  Scenario: I try to search with two parameters
-    When I am on the members page
-    And I fill in "searchfield" with "Janne|Vantaa"
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should see "Janne"
-    Then I should not see "Liisa"
-
-  Scenario: I try to search with three parameters and extra whitespaces
-    When I am on the members page
-    And I fill in "searchfield" with "Janne|    Vantaa   |     Stadi     "
-    And I press "Hae"
-    Then I should not see "Jaana"
-    Then I should see "Janne"
-    Then I should not see "Liisa"
+#  Scenario: I try to search with two parameters
+#    When I am on the members page
+#    And I fill in "searchfield" with "Janne|Vantaa"
+#    And I press "Hae"
+#    Then I should not see "Jaana"
+#    Then I should see "Janne"
+#    Then I should not see "Liisa"
+#
+#  Scenario: I try to search with three parameters and extra whitespaces
+#    When I am on the members page
+#    And I fill in "searchfield" with "Janne|    Vantaa   |     Stadi     "
+#    And I press "Hae"
+#    Then I should not see "Jaana"
+#    Then I should see "Janne"
+#    Then I should not see "Liisa"
 
