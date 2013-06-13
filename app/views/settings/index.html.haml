@@ -16,7 +16,8 @@
         = hidden_field_tag :temp, params[:temp]
       %div{:id => "invoice_template_button"}
         = submit_tag "Tallenna"
-    = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
+    %a{:href => "settings/loaddefault"}
+      = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
     = button_tag "Esikatsele", :id => "preview"
   :javascript
     $(document).ready(function(){
