@@ -107,26 +107,26 @@ Feature: filter members
 
 # odottavat kayttiksen muokkausta
 
-#  @javascript
-#  Scenario: I try to see the column for membership status
-#    When I am on the members page
-#    Then I should not see "Poistettu"
-#    Then I click a text ".column_menu .header"
-#    And I check "deleted"
-#    Then I should see "Poistettu"
-
   @javascript
-  Scenario: I try to see deleted members
+  Scenario: I try to see the column for membership status
+    When I am on the members page
+    Then I should not see "Poistettu"
     Then I click a text ".column_menu .header"
     And I check "deleted"
-    Then I click a text ".deleted_menu .header"
-    And I check ".deleted_menu .deleted_yes"
-    And I uncheck ".deleted_menu .deleted_no"
-    Then I click a text ".deleted_menu .header"
-    Then I should not see "Jaana"
-    And I should not see "Janne"
-    And I should not see "Liisa"
-    And I should see "Pelle"
+    Then I should see "Poistettu"
+
+#  @javascript
+#  Scenario: I try to see deleted members
+#    Then I click a text ".column_menu .header"
+#    And I check "deleted"
+#    Then I click a text ".deleted_menu .header"
+#    And I check ".deleted_menu .deleted_yes"
+#    And I uncheck ".deleted_menu .deleted_no"
+#    Then I click a text ".deleted_menu .header"
+#    Then I should not see "Jaana"
+#    And I should not see "Janne"
+#    And I should not see "Liisa"
+#    And I should see "Pelle"
 
 
 
