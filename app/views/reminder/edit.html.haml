@@ -3,24 +3,29 @@
   %h1 Maksumuistutuspohjan muokkaus
   = flash[:notice]
   %li
-    = link_to "Muokkaa Laskupohjaa", invoice_editor_path
-
-
+    = link_to "Muokkaa Laskupohjaa", invoice_edit_path
 
   %div{:id => "reminder_template_editor"}
     %div{:class => "error"}
       = @error
 
-    = form_tag reminder_path, :method => "put" do
+    = form_tag reminder_path, :method => "put", :id => "reminder_template_form" do
+      = hidden_field_tag "function"
+
 
       %div{:id => "textarea"}
         = text_area_tag "template", @template, :class => "lined"
 
-      %div{:id => "invoice_template_button"}
-        = submit_tag "Tallenna"
-    = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
+      %div{:id => "reminder_template_button"}
+    = button_tag "Tallenna", :id => "save"
+
+    %a{:href => "settings/loaddefault"}
+      = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
     = button_tag "Esikatsele", :id => "preview"
+
+    = flash[:preview]
   :javascript
     $(document).ready(function(){
       $(".lined").linedtextarea({selectedLine:#{@errorline}})
     })
+

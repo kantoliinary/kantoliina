@@ -71,16 +71,13 @@ class InvoiceController < ApplicationController
     if params[:function] == "save"
       template = params[:template]
       @f= Hash.new
-      EditorHelper.update template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
+      EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
 
       @f.each do |key, value|
         flash[key] = value
       end
     end
-
     redirect_to invoice_edit_path
 
   end
-
-
 end

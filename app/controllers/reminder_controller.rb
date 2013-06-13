@@ -40,16 +40,38 @@ class ReminderController < ApplicationController
     redirect_to members_path
   end
 
+
+  def edit
+    @error = flash[:error] || ""
+    @errorline = flash[:errorline] || 0
+
+    @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
+      template = ""
+      while line = f.gets
+        template += line
+      end
+      template
+    end
+  end
+
   def update
+    puts "aaaa"
+    puts params[:function]
     template = params[:template]
     @f= Hash.new
-    EditorHelper.update template, Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, @f
+    EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, @f
 
     @f.each do |key, value|
       flash[key] = value
     end
 
+<<<<<<< HEAD
     redirect_to reminder_editor_path
+=======
+    redirect_to reminder_edit_path
+>>>>>>> a943f747032566333afb8014076a7ecfe59907e0
   end
 
 end
+
+
