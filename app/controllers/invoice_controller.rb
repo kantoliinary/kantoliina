@@ -59,12 +59,18 @@ class InvoiceController < ApplicationController
   end
 
   def update
-    puts "aaaaaaaaaaaaaaaaaa"
-    puts params[:function]
+    #puts "aaaaaaaaaaaaaaaaaa"
+    #puts params[:function]
+
+
     if params[:function] == "preview"
+      @member = Member.new
+      @member.membernumber = 90000
+      @member.invoicedate = Time.now
+
       flash[:template] = params[:template]
       engine = Haml::Engine.new(params[:template])
-      flash[:preview] = engine.render
+      flash[:preview] = engine.render(Object.new, :member => @member)
 
     end
 
