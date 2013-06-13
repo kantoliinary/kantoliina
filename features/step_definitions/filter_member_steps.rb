@@ -1,3 +1,8 @@
+
+When /^(?:|I )click a text "([^"]*)"$/ do |selector|
+  find(selector).click
+  end
+
 When /^I click on "([^\"]+)"$/ do |text|
   matcher = ['*', { :text => text }]
   element = page.find(:css, *matcher)

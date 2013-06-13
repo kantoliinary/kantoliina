@@ -7,15 +7,15 @@
     %div{:class => "clear"}
     %div{:id => "submit_button"}
       = submit_tag "Hae", :class => "submit", :id => "search_button"
-    %div{:id => "tulosmaara"}
+    %div{:id => "amount_of_results"}
       Hakutulosten määrä:
     -#=@members.count
   = flash[:notice]
   %div{:id => "centered"}
     %div{:id => "members"}
       %div{:id => "column_menu_content"}
-        %div{:class => "column_menu multiselectmenu"}
-          %div{:class => "header"}
+        %div{:class => "column_menu multiselectmenu" }
+          %div{:class => "header", :id => "column_select" }
             Valitse sarakkeet
           %div{:class => "choices"}
             %label
@@ -140,15 +140,15 @@
 
       = form_tag delete_path, :id => "delete_active_form" do
         = hidden_field_tag "ids"
-        = button_tag (@membership == "0" ? "Aktivoi" : "Poista"), :class => "submit send confirm"
+        = button_tag "Poista/Aktivoi ", :class => "submit send confirm"
 
       = form_tag payment_path, :id => "payment_form" do
         = hidden_field_tag "ids"
-        = button_tag "Maksettu", :class => "submit send"
+        = button_tag "Merkitse maksaneeksi", :class => "submit send"
 
       = form_tag unpayment_path, :id => "unpayment_form" do
         = hidden_field_tag "ids"
-        = button_tag "Maksamaton", :class => "submit send"
+        = button_tag "Merkitse maksamattomaksi", :class => "submit send"
 
       = form_tag mailer_confirm_path, :id => "mailer_form" do
         = hidden_field_tag "ids"

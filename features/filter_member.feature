@@ -105,26 +105,31 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should not see "Liisa"
 
+# odottavat kayttiksen muokkausta
 
-# feilaa
-#  Scenario: I try to see deleted members
+#  @javascript
+#  Scenario: I try to see the column for membership status
 #    When I am on the members page
-#    Then I press "Valitse sarakkeet"
-#    And I uncheck "Jäsenyys voimassa"
+#    Then I should not see "Poistettu"
+#    Then I click a text ".column_menu .header"
+#    And I check "deleted"
+#    Then I should see "Poistettu"
+
+#  @javascript
+#  Scenario: I try to see deleted members
+#    Then I click a text ".column_menu .header"
+#    And I check "deleted"
+#    Then I click a text ".deleted_menu .header"
+#    And I check ".deleted_menu .deleted_yes"
+#    And I uncheck ".deleted_menu .deleted_no"
+#    Then I click a text ".deleted_menu .header"
 #    Then I should not see "Jaana"
 #    And I should not see "Janne"
 #    And I should not see "Liisa"
 #    And I should see "Pelle"
 
 
-# feilaa
-#  Scenario: I try to see existing members
-#    When I am on the members page
-#    And I choose "membership_0"
-#    And I press "Hae"
-#    Then I should not see "Jaana"
-#    Then I should not see "Janne"
-#    Then I should not see "Liisa"
+
 #
   Scenario: I try to search with two parameters
     When I am on the members page

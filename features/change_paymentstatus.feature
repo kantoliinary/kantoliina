@@ -28,7 +28,7 @@ Feature: Change paymentstatus to false
     Then I should see "Janne"
     And I check "check_all"
 #    Given I expect to click "OK" on a confirmation box
-    When I press "Maksettu"
+    When I press "Merkitse maksaneeksi"
     Then I should see "Maksustatus muutettu maksaneeksi"
 
   @javascript
@@ -37,6 +37,6 @@ Feature: Change paymentstatus to false
     Then I should see "Janne"
     And I check "check_all"
 #    Given I expect to click "OK" on a confirmation box
-    When I press "Maksamaton"
+    When I press "Merkitse maksamattomaksi"
     Then I should see "Jäsen on jo maksamaton!"
 
