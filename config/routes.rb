@@ -26,7 +26,6 @@ Kantoliina::Application.routes.draw do
   get "reminder" => 'reminder#create'
   post "reminder" => 'reminder#create'
 
-
   post "reminder_invoice" => 'invoice#create_reminder'
 
   post "delete" => 'members#delete'

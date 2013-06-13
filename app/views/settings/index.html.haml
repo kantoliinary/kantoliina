@@ -16,9 +16,16 @@
         = hidden_field_tag :temp, params[:temp]
       %div{:id => "invoice_template_button"}
         = submit_tag "Tallenna"
+      = button_to "Esikatsele", settings_path
     %a{:href => "settings/loaddefault"}
       = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
-    = button_tag "Esikatsele", :id => "preview"
+
+
+    %h3 Esikatselunäkymä
+    %div{:id => "textlook"}
+      = text_area_tag "template2", @template, :class => "lined", :readonly => true
+      = hidden_field_tag :temp, params[:temp]
+
   :javascript
     $(document).ready(function(){
       $(".lined").linedtextarea({selectedLine:#{@errorline}})

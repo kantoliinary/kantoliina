@@ -12,7 +12,20 @@
         display: inline-block;
       }
     }
+
+    #textlook {
+      background-color: #aaaaaa;
+      width: 706px;
+      margin: 0 auto;
+
+      textarea {
+        width: 700px;
+        height: 400px;
+        display: inline-block;
+      }
+    }
   }
+
   #mailer_template_editor {
     text-aling: center;
 
