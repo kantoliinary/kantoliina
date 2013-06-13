@@ -106,11 +106,11 @@ Feature: filter members
 #    Then I should not see "Liisa"
 
 
-feilaa
+  @javascript
   Scenario: I try to see deleted members
     When I am on the members page
-    Then I press "Valitse sarakkeet"
-    And I uncheck "Jäsenyys voimassa"
+    Then I click a menu "column_select"
+    And I uncheck "deleted"
     Then I should not see "Jaana"
     And I should not see "Janne"
     And I should not see "Liisa"
