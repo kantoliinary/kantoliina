@@ -18,12 +18,15 @@
 
       %div{:id => "invoice_template_button"}
 
-        -#%a{:href => "settings/loaddefault"}
-        -#  = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
-    = button_tag "Esikatsele", :id => "preview"
-    = button_tag "Tallenna", :id => "save"
+    = button_tag "Tallenna":id => "save"
 
-    = flash[:preview]
+    %div
+      %a{:href => "settings/loaddefault"}
+        = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
+      = button_tag "Esikatsele", :id => "preview"
+
+    %div{:id => "preview-view"}
+      = flash[:preview]
   :javascript
     $(document).ready(function(){
       $(".lined").linedtextarea({selectedLine:#{@errorline}})

@@ -59,79 +59,80 @@
               Lainaamo
 
       %table{:class => "center", :id => "members_table"}
-        %tr
-          %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
-          %th{:class => "membernumber"} Jäsennumero
-          %th{:class => "name"} Nimi
-          %th{:class => "municipality"}
-            %div{:class => "municipality_menu multiselectmenu"}
-              %div{:class => "header"}
-                Kunta
-              %div{:class => "choices"}
-                -@municipalitys.each do |member|
+        %thead
+          %tr
+            %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
+            %th{:class => "membernumber"} Jäsennumero
+            %th{:class => "name"} Nimi
+            %th{:class => "municipality"}
+              %div{:class => "municipality_menu multiselectmenu"}
+                %div{:class => "header"}
+                  Kunta
+                %div{:class => "choices"}
+                  -@municipalitys.each do |member|
+                    %label
+                      - municipality = member.municipality.gsub(/ä/, "a").gsub(/ö/, "o")
+                      = check_box_tag "municipality_#{municipality}", member.municipality, true, :id => "municipality_#{municipality}"
+                      = member.municipality
+            %th{:class => "address hidden"} Osoite
+            %th{:class => "zipcode hidden"} Postinumero
+            %th{:class => "postoffice hidden"} Postitoimipaikka
+            %th{:class => "membergroup"}
+              %div{:class => "membergroup_menu multiselectmenu"}
+                %div{:class => "header"}
+                  Jäsenryhmä
+                %div{:class => "choices"}
+                  -@membergroups.each do |membergroup|
+                    %label
+                      = check_box_tag "membergroup_#{membergroup.id}", membergroup.id, true, :id => "membergroup_#{membergroup.id}"
+                      = membergroup.name
+            %th{:class => "membershipyear"} Jäsenyys voimassa
+            %th{:class => "invoicedate"} Laskun lähetyspäivä
+            %th{:class => "paymentstatus"}
+              %div{:class => "paymentstatus_menu multiselectmenu"}
+                %div{:class => "header"}
+                  Maksustatus
+                %div{:class => "choices"}
                   %label
-                    - municipality = member.municipality.gsub(/ä/, "a").gsub(/ö/, "o")
-                    = check_box_tag "municipality_#{municipality}", member.municipality, true, :id => "municipality_#{municipality}"
-                    = member.municipality
-          %th{:class => "address hidden"} Osoite
-          %th{:class => "zipcode hidden"} Postinumero
-          %th{:class => "postoffice hidden"} Postitoimipaikka
-          %th{:class => "membergroup"}
-            %div{:class => "membergroup_menu multiselectmenu"}
-              %div{:class => "header"}
-                Jäsenryhmä
-              %div{:class => "choices"}
-                -@membergroups.each do |membergroup|
+                    = check_box_tag "paymentstatus_yes", "1", true
+                    Kyllä
                   %label
-                    = check_box_tag "membergroup_#{membergroup.id}", membergroup.id, true, :id => "membergroup_#{membergroup.id}"
-                    = membergroup.name
-          %th{:class => "membershipyear"} Jäsenyys voimassa
-          %th{:class => "invoicedate"} Laskun lähetyspäivä
-          %th{:class => "paymentstatus"}
-            %div{:class => "paymentstatus_menu multiselectmenu"}
-              %div{:class => "header"}
-                Maksustatus
-              %div{:class => "choices"}
-                %label
-                  = check_box_tag "paymentstatus_yes", "1", true
-                  Kyllä
-                %label
-                  = check_box_tag "paymentstatus_no", "0", true
-                  Ei
-          %th{:class => "deleted hidden"}
-            %div{:class => "deleted_menu multiselectmenu"}
-              %div{:class => "header"}
-                Poistettu
-              %div{:class => "choices"}
-                %label
-                  = check_box_tag "deleted_yes", "1", false
-                  Kyllä
-                %label
-                  = check_box_tag "deleted_no", "0", true
-                  Ei
-          %th{:class => "support hidden"}
-            %div{:class => "support_menu multiselectmenu"}
-              %div{:class => "header"}
-                Tukihenkilö
-              %div{:class => "choices"}
-                %label
-                  = check_box_tag "support_yes", "1", true
-                  Kyllä
-                %label
-                  = check_box_tag "support_no", "0", true
-                  Ei
-          %th{:class => "lender hidden"}
-            %div{:class => "lender_menu multiselectmenu"}
-              %div{:class => "header"}
-                Lainaamo
-              %div{:class => "choices"}
-                %label
-                  = check_box_tag "lender_yes", "1", true
-                  Kyllä
-                %label
-                  = check_box_tag "lender_no", "0", true
-                  Ei
-
+                    = check_box_tag "paymentstatus_no", "0", true
+                    Ei
+            %th{:class => "deleted hidden"}
+              %div{:class => "deleted_menu multiselectmenu"}
+                %div{:class => "header"}
+                  Poistettu
+                %div{:class => "choices"}
+                  %label
+                    = check_box_tag "deleted_yes", "1", false
+                    Kyllä
+                  %label
+                    = check_box_tag "deleted_no", "0", true
+                    Ei
+            %th{:class => "support hidden"}
+              %div{:class => "support_menu multiselectmenu"}
+                %div{:class => "header"}
+                  Tukihenkilö
+                %div{:class => "choices"}
+                  %label
+                    = check_box_tag "support_yes", "1", true
+                    Kyllä
+                  %label
+                    = check_box_tag "support_no", "0", true
+                    Ei
+            %th{:class => "lender hidden"}
+              %div{:class => "lender_menu multiselectmenu"}
+                %div{:class => "header"}
+                  Lainaamo
+                %div{:class => "choices"}
+                  %label
+                    = check_box_tag "lender_yes", "1", true
+                    Kyllä
+                  %label
+                    = check_box_tag "lender_no", "0", true
+                    Ei
+          %tbody
     %div{:id => "bottom_forms"}
       = form_tag invoice_confirm_path, :id => "invoice_form" do
         = hidden_field_tag "ids"

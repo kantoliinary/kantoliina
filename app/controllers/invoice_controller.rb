@@ -59,11 +59,13 @@ class InvoiceController < ApplicationController
   end
 
   def update
+
     puts "sadsa"
     puts params[:function]
     template = params[:template]
     @f= Hash.new
     EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
+
 
     @f.each do |key, value|
       flash[key] = value
