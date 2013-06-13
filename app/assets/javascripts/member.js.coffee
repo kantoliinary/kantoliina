@@ -7,13 +7,12 @@ $(document).ready ->
     e.preventDefault()
     if $(this).hasClass("confirm") && !confirm("Oletko varma?")
       return false
-    checkboxs = index.find("#members").find(":checkbox")
+    checkboxs = index.find("#members").find("table").find("td").find(":checkbox")
     ids = []
     $(checkboxs).each (index, value) ->
       checkbox = $(value)
-      if !!checkbox.attr("checked") && checkbox.attr("name") != "check_all"
+      if !!checkbox.is(":checked") && checkbox.attr("name") != "check_all"
         ids.push checkbox.val()
-
     form = $(this).parent("form")
     form.children("#ids").val(JSON.stringify({
       ids: ids

@@ -17,6 +17,8 @@
       %div
         = @admin.errors.get(:username).at(0) if @admin.errors.get(:username)
       %div
+        = @admin.errors.get(:email).at(0) if @admin.errors.get(:email)
+      %div
         = @admin.errors.get(:password).at(0) if @admin.errors.get(:password)
       %div
         = flash[:partnererror]
@@ -30,6 +32,10 @@
           = f.label "username", "Uusi käyttäjätunnus"
         %div{:class => "input"}
           = f.input "username"
+        %div{:class => "label"}
+          = f.label "email","Uusi sähköposti"
+        %div{:class => "input"}
+          = f.input "email"
         %div{:class => "label"}
           = f.label "password", "Uusi salasana"
         %div{:class => "input"}
