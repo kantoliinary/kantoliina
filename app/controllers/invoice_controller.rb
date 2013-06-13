@@ -77,6 +77,7 @@ class InvoiceController < ApplicationController
         flash[key] = value
       end
     end
+
     redirect_to invoice_edit_path
 
   end
