@@ -13,7 +13,10 @@ describe MembersController do
   describe "GET #new" do
     context "with not logged in" do
       it "renders not the :new view" do
+        FactoryGirl.create(:membergroup)
         member = FactoryGirl.create(:member)
+        member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
+        members = [member, member2]
         session[:admin_id] = nil
         get :new
         response.should_not render_template :new
@@ -146,7 +149,7 @@ describe MembersController do
     it "filters members by ids" do
       member = FactoryGirl.create(:member)
       Member.stub(:find).and_return(member)
-      post :search, :ids => "{\"ids\":[\"1\"]}"
+      post :search, FactoryGirl.attributes_for(:member)
     end
   end
 
