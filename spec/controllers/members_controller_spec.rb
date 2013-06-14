@@ -156,10 +156,61 @@ describe MembersController do
   describe "GET #search" do
     it "should return json" do
       member = FactoryGirl.create(:member)
-      Member.stub(:includes).and_return(member)
-      response_json = [{:id => "1"}].to_json
-      get :search
-      response.body.should == res
+      FactoryGirl.create(:membergroup)
+      response_json = [member].to_json
+      get :search, :keyword => "John", :format => :json
+      response.body.should == response_json
+    end
+    it "should return only deleted member" do
+      member = FactoryGirl.create(:member, :deleted => "t")
+      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:membergroup)
+      response_json = [member].to_json
+      get :search, :deleted => "1",  :format => :json
+      response.body.should == response_json
+    end
+    it "should return only payment member" do
+      member = FactoryGirl.create(:member, :paymentstatus => "t")
+      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:membergroup)
+      response_json = [member].to_json
+      get :search, :paymentstatus => "1",  :format => :json
+      response.body.should == response_json
+    end
+    it "should return only support member" do
+      member = FactoryGirl.create(:member, :support => "t")
+      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:membergroup)
+      response_json = [member].to_json
+      get :search, :support => "1",  :format => :json
+      response.body.should == response_json
+    end
+    it "should return only lender member" do
+      member = FactoryGirl.create(:member, :lender => "t")
+      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:membergroup)
+      response_json = [member].to_json
+      get :search, :lender => "1",  :format => :json
+      response.body.should == response_json
+    end
+    it "should return member with searched membergroup" do
+      member = FactoryGirl.create(:member)
+      FactoryGirl.create(:member, :id => "2", :membernumber => "10003", :membergroup_id => "2")
+      FactoryGirl.create(:membergroup, :name => "jotain")
+      FactoryGirl.create(:membergroup, :id => "2")
+      response_json = [member].to_json
+      membergroups = ["1"]
+      get :search, :membergroups => membergroups,  :format => :json
+      response.body.should == response_json
+    end
+    it "should return member with searched municipality" do
+      member = FactoryGirl.create(:member)
+      FactoryGirl.create(:member, :id => "2", :membernumber => "10003", :municipality => "a")
+      FactoryGirl.create(:membergroup)
+      response_json = [member].to_json
+      municipalitys = ["f"]
+      get :search, :municipalitys => municipalitys,  :format => :json
+      response.body.should == response_json
     end
   end
 end
