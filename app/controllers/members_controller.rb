@@ -176,7 +176,7 @@ class MembersController < ApplicationController
         query_keywords = {}
         counter = 65;
         all_search_fields.each do |field|
-          if field == "membernumber" || field == "zipcode"
+          if field == "membernumber" || field == "zipcode" || field == "address"
             query += (query.empty? ? "" : " OR ") + "#{field} LIKE :#{counter.chr}"
           else
             query += (query.empty? ? "" : " OR ") + "LOWER(#{field}) LIKE :#{counter.chr}"
