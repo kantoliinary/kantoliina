@@ -11,7 +11,7 @@ class ReminderController < ApplicationController
       @members = [Member.find_by_id(params[:id])]
     else
       parsed_json = ActiveSupport::JSON.decode(params[:ids])
-      @members = Member.find_all_by_id(parsed_json["ids"], :conditions => "membergroup_id != 3")
+      @members = Member.find_all_by_id(parsed_json["ids"], :conditions => {:paymentstatus => false}, :joins => [:membergroup])
     end
   end
 
