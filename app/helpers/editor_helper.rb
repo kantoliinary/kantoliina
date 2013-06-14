@@ -2,21 +2,6 @@
 
 module EditorHelper
 
-
-  def self.index temp
-
-
-    @template = temp || File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r') do |f|
-      template = ""
-      while line = f.gets
-        template += line
-      end
-      template
-
-    end
-  end
-
-
   def self.update function, template, file, f
 
     if function == "preview"

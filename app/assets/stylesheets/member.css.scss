@@ -12,6 +12,7 @@
       input {
         margin: 0;
       }
+
       input[type="submit"]{
         width: 70px;
       }
@@ -48,6 +49,9 @@
         width: 210px;
         float: left;
         margin: 0;
+      }
+      input ,button {
+        margin: 5px;
       }
     }
     #amount_of_results {
