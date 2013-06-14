@@ -6,8 +6,8 @@ class MembersController < ApplicationController
 
 
   ##
-  # Shows new member page to the admin.
-  # If old member in flash[:member], saves it to @member.
+  # Shows a new member page to the admin.
+  # If an old member is in flash[:member], saves it to @member.
 
   def new
     @member = flash[:member] || Member.new
@@ -17,6 +17,9 @@ class MembersController < ApplicationController
     @isnew = true
   end
 
+
+  ##
+  # Finds the smallest available member number for a me
   def get_smallest_available_membernumber
     members = Member.select(:membernumber).order(:membernumber)
     number = 10000
@@ -143,7 +146,7 @@ class MembersController < ApplicationController
   end
 
   ##
-  #Replaces the selected attributes of a single member.
+  # Replaces the selected attributes of a single member.
   def update
     @member = Member.find(params[:id])
     if @member.update_attributes(params[:member])
@@ -158,9 +161,9 @@ class MembersController < ApplicationController
 
   private
 
-##
-# Filters members by selected radio buttons. Values are deleted and payment status with OR operation.
-# If member has the field represented by the selected button, the subroutine searches for matching character combinations.
+    ##
+    # Filters members by selected radio buttons. Values are deleted and payment status with OR operation.
+    # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
   def search_with_filters filters

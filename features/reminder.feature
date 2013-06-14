@@ -1,6 +1,6 @@
-Feature: Invoice members
+Feature: Reminder members
 
-  I want to see if the invoice functionality works
+  I want to see if the reminder functionality works
 
   Background: Admins, membergroups and members exist in the database
 
@@ -25,21 +25,21 @@ Feature: Invoice members
     And I fill in "password" with "qwerty123"
     And I press "Login"
 
-  Scenario: Select all members and send an invoice to those applicable
+  Scenario: Select all members and send a reminder to those applicable
     And I check "check_all"
-    And I press "Luo laskut"
-    Then I should see "Laskun varmistus"
+    And I press "Luo karhukirjeet"
+    Then I should see "Karhukirjeen varmistus"
     And I should not see "Liisa"
     And I should not see "Liisi"
     And I should see "Janne"
-    And I press "Lähetä laskut"
+    And I press "Lähetä karhukirjeet"
     Then I should see "Jäsenten listaus"
-    And I should see "Laskut lähetetty"
+    And I should see "Karhukirjeet lähetetty"
 
-  Scenario: Select all members and remove one in the invoice page
+  Scenario: Select all members and remove one in the reminder page
     And I check "check_all"
-    And I press "Luo laskut"
-    Then I should see "Laskun varmistus"
+    And I press "Luo karhukirjeet"
+    Then I should see "Karhukirjeen varmistus"
     And I should not see "Liisa"
     And I should not see "Liisi"
     And I should see "Janne"
