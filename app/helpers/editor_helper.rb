@@ -6,7 +6,6 @@ module EditorHelper
   def self.index temp
 
 
-
     @template = temp || File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r') do |f|
       template = ""
       while line = f.gets
@@ -17,14 +16,6 @@ module EditorHelper
     end
   end
 
-  # @return [Object]
-
-
-  def update
-
-    return EditorHelper.update
-
-  end
 
   def self.update function, template, file, f
 
@@ -44,8 +35,6 @@ module EditorHelper
     end
 
 
-
-
     if function == "save"
       if EditorHelper.validate_invoice_template template, f
         File.open(file, 'w') do |f|
@@ -54,6 +43,20 @@ module EditorHelper
       end
     end
   end
+
+
+  def self.load_default file, f
+
+    template = ""
+
+    File.open(file, 'r') do |a|
+      while line = a.gets
+        template += line
+      end
+      f[:template] = template
+    end
+  end
+
 
   def self.validate_invoice_template template, f
 
