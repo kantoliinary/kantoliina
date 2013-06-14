@@ -3,7 +3,7 @@
   %h1 Maksumuistutuspohjan muokkaus
   = flash[:notice]
   %li
-    = link_to "Muokkaa Laskupohjaa", invoice_edit_path
+    = link_to "Muokkaa laskupohjaa", invoice_edit_path
 
   %div{:id => "reminder_template_editor"}
     %div{:class => "error"}
@@ -21,7 +21,7 @@
 
     %div
       %a{:href => "settings/loaddefault"}
-        = button_tag "lataa alkuperäinen laskupohja", :id => "load_default"
+        = button_tag "Lataa alkuperäinen laskupohja", :id => "load_default"
       = button_tag "Esikatsele", :id => "preview"
 
     %div{:id => "preview-view"}
