@@ -19,7 +19,6 @@ class ReminderController < ApplicationController
 
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
-
     @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
       template = ""
       while line = f.gets
@@ -78,7 +77,6 @@ class ReminderController < ApplicationController
     @f.each do |key, value|
       flash[key] = value
     end
-
     redirect_to reminder_edit_path
   end
 
