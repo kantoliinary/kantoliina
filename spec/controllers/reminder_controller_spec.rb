@@ -32,5 +32,54 @@ describe ReminderController do
     end
   end
 
+  describe "#update" do
+
+    it "should update an e-mail with valid attributes" do
+      file = mock('file')
+      File.should_receive(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'w').and_yield(file)
+      file.should_receive(:puts).with("text")
+      post :update, :template => "text", :function => "save"
+      response.should redirect_to reminder_edit_path
+    end
+
+    it "should not update e-mail with invalid row" do
+      file = mock('file')
+      File.stub(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, "w").and_yield(file)
+      post :update, :template => "             text", :function => "save"
+      flash[:error].should include ("Virheellinen sisennys rivillä")
+    end
+    #
+    it "should work with a line starting with %" do
+      file = mock('file')
+      File.stub(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, "w").and_yield(file)
+      file.should_receive(:puts).with("%br")
+      post :update, :template => "%br", :function => "save"
+      response.should redirect_to reminder_edit_path
+    end
+  end
+
+  describe "GET #edit" do
+    it "something" do
+      file = mock('file')
+
+      File.stub(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, "r").and_yield(file)
+      file.should_receive(:gets)
+      get :edit
+    end
+  end
+
+  describe "GET #load_default" do
+    it "something" do
+      file = mock('file')
+
+      File.stub(:open).with(Rails.root.join("app", "views", "billing", "default_reminder_email.html.haml").to_s, 'r')
+      # file.should_receive(:gets)
+      get :load_default
+      response.should redirect_to reminder_edit_path
+
+    end
+
+  end
 
 end
+
