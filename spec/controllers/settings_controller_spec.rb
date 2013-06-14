@@ -10,6 +10,7 @@ describe SettingsController do
 
 
   describe "GET #index" do
+
     context "get :index" do
       it "calls index method" do
         get :index
@@ -17,6 +18,6 @@ describe SettingsController do
       end
     end
   end
-
-
 end
+
+
