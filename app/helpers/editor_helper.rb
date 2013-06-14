@@ -21,19 +21,38 @@ module EditorHelper
 
 
   def update
+
     return EditorHelper.update
 
   end
 
-  def self.update template, file, f
+  def self.update function, template, file, f
+
+    if function == "preview"
+
+      member = Member.new
+      member.membernumber = 90000
+      member.invoicedate = Time.now
+      member.membergroup_id = 1
+      top_additional_message = "Yläosan viesti"
+      bottom_additional_message = "Alaosan viesti"
 
 
-    if EditorHelper.validate_invoice_template template, f
-      File.open(file, 'w') do |f|
-        f.puts template
-      end
+      f[:template] = template
+      engine = Haml::Engine.new(template.gsub(/[@]/, ''))
+      f[:preview] = engine.render(Object.new, :member => member, :top_additional_message => top_additional_message, :bottom_additional_message => bottom_additional_message)
     end
 
+
+
+
+    if function == "save"
+      if EditorHelper.validate_invoice_template template, f
+        File.open(file, 'w') do |f|
+          f.puts template
+        end
+      end
+    end
   end
 
   def self.validate_invoice_template template, f

@@ -11,9 +11,9 @@
       = f.input :fee, as: :string
   %div{:class => "row"}
     %div{:class => "left"}
-      = f.label "onetimefee", "Kertamaksu"
+    -#  = f.label "onetimefee", "Kertamaksu"
     %div{:class => "left right_field"}
-      = f.input :onetimefee
+      = f.input :onetimefee, label: "Kertamaksu"
   %div{:class => "clear"}
   %div{:class => "left"}
     = f.submit @submit_text, id:"update"

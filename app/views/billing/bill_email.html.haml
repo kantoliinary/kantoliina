@@ -1,7 +1,7 @@
 
 %h3 Kantoliinayhdistyksen jäsenmaksu -lasku
 %p
-  -#= @top_additional_message
+  = @top_additional_message
 
 
 
@@ -12,16 +12,16 @@
   Maksun saaja: Kantoliinayhdistys ry
   %br
   Laskun eräpäivä:
-  -#= (@member.invoicedate + 30.days).strftime("%d.%m.%Y")
+  = (@member.invoicedate + 30.days).strftime("%d.%m.%Y")
   %br
   Viitenumero:
-  -#= Member.generate_refnumber(@member.membernumber)
+  = Member.generate_refnumber(@member.membernumber)
   %br
   Summa:
-  -#= @member.membergroup.fee
+  = @member.membergroup.fee
 
-
-
+%p
+  = @bottom_additional_message
 
 %p
   Ystävällisin terveisin,

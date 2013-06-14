@@ -2,7 +2,7 @@
 
   %h1 Laskupohjan muokkaus
   = flash[:notice]
-  -#%li
-  -#  = link_to "Muokkaa Maksumuistutuspohjaa", edit_reminder_path
   %li
-    = link_to "Muokkaa Laskupohjaa", invoice_edit_path
+    = link_to "Muokkaa maksumuistutuspohjaa", reminder_edit_path
+  %li
+    = link_to "Muokkaa laskupohjaa", invoice_edit_path
