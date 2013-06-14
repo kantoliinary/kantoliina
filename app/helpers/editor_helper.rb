@@ -50,10 +50,10 @@ module EditorHelper
 
   def self.load_default file, f
 
-    template = ""
+    template = ''
 
     File.open(file, 'r') do |a|
-      while line = a.gets
+      while (line = a.gets)
         template += line
       end
       f[:template] = template

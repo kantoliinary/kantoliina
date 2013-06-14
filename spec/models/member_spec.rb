@@ -117,5 +117,10 @@ describe Member do
     Member.generate_refnumber(member.membernumber) != "123453"
   end
 
+  it "calls json" do
+    member = FactoryGirl.build(:member)
+    Member.as_json.should be_true
+  end
+
 
 end

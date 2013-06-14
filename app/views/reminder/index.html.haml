@@ -23,7 +23,7 @@
         %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
 
 
-  = form_tag reminder_invoice_path, :id => "reminder_invoice_form" do
+  = form_tag reminder_path, :id => "reminder_invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
     %h3 Lisätietoa karhukirjeen yläosaan
