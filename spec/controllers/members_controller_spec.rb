@@ -150,6 +150,15 @@ describe MembersController do
     end
   end
 
+  describe "GET #search" do
+    it "should return json" do
+      member = FactoryGirl.create(:member)
+      Member.stub(:includes).and_return(member)
+      response_json = [{:id => "1"}].to_json
+      get :search
+      response.body.should == res
+    end
+  end
 end
 
 
