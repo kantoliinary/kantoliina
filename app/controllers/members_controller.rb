@@ -161,9 +161,9 @@ class MembersController < ApplicationController
 
   private
 
-    ##
-    # Filters members by selected radio buttons. Values are deleted and payment status with OR operation.
-    # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
+  ##
+  # Filters members by selected radio buttons. Values are deleted and payment status with OR operation.
+  # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
   def search_with_filters filters
@@ -176,7 +176,11 @@ class MembersController < ApplicationController
         query_keywords = {}
         counter = 65;
         all_search_fields.each do |field|
-          query += (query.empty? ? "" : " OR ") + "lower(#{field}) LIKE :#{counter.chr}"
+          if field == "membernumber"
+            query += (query.empty? ? "" : " OR ") + "#{field} LIKE :#{counter.chr}"
+          else
+            query += (query.empty? ? "" : " OR ") + "LOWER(#{field}) LIKE :#{counter.chr}"
+          end
           query_keywords[counter.chr.to_sym] = "#{word.strip.downcase}%"
           counter += 1
         end
