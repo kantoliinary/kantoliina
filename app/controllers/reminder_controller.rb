@@ -50,6 +50,7 @@ class ReminderController < ApplicationController
       member.save(:validate => false)
       Billing.reminder_email(member, params[:top_message], params[:bottom_message]).deliver
     end
+    flash[:notice] = "Karhut lähetetty"
     redirect_to members_path
   end
 
@@ -68,8 +69,6 @@ class ReminderController < ApplicationController
   end
 
   def update
-    puts "aaaa"
-    puts params[:function]
     template = params[:template]
     @f= Hash.new
     EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, @f
