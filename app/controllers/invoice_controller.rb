@@ -58,24 +58,16 @@ class InvoiceController < ApplicationController
   end
 
   def update
-    if params[:function] == "preview"
-      #@member = Member.new
-      #@member.membernumber = 90000
-      #@member.invoicedate = Time.now
 
-      flash[:template] = params[:template]
-      engine = Haml::Engine.new(params[:template])
-      flash[:preview] = engine.render(Object.new, :member => @member)
-    end
+    puts "sadsa"
+    puts params[:function]
+    template = params[:template]
+    @f= Hash.new
+    EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
 
-    if params[:function] == "save"
-      template = params[:template]
-      @f= Hash.new
-      EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
 
-      @f.each do |key, value|
-        flash[key] = value
-      end
+    @f.each do |key, value|
+      flash[key] = value
     end
 
     redirect_to invoice_edit_path
