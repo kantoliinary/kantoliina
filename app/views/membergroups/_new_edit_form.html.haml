@@ -19,4 +19,4 @@
     = f.submit @submit_text, id:"update"
     %div{:class => "clear"}
 - if @editpage
-  = button_to('Poista jäsenryhmä', membergroup_path(@membergroup), :method => "delete", :confirm => 'Haluatko varmasti poistaa jäsenryhmän pysyvästi?')
+  = button_to('Poista jäsenryhmä', membergroup_path(@membergroup), :id => "delete", :method => "delete", :confirm => 'Haluatko varmasti poistaa jäsenryhmän pysyvästi?')

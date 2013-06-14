@@ -34,4 +34,13 @@ describe Admin do
   it "is invalid with too long password" do
     FactoryGirl.build(:admin, password: "aaaaaaaaaaaaaaaaaaaaa").should_not be_valid
   end
+
+  it "is invalid with nil email" do
+    FactoryGirl.build(:admin, password: "aaaaaaaaaaaaaaaaaaaaa", email: nil).should_not be_valid
+  end
+
+  it "is invalid with wrong type email" do
+    FactoryGirl.build(:admin, password: "aaaaaaaaaaaaaaaaaaaaa", email: "turha").should_not be_valid
+  end
+
 end

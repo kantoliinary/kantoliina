@@ -37,15 +37,13 @@ class InvoiceController < ApplicationController
 
   def load_default
 
-    template = ""
-    File.open(Rails.root.join("app", "views", "billing", "default_bill.html.haml").to_s, 'r') do |f|
-      while line = f.gets
-        template += line
-      end
+    @f= Hash.new
+
+    EditorHelper.load_default Rails.root.join("app", "views", "billing", "default_bill.html.haml").to_s, @f
+
+    @f.each do |key, value|
+      flash[key] = value
     end
-
-    flash[:template] = template
-
     redirect_to  invoice_edit_path
   end
 
@@ -65,7 +63,6 @@ class InvoiceController < ApplicationController
   def edit
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
-
     @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r') do |f|
       template = ""
       while line = f.gets
@@ -77,8 +74,6 @@ class InvoiceController < ApplicationController
 
   def update
 
-    puts "sadsa"
-    puts params[:function]
     template = params[:template]
     @f= Hash.new
     EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f

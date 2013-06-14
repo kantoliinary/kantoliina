@@ -13,7 +13,7 @@ describe AdminsController do
         put :update,
             :id => admin.id,
             :old_password => "qwerty123",
-            :admin => {:username => "admin", :password => "qwerty1223"}
+            :admin => {:username => "admin", :password => "qwerty1223", :email => "testi@testi.fi"}
         response.should redirect_to accountcontrols_path
       end
     end
@@ -24,7 +24,7 @@ describe AdminsController do
         put :update,
             :id => admin.id,
             :old_password => "qwerty123",
-            :admin => {:username => "admin", :password => ""}
+            :admin => {:username => "admin", :password => "", :email => "testi@testi.fi"}
         response.should redirect_to accountcontrols_path
       end
     end

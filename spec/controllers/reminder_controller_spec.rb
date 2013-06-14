@@ -33,4 +33,18 @@ describe ReminderController do
   end
 
 
+  it "should not update e-mail with invalid row" do
+    file = mock('file')
+    File.stub(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, "w").and_yield(file)
+    put :update, :template => "             text"
+    flash[:error].should include ("Virheellinen sisennys rivillä")
+  end
+
+  it "should work with a line starting with %" do
+    file = mock('file')
+    File.stub(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, "w").and_yield(file)
+    file.should_receive(:puts).with("%br")
+    put :update, :template => "%br"
+    response.should redirect_to reminder_edit_path
+  end
 end

@@ -31,6 +31,26 @@ describe InvoiceController do
       end
     end
   end
+
+  describe "#update" do
+
+    it "should update an e-mail with valid attributes" do
+      file = mock('file')
+      post :update, :function => "preview"
+
+      response.should redirect_to invoice_edit_path
+    end
+
+    it "should update a reminder e-mail with valid attributes" do
+      file = mock('file')
+      File.should_receive(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, "w").and_yield(file)
+      file.should_receive(:puts).with("text")
+      post :update, :function => "save"
+      response.should redirect_to invoice_edit_path
+
+    end
+  end
+
 end
 
 
