@@ -176,7 +176,7 @@ class MembersController < ApplicationController
         query_keywords = {}
         counter = 65;
         all_search_fields.each do |field|
-          query += (query.empty? ? "" : " OR ") + "LOWER(#{field}) LIKE :#{counter.chr}"
+          query += (query.empty? ? "" : " OR ") + "lower(#{field}) LIKE :#{counter.chr}"
           query_keywords[counter.chr.to_sym] = "#{word.strip.downcase}%"
           counter += 1
         end
