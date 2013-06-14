@@ -168,7 +168,6 @@ class MembersController < ApplicationController
 
   def search_with_filters filters
     all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber"]
-
     keywords = (filters[:keyword] ? filters[:keyword].split("|") : "")
     members = Member.includes(:membergroup)
     if keywords.length > 0
