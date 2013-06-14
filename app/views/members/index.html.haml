@@ -7,12 +7,12 @@
     %div{:class => "clear"}
     %div{:id => "submit_button"}
       = submit_tag "Hae", :class => "submit", :id => "search_button"
-    %div{:id => "amount_of_results"}
-      Hakutulosten määrä:
-    -#=@members.count
   = flash[:notice]
   %div{:id => "centered"}
     %div{:id => "members"}
+      %div{:id => "amount_of_results"}
+        Hakutulosten määrä:
+        %span{:id => "amount"}
       %div{:id => "column_menu_content"}
         %div{:class => "column_menu multiselectmenu" }
           %div{:class => "header", :id => "column_select" }
@@ -57,7 +57,7 @@
             %label
               = check_box_tag "lender", "1", false
               Lainaamo
-
+      %div{:class => "clear"}
       %table{:class => "center", :id => "members_table"}
         %thead
           %tr

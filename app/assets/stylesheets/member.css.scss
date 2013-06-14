@@ -54,7 +54,7 @@
       }
     }
     #amount_of_results {
-      margin: 10px;
+      float:right;
     }
   }
 }
@@ -122,7 +122,7 @@
     height: 35px;
   }
 
-  #update {
+  #update, #delete{
     //margin: 20px 0px;
     width: 344px;
   }

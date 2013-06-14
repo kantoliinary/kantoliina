@@ -4,6 +4,7 @@ var search = function (options) {
         searchfield: "searchfield",
         selectgroups: [],
         outputtable: "",
+        outputlengthfield: "",
         column_menu: "",
         callback: function(){}
     }
@@ -75,6 +76,7 @@ var search = function (options) {
             })
             tr.appendTo(table)
         })
+        $(settings.outputlengthfield).html(data.length)
         settings.callback()
     }
 }
