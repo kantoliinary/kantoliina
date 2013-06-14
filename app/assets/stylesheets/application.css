@@ -159,6 +159,10 @@ input, button {
     /*margin: 5px;*/
 }
 
+input[type = "submit"] {
+    margin: 5px;
+}
+
 input[type = "checkbox"]{
     width: auto;
     padding: 5px;
