@@ -17,6 +17,8 @@ class InvoiceController < ApplicationController
 
   end
 
+  ##
+  #
   def index_editor
 
     @error = flash[:error] || ""
