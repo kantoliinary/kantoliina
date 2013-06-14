@@ -1,6 +1,6 @@
-Feature: Invoice members
+Feature: Reminder members
 
-  I want to see if the invoice functionality works
+  I want to see if the reminder functionality works
 
   Background: Admins, membergroups and members exist in the database
 
@@ -26,25 +26,25 @@ Feature: Invoice members
     And I fill in "password" with "qwerty123"
     And I press "Login"
 
-  Scenario: Select all members and send an invoice to those applicable
+  Scenario: Select all members and send a reminder to those applicable
     And I check "check_all"
-    And I press "Luo laskut"
-    Then I should see "Laskun varmistus"
+    And I press "Luo maksumuistutukset"
+    Then I should see "Maksumuistuksen varmistus"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
-    And I should see "Maksanutnormaali"
+    And I should not see "Maksanutnormaali"
     And I should see "Maksamatonainais"
-    And I press "Lähetä laskut"
+    And I press "Lähetä maksumuistutukset"
     Then I should see "Jäsenten listaus"
-    And I should see "Laskut lähetetty"
+    And I should see "Maksumuistutkset lähetetty"
 
-  Scenario: Select all members and remove one in the invoice page
+  Scenario: Select all members and remove one in the reminder page
     And I check "check_all"
-    And I press "Luo laskut"
-    Then I should see "Laskun varmistus"
+    And I press "Luo maksumuistutukset"
+    Then I should see "Maksumuistutksen varmistus"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
-    And I should see "Maksanutnormaali"
+    And I should not see "Maksanutnormaali"
     And I should see "Maksamatonainais"
     And I press "Poista"
     Then I should not see "Janne"

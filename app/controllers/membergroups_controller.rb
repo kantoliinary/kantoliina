@@ -1,4 +1,6 @@
 #encoding: utf-8
+##
+# The controller for class Membergroup.
 
 class MembergroupsController < ApplicationController
 
@@ -6,12 +8,21 @@ class MembergroupsController < ApplicationController
     @membergroups = Membergroup.includes(:members)
   end
 
+  ##
+  # Shows new membergroup page to the admin.
+  # If an old membergroup is in flash[:member], saves it to @member.
+
   def new
     @editpage = false
     @membergroup = flash[:membergroup] || Membergroup.new
     @submit_text = "Lisää"
   end
 
+
+  ##
+  # Creates a new membergroup with params[:membergroup] and tries to save it.
+  # If save succeeds, adds flash[:notice] message, otherwise adds members information to flash[:member].
+  # Redirects to new member page.
   def create
     @membergroup = Membergroup.new(params[:membergroup])
 
@@ -24,6 +35,9 @@ class MembergroupsController < ApplicationController
     end
   end
 
+
+  ##
+  # Edits the current Membergroup with right parameters
   def edit
     @editpage = true
     #@membergroup = Membergroup.includes(:members).find(params[:id])
@@ -38,6 +52,9 @@ class MembergroupsController < ApplicationController
 
   end
 
+
+  ##
+  # Replaces the selected attributes of a single membergroup
   def update
     @membergroup = Membergroup.find(params[:id])
     if @membergroup.update_attributes(params[:membergroup])
@@ -49,6 +66,8 @@ class MembergroupsController < ApplicationController
     redirect_to membergroups_path
   end
 
+  ##
+  # Identifies a membergroup by id and removes it from the database
   def destroy
     membergroup = Membergroup.find(params[:id])
     membergroup.destroy()
