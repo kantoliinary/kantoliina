@@ -33,6 +33,12 @@ describe InvoiceController do
   end
 
   describe "#update" do
+    #it "should preview an e-mail with valid attributes" do
+    #  file = mock('file')
+    #  post :update, :function => "preview"
+    #
+    #  response.should redirect_to invoice_edit_path
+    #end
 
     it "should update an e-mail with valid attributes" do
       file = mock('file')

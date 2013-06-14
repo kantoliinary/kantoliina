@@ -11,23 +11,13 @@ describe SettingsController do
 
   describe "GET #index" do
 
-
     context "get :index" do
-      it "shows billing-email template" do
-        admin = FactoryGirl.create(:admin)
-        session[:admin_id] = admin.id
+      it "calls index method" do
         get :index
-      end
-    end
-
-
-    context "get :index" do
-      it "shows reminder-email template when :temp == 2" do
-        admin = FactoryGirl.create(:admin)
-        session[:admin_id] = admin.id
-        get :index, :temp => "2"
+        response.should render_template :index
       end
     end
   end
-
 end
+
+

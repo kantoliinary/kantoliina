@@ -1,17 +1,15 @@
 %div{:id => "index_member_page"}
   %h1 Jäsenten listaus
 
-  %div{:id => "search_form"}
-    %div{:id => "keyword_field"}
-      = text_field_tag "searchfield", "#{@keyword}"
-    %div{:class => "clear"}
-    %div{:id => "submit_button"}
-      = submit_tag "Hae", :class => "submit", :id => "search_button"
-  = flash[:notice]
   %div{:id => "centered"}
+    %div{:id => "search_form"}
+      %div{:id => "keyword_field"}
+        = text_field_tag "searchfield", "#{@keyword}"
+        = submit_tag "Hae", :class => "submit", :id => "search_button"
+      %div{:class => "clear"}
     %div{:id => "members"}
       %div{:id => "amount_of_results"}
-        Hakutulosten määrä:
+        Hakutuloksias:
         %span{:id => "amount"}
       %div{:id => "column_menu_content"}
         %div{:class => "column_menu multiselectmenu" }
@@ -57,6 +55,8 @@
             %label
               = check_box_tag "lender", "1", false
               Lainaamo
+      %div{:id => "notice"}
+        = flash[:notice]
       %div{:class => "clear"}
       %table{:class => "center", :id => "members_table"}
         %thead

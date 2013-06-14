@@ -13,6 +13,7 @@ describe MembersController do
   describe "GET #new" do
     context "with not logged in" do
       it "renders not the :new view" do
+        member = FactoryGirl.create(:member)
         session[:admin_id] = nil
         get :new
         response.should_not render_template :new
@@ -35,7 +36,7 @@ describe MembersController do
         FactoryGirl.create(:membergroup)
         post :create, :member => {:id => "1", :firstnames => "joku", :surname => "jokinen", :municipality => "helsinki", :zipcode => "12346",
                                   :address => "puutie", :postoffice => "stadi", :email => "jokin@jotain.com", :membergroup_id => 1, :membernumber => "54321",
-                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :deleted => "f"}
+                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :deleted => "f"}, :nextyear => true, :sendinvoice => true
         flash[:notice].should == "Jäsen lisätty"
       end
     end
@@ -140,6 +141,15 @@ describe MembersController do
       flash[:notice].should == "Jäsen poistettu"
     end
   end
+
+  describe "POST #search" do
+    it "filters members by ids" do
+      member = FactoryGirl.create(:member)
+      Member.stub(:find).and_return(member)
+      post :search, :ids => "{\"ids\":[\"1\"]}"
+    end
+  end
+
 end
 
 
