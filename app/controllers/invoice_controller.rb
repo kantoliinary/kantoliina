@@ -13,7 +13,7 @@ class InvoiceController < ApplicationController
     else
       parsed_json = ActiveSupport::JSON.decode(params[:ids])
 
-      @members = Member.find_all_by_id(parsed_json["ids"], :conditions => ['paymentstatus LIKE ? OR membergroups.onetimefee LIKE ?', false, false], :joins => [:membergroup])
+      @members = Member.find_all_by_id(parsed_json["ids"], :conditions => ['paymentstatus == ? OR membergroups.onetimefee == ?', false, false], :joins => [:membergroup])
     end
 
   end
