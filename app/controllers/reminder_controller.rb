@@ -36,7 +36,7 @@ class ReminderController < ApplicationController
       member.save(:validate => false)
       Billing.reminder_email(member, params[:top_message], params[:bottom_message]).deliver
     end
-    flash[:notice] = "Karhukirjeet lähetetty"
+    flash[:notice] = "Maksumuistutukset lähetetty"
     redirect_to members_path
   end
 
