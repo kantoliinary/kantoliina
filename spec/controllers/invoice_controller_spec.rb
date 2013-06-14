@@ -33,12 +33,14 @@ describe InvoiceController do
   end
 
   describe "#update" do
-    #it "should preview an e-mail with valid attributes" do
-    #  file = mock('file')
-    #  post :update, :function => "preview"
-    #
-    #  response.should redirect_to invoice_edit_path
-    #end
+    it "should preview an e-mail with valid attributes" do
+      #file = mock('file')
+      #File.should_receive(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'w').and_yield(file)
+      post :update, :function => "preview", :template => "dasaas"
+      flash[:template].should == "dasaas"
+
+      response.should redirect_to invoice_edit_path
+    end
 
     it "should update an e-mail with valid attributes" do
       file = mock('file')
@@ -69,6 +71,7 @@ describe InvoiceController do
       file = mock('file')
 
       File.stub(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "r").and_yield(file)
+
       file.should_receive(:gets)
       get :edit
     end
