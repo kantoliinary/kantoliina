@@ -29,6 +29,20 @@ class ReminderController < ApplicationController
     render "settings/reminder_edit"
   end
 
+  def load_default
+
+    template = ""
+    File.open(Rails.root.join("app", "views", "billing", "default_reminder_email.html.haml").to_s, 'r') do |f|
+      while line = f.gets
+        template += line
+      end
+    end
+
+    flash[:template] = template
+
+    redirect_to  reminder_edit_path
+  end
+
   def create
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|

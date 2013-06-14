@@ -62,7 +62,7 @@ module EditorHelper
     line_number = 1
     template.split(/\r?\n/).each do |row|
       unless row.strip.empty?
-        unless row.match(/\A[ ]{0,#{deep}}\S{1}.*\z/)
+        unless row.match(/\A( {2}){0,#{deep}}\S{1}.*\z/)
 
           f[:error] = "Virheellinen sisennys rivillä #{line_number}: #{row}"
           f[:template] = template
