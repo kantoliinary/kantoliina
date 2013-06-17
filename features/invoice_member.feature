@@ -18,7 +18,7 @@ Feature: Invoice members
       | 1  | Maksamatonnormaali | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 2              | 2013           | false         | 2013.01.01  | false   |
       | 2  | Maksanutainais     | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false   |
       | 3  | Maksanutnormaali   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12467        | 2              | 2013           | true          | 2013.01.01  | false   |
-      | 4  | Maksamatonainais   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12468        | 1              | 2013           | false         | 2013.01.01  | false   |
+      | 4  | Maksamatonainais   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12467        | 1              | 2013           | false         | 2013.01.01  | false   |
 
 
     When I am on the login page
@@ -46,5 +46,5 @@ Feature: Invoice members
     And I should see "Maksamatonnormaali"
     And I should see "Maksanutnormaali"
     And I should see "Maksamatonainais"
-    And I press "member_1"
-    Then I should not see "Maksamatonnormaali"
+    And I press "Poista"
+    Then I should not see "Janne"

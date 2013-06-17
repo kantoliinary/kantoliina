@@ -18,7 +18,7 @@ Feature: Reminder members
       | 1  | Maksamatonnormaali | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 2              | 2013           | false         | 2013.01.01  | false   |
       | 2  | Maksanutainais     | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false   |
       | 3  | Maksanutnormaali   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12467        | 2              | 2013           | true          | 2013.01.01  | false   |
-      | 4  | Maksamatonainais   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12468        | 1              | 2013           | false         | 2013.01.01  | false   |
+      | 4  | Maksamatonainais   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12467        | 1              | 2013           | false         | 2013.01.01  | false   |
 
 
     When I am on the login page
@@ -29,22 +29,22 @@ Feature: Reminder members
   Scenario: Select all members and send a reminder to those applicable
     And I check "check_all"
     And I press "Luo maksumuistutukset"
-    Then I should see "Maksumuistutuksen varmistus"
+    Then I should see "Maksumuistuksen varmistus"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should not see "Maksanutnormaali"
     And I should see "Maksamatonainais"
     And I press "Lähetä maksumuistutukset"
     Then I should see "Jäsenten listaus"
-    And I should see "Maksumuistutukset lähetetty"
+    And I should see "Maksumuistutkset lähetetty"
 
   Scenario: Select all members and remove one in the reminder page
     And I check "check_all"
     And I press "Luo maksumuistutukset"
-    Then I should see "Maksumuistutuksen varmistus"
+    Then I should see "Maksumuistutksen varmistus"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should not see "Maksanutnormaali"
     And I should see "Maksamatonainais"
-    And I press "member_1"
-    Then I should not see "Maksamatonnormaali"
+    And I press "Poista"
+    Then I should not see "Janne"
