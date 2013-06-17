@@ -7,6 +7,7 @@ class Member < ActiveRecord::Migration
       t.string      :address
       t.string      :zipcode
       t.string      :postoffice
+      t.string      :country
       t.string      :email
       t.string     :membernumber
       t.references  :membergroup

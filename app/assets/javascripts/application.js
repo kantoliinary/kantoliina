@@ -55,3 +55,13 @@ function readCookie(name) {
         if (!ca[i].indexOf(name))
             return ca[i].replace(name, '');
 }
+Array.prototype.columnsort = function(){
+    this.sort(function(a,b){
+        return a[0] > b[0]
+    })
+}
+Array.prototype.columnsortreverse = function(){
+    this.sort(function(a,b){
+        return a[0] < b[0]
+    })
+}

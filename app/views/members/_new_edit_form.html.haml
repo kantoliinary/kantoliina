@@ -31,6 +31,11 @@
       = f.input :postoffice
   %div{:class => "row"}
     %div{:class => "left"}
+      = f.label "country", "Maa"
+    %div{:class => "left right_field"}
+      = f.input :country, priority: [ "Finland" ]
+  %div{:class => "row"}
+    %div{:class => "left"}
       = f.label "email", "Sähköposti"
     %div{:class => "left right_field"}
       = f.input :email

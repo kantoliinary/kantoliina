@@ -35,6 +35,10 @@
             %label
               = check_box_tag "postoffice", "1", false
               Postitoimipaikka
+
+            %label
+              = check_box_tag "country", "1", false
+              Maa
             %label
               = check_box_tag "membergroup", "1", true
               Jäsenryhmä
@@ -78,6 +82,7 @@
             %th{:class => "address hidden"} Osoite
             %th{:class => "zipcode hidden"} Postinumero
             %th{:class => "postoffice hidden"} Postitoimipaikka
+            %th{:class => "country hidden"} Maa
             %th{:class => "membergroup"}
               %div{:class => "membergroup_menu multiselectmenu"}
                 %div{:class => "header"}
