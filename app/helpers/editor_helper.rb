@@ -5,21 +5,7 @@ module EditorHelper
   def self.update function, template, file, f
 
     if function == "preview"
-      if EditorHelper.validate_invoice_template template, f
-        member = Member.new
-        member.membernumber = 90000
-        member.invoicedate = Time.now
-        member.membergroup_id = 1
-        top_additional_message = "Yläosan viesti"
-        bottom_additional_message = "Alaosan viesti"
-
-
-        f[:template] = template
-        engine = Haml::Engine.new(template.gsub(/[@]/, ''))
-        f[:preview] = engine.render(Object.new, :member => member, :top_additional_message => top_additional_message, :bottom_additional_message => bottom_additional_message)
-      else
-
-      end
+      EditorHelper.preview template, f, "Yläosan viesti", "Alaosan viesti"
     end
 
 
@@ -30,6 +16,27 @@ module EditorHelper
         end
       end
     end
+  end
+
+
+
+
+  def self.preview template, f, top, bottom
+
+    if EditorHelper.validate_invoice_template template, f
+      member = Member.new
+      member.membernumber = 90000
+      member.invoicedate = Time.now
+      member.membergroup_id = 1
+      #top_additional_message = top
+      #bottom_additional_message = bottom
+
+
+      f[:template] = template
+      engine = Haml::Engine.new(template.gsub(/[@]/, ''))
+      f[:preview] = engine.render(Object.new, :member => member, :top_additional_message => top, :bottom_additional_message => bottom)
+    end
+
   end
 
 
