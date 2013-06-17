@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
     t.string   "address"
     t.string   "zipcode"
     t.string   "postoffice"
+    t.string   "country"
     t.string   "email"
     t.integer  "membernumber"
     t.integer  "membergroup_id"
