@@ -184,9 +184,8 @@ class MembersController < ApplicationController
       end
     end
 
-    if filters[:deleted] && filters[:deleted].length == 1
-      members = members.where(:deleted => filters[:deleted].at(0) == "1")
-    end
+    members = members.where(:deleted => !!filters[:deleted])
+
     if filters[:paymentstatus] && filters[:paymentstatus].length == 1
       members = members.where(:paymentstatus => filters[:paymentstatus].at(0) == "1")
     end
