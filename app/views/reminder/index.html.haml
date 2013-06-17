@@ -1,5 +1,28 @@
 %div{:id => "reminder_member_page"}
   -#%h1 Maksumuistutuksen varmistus
+  = form_tag reminder_path, :id => "reminder_invoice_form" do
+    -@members.each do |member|
+      = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+
+    %h3 Lisätietoa maksumuistutuksen yläosaan
+    %div{:id => "textarea"}
+      = text_area_tag "top_message", @top_message, :class => "top_message"
+    %h3 Lisätietoa maksumuistutuksen alaosaan
+    %div{:id => "textarea"}
+      = text_area_tag "bottom_message", @bottom_message, :class => "bottom_message"
+    = button_tag "Lähetä maksumuistutukset", :id => "send_reminder"
+
+  %div
+    = form_tag reminder_confirm_path, :id => "preview_form" do
+      = hidden_field_tag "function", "preview"
+      = hidden_field_tag "top_message", "",:class => "top_message"
+      = hidden_field_tag "bottom_message", "", :class => "bottom_message"
+      = hidden_field_tag "ids", @ids
+      = button_tag "Esikatsele", :id => "submit"
+
+  - if @preview
+    %div{:id => "preview-view"}
+      = @preview
 
   %table{:class => "center", :id => "members"}
     %tr
@@ -21,15 +44,3 @@
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
         %td= button_tag "Poista", :type => 'button', :class => "delete_button", :id => "member_#{member.id}", 'data-id' => "#{member.id}"
-
-
-  = form_tag reminder_path, :id => "reminder_invoice_form" do
-    -@members.each do |member|
-      = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
-    %h3 Lisätietoa maksumuistutuksen yläosaan
-    %div{:id => "textarea"}
-      = text_area_tag "top_message", "", :id => "top_message"
-    %h3 Lisätietoa maksumuistutuksen alaosaan
-    %div{:id => "textarea"}
-      = text_area_tag "bottom_message", "", :id => "bottom_message"
-    = button_tag "Lähetä maksumuistutukset", :id => "send_reminder"
