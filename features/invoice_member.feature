@@ -29,19 +29,19 @@ Feature: Invoice members
   Scenario: Select all members and send an invoice to those applicable
     And I check "check_all"
     And I press "Luo laskut"
-    Then I should see "Laskun varmistus"
+#    Then I should see "Laskun varmistus"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should see "Maksanutnormaali"
     And I should see "Maksamatonainais"
     And I press "Lähetä laskut"
-    Then I should see "Jäsenten listaus"
+    Then I should see "Valitse sarakkeet"
     And I should see "Laskut lähetetty"
 
   Scenario: Select all members and remove one in the invoice page
     And I check "check_all"
     And I press "Luo laskut"
-    Then I should see "Laskun varmistus"
+#    Then I should see "Laskun varmistus"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should see "Maksanutnormaali"

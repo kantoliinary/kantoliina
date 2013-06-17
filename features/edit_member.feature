@@ -25,13 +25,13 @@ Feature: edit member
   Scenario: edit member with correct values
     When I am on the members page
     And I follow "11111"
-    Then I should see "Jäsenen tietojen muokkaus"
+#    Then I should see "Jäsenen tietojen muokkaus"
     And I uncheck "member_lender"
     And I fill in "member[firstnames]" with "Janne"
     And I fill in "member[surname]" with "Jäsen"
-    And I press "Tallenna"
+    And I press "Tallenna muutokset"
     Then I should see "Tiedot muutettu"
-    And I follow "Listaa jäsenet"
+    And I follow "Jäsenten hallinta"
     When I am on the members page
     Then I should see "Janne"
     And I should see "Jäsen"
@@ -40,10 +40,9 @@ Feature: edit member
   Scenario: edit member with incorrect values
     When I am on the members page
     And I follow "11111"
-    Then I should see "Jäsenen tietojen muokkaus"
     And I fill in "member[email]" with "google"
   #    And I fill in "member[membernumber]" with "1"
-    And I press "Tallenna"
+    And I press "Tallenna muutokset"
     Then I should see "Sähköpostiosoitteen muoto on väärä"
 #    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"
 #    And I fill in "member[membernumber]" with "aaa"
@@ -53,7 +52,7 @@ Feature: edit member
   Scenario: edit member with incorrect values2
     When I am on the members page
     And I follow "11111"
-    Then I should see "Jäsenen tietojen muokkaus"
+#    Then I should see "Jäsenen tietojen muokkaus"
     And I fill in "member[firstnames]" with ""
     And I fill in "member[surname]" with ""
     And I fill in "member[municipality]" with ""
@@ -62,7 +61,7 @@ Feature: edit member
     And I fill in "member[postoffice]" with ""
     And I fill in "member[email]" with ""
   #    And I fill in "member[membernumber]" with ""
-    And I press "Tallenna"
+    And I press "Tallenna muutokset"
     Then I should see "Etunimi puuttuu"
     Then I should see "Sukunimi puuttuu"
     Then I should see "Kunta puuttuu"

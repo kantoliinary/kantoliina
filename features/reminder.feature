@@ -29,19 +29,19 @@ Feature: Reminder members
   Scenario: Select all members and send a reminder to those applicable
     And I check "check_all"
     And I press "Luo maksumuistutukset"
-    Then I should see "Maksumuistutuksen varmistus"
+    Then I should see "Lisätietoa maksumuistutuksen yläosaan"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should not see "Maksanutnormaali"
     And I should see "Maksamatonainais"
     And I press "Lähetä maksumuistutukset"
-    Then I should see "Jäsenten listaus"
+    Then I should see "Valitse sarakkeet"
     And I should see "Maksumuistutukset lähetetty"
 
   Scenario: Select all members and remove one in the reminder page
     And I check "check_all"
     And I press "Luo maksumuistutukset"
-    Then I should see "Maksumuistutuksen varmistus"
+    Then I should see "Lisätietoa maksumuistutuksen yläosaan"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should not see "Maksanutnormaali"

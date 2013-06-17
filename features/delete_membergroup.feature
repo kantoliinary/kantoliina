@@ -35,6 +35,6 @@ Feature: Edit a membergroup
   Scenario: Almost delete a membergroup
     Given I expect to click "cancel" on a confirmation box
     When I press "Poista jäsenryhmä"
-    Then I should see "Jäsenryhmän muokkaus"
+#    Then I should see "Lisää jäsenryhmä"
     And I am on the membergroups page
     And I should see "Rivijäsen"

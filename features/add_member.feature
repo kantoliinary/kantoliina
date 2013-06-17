@@ -36,7 +36,7 @@ Feature: Add a new member
     And I check "member_support"
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
-    And I follow "Listaa jäsenet"
+    And I follow "Jäsenten hallinta"
     Then I should see "jasen aaa"
 
   Scenario: Add a new member with wrongly formatted e-mail
