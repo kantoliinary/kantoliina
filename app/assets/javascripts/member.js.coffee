@@ -65,7 +65,7 @@ $(document).ready ->
 
   multiselect({
       contextmenu: true,
-      elements: ["#index_member_page .membergroup_menu", "#index_member_page .paymentstatus_menu", "#index_member_page .support_menu", "#index_member_page .lender_menu", "#index_member_page .municipality_menu", "#index_member_page .deleted_menu"]
+      elements: ["#index_member_page .membergroup_menu", "#index_member_page .paymentstatus_menu", "#index_member_page .support_menu", "#index_member_page .lender_menu", "#index_member_page .municipality_menu", "#index_member_page .active_menu"]
     }, null, (element) ->
       do_search()
   )
@@ -84,7 +84,7 @@ $(document).ready ->
   do_search()
 do_search = ->
   search({
-    selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".deleted_menu", "deleted"]],
+    selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".active_menu", "active"]],
     outputtable: "#members_table",
     column_menu: ".column_menu",
     outputlengthfield: "#index_member_page #amount_of_results #amount",

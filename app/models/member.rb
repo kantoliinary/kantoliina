@@ -5,7 +5,7 @@
 #
 
 class Member < ActiveRecord::Base
-  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :country, :email, :membergroup_id, :membernumber, :deleted, :membershipyear, :paymentstatus, :invoicedate, :lender, :support
+  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :country, :email, :membergroup_id, :membernumber, :active, :membershipyear, :paymentstatus, :invoicedate, :lender, :support
   belongs_to :membergroup
   validates :firstnames, :presence => {:message => "Etunimi puuttuu"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu"}
@@ -64,7 +64,7 @@ class Member < ActiveRecord::Base
       :membergroup => self.membergroup.name,
       :membershipyear => self.membershipyear,
       :paymentstatus => self.paymentstatus,
-      :deleted => self.deleted,
+      :active => self.active,
       :support => self.support,
       :lender => self.lender,
       :invoicedate => (self.invoicedate ? self.invoicedate.strftime("%d.%m.%Y") : "")

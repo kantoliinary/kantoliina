@@ -52,8 +52,8 @@
               = check_box_tag "paymentstatus", "1", true
               Maksustatus
             %label
-              = check_box_tag "deleted", "1", false
-              Poistettu
+              = check_box_tag "active", "1", false
+              Aktiivisuus
             %label
               = check_box_tag "support", "1", false
               Tukihenkilö
@@ -105,17 +105,14 @@
                   %label
                     = check_box_tag "paymentstatus_no", "0", true
                     Ei
-            %th{:class => "deleted hidden"}
-              %div{:class => "deleted_menu multiselectmenu"}
+            %th{:class => "active hidden"}
+              %div{:class => "active_menu multiselectmenu"}
                 %div{:class => "header"}
-                  Poistettu
+                  Aktiivisuus
                 %div{:class => "choices"}
                   %label
-                    = check_box_tag "deleted_yes", "1", false
-                    Kyllä
-                  %label
-                    = check_box_tag "deleted_no", "0", true
-                    Ei
+                    = check_box_tag "active_yes", "1", false
+                    Näytä poistetut jäsenet
             %th{:class => "support hidden"}
               %div{:class => "support_menu multiselectmenu"}
                 %div{:class => "header"}
