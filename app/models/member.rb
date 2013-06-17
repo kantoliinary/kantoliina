@@ -5,7 +5,7 @@
 #
 
 class Member < ActiveRecord::Base
-  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :email, :membergroup_id, :membernumber, :deleted, :membershipyear, :paymentstatus, :invoicedate, :lender, :support
+  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :country, :email, :membergroup_id, :membernumber, :deleted, :membershipyear, :paymentstatus, :invoicedate, :lender, :support
   belongs_to :membergroup
   validates :firstnames, :presence => {:message => "Etunimi puuttuu"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu"}
@@ -13,6 +13,7 @@ class Member < ActiveRecord::Base
   validates :address, :presence => {:message => "Osoite puuttuu"}
   validates :zipcode, :presence => {:message => "Postinumero puuttuu"}
   validates :postoffice, :presence => {:message => "Postitoimipaikka puuttuu"}
+  validates :country, :presence => {:message => "Maa puuttuu"}
   validates :email, :presence => {:message => "Sähköpostiosoite puuttuu"},
             :format => {
                 :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
@@ -59,6 +60,7 @@ class Member < ActiveRecord::Base
       :address => self.address,
       :zipcode => self.zipcode,
       :postoffice => self.postoffice,
+      :country => self.country,
       :membergroup => self.membergroup.name,
       :membershipyear => self.membershipyear,
       :paymentstatus => self.paymentstatus,
