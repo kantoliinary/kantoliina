@@ -39,7 +39,7 @@ describe MembersController do
         FactoryGirl.create(:membergroup)
         post :create, :member => {:id => "1", :firstnames => "joku", :surname => "jokinen", :municipality => "helsinki", :zipcode => "12346",
                                   :address => "puutie", :postoffice => "stadi", :email => "jokin@jotain.com", :membergroup_id => 1, :membernumber => "54321",
-                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :deleted => "f"}, :nextyear => true, :sendinvoice => true
+                                  :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :active => "t"}, :nextyear => true, :sendinvoice => true
         flash[:notice].should == "Jäsen lisätty"
       end
     end
@@ -162,11 +162,11 @@ describe MembersController do
       response.body.should == response_json
     end
     it "should return only deleted member" do
-      member = FactoryGirl.create(:member, :deleted => "t")
+      member = FactoryGirl.create(:member, :active => "f")
       FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
       FactoryGirl.create(:membergroup)
       response_json = [member].to_json
-      get :search, :deleted => "1",  :format => :json
+      get :search, :active => "1",  :format => :json
       response.body.should == response_json
     end
     it "should return only payment member" do

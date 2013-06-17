@@ -41,21 +41,25 @@ class MembersController < ApplicationController
     #@member.membershipyear = (Time.now.year).to_i
     membernumber = @member.membernumber
 
-    #Sets membership for next year
+    if @member.paymentstatus
+      @member.membershipyear = (Time.now.year).to_i
+    else
+      @member.membershipyear = (Time.now.year - 1).to_i
+    end
+
     if params[:nextyear]
       @member.membershipyear = (Time.now.year + 1).to_i
-    else
-      @member.membershipyear = (Time.now.year).to_i
     end
 
     if @member.save
       flash[:notice] = "Jäsen lisätty"
     else
+      puts @member.errors
       flash[:member] = @member
+      redirect_to new_member_path and return
     end
 
     member = Member.find_by_membernumber(membernumber)
-
     if params[:sendinvoice]
       redirect_to invoice_confirm_path(:id => member.id)
     else
@@ -75,6 +79,7 @@ class MembersController < ApplicationController
     @members.each do |member|
       if member.paymentstatus == false
         member.paymentstatus = true
+        member.membershipyear = (Time.now.year).to_i
         member.save!(:validate => false)
         flash[:notice] = "Maksustatus muutettu maksaneeksi"
       else

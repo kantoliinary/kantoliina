@@ -46,5 +46,5 @@ Feature: Invoice members
     And I should see "Maksamatonnormaali"
     And I should see "Maksanutnormaali"
     And I should see "Maksamatonainais"
-    And I press "member_1"
-    Then I should not see "Maksamatonnormaali"
+    And I press "Poista"
+    Then I should not see "Janne"
