@@ -5,7 +5,6 @@
     %th Sähköposti
     %th Osoite
     %th Postinumero
-    %th
   - @members.each do |member|
     %tr
       %td= link_to member.membernumber, edit_member_path(member)
@@ -17,5 +16,5 @@
       %td= member.zipcode
 
 = form_tag mailer_confirm_path, :id => "mailer_form" do
-  = hidden_field_tag "ids", :ids => ActiveSupport::JSON.encode(@members.first.id).as_json
+  = hidden_field_tag "id", @members.first.id
   = button_tag "Lähetä sähköpostia", :class => "submit send"
