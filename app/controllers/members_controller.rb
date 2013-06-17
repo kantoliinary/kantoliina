@@ -158,14 +158,6 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
-  def random
-    parsed_json = ActiveSupport::JSON.decode(params[:ids])
-    @members = Member.find_all_by_id(parsed_json["ids"])
-    @members = [@members[rand(@members.length)]]
-    render 'random/index'
-  end
-
-
   private
 
     ##

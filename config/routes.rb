@@ -18,6 +18,9 @@ Kantoliina::Application.routes.draw do
   get "invoice/confirm" => 'invoice#index', :as => 'invoice_confirm'
   post "invoice/confirm" => 'invoice#index', :as => 'invoice_confirm'
 
+  get "random/confirm" => 'random#random', :as => 'random_confirm'
+  post "random/confirm" => 'random#random', :as => 'random_confirm'
+
   get "invoice" => 'invoice#create'
   post "invoice" => 'invoice#create'
   put 'invoice' => 'invoice#update'
@@ -38,7 +41,7 @@ Kantoliina::Application.routes.draw do
   post "delete" => 'members#delete'
   post "payment" => 'members#payment'
   post "unpayment" => 'members#unpayment'
-  post "random" => 'members#random', :as => 'random'
+  post "random" => 'random#random', :as => 'random'
 
 
   post "mailer/confirm" => 'mailer#index', :as => 'mailer_confirm'
@@ -57,6 +60,7 @@ Kantoliina::Application.routes.draw do
   resources :members
   resources :membergroups
   resources :reminder
+  resources :random
 
 
 
