@@ -13,8 +13,8 @@ Feature: Change paymentstatus to false
       | 1  | Ainaisjäsen | 10.0 |
 
     Given the following members exist:
-      | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | deleted |
-      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com | 12345        | 1              | 2013           | false         | false   |
+      | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | active |
+      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com | 12345        | 1              | 2013           | false         | true   |
 
     When I am on the login page
     And I fill in "username" with "admin"

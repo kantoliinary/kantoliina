@@ -13,9 +13,9 @@ Feature: Delete a new member
       | 1  | Ainaisjäsen | 10.0 |
 
     Given the following members exist:
-      | id | firstnames | surname     | municipality | address  | zipcode | postoffice | country | email              | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
-      | 1  | Matti      | Meikeläinen | Vaasa        | zigtie 5 | 00666   | Vaasa      | Finland | Matti.M@jeejee.com | 11111        | 1              | 2013           | true          | 2013.01.01  | false   |
-      | 2  | Miska      | Meikeläinen | Vaasa        | zigtie 6 | 00666   | Vaasa      | Finland | Miska.M@jeejee.com | 11112        | 1              | 2012           | false         | 2013.01.01  | false   |
+      | id | firstnames | surname     | municipality | address  | zipcode | postoffice | country | email              | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
+      | 1  | Matti      | Meikeläinen | Vaasa        | zigtie 5 | 00666   | Vaasa      | Finland | Matti.M@jeejee.com | 11111        | 1              | 2013           | true          | 2013.01.01  | true   |
+      | 2  | Miska      | Meikeläinen | Vaasa        | zigtie 6 | 00666   | Vaasa      | Finland | Miska.M@jeejee.com | 11112        | 1              | 2012           | false         | 2013.01.01  | true   |
 
 
     When I am on the login page
