@@ -42,8 +42,8 @@ var search = function (options) {
                 $(item).remove()
             }
         })
-        var columns = ["membernumber", "name", "municipality", "address", "zipcode", "postoffice", "country", "membergroup", "membershipyear", "invoicedate", "paymentstatus", "deleted", "lender", "support"]
-        var images= ["paymentstatus", "deleted", "lender", "support"]
+        var columns = ["membernumber", "name", "municipality", "address", "zipcode", "postoffice", "country", "membergroup", "membershipyear", "invoicedate", "paymentstatus", "active", "lender", "support"]
+        var images= ["paymentstatus", "active", "lender", "support"]
         $(data).each(function (index, member) {
             var tr = jQuery("<tr/>")
             var td = jQuery("<td/>").appendTo(tr)

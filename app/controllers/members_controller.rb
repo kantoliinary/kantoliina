@@ -100,7 +100,7 @@ class MembersController < ApplicationController
   end
 
   ##
-  # Changes the deleted status and shows the changes on the screen.
+  # Changes the active status and shows the changes on the screen.
 
   def delete
 
@@ -109,7 +109,7 @@ class MembersController < ApplicationController
     @members.each do |member|
 
       if member
-        member.deleted = "#{!member.deleted}"
+        member.active = "#{!member.active}"
         member.save!(:validate => false)
 
       end
@@ -123,7 +123,7 @@ class MembersController < ApplicationController
 
   def index
     @membergroups = Membergroup.all
-    @deleted = params[:deleted] || "1"
+    @active = params[:active] || "1"
     s_membergroups = params[:membergroups]
     @municipalitys = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
               AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
@@ -162,7 +162,7 @@ class MembersController < ApplicationController
   private
 
     ##
-    # Filters members by selected radio buttons. Values are deleted and payment status with OR operation.
+    # Filters members by selected radio buttons. Values are active and payment status with OR operation.
     # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
 
 
@@ -184,7 +184,7 @@ class MembersController < ApplicationController
       end
     end
 
-    members = members.where(:deleted => !!filters[:deleted])
+    members = members.where(:active => !filters[:active])
 
     if filters[:paymentstatus] && filters[:paymentstatus].length == 1
       members = members.where(:paymentstatus => filters[:paymentstatus].at(0) == "1")
