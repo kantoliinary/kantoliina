@@ -156,10 +156,6 @@ textarea {
 input, button {
     width: 200px;
     padding: 5px;
-    /*margin: 5px;*/
-}
-
-input[type = "submit"] {
     margin: 5px;
 }
 
@@ -659,4 +655,7 @@ ul#SearchResults li {
 }
 .hidden{
     display: none;
+}
+.underline{
+    text-decoration: underline;
 }

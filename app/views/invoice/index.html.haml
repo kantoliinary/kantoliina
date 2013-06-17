@@ -1,23 +1,24 @@
 %div{:id => "invoice_member_page"}
   -#%h1 Laskun varmistus
-
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
 
     %h3 Lisätietoa laskun yläosaan
     %div{:id => "textarea"}
-      = text_area_tag "top_message", @top_message, :id => "top_message"
+      = text_area_tag "top_message", @top_message, :class => "top_message"
     %h3 Lisätietoa laskun alaosaan
     %div{:id => "textarea"}
-      = text_area_tag "bottom_message", @bottom_message, :id => "bottom_message"
+      = text_area_tag "bottom_message", @bottom_message, :class => "bottom_message"
     = button_tag "Lähetä laskut", :id => "send_invoice"
 
   %div
-    = form_tag invoice_confirm_path, :id => "invoice_form" do
+    = form_tag invoice_confirm_path, :id => "preview_form" do
       = hidden_field_tag "function", "preview"
+      = hidden_field_tag "top_message", "",:class => "top_message"
+      = hidden_field_tag "bottom_message", "", :class => "bottom_message"
       = hidden_field_tag "ids", @ids
-      = button_tag "Esikatsele", :id => "preview"
+      = button_tag "Esikatsele", :id => "submit"
 
   - if @preview
     %div{:id => "preview-view"}
