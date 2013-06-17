@@ -67,6 +67,7 @@ class InvoiceController < ApplicationController
       member.save(:validate => false)
       Billing.bill_email(member, params[:top_message], params[:bottom_message]).deliver
     end
+    flash[:notice] = "Laskut lähetetty"
     redirect_to members_path
   end
 
