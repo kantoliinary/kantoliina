@@ -15,8 +15,8 @@ Feature: send mail to members
       | 2  | Varsinaisjäsen | 20.0 |
 
     Given the following members exist:
-      | id | firstnames | surname | municipality | address       | zipcode | postoffice | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
-      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com | 12345        | 1              | 2013           | true          | 2013.01.01  | false   |
+      | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
+      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com | 12345        | 1              | 2013           | true          | 2013.01.01  | false   |
 
 
     When I am on the login page
@@ -29,7 +29,7 @@ Feature: send mail to members
     And I should see "Janne"
     And I check "check_all"
     And I press "Lähetä sähköpostia"
-    And I should see "Sähköpostin varmistus"
+    And I should see "Lähtevä viesti"
     And I fill in "subject" with "Otsikko"
     And I fill in "additional_message" with "viestia"
     And I press "Lähetä sähköposti"
@@ -39,6 +39,6 @@ Feature: send mail to members
     And I should see "Janne"
     And I check "check_all"
     And I press "Lähetä sähköpostia"
-    And I should see "Sähköpostin varmistus"
+    And I should see "Lähtevä viesti"
     And I press "Poista"
     Then I should not see "Janne"

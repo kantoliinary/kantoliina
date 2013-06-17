@@ -37,7 +37,7 @@ Feature: account controls
     And I fill in "username" with "admi"
     And I fill in "password" with "123qwerty"
     And I press "Login"
-    Then I should see "Jäsenten listaus"
+    Then I should see "Valitse sarakkeet"
 
   Scenario: I submit valid new admin password with a correct password
     When I am on the accountcontrols page
@@ -52,7 +52,7 @@ Feature: account controls
     And I fill in "username" with "admin"
     And I fill in "password" with "123qwerty"
     And I press "Login"
-    Then I should see "Jäsenten listaus"
+    Then I should see "Valitse sarakkeet"
 
   Scenario: I submit valid new admin username with a correct password
     When I am on the accountcontrols page
@@ -66,7 +66,7 @@ Feature: account controls
     And I fill in "username" with "admi"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-    Then I should see "Jäsenten listaus"
+    Then I should see "Valitse sarakkeet"
 
 
   Scenario: I submit valid admin account changes with an incorrect password

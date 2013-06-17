@@ -77,6 +77,10 @@ $(document).ready ->
     table: "#members_table",
   })
 
+  $("#random_button").click( (e) ->
+    do_random()
+  )
+
   do_search()
 do_search = ->
   search({
@@ -86,6 +90,14 @@ do_search = ->
     outputlengthfield: "#index_member_page #amount_of_results #amount",
     callback: ->
       sorter.sort(undefined, true)
+  })
+
+  do_random()
+do_random = ->
+  random({
+    outputtable: "#members_table",
+    column_menu: ".column_menu",
+    outputlengthfield: "#index_member_page #amount_of_results #amount"
   })
 
 

@@ -13,11 +13,11 @@ Feature: filter members
       | 1  | Ainaisjäsen | 10.0 |
 
     Given the following members exist:
-      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
-      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | false   |
-      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false   |
-      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | jaana.jasen@hotmail.com    | 12543        | 1              | 2013           | false         | 2013.01.01  | false   |
-      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | true    |
+      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
+      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | false   |
+      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false   |
+      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | Finland | jaana.jasen@hotmail.com    | 12543        | 1              | 2013           | false         | 2013.01.01  | false   |
+      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | true    |
 
 
     When I am on the login page
@@ -127,8 +127,6 @@ Feature: filter members
 #    And I should not see "Janne"
 #    And I should not see "Liisa"
 #    And I should see "Pelle"
-
-
 
 
   Scenario: I try to search with two parameters

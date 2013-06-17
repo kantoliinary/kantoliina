@@ -14,11 +14,11 @@ Feature: Reminder members
       | 2  | Varsinaisjäsen | 20.0 | false      |
 
     Given the following members exist:
-      | id | firstnames         | surname    | municipality | address       | zipcode | postoffice | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
-      | 1  | Maksamatonnormaali | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 2              | 2013           | false         | 2013.01.01  | false   |
-      | 2  | Maksanutainais     | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false   |
-      | 3  | Maksanutnormaali   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12467        | 2              | 2013           | true          | 2013.01.01  | false   |
-      | 4  | Maksamatonainais   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12467        | 1              | 2013           | false         | 2013.01.01  | false   |
+      | id | firstnames         | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
+      | 1  | Maksamatonnormaali | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 2              | 2013           | false         | 2013.01.01  | false   |
+      | 2  | Maksanutainais     | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | false   |
+      | 3  | Maksanutnormaali   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12467        | 2              | 2013           | true          | 2013.01.01  | false   |
+      | 4  | Maksamatonainais   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12468        | 1              | 2013           | false         | 2013.01.01  | false   |
 
 
     When I am on the login page
@@ -29,19 +29,32 @@ Feature: Reminder members
   Scenario: Select all members and send a reminder to those applicable
     And I check "check_all"
     And I press "Luo maksumuistutukset"
+<<<<<<< HEAD
     Then I should see "Maksumuistuksen varmistus"
+=======
+    Then I should see "Lisätietoa maksumuistutuksen yläosaan"
+>>>>>>> 58e70be876b4ab85d839e973fe315830aaa45f8b
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should not see "Maksanutnormaali"
     And I should see "Maksamatonainais"
     And I press "Lähetä maksumuistutukset"
+<<<<<<< HEAD
     Then I should see "Jäsenten listaus"
     And I should see "Maksumuistutkset lähetetty"
+=======
+    Then I should see "Valitse sarakkeet"
+    And I should see "Maksumuistutukset lähetetty"
+>>>>>>> 58e70be876b4ab85d839e973fe315830aaa45f8b
 
   Scenario: Select all members and remove one in the reminder page
     And I check "check_all"
     And I press "Luo maksumuistutukset"
+<<<<<<< HEAD
     Then I should see "Maksumuistutksen varmistus"
+=======
+    Then I should see "Lisätietoa maksumuistutuksen yläosaan"
+>>>>>>> 58e70be876b4ab85d839e973fe315830aaa45f8b
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should not see "Maksanutnormaali"
