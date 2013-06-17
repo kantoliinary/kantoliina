@@ -25,7 +25,7 @@ class MembersController < ApplicationController
     number = 10000
 
     members.each do |member|
-      return number unless number == member.membernumber
+      return number unless number == member.membernumber.to_i
       number+=1
     end
     return number
