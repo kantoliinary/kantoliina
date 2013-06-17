@@ -6,6 +6,7 @@
       %div{:id => "keyword_field"}
         = text_field_tag "searchfield", "#{@keyword}"
         = submit_tag "Hae", :class => "submit", :id => "search_button"
+        -#= submit_tag "Arvo", :class => "submit", :id => "random_button"
       %div{:class => "clear"}
     %div{:id => "members"}
       %div{:id => "amount_of_results"}
@@ -159,6 +160,10 @@
       = form_tag reminder_confirm_path, :id => "reminder_form" do
         = hidden_field_tag "ids"
         = button_tag "Luo maksumuistutukset", :class => "submit send"
+
+      = form_tag random_index_path, :id => "random_form" do
+        = hidden_field_tag "ids"
+        = button_tag "Arvo jäsen", :class => "submit send"
 
 
       %div{:class => "clear"}

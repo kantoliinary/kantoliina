@@ -54,11 +54,12 @@ class MembersController < ApplicationController
     if @member.save
       flash[:notice] = "Jäsen lisätty"
     else
+      puts @member.errors
       flash[:member] = @member
+      redirect_to new_member_path and return
     end
 
     member = Member.find_by_membernumber(membernumber)
-
     if params[:sendinvoice]
       redirect_to invoice_confirm_path(:id => member.id)
     else
@@ -161,7 +162,6 @@ class MembersController < ApplicationController
     end
     redirect_to members_path
   end
-
 
   private
 

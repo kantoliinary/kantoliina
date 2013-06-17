@@ -9,12 +9,12 @@ Feature: Change paymentstatus to false
       | admin    | qwerty123 | testi@testi.fi |
 
     Given the following membergroups exist:
-      | id | name        | fee     |
-      | 1  | Ainaisjäsen | 10.0    |
+      | id | name        | fee  |
+      | 1  | Ainaisjäsen | 10.0 |
 
     Given the following members exist:
-      | id | firstnames  | surname | municipality | address       | zipcode | postoffice | email                 | membernumber | membergroup_id | membershipyear | paymentstatus  | deleted |
-      | 1  | Janne       | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com | 12345        | 1              | 2013           | false          | false   |
+      | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | deleted |
+      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com | 12345        | 1              | 2013           | false         | false   |
 
     When I am on the login page
     And I fill in "username" with "admin"
@@ -27,7 +27,7 @@ Feature: Change paymentstatus to false
     When I am on the members page
     Then I should see "Janne"
     And I check "check_all"
-#    Given I expect to click "OK" on a confirmation box
+  #    Given I expect to click "OK" on a confirmation box
     When I press "Merkitse maksaneeksi"
     Then I should see "Maksustatus muutettu maksaneeksi"
 
@@ -36,7 +36,7 @@ Feature: Change paymentstatus to false
     When I am on the members page
     Then I should see "Janne"
     And I check "check_all"
-#    Given I expect to click "OK" on a confirmation box
+  #    Given I expect to click "OK" on a confirmation box
     When I press "Merkitse maksamattomaksi"
     Then I should see "Jäsen on jo maksamaton!"
 
