@@ -37,7 +37,8 @@ Kantoliina::Application.routes.draw do
   post "delete" => 'members#delete'
   post "payment" => 'members#payment'
   post "unpayment" => 'members#unpayment'
-  post "random" => 'members#random'
+  post "/random" => 'members#random', :as => 'random'
+
 
   post "mailer/confirm" => 'mailer#index', :as => 'mailer_confirm'
   post "mailer" => 'mailer#create'
@@ -55,6 +56,7 @@ Kantoliina::Application.routes.draw do
   resources :members
   resources :membergroups
   resources :reminder
+  resources :random
 
 
 

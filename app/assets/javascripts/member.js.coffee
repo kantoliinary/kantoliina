@@ -90,7 +90,6 @@ do_search = ->
   do_random()
 do_random = ->
   random({
-    selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".deleted_menu", "deleted"]],
     outputtable: "#members_table",
     column_menu: ".column_menu",
     outputlengthfield: "#index_member_page #amount_of_results #amount"

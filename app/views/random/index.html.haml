@@ -1,0 +1,18 @@
+%table{:class => "center", :id => "members"}
+  %tr
+    %th Jäsennro.
+    %th Nimi
+    %th Sähköposti
+    %th Osoite
+    %th Postinumero
+    %th
+    puts @members
+  - @members.each do |member|
+    %tr
+      %td= link_to member.membernumber, edit_member_path(member)
+      %td
+        = member.firstnames
+        = member.surname
+      %td= member.email
+      %td= member.address
+      %td= member.zipcode
