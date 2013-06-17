@@ -25,7 +25,7 @@ class MembersController < ApplicationController
     number = 10000
 
     members.each do |member|
-      return number unless number == member.membernumber
+      return number unless number == member.membernumber.to_i
       number+=1
     end
     return number
@@ -176,11 +176,9 @@ class MembersController < ApplicationController
         query_keywords = {}
         counter = 65;
         all_search_fields.each do |field|
-          if field == "membernumber" || field == "zipcode" || field == "address"
-            query += (query.empty? ? "" : " OR ") + "#{field} LIKE :#{counter.chr}"
-          else
-            query += (query.empty? ? "" : " OR ") + "LOWER(#{field}) LIKE :#{counter.chr}"
-          end
+
+          query += (query.empty? ? "" : " OR ") + "LOWER(#{field}) LIKE :#{counter.chr}"
+
           query_keywords[counter.chr.to_sym] = "#{word.strip.downcase}%"
           counter += 1
         end
