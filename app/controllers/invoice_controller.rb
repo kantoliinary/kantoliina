@@ -8,6 +8,9 @@ class InvoiceController < ApplicationController
   ##
   # Parses an array of IDs from JSON code given as a parameter and selects an array of members based on those IDs.
   def index
+
+    @ids = params[:ids] || params[:id]
+
     if params[:id]
       @members = [Member.find_by_id(params[:id])]
     else
@@ -16,7 +19,16 @@ class InvoiceController < ApplicationController
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => ['paymentstatus = ? OR membergroups.onetimefee = ?', false, false], :joins => [:membergroup])
     end
 
+    if params[:function] == 'preview'
+
+      @top_message = params[:top_message]
+      @bottom_message = params[:bottom_message]
+
+      @preview = InvoiceHelper.preview @top_message, @bottom_message
+    end
   end
+
+
   ##
   #
   def index_editor

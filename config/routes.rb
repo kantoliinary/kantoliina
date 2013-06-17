@@ -23,6 +23,7 @@ Kantoliina::Application.routes.draw do
   put 'invoice' => 'invoice#update'
   get "invoice/edit" => "invoice#edit"
   get 'invoice/loaddefault' => 'invoice#load_default'
+  get 'invoice/preview' => 'invoice#preview'
 
   get "reminder/confirm" => 'reminder#index', :as => 'reminder_confirm'
   post "reminder/confirm" => 'reminder#index', :as => 'reminder_confirm'
