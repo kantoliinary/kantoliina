@@ -36,9 +36,9 @@ ActiveRecord::Schema.define(:version => 20130603080112) do
     t.string   "postoffice"
     t.string   "country"
     t.string   "email"
-    t.integer  "membernumber"
+    t.string   "membernumber"
     t.integer  "membergroup_id"
-    t.integer  "membershipyear"
+    t.string   "membershipyear"
     t.boolean  "paymentstatus"
     t.date     "invoicedate"
     t.boolean  "deleted",        :default => false
