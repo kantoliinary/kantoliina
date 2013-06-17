@@ -1,5 +1,5 @@
 %div{:id => "invoice_member_page"}
-  %h1 Laskun varmistus
+  -#%h1 Laskun varmistus
 
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
@@ -42,4 +42,6 @@
         %td= member.membergroup.name
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
-        %td= button_tag "Poista", :type => 'button', :class => "delete_button", 'data-id' => "#{member.id}"
+        %td= button_tag "Poista", :type => 'button', :class => "delete_button", :id => "member_#{member.id}", 'data-id' => "#{member.id}"
+
+

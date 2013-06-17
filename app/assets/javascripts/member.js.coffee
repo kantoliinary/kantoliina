@@ -73,6 +73,9 @@ $(document).ready ->
   $("#search_button").click( (e) ->
     do_search()
   )
+  sorter.init({
+    table: "#members_table",
+  })
 
   do_search()
 do_search = ->
@@ -80,7 +83,9 @@ do_search = ->
     selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".deleted_menu", "deleted"]],
     outputtable: "#members_table",
     column_menu: ".column_menu",
-    outputlengthfield: "#index_member_page #amount_of_results #amount"
+    outputlengthfield: "#index_member_page #amount_of_results #amount",
+    callback: ->
+      sorter.sort(undefined, true)
   })
 
 
