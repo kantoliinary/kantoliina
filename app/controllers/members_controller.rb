@@ -158,6 +158,16 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+  def random
+    puts "aaaaa"
+    puts params[:ids]
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @members = Member.find_all_by_id(parsed_json["ids"])
+    @members = @members[rand(@members.length)]
+    @members
+   redirect_to members_path
+  end
+
 
   private
 
