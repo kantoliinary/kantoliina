@@ -13,8 +13,8 @@ Feature: edit member
       | 1  | Ainaisjäsen | 10.0 |
 
     Given the following members exist:
-      | id | firstnames | surname     | municipality | address  | zipcode | postoffice | email              | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
-      | 1  | Matti      | Meikeläinen | Vaasa        | zigtie 5 | 00666   | Vaasa      | Matti.M@jeejee.com | 11111        | 1              | 2013           | true          | 2013.01.01  | false   |
+      | id | firstnames | surname     | municipality | address  | zipcode | postoffice | country | email              | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
+      | 1  | Matti      | Meikeläinen | Vaasa        | zigtie 5 | 00666   | Vaasa      | Finland | Matti.M@jeejee.com | 11111        | 1              | 2013           | true          | 2013.01.01  | false   |
 
 
     When I am on the login page
@@ -42,7 +42,7 @@ Feature: edit member
     And I follow "11111"
     Then I should see "Jäsenen tietojen muokkaus"
     And I fill in "member[email]" with "google"
-#    And I fill in "member[membernumber]" with "1"
+  #    And I fill in "member[membernumber]" with "1"
     And I press "Tallenna"
     Then I should see "Sähköpostiosoitteen muoto on väärä"
 #    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"
@@ -61,7 +61,7 @@ Feature: edit member
     And I fill in "member[zipcode]" with ""
     And I fill in "member[postoffice]" with ""
     And I fill in "member[email]" with ""
-#    And I fill in "member[membernumber]" with ""
+  #    And I fill in "member[membernumber]" with ""
     And I press "Tallenna"
     Then I should see "Etunimi puuttuu"
     Then I should see "Sukunimi puuttuu"
