@@ -8,9 +8,9 @@ class Member < ActiveRecord::Migration
       t.string      :zipcode
       t.string      :postoffice
       t.string      :email
-      t.integer     :membernumber
+      t.string     :membernumber
       t.references  :membergroup
-      t.integer     :membershipyear
+      t.string     :membershipyear
       t.boolean     :paymentstatus
       t.date        :invoicedate
       t.boolean     :deleted, :default => false
