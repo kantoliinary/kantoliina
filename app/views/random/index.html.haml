@@ -1,0 +1,20 @@
+%table{:class => "center", :id => "random_page"}
+  %tr
+    %th Jäsennro.
+    %th Nimi
+    %th Sähköposti
+    %th Osoite
+    %th Postinumero
+  - @members.each do |member|
+    %tr
+      %td= link_to member.membernumber, edit_member_path(member)
+      %td
+        = member.firstnames
+        = member.surname
+      %td= member.email
+      %td= member.address
+      %td= member.zipcode
+
+= form_tag mailer_confirm_path, :id => "mailer_form" do
+  = hidden_field_tag "id", @members.first.id
+  = button_tag "Lähetä sähköpostia", :class => "submit send"
