@@ -49,6 +49,7 @@ Kantoliina::Application.routes.draw do
   put 'mailer' => 'mailer#update'
 
   get 'members/search' => "members#search"
+  post 'members/addressdata' => "members#addressdata"
 
   put 'settings' => 'settings#update'
 

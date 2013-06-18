@@ -92,12 +92,5 @@ do_search = ->
       sorter.sort(undefined, true)
   })
 
-  do_random()
-do_random = ->
-  random({
-    outputtable: "#members_table",
-    column_menu: ".column_menu",
-    outputlengthfield: "#index_member_page #amount_of_results #amount"
-  })
 
 

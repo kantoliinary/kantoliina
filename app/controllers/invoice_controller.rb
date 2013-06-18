@@ -22,13 +22,11 @@ class InvoiceController < ApplicationController
       @top_message = params[:top_message]
       @bottom_message = params[:bottom_message]
 
-      @preview = InvoiceHelper.preview @top_message, @bottom_message
+      @preview = InvoiceHelper.preview @top_message, @bottom_message, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s
+
     end
   end
 
-
-  ##
-  #
   def index_editor
 
     @error = flash[:error] || ""

@@ -2,14 +2,13 @@
 
 module InvoiceHelper
 
-  def self.preview top, bottom
+  def self.preview top, bottom, file
 
     template = ""
-    @template = File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r') do |f|
+    @template = File.open(file, 'r') do |f|
       while line = f.gets
         template += line
       end
-      template
     end
 
     EditorHelper.preview template, Hash.new, top, bottom
