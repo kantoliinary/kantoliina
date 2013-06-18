@@ -31,17 +31,23 @@ Feature: Edit a membergroup
 
   @javascript
   Scenario: Delete a membergroup
-
+    Given I follow "Bilejäsen"
     Given I expect to click "OK" on a confirmation box
     When I press "Poista jäsenryhmä"
     Then I should see "Jäsenryhmä poistettu"
-    And I should see "Jäsenmaksu (€)"
-    And I should see "Bilejäsen"
-    And I should not see "Rivijäsen"
+    And I should see "Rivijäsen"
+    And I should not see "Bilejäsen"
+
+  @javascript
+  Scenario: Try to delete a membergroup with members
+    Given I follow "Rivijäsen"
+    Then I should not see "Poista jäsenryhmä"
+
 
   @javascript
   Scenario: Almost delete a membergroup
-    Given I expect to click "cancel" on a confirmation box
+    Given I follow "Bilejäsen"
+    And I expect to click "cancel" on a confirmation box
     When I press "Poista jäsenryhmä"
   #    Then I should see "Lisää jäsenryhmä"
     And I am on the membergroups page
