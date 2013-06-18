@@ -157,6 +157,7 @@ input, button {
     width: 200px;
     padding: 5px;
     margin: 5px;
+    font-size: 14px;
 }
 
 input[type = "checkbox"]{
