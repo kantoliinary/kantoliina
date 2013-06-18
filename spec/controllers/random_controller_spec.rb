@@ -10,8 +10,11 @@ describe RandomController do
   end
 
   describe "POST #index" do
-    it 'finds members with given ids' do
+    it 'should render index' do
+
       post :index, :ids => "{\"ids\":[\"1\"]}"
+
+      response.should render_template :index
     end
   end
 end
