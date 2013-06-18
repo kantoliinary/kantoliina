@@ -2,22 +2,12 @@
 
 module InvoiceHelper
 
-  def self.preview top, bottom, type
+  def self.preview top, bottom, file
 
     template = ""
-    if type
-      @template = File.open(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r') do |f|
-        while line = f.gets
-          template += line
-        end
-        template
-      end
-    else
-      @template = File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
-        while line = f.gets
-          template += line
-        end
-        template
+    @template = File.open(file, 'r') do |f|
+      while line = f.gets
+        template += line
       end
     end
 
