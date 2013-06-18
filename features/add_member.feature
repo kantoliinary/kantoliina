@@ -32,6 +32,7 @@ Feature: Add a new member
       | Sähköposti       | gf@a.com |
 
     And I select "Ainaisjäsen" from "member[membergroup_id]"
+    And I select "Andorra" from "member_country"
     And I check "member_lender"
     And I check "member_support"
     And I press "Lisää"

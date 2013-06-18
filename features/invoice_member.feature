@@ -46,5 +46,14 @@ Feature: Invoice members
     And I should see "Maksamatonnormaali"
     And I should see "Maksanutnormaali"
     And I should see "Maksamatonainais"
-    And I press "Poista"
-    Then I should not see "Janne"
+    And I press "member_1"
+    Then I should not see "Maksamatonnormaali"
+
+  Scenario: View invoice template in invoice confirmation page
+    And I check "check_all"
+    And I press "Luo laskut"
+    And I should see "Maksamatonnormaali"
+    And I should see "Maksanutnormaali"
+    And I should see "Maksamatonainais"
+    And I press "Esikatsele"
+    Then I should see "Kantoliinayhdistyksen jäsenmaksu -lasku"
