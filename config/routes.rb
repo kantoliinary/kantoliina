@@ -45,8 +45,10 @@ Kantoliina::Application.routes.draw do
 
 
   post "mailer/confirm" => 'mailer#index', :as => 'mailer_confirm'
+  get "mailer/confirm" => 'mailer#index'
   post "mailer" => 'mailer#create'
   put 'mailer' => 'mailer#update'
+  post 'mailer/upload' => 'mailer#upload'
 
   get 'members/search' => "members#search"
   post 'members/addressdata' => "members#addressdata"
