@@ -105,6 +105,16 @@ Feature: filter members
     Then I should not see "Janne"
     Then I should not see "Liisa"
 
+  Scenario: I filter members by country
+    When I am on the members page
+    And I fill in "searchfield" with "Finland"
+    And I press "Hae"
+    Then I should see "Jaana"
+    Then I should see "Janne"
+    Then I should see "Liisa"
+    Then I should not see "Pelle"
+
+
 # odottavat kayttiksen muokkausta
 
 #  @javascript
