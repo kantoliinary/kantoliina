@@ -88,7 +88,12 @@ do_search = ->
     outputlengthfield: "#index_member_page #amount_of_results #amount",
     callback: ->
       sorter.sort(undefined, true)
+      changeRemoveActiveButton()
   })
 
-
-
+changeRemoveActiveButton = ->
+  button = $("#index_member_page").find("#delete_active_form").find("button")
+  if $("#index_member_page").find(".active_menu").find("input").is(":checked")
+    button.text("Aktivoi")
+  else
+     button.text("Poista")
