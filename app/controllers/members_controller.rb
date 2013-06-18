@@ -37,7 +37,6 @@ class MembersController < ApplicationController
   # Redirects to new member page.
 
   def create
-    puts params[:member]
     @member = Member.new(params[:member])
     #@member.membershipyear = (Time.now.year).to_i
     membernumber = @member.membernumber
@@ -171,7 +170,7 @@ class MembersController < ApplicationController
 
 
   def search_with_filters filters
-    all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber"]
+    all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber", "country"]
     keywords = (filters[:keyword] ? filters[:keyword].split("|") : "")
     members = Member.includes(:membergroup)
     if keywords.length > 0
