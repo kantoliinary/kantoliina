@@ -3,7 +3,7 @@
 
   %h3 Lähtevä viesti
 
-  = form_tag mailer_path, :id => "mailer_form" do
+  = form_tag mailer_path, :id => "mailer_form", :multipart => true do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
     Otsikko
@@ -12,6 +12,9 @@
     Viesti
     %div{:id => "textarea"}
       = text_area_tag "additional_message", "", :id => "additional_message"
+    Liite
+    %div{:id => "attachment"}
+      = file_field_tag 'attachment'
     = button_tag "Lähetä sähköposti", :id => "send_mailer"
 
 

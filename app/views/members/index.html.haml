@@ -93,7 +93,8 @@
       %table{:class => "center", :id => "members_table"}
         %thead
           %tr
-            %th= check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
+            %th{:class => "checkboxs"}
+              = check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
             %th{:class => "membernumber"} Jäsennumero
             %th{:class => "name"} Nimi
             %th{:class => "municipality"}
@@ -101,6 +102,9 @@
                 %div{:class => "header"}
                   Kunta
                 %div{:class => "choices"}
+                  %label
+                    = check_box_tag "select_all", "1", false, :id => "select_all"
+                    Valitse kaikki
                   -@municipalitys.each do |member|
                     %label
                       - municipality = member.municipality.gsub(/ä/, "a").gsub(/ö/, "o")

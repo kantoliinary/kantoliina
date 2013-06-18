@@ -73,6 +73,7 @@ $(document).ready ->
   )
   sorter.init({
     table: "#members_table",
+    except: ["checkboxs"]
   })
 
   $("#random_button").click( (e) ->
