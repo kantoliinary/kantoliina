@@ -22,13 +22,10 @@ class InvoiceController < ApplicationController
       @top_message = params[:top_message]
       @bottom_message = params[:bottom_message]
 
-      @preview = InvoiceHelper.preview @top_message, @bottom_message
+      @preview = InvoiceHelper.preview @top_message, @bottom_message, true
     end
   end
 
-
-  ##
-  #
   def index_editor
 
     @error = flash[:error] || ""

@@ -22,7 +22,7 @@ class ReminderController < ApplicationController
       @top_message = params[:top_message]
       @bottom_message = params[:bottom_message]
 
-      @preview = InvoiceHelper.preview @top_message, @bottom_message
+      @preview = InvoiceHelper.preview @top_message, @bottom_message, false
     end
   end
 
