@@ -165,6 +165,10 @@
         = hidden_field_tag "ids"
         = button_tag "Arvo jäsen", :class => "submit send"
 
+      = form_tag members_addressdata_path, :id => "address_form" do
+        = hidden_field_tag "ids"
+        = button_tag "Listaa osoitteet", :class => "submit send"
+
 
       %div{:class => "clear"}
 

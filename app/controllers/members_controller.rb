@@ -163,6 +163,12 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+  def addressdata
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+    @members = Member.find_all_by_id(parsed_json["ids"], :joins => [:membergroup])
+    render :layout => false
+  end
+
   private
 
     ##
