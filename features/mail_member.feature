@@ -15,8 +15,8 @@ Feature: send mail to members
       | 2  | Varsinaisjäsen | 20.0 |
 
     Given the following members exist:
-      | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | deleted |
-      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com | 12345        | 1              | 2013           | true          | 2013.01.01  | false   |
+      | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
+      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com | 12345        | 1              | 2013           | true          | 2013.01.01  | true   |
 
 
     When I am on the login page
