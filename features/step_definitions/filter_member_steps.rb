@@ -1,5 +1,6 @@
 
 When /^(?:|I )click a text "([^"]*)"$/ do |selector|
+
   find(selector).click
   end
 
