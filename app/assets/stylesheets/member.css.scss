@@ -5,10 +5,10 @@
 
   #centered {
     display: inline-block;
-    #search_form {
+    #keyword_field{
       text-align: left;
-      margin-bottom: 10px;
-      margin-left: 131px;
+      margin-left: 10px;
+      float: left;
       input {
         margin: 0;
       }
@@ -45,14 +45,16 @@
         color: #ffffff;
       }
     }
-    #bottom_forms {
+    #right{
+      float: right;
+    }
+    #forms {
       width: 650px;
       margin: 0 auto;
-      display: none;
 
-      #invoice_form, #delete_active_form, #payment_form, #unpayment_form, #mailer_form, #reminder_form {
+      form {
         width: 210px;
-        float: left;
+        float: right;
         margin: 0;
       }
       input ,button {
