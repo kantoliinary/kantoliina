@@ -45,23 +45,31 @@ Feature: order members
     And I should see "Liisa" before "Janne"
     And I should see "12345" before "12543"
 
-  @javascript
-  Scenario: I order members by municipality
-    When I am on the members page
-    And I click a text "#members_table thead .municipality"
-    And I should see "Liisa" before "Janne"
-    And I should see "Espoo" before "Vantaa"
-    And I click a text "#members_table thead .municipality"
-    And I should see "Janne" before "Liisa"
-    And I should see "Vantaa" before "Espoo"
+#  @javascript
+#  Scenario: I order members by first name
+#    When I am on the members page
+#    And I click a text "#members_table thead .name"
+#    And row 2 column 3 of table "members_table" should be "Jaana"
+#    Then I click a text "#members_table thead .name"
 
 
-  @javascript
-  Scenario: I order members by membergroup
-    When I am on the members page
-    And I click a text "#members_table thead .membergroup"
-    Then I should see "Liisa" before "Janne"
-    And I should see "Ainaisjäsen" before "Varsinaisjäsen"
-    And I click a text "#members_table thead .membergroup"
-    Then I should see "Janne" before "Liisa"
-    And I should see "Varsinaisjäsen" before "Ainaisjäsen"
+#  @javascript
+#  Scenario: I order members by municipality
+#    When I am on the members page
+#    And I click a text "#members_table thead .municipality"
+#    And I should see "Liisa" before "Janne"
+#    And I should see "Espoo" before "Vantaa"
+#    And I click a text "#members_table thead .municipality"
+#    And I should see "Janne" before "Liisa"
+#    And I should see "Vantaa" before "Espoo"
+##
+##
+#  @javascript
+#  Scenario: I order members by membergroup
+#    When I am on the members page
+#    And I click a text "#members_table thead .membergroup"
+#    Then I should see "Liisa" before "Janne"
+#    And I should see "Ainaisjäsen" before "Varsinaisjäsen"
+#    And I click a text "#members_table thead .membergroup"
+#    Then I should see "Janne" before "Liisa"
+#    And I should see "Varsinaisjäsen" before "Ainaisjäsen"
