@@ -13,6 +13,24 @@ describe InvoiceController do
     it 'finds members with given ids' do
       FactoryGirl.create(:membergroup)
       post :index, :ids => "{\"ids\":[\"1\"]}"
+      response.should render_template :index
+      response.should be_success
+    end
+  end
+
+  describe 'POST #index preview' do
+    it 'should direct to preview method' do
+      FactoryGirl.create(:membergroup)
+      post :index, :ids => "{\"ids\":[\"1\"]}", :function => 'preview'
+      response.should be_success
+
+    end
+
+    it 'should preview the e-mail' do
+      @file = mock('file')
+      @file.should_receive(:gets)
+      File.should_receive(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, 'r').and_yield(@file)
+      post :index, :ids => "{\"ids\":[\"1\"]}", :function => 'preview'
     end
   end
 

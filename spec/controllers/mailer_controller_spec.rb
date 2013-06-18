@@ -13,6 +13,8 @@ describe MailerController do
     it 'finds members with given ids' do
       FactoryGirl.create(:membergroup)
       post :index, :ids => "{\"ids\":[\"1\"]}"
+      response.should render_template :index
+      response.should be_success
     end
   end
 
