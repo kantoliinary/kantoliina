@@ -211,6 +211,29 @@ describe MembersController do
       response.body.should == response_json
     end
   end
+  describe "POST #addressdata" do
+    context "post :addressdata" do
+      it "renders addressdata" do
+        FactoryGirl.create(:member)
+        FactoryGirl.create(:member, :id => "2", :membernumber => "10004")
+        FactoryGirl.create(:membergroup)
+        post :addressdata, :ids => "{\"ids\":[\"1\", \"2\"]}"
+        response.should render_template :addressdata
+      end
+    end
+  end
+  describe "POST #addressdata" do
+    context "post :addressdata" do
+      it "return sended members" do
+        member = FactoryGirl.create(:member)
+        member2 = FactoryGirl.create(:member, :id => "2", :membernumber => "10004")
+        FactoryGirl.create(:member, :id => "3", :membernumber => "10002")
+        FactoryGirl.create(:membergroup)
+        post :addressdata, :ids => "{\"ids\":[\"1\", \"2\"]}"
+        expect(assigns(:members)).to match_array([member, member2])
+      end
+    end
+  end
 end
 
 
