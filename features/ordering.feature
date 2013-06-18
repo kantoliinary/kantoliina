@@ -25,14 +25,17 @@ Feature: order members
     And I fill in "password" with "qwerty123"
     And I press "Login"
 
+  Scenario: I don't order anything
+    When I am on the members page
+    Then I should see "12345" before "12466"
+    And I should see "Janne" before "Liisa"
+    And I should see "12466" before "12543"
+    And I should see "Janne" before "Jaana"
+
   Scenario: I order members by first name
     When I am on the members page
+    And I click a text ".name_column"
     Then I should see "Jaana" before "Janne"
     And I should see "Janne" before "Liisa"
-    And I should see "Liisa" before "Pelle"
-    And I should see "12345" before "12466"
-    And I click a text "Nimi"
-    Then I should see "Janne" before "Jaana"
-    And I should see "Janne" before "Liisa"
-    And I should see "Liisa" before "Pelle"
-    And I should see "12345" before "12466"
+    And I should see "12543" before "12345"
+#    And I should see "12345" before "12543"
