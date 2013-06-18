@@ -53,13 +53,19 @@ Feature: order members
 #    Then I click a text "#members_table thead .name"
 
 
-#  @javascript
-#  Scenario: I order members by municipality
-#    When I am on the members page
-#    And I click a text "#members_table thead .municipality"
-#    And I should see "Liisa" before "Janne"
-#    And I should see "Espoo" before "Vantaa"
-#    And I click a text "#members_table thead .municipality"
+  @javascript
+  Scenario: I order members by municipality
+    When I am on the members page
+    And I click a text "#members_table thead .municipality"
+    Then table "members_table" should have the values:
+      | row | col | value  |
+      | 2   | 4   | Espoo  |
+      | 3   | 4   | Espoo  |
+      | 4   | 4   | Vantaa |
+
+  #    And I should see "Liisa" before "Janne"
+  #    And I should see "Espoo" before "Vantaa"
+    And I click a text "#members_table thead .municipality"
 #    And I should see "Janne" before "Liisa"
 #    And I should see "Vantaa" before "Espoo"
 ##

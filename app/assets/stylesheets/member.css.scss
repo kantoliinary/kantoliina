@@ -113,11 +113,18 @@
     padding-top: 12px;
   }
 
+  .label {
+
+  }
+
   .left {
     display: table;
     width: 130px;
     text-align: left;
+    line-height: 40px;
     min-height: 1px;
+    height: 40px;
+
   }
 
   .right_field {
@@ -134,7 +141,7 @@
   }
 
   .row {
-    height: 35px;
+    height: 40px;
   }
 
   #update, #delete{
