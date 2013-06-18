@@ -48,3 +48,24 @@ Feature: Reminder members
     And I should see "Maksamatonainais"
     And I press "member_1"
     Then I should not see "Maksamatonnormaali"
+
+  Scenario: View reminder template in reminder confirmation page
+    And I check "check_all"
+    And I press "Luo maksumuistutukset"
+    And I should see "Maksamatonnormaali"
+    And I should see "Maksamatonainais"
+    And I press "Esikatsele"
+    Then I should see "Kantoliinayhdistyksen jäsenmaksu - maksumuistutus"
+
+
+  Scenario: View reminder template with additional information in reminder confirmation page
+    And I check "check_all"
+    And I press "Luo maksumuistutukset"
+    And I should see "Maksamatonnormaali"
+    And I should see "Maksamatonainais"
+    And I fill in "top_message" with "Yläpään viesti"
+    And I fill in "bottom_message" with "Alapään viesti"
+    And I press "Esikatsele"
+    Then I should see "Kantoliinayhdistyksen jäsenmaksu - maksumuistutus"
+    And I should see "Alapään viesti"
+    And I should see "Yläpään viesti"
