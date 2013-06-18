@@ -22,7 +22,6 @@ Array.prototype.contains = function (obj) {
     }
     return false;
 }
-
 function un_select_all_mmembers(e) {
     checkboxs = $("#index_member_page").children("#centered").children("#members").find("table").find("tr").find("td").find(":checkbox")
     check_state = $(e.target).is(":checked")
