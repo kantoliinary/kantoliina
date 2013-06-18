@@ -1,8 +1,6 @@
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-     puts page.body.index(/#{e1}/)
-     puts page.body.index(/#{e2}/)
   fail("fail!") if page.body.index(/#{e1}/) > page.body.index(/#{e2}/)
 end
 
