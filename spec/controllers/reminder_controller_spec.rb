@@ -26,6 +26,13 @@ describe ReminderController do
 
       end
 
+      it 'should also work with id-list' do
+        FactoryGirl.create(:membergroup)
+        post :index, :id => "1", :function => 'preview'
+        response.should be_success
+
+      end
+
       it 'should preview the e-mail' do
         @file = mock('file')
         @file.should_receive(:gets)
