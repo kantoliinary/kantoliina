@@ -19,13 +19,11 @@ $(document).ready ->
     }))
     if ids.length != 0
       form.submit()
+    else
+      alert("Valitse ensin jäseniä")
 
   index.find("#members").find("#check_all").click( (e) ->
     un_select_all_mmembers(e)
-  )
-
-  index.find("#members").find("table").find("td").find(".member_select_checkbox").click( (e) ->
-    member_bottom_form_show(e)
   )
 
   invoice.find("#members").find(".delete_button").click (e) ->

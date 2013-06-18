@@ -3,12 +3,36 @@
 
   %div{:id => "centered"}
     %div{:id => "search_form"}
-      %div{:id => "keyword_field"}
-        = text_field_tag "searchfield", "#{@keyword}"
-        = submit_tag "Hae", :class => "submit", :id => "search_button"
-        -#= submit_tag "Arvo", :class => "submit", :id => "random_button"
       %div{:class => "clear"}
     %div{:id => "members"}
+      %div{:id => "right"}
+        %div{:id => "forms"}
+          = form_tag mailer_confirm_path, :id => "mailer_form" do
+            = hidden_field_tag "ids"
+            = button_tag "Lähetä sähköpostia", :class => "submit send"
+
+          = form_tag payment_path, :id => "payment_form" do
+            = hidden_field_tag "ids"
+            = button_tag "Merkitse maksaneeksi", :class => "submit send"
+
+          = form_tag invoice_confirm_path, :id => "invoice_form" do
+            = hidden_field_tag "ids"
+            = button_tag "Luo laskut", :class => "submit send"
+
+          = form_tag members_addressdata_path, :id => "address_form" do
+            = hidden_field_tag "ids"
+            = button_tag "Tulosta osoitetiedot", :class => "submit send"
+
+          = form_tag unpayment_path, :id => "unpayment_form" do
+            = hidden_field_tag "ids"
+            = button_tag "Merkitse maksamattomaksi", :class => "submit send"
+
+          = form_tag reminder_confirm_path, :id => "reminder_form" do
+            = hidden_field_tag "ids"
+            = button_tag "Luo maksumuistutukset", :class => "submit send"
+
+          %div{:class => "clear"}
+      %div{:class => "clear"}
       %div{:id => "amount_of_results"}
         Hakutuloksia:
         %span{:id => "amount"}
@@ -60,6 +84,9 @@
             %label
               = check_box_tag "lender", "1", false
               Lainaamo
+      %div{:id => "keyword_field"}
+        = text_field_tag "searchfield", "#{@keyword}"
+        = submit_tag "Hae", :class => "submit", :id => "search_button"
       %div{:id => "notice"}
         = flash[:notice]
       %div{:class => "clear"}
@@ -136,39 +163,12 @@
                     = check_box_tag "lender_no", "0", true
                     Ei
           %tbody
-    %div{:id => "bottom_forms"}
-      = form_tag invoice_confirm_path, :id => "invoice_form" do
-        = hidden_field_tag "ids"
-        = button_tag "Luo laskut", :class => "submit send"
-
-      = form_tag delete_path, :id => "delete_active_form" do
-        = hidden_field_tag "ids"
-        = button_tag "Poista/Aktivoi ", :class => "submit send confirm"
-
-      = form_tag payment_path, :id => "payment_form" do
-        = hidden_field_tag "ids"
-        = button_tag "Merkitse maksaneeksi", :class => "submit send"
-
-      = form_tag unpayment_path, :id => "unpayment_form" do
-        = hidden_field_tag "ids"
-        = button_tag "Merkitse maksamattomaksi", :class => "submit send"
-
-      = form_tag mailer_confirm_path, :id => "mailer_form" do
-        = hidden_field_tag "ids"
-        = button_tag "Lähetä sähköpostia", :class => "submit send"
-
-      = form_tag reminder_confirm_path, :id => "reminder_form" do
-        = hidden_field_tag "ids"
-        = button_tag "Luo maksumuistutukset", :class => "submit send"
-
       = form_tag random_index_path, :id => "random_form" do
         = hidden_field_tag "ids"
         = button_tag "Arvo jäsen", :class => "submit send"
-
-      = form_tag members_addressdata_path, :id => "address_form" do
+      = form_tag delete_path, :id => "delete_active_form" do
         = hidden_field_tag "ids"
-        = button_tag "Listaa osoitteet", :class => "submit send"
-
+        = button_tag "Poista/Aktivoi ", :class => "submit send confirm"
 
       %div{:class => "clear"}
 

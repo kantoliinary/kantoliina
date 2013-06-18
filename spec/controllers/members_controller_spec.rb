@@ -37,7 +37,7 @@ describe MembersController do
     context "with valid attributes" do
       it "member will be created" do
         FactoryGirl.create(:membergroup)
-        post :create, :member => {:firstnames => "John", :surname => "Doe", :municipality => "f", :zipcode => "00540", :address => "street 7", :postoffice => "Helsinki", :country => "Suomi", :email => "sgafd@gmaik.com", :membergroup_id => "1", :membernumber => "33333", :membershipyear => "2014", :paymentstatus => "f", :invoicedate => "08/08/2013", :active => "t", :lender => "f", :support => "f"}, :nextyear => true, :sendinvoice => true
+        post :create, :member => {:firstnames => "John", :surname => "Doe", :municipality => "f", :zipcode => "00540", :address => "street 7", :postoffice => "Helsinki", :country => "Suomi", :email => "sgafd@gmaik.com", :membergroup_id => "1", :membernumber => "33333", :membershipyear => "2014", :paymentstatus => "t", :invoicedate => "08/08/2013", :active => "t", :lender => "f", :support => "f"}, :nextyear => true, :sendinvoice => true
         flash[:notice].should == "Jäsen lisätty"
       end
     end
@@ -209,6 +209,29 @@ describe MembersController do
       municipalitys = ["f"]
       get :search, :municipalitys => municipalitys,  :format => :json
       response.body.should == response_json
+    end
+  end
+  describe "POST #addressdata" do
+    context "post :addressdata" do
+      it "renders addressdata" do
+        FactoryGirl.create(:member)
+        FactoryGirl.create(:member, :id => "2", :membernumber => "10004")
+        FactoryGirl.create(:membergroup)
+        post :addressdata, :ids => "{\"ids\":[\"1\", \"2\"]}"
+        response.should render_template :addressdata
+      end
+    end
+  end
+  describe "POST #addressdata" do
+    context "post :addressdata" do
+      it "return sended members" do
+        member = FactoryGirl.create(:member)
+        member2 = FactoryGirl.create(:member, :id => "2", :membernumber => "10004")
+        FactoryGirl.create(:member, :id => "3", :membernumber => "10002")
+        FactoryGirl.create(:membergroup)
+        post :addressdata, :ids => "{\"ids\":[\"1\", \"2\"]}"
+        expect(assigns(:members)).to match_array([member, member2])
+      end
     end
   end
 end

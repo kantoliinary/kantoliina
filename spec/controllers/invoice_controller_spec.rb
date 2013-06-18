@@ -10,6 +10,12 @@ describe InvoiceController do
   end
 
   describe "POST #index" do
+    it 'finds members with given id' do
+      FactoryGirl.create(:membergroup)
+      post :index, :id => 1
+      response.should render_template :index
+      response.should be_success
+    end
     it 'finds members with given ids' do
       FactoryGirl.create(:membergroup)
       post :index, :ids => "{\"ids\":[\"1\"]}"
@@ -85,7 +91,7 @@ describe InvoiceController do
   end
 
   describe "GET #edit" do
-    it "something" do
+    it "should open an editable file" do
       file = mock('file')
 
       File.stub(:open).with(Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, "r").and_yield(file)
@@ -93,10 +99,21 @@ describe InvoiceController do
       file.should_receive(:gets)
       get :edit
     end
+    it "should render edit-view" do
+       get :edit
+      response.should render_template :edit
+    end
   end
 
   describe "GET #load_default" do
-    it "something" do
+    it "should load defalut template" do
+
+      get :load_default
+      flash[:template].should_not be_nil
+      response.should redirect_to invoice_edit_path
+
+    end
+    it "should redirect to invoice edit after reading the default mail" do
       file = mock('file')
 
       File.stub(:open).with(Rails.root.join("app", "views", "billing", "default_bill.html.haml").to_s, 'r')

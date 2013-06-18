@@ -107,6 +107,14 @@ describe Member do
     FactoryGirl.build(:member, support: nil).should_not be_valid
   end
 
+  it "is valid with right country" do
+    FactoryGirl.build(:member, country: "Finland").should be_valid
+  end
+
+  it "is invalid with nil country" do
+    FactoryGirl.build(:member, country: nil).should_not be_valid
+  end
+
   it "generates ref_number" do
     member = FactoryGirl.build(:member, membernumber: "12345")
     Member.generate_refnumber(member.membernumber) == "123453"
