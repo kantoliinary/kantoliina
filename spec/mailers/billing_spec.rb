@@ -22,7 +22,7 @@ describe Billing do
       Member.stub(:find).and_return(member)
       viesti = "joo"
       otsikko = "topic"
-      Billing.mailer(member, viesti, otsikko).should be_true
+      Billing.mailer(member, viesti, otsikko, nil, nil).should be_true
     end
   end
 end
