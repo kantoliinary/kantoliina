@@ -27,7 +27,7 @@ Feature: see the address list
   Scenario: I check all and go to the list page
     When I am on the members page
     And I check "check_all"
-    And I press "Listaa osoitteet"
+    And I press "Tulosta osoitetiedot"
     Then I should see "54321"
     Then I should see "12345"
     Then I should see "Finland"
