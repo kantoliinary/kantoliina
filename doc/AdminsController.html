@@ -91,6 +91,8 @@
   
     <li class="file"><a href="./public/robots_txt.html">robots</a>
   
+    <li class="file"><a href="./public/uploads/liite_txt.html">liite</a>
+  
     <li class="file"><a href="./spec/fixtures/billing/haml.html">haml</a>
   
   </ul>
@@ -131,11 +133,15 @@
   
     <li><a href="./CreatePartners.html">CreatePartners</a>
   
+    <li><a href="./EditorHelper.html">EditorHelper</a>
+  
     <li><a href="./EmailHelpers.html">EmailHelpers</a>
   
     <li><a href="./HtmlSelectorsHelpers.html">HtmlSelectorsHelpers</a>
   
     <li><a href="./InvoiceController.html">InvoiceController</a>
+  
+    <li><a href="./InvoiceHelper.html">InvoiceHelper</a>
   
     <li><a href="./MailerController.html">MailerController</a>
   
@@ -146,6 +152,8 @@
     <li><a href="./MembergroupsController.html">MembergroupsController</a>
   
     <li><a href="./MembersController.html">MembersController</a>
+  
+    <li><a href="./MembersHelper.html">MembersHelper</a>
   
     <li><a href="./NavigationHelpers.html">NavigationHelpers</a>
   
@@ -159,11 +167,13 @@
   
     <li><a href="./PasswordResetsController.html">PasswordResetsController</a>
   
+    <li><a href="./RandomController.html">RandomController</a>
+  
     <li><a href="./ReminderController.html">ReminderController</a>
   
-    <li><a href="./SessionsController.html">SessionsController</a>
-  
     <li><a href="./SettingsController.html">SettingsController</a>
+  
+    <li><a href="./StatisticsController.html">StatisticsController</a>
   
     <li><a href="./WithinHelpers.html">WithinHelpers</a>
   
@@ -229,7 +239,8 @@ them if they are and returns appropriate messages to the admin.</p>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">username</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:admin</span>][<span class="ruby-value">:username</span>]
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">validate_username</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>)
+      <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:admin</span>][<span class="ruby-value">:email</span>]
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">validate_username</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">validate_email</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">admin</span>.<span class="ruby-identifier">save</span>(<span class="ruby-value">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>)
         <span class="ruby-identifier">flash</span>[<span class="ruby-value">:adminnotice</span>] = <span class="ruby-string">&quot;Käyttäjätunnus päivitetty&quot;</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">flash</span>[<span class="ruby-value">:admin</span>] = <span class="ruby-identifier">admin</span>

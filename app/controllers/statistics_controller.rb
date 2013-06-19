@@ -1,8 +1,11 @@
 #encoding: utf-8
 ##
-# The controller for editing the invoice template
+# The controller for the statistics page
 
 class StatisticsController < ApplicationController
+
+  ##
+  # Initializes the statistics variables, calls the counting method and renders the statistics page
 
   def index
     @members = Member.includes(:membergroup)
@@ -14,8 +17,11 @@ class StatisticsController < ApplicationController
 
   end
 
-  private
 
+
+  private
+  ##
+  # Counts the statistics shown in the statistics page
   def count_stuff
     @total = 0
     @members.each do |member|

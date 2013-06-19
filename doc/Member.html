@@ -96,6 +96,8 @@
   
     <li class="file"><a href="./public/robots_txt.html">robots</a>
   
+    <li class="file"><a href="./public/uploads/liite_txt.html">liite</a>
+  
     <li class="file"><a href="./spec/fixtures/billing/haml.html">haml</a>
   
   </ul>
@@ -136,11 +138,15 @@
   
     <li><a href="./CreatePartners.html">CreatePartners</a>
   
+    <li><a href="./EditorHelper.html">EditorHelper</a>
+  
     <li><a href="./EmailHelpers.html">EmailHelpers</a>
   
     <li><a href="./HtmlSelectorsHelpers.html">HtmlSelectorsHelpers</a>
   
     <li><a href="./InvoiceController.html">InvoiceController</a>
+  
+    <li><a href="./InvoiceHelper.html">InvoiceHelper</a>
   
     <li><a href="./MailerController.html">MailerController</a>
   
@@ -151,6 +157,8 @@
     <li><a href="./MembergroupsController.html">MembergroupsController</a>
   
     <li><a href="./MembersController.html">MembersController</a>
+  
+    <li><a href="./MembersHelper.html">MembersHelper</a>
   
     <li><a href="./NavigationHelpers.html">NavigationHelpers</a>
   
@@ -164,11 +172,13 @@
   
     <li><a href="./PasswordResetsController.html">PasswordResetsController</a>
   
+    <li><a href="./RandomController.html">RandomController</a>
+  
     <li><a href="./ReminderController.html">ReminderController</a>
   
-    <li><a href="./SessionsController.html">SessionsController</a>
-  
     <li><a href="./SettingsController.html">SettingsController</a>
+  
+    <li><a href="./StatisticsController.html">StatisticsController</a>
   
     <li><a href="./WithinHelpers.html">WithinHelpers</a>
   
@@ -223,7 +233,7 @@ formula.</p>
 
           
           <div class="method-source-code" id="generate_refnumber-source">
-            <pre><span class="ruby-comment"># File app/models/member.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/models/member.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate_refnumber</span> <span class="ruby-identifier">membernumber</span>
 
   <span class="ruby-identifier">input</span> = (<span class="ruby-identifier">@@refernumberprefix</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">membernumber</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">reverse!</span>
@@ -277,7 +287,7 @@ formula.</p>
 
           
           <div class="method-source-code" id="as_json-source">
-            <pre><span class="ruby-comment"># File app/models/member.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/models/member.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">as_json</span>(<span class="ruby-identifier">options</span>={})
   { <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>,
     <span class="ruby-value">:membernumber</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">membernumber</span>,
@@ -286,10 +296,11 @@ formula.</p>
     <span class="ruby-value">:address</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">address</span>,
     <span class="ruby-value">:zipcode</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">zipcode</span>,
     <span class="ruby-value">:postoffice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">postoffice</span>,
+    <span class="ruby-value">:country</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">country</span>,
     <span class="ruby-value">:membergroup</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">membergroup</span>.<span class="ruby-identifier">name</span>,
     <span class="ruby-value">:membershipyear</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">membershipyear</span>,
     <span class="ruby-value">:paymentstatus</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">paymentstatus</span>,
-    <span class="ruby-value">:deleted</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">deleted</span>,
+    <span class="ruby-value">:active</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">active</span>,
     <span class="ruby-value">:support</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">support</span>,
     <span class="ruby-value">:lender</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lender</span>,
     <span class="ruby-value">:invoicedate</span> =<span class="ruby-operator">&gt;</span> (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">invoicedate</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">invoicedate</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%d.%m.%Y&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>)
@@ -330,13 +341,14 @@ formula.</p>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>      <span class="ruby-value">:address</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>      <span class="ruby-value">:zipcode</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>      <span class="ruby-value">:postoffice</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>      <span class="ruby-value">:country</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>      <span class="ruby-value">:email</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">integer</span>     <span class="ruby-value">:membernumber</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>     <span class="ruby-value">:membernumber</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">references</span>  <span class="ruby-value">:membergroup</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">integer</span>     <span class="ruby-value">:membershipyear</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>     <span class="ruby-value">:membershipyear</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">boolean</span>     <span class="ruby-value">:paymentstatus</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">date</span>        <span class="ruby-value">:invoicedate</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">boolean</span>     <span class="ruby-value">:deleted</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">boolean</span>     <span class="ruby-value">:active</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">boolean</span>     <span class="ruby-value">:lender</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">boolean</span>     <span class="ruby-value">:support</span>, <span class="ruby-value">:default</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timestamps</span>

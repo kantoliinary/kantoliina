@@ -22,6 +22,8 @@ class ReminderController < ApplicationController
     end
   end
 
+  ##
+  #
   def load_default
 
     @f= Hash.new
