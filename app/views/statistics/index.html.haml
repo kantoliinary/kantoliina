@@ -1,0 +1,43 @@
+%div{:id => "statistics_page"}
+  %div{:class => "floatleft column"}
+
+    %h4 Perustiedot
+
+    %div{:class => "information"}
+      %div
+        %div{:class => "floatleft left"}
+          Jäseniä:
+        %div{:class => "floatleft data"}
+          = @active
+      %div
+        %div{:class => "floatleft left"}
+          Poistettuja:
+        %div{:class => "floatleft data"}
+          = @deleted
+      %div
+        %div{:class => "floatleft left"}
+          Tulot vuodessa (€):
+        %div{:class => "floatleft data"}
+          = @total
+
+    %h4 Jäsenryhmät
+
+    %div{:class => "information"}
+      - @membergroups.each do |membergroup, value|
+        %div
+          %div{:class => "floatleft left"}
+            = membergroup
+          %div{:class => "floatleft data"}
+            = value
+
+
+  %div{:class => "floatright"}
+    %h4 Kunnat
+    %div{:class => "information"}
+      - @municipalities.each do |municipality|
+        %div
+          %div{:class => "floatleft left"}
+            = municipality.municipality
+          %div{:class => "floatleft data"}
+            = municipality.counter
+
