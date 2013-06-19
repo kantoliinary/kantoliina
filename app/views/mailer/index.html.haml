@@ -6,16 +6,23 @@
   = form_tag mailer_path, :id => "mailer_form", :multipart => true do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
+
+
+    = label_tag("sender", "Lähettäjä")
+    %div{:id => "senderarea"}
+      = text_field_tag "sender", "", :id => "sender", :value => "@kantoliinayhdistys.fi"
     = label_tag("subject", "Otsikko")
     %div{:id => "subjectarea"}
       = text_field_tag "subject", "", :id => "subject"
     = label_tag("additional_message", "Viesti")
     %div{:id => "textarea"}
       = text_area_tag "additional_message", "", :id => "additional_message"
-    Liite
+    = label_tag("attachment", "Liitetiedosto")
     %div{:id => "attachment_div"}
       = file_field_tag 'attachment', :id => "attachment_button"
-    = button_tag "Lähetä sähköposti", :id => "send_mailer"
+
+
+    = button_tag "Lähetä sähköposti", :class => "submit send"
 
 
   %table{:class => "center", :id => "members"}
