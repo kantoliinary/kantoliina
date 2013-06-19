@@ -9,6 +9,7 @@ class StatisticsController < ApplicationController
     @active = 0
     @deleted = 0
     @membergroups = Hash.new
+    @municipalities = Hash.new
     count_stuff
 
   end
@@ -19,20 +20,30 @@ class StatisticsController < ApplicationController
     @total = 0
     @members.each do |member|
       if member.active
-        @total += member.membergroup.fee
-        @active += 1
+        if !member.membergroup.onetimefee
+          @total += member.membergroup.fee
+          @active += 1
+        end
         if @membergroups[member.membergroup.name.to_sym]
           @membergroups[member.membergroup.name.to_sym] =  @membergroups[member.membergroup.name.to_sym] + 1
         else
           @membergroups[member.membergroup.name.to_sym] = 1
         end
+
+        if @municipalities[member.municipality.to_sym]
+          @municipalities[member.municipality.to_sym] =  @municipalities[member.municipality.to_sym] + 1
+        else
+          @municipalities[member.municipality.to_sym] = 1
+        end
+
       else
         @deleted += 1
       end
-    end
 
-    @municipalities = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
-                      AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
+    end
+     @municipalities = @municipalities.sort_by {|key,value| value}.reverse
+    #@municipalities = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
+    #                  AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
   end
 
 
