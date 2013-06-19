@@ -34,10 +34,10 @@
   %div{:class => "floatright"}
     %h4 Kunnat
     %div{:class => "information"}
-      - @municipalities.each do |municipality|
+      - @municipalities.each do |municipality, value|
         %div
           %div{:class => "floatleft left"}
-            = municipality.municipality
+            = municipality
           %div{:class => "floatleft data"}
-            = municipality.counter
+            = value
 
