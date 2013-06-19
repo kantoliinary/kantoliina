@@ -31,7 +31,11 @@ class MailerController < ApplicationController
       member.save(:validate => false)
       Billing.mailer(member, params[:additional_message], params[:subject], filename, filepath).deliver
     end
-    flash[:notice] = "Sähköposti lähetetty"
+    if params[:attachment]
+      flash[:notice] = "Sähköposti ja liitetiedosto lähetetty"
+    else
+      flash[:notice] = "Sähköposti lähetetty"
+    end
     redirect_to members_path
   end
 end
