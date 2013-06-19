@@ -42,7 +42,8 @@ class InvoiceController < ApplicationController
   #  render "settings/invoice_edit"
   #end
 
-
+  ##
+  # Loads the default invoice template to the editor
   def load_default
 
     @f= Hash.new
@@ -69,6 +70,8 @@ class InvoiceController < ApplicationController
     redirect_to members_path
   end
 
+  ##
+  #  Loads the saved invoice template to the editor page and sends error messages to the editor page
   def edit
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
@@ -81,6 +84,8 @@ class InvoiceController < ApplicationController
     end
   end
 
+  ##
+  # Sends an invoice template submitted by the user and uses the helper update method to validate and save it
   def update
 
     template = params[:template]
