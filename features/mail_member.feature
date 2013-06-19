@@ -23,12 +23,12 @@ Feature: send mail to members
     And I fill in "username" with "admin"
     And I fill in "password" with "qwerty123"
     And I press "Login"
-
-
-  Scenario: Select all to mail page and send mail
     And I should see "Janne"
     And I check "check_all"
     And I press "Lähetä sähköpostia"
+
+
+  Scenario: Select all to mail page and send mail
     And I should see "Lähtevä viesti"
     And I fill in "subject" with "Otsikko"
     And I fill in "additional_message" with "viestia"
@@ -36,9 +36,15 @@ Feature: send mail to members
     Then I should see "Sähköposti lähetetty"
 
   Scenario: Delete one on mail page
-    And I should see "Janne"
-    And I check "check_all"
-    And I press "Lähetä sähköpostia"
     And I should see "Lähtevä viesti"
     And I press "Poista"
     Then I should not see "Janne"
+
+  Scenario: Add an attachment to the email
+    And I should see "Lähtevä viesti"
+    And I fill in "subject" with "Attachment by kantopiina"
+    And I fill in "additional_message" with "a valid message"
+    And I upload an exact file
+    And I press "Lähetä sähköposti"
+    Then I should see "Sähköposti ja liitetiedosto lähetetty"
+

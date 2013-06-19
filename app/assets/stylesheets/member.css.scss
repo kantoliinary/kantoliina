@@ -105,10 +105,6 @@
     width: 214px;
   }
 
-  //#checkbox {
-  //  float: left;
-  //}
-
   #expirationdate {
     padding-top: 12px;
   }
@@ -118,7 +114,7 @@
   }
 
   .left {
-    display: table;
+    display: inline;
     width: 130px;
     text-align: left;
     line-height: 40px;
