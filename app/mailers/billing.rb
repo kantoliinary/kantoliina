@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Billing < ActionMailer::Base
-  default :from => "kantoliinatesti@gmail.com"
+  #default :from => "kantoliinatesti@gmail.com"
 
   def bill_email member, top_message, bottom_message
     @top_additional_message = top_message
@@ -17,13 +17,14 @@ class Billing < ActionMailer::Base
   end
 
 
-  def mailer member, message, subject, filename, filepath
+  def mailer member, message, subject, sender, filename, filepath
+
     @message2 = message
     @member = member
     if filepath
       attachments[filename] = File.read(filepath)
     end
-    mail(:to => member.email, :subject => subject)
+    mail(:from => sender, :to => member.email, :subject => subject)
   end
 
 end
