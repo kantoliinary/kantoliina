@@ -1,7 +1,7 @@
 = simple_form_for @member, defaults:{label:false} do |f|
   %div{:class => "row"}
     %div{:class => "left"}
-      = f.label "firstnames", "Etunimet"
+      = f.label "firstnames", "Etunimet", :class => "label"
     %div{:class => "left right_field"}
       = f.input :firstnames
   %div{:class => "row"}
@@ -73,14 +73,14 @@
     %div{:class => "row"}
       %div{:class => "left"}
       %div{:class => "left right_field"}
-        = check_box_tag :sendinvoice
+        = check_box_tag :sendinvoice, :id => "checkbox2"
         = hidden_field_tag "ids"
         = label_tag :sendinvoice, "Lähetä lasku"
 
     %div{:class => "row"}
       %div{:class => "left"}
       %div{:class => "left right_field"}
-        = check_box_tag :nextyear
+        = check_box_tag :nextyear, :id => "checkbox2"
         = hidden_field_tag "ids"
         = label_tag :nextyear, "Jäsenyys ensi vuodelle"
 

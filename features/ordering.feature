@@ -94,3 +94,4 @@ Feature: order members
     And I click a text "#members_table thead .invoicedate"
     Then I should see "Janne" before "Liisa"
     And I should see "01.01.2014" before "01.01.2013"
+
