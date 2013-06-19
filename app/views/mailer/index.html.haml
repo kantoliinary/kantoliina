@@ -13,8 +13,8 @@
     %div{:id => "textarea"}
       = text_area_tag "additional_message", "", :id => "additional_message"
     Liite
-    %div{:id => "attachment"}
-      = file_field_tag 'attachment'
+    %div{:id => "attachment_div"}
+      = file_field_tag 'attachment', :id => "attachment_button"
     = button_tag "Lähetä sähköposti", :id => "send_mailer"
 
 

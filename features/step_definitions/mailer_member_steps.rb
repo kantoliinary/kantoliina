@@ -5,5 +5,5 @@ end
 
 When /^I upload an exact file$/ do
   attach_file(:attachment, File.join('features', 'support', 'env.rb'))
-  #click_button "Browse..."
+  click_button "send_mailer"
 end

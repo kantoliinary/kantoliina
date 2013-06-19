@@ -44,8 +44,7 @@ Feature: send mail to members
     And I should see "Lähtevä viesti"
     And I fill in "subject" with "Attachment by kantopiina"
     And I fill in "additional_message" with "a valid message"
-    And I click on "Browse..."
     And I upload an exact file
-    And I press "Lähetä sähköposti"
+#    And I press "Lähetä sähköposti"
     Then I should see "Sähköposti ja liitetiedosto lähetetty"
 
