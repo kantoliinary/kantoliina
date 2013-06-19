@@ -15,7 +15,7 @@ describe MembersController do
       it "renders not the :new view" do
         FactoryGirl.create(:membergroup)
         member = FactoryGirl.create(:member)
-        member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
+        member2 = FactoryGirl.create(:member, membernumber: 10000, id: 2)
         members = [member, member2]
         session[:admin_id] = nil
         get :new
@@ -39,6 +39,13 @@ describe MembersController do
         FactoryGirl.create(:membergroup)
         post :create, :member => {:firstnames => "John", :surname => "Doe", :municipality => "f", :zipcode => "00540", :address => "street 7", :postoffice => "Helsinki", :country => "Suomi", :email => "sgafd@gmaik.com", :membergroup_id => "1", :membernumber => "33333", :membershipyear => "2014", :paymentstatus => "t", :invoicedate => "08/08/2013", :active => "t", :lender => "f", :support => "f"}, :nextyear => true, :sendinvoice => true
         flash[:notice].should == "Jäsen lisätty"
+      end
+
+      it "member will be created and email will not be sent" do
+        FactoryGirl.create(:membergroup)
+        post :create, :member => {:firstnames => "John", :surname => "Doe", :municipality => "f", :zipcode => "00540", :address => "street 7", :postoffice => "Helsinki", :country => "Suomi", :email => "sgafd@gmaik.com", :membergroup_id => "1", :membernumber => "33333", :membershipyear => "2014", :paymentstatus => "t", :invoicedate => "08/08/2013", :active => "t", :lender => "f", :support => "f"}, :nextyear => true, :sendinvoice => false
+        flash[:notice].should == "Jäsen lisätty"
+        response.should redirect_to new_member_path
       end
     end
     context "with invalid attributes" do
@@ -161,34 +168,34 @@ describe MembersController do
     end
     it "should return only deleted member" do
       member = FactoryGirl.create(:member, :active => "f")
-      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:member, :id => "2", :membernumber => "10003")
       FactoryGirl.create(:membergroup)
       response_json = [member].to_json
-      get :search, :active => "1",  :format => :json
+      get :search, :active => "1", :format => :json
       response.body.should == response_json
     end
     it "should return only payment member" do
       member = FactoryGirl.create(:member, :paymentstatus => "t")
-      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:member, :id => "2", :membernumber => "10003")
       FactoryGirl.create(:membergroup)
       response_json = [member].to_json
-      get :search, :paymentstatus => "1",  :format => :json
+      get :search, :paymentstatus => "1", :format => :json
       response.body.should == response_json
     end
     it "should return only support member" do
       member = FactoryGirl.create(:member, :support => "t")
-      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:member, :id => "2", :membernumber => "10003")
       FactoryGirl.create(:membergroup)
       response_json = [member].to_json
-      get :search, :support => "1",  :format => :json
+      get :search, :support => "1", :format => :json
       response.body.should == response_json
     end
     it "should return only lender member" do
       member = FactoryGirl.create(:member, :lender => "t")
-      FactoryGirl.create(:member, :id => "2",  :membernumber => "10003")
+      FactoryGirl.create(:member, :id => "2", :membernumber => "10003")
       FactoryGirl.create(:membergroup)
       response_json = [member].to_json
-      get :search, :lender => "1",  :format => :json
+      get :search, :lender => "1", :format => :json
       response.body.should == response_json
     end
     it "should return member with searched membergroup" do
@@ -198,7 +205,7 @@ describe MembersController do
       FactoryGirl.create(:membergroup, :id => "2")
       response_json = [member].to_json
       membergroups = ["1"]
-      get :search, :membergroups => membergroups,  :format => :json
+      get :search, :membergroups => membergroups, :format => :json
       response.body.should == response_json
     end
     it "should return member with searched municipality" do
@@ -207,7 +214,7 @@ describe MembersController do
       FactoryGirl.create(:membergroup)
       response_json = [member].to_json
       municipalitys = ["f"]
-      get :search, :municipalitys => municipalitys,  :format => :json
+      get :search, :municipalitys => municipalitys, :format => :json
       response.body.should == response_json
     end
   end
@@ -234,6 +241,8 @@ describe MembersController do
       end
     end
   end
+
+
 end
 
 

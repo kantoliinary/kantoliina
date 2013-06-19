@@ -64,6 +64,7 @@ Kantoliina::Application.routes.draw do
   resources :membergroups
   resources :reminder
   resources :random
+  resources :statistics, :only => [:index]
 
 
 

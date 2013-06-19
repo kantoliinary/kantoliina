@@ -7,30 +7,12 @@
     %div{:id => "members"}
       %div{:id => "right"}
         %div{:id => "forms"}
-          = form_tag mailer_confirm_path, :id => "mailer_form" do
-            = hidden_field_tag "ids"
-            = button_tag "Lähetä sähköpostia", :class => "submit send"
-
-          = form_tag payment_path, :id => "payment_form" do
-            = hidden_field_tag "ids"
-            = button_tag "Merkitse maksaneeksi", :class => "submit send"
-
-          = form_tag invoice_confirm_path, :id => "invoice_form" do
-            = hidden_field_tag "ids"
-            = button_tag "Luo laskut", :class => "submit send"
-
-          = form_tag members_addressdata_path, :id => "address_form" do
-            = hidden_field_tag "ids"
-            = button_tag "Tulosta osoitetiedot", :class => "submit send"
-
-          = form_tag unpayment_path, :id => "unpayment_form" do
-            = hidden_field_tag "ids"
-            = button_tag "Merkitse maksamattomaksi", :class => "submit send"
-
-          = form_tag reminder_confirm_path, :id => "reminder_form" do
-            = hidden_field_tag "ids"
-            = button_tag "Luo maksumuistutukset", :class => "submit send"
-
+          = action_form mailer_confirm_path, :form_id => "mailer_form", :button_text => "Lähetä sähköpostia"
+          = action_form payment_path, :form_id => "payment_form", :button_text => "Merkitse maksaneeksi"
+          = action_form invoice_confirm_path, :form_id => "invoice_form", :button_text => "Luo laskut"
+          = action_form members_addressdata_path, :form_id => "address_form", :button_text => "Tulosta osoitetiedot"
+          = action_form unpayment_path, :form_id => "unpayment_form", :button_text => "Merkitse maksamattomaksi"
+          = action_form reminder_confirm_path, :form_id => "reminder_form", :button_text => "Luo maksumuistutukset"
           %div{:class => "clear"}
       %div{:class => "clear"}
       %div{:id => "amount_of_results"}
@@ -167,13 +149,8 @@
                     = check_box_tag "lender_no", "0", true
                     Ei
           %tbody
-      = form_tag random_index_path, :id => "random_form" do
-        = hidden_field_tag "ids"
-        = button_tag "Arvo jäsen", :class => "submit send"
-      = form_tag delete_path, :id => "delete_active_form" do
-        = hidden_field_tag "ids"
-        = button_tag "", :class => "submit send confirm"
-
+      = action_form random_index_path, :form_id => "random_form", :button_text => "Arvo jäsen"
+      = action_form delete_path, :form_id => "delete_active_form", :button_text => ""
       %div{:class => "clear"}
 
 

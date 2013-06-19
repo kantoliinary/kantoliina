@@ -84,17 +84,29 @@ describe ReminderController do
   end
 
   describe "GET #edit" do
-    it "something" do
+    it "should open an editable file" do
       file = mock('file')
 
       File.stub(:open).with(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, "r").and_yield(file)
+
       file.should_receive(:gets)
       get :edit
+    end
+    it "should render edit-view" do
+      get :edit
+      response.should render_template :edit
     end
   end
 
   describe "GET #load_default" do
-    it "something" do
+    it "should load defalut template" do
+
+      get :load_default
+      flash[:template].should_not be_nil
+      response.should redirect_to reminder_edit_path
+
+    end
+    it "should redirect to invoice edit after reading the default mail" do
       file = mock('file')
 
       File.stub(:open).with(Rails.root.join("app", "views", "billing", "default_reminder_email.html.haml").to_s, 'r')
