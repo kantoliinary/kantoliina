@@ -22,20 +22,29 @@ class MailerController < ApplicationController
   ##
   # Selects a group of members by chosen ID and sends a mail to their e-mails.
   def create
-    if params[:attachment]
-      filename = params[:attachment].original_filename
-      filepath = params[:attachment].path
-    end
-    @members = Member.find_all_by_id(params[:member])
-    @members.each do |member|
-      member.save(:validate => false)
-      Billing.mailer(member, params[:additional_message], params[:subject], filename, filepath).deliver
-    end
-    if params[:attachment]
-      flash[:notice] = "Sähköposti ja liitetiedosto lähetetty"
+
+    sender = params[:sender]
+    if !(sender.match(/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i))
+      flash[:notice] = "Virheellinen sähköpostiosoite"
+      redirect_to mailer_confirm_path
     else
-      flash[:notice] = "Sähköposti lähetetty"
+
+
+      if params[:attachment]
+        filename = params[:attachment].original_filename
+        filepath = params[:attachment].path
+      end
+      @members = Member.find_all_by_id(params[:member])
+      @members.each do |member|
+        member.save(:validate => false)
+        Billing.mailer(member, params[:additional_message], params[:subject], sender, filename, filepath).deliver
+      end
+      if params[:attachment]
+        flash[:notice] = "Sähköposti ja liitetiedosto lähetetty"
+      else
+        flash[:notice] = "Sähköposti lähetetty"
+      end
+      redirect_to members_path
     end
-    redirect_to members_path
   end
 end

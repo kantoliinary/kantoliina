@@ -38,6 +38,17 @@ $(document).ready ->
     parent = $(this).parent("td").parent("tr").remove()
     mailer.find("#mailer_form").find(".member_" + id).remove()
 
+  mailer.find("#mailer_form").find(".send").click (e) ->
+    e.preventDefault
+    sender =  $(mailer.find("#mailer_form").find("#senderarea").find("#sender")).val()
+
+    if sender.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+      $(mailer.find("#mailer_form")).submit()
+
+    else
+      alert("Sähköposti väärin")
+      return false
+
   reminder.find("#members").find(".delete_button").click (e) ->
     e.preventDefault
     id = $(this).data("id")
