@@ -16,6 +16,13 @@ describe MailerController do
       response.should render_template :index
       response.should be_success
     end
+
+    it 'finds members with given id' do
+      FactoryGirl.create(:membergroup)
+      post :index, :id => 1
+      response.should render_template :index
+      response.should be_success
+    end
   end
 
   describe "POST #create" do

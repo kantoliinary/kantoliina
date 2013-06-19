@@ -18,11 +18,7 @@ class ReminderController < ApplicationController
     end
 
     if params[:function] == 'preview'
-
-      @top_message = params[:top_message]
-      @bottom_message = params[:bottom_message]
-
-      @preview = InvoiceHelper.preview @top_message, @bottom_message, Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s
+      @preview = InvoiceHelper.preview params[:top_message], params[:bottom_message], Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s
     end
   end
 
