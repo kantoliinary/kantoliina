@@ -116,14 +116,13 @@ Feature: filter members
 
 
 # odottavat kayttiksen muokkausta
-
+#
 #  @javascript
 #  Scenario: I try to see the column for membership status
 #    When I am on the members page
 #    Then I should not see "Poistettu"
-#    Then I click a text ".column_menu .header"
-#    And I check "deleted"
-#    Then I should see "Poistettu"
+#    And I check box with "#active"
+#    Then I should see "Aktiivinen"
 
 #  @javascript
 #  Scenario: I try to see deleted members

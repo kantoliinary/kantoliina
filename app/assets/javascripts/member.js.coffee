@@ -14,10 +14,14 @@ $(document).ready ->
       if !!checkbox.is(":checked") && checkbox.attr("name") != "check_all"
         ids.push checkbox.val()
     form = $(this).parent("form")
-    form.children("#ids").val(JSON.stringify({
-      ids: ids
-    }))
     if ids.length != 0
+      $("<input/>",{
+        type: "hidden",
+        name: "ids"
+        value: JSON.stringify({
+          ids: ids
+        })
+      }).appendTo(form)
       form.submit()
     else
       alert("Valitse ensin jäseniä")
