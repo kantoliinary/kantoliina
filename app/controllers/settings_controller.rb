@@ -1,7 +1,6 @@
 #encoding: utf-8
 ##
-# The controller for editing the invoice template
-
+# The controller for the
 class SettingsController < ApplicationController
 
 

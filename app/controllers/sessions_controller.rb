@@ -1,4 +1,6 @@
 #encoding: UTF-8
+##
+# The controller for session management
 class SessionsController < ApplicationController
   skip_before_filter :require_login, :only => [:new, :create]
   ##
