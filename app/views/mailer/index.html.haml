@@ -6,10 +6,10 @@
   = form_tag mailer_path, :id => "mailer_form", :multipart => true do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
-    Otsikko
+    = label_tag("subject", "Otsikko")
     %div{:id => "subjectarea"}
       = text_field_tag "subject", "", :id => "subject"
-    Viesti
+    = label_tag("additional_message", "Viesti")
     %div{:id => "textarea"}
       = text_area_tag "additional_message", "", :id => "additional_message"
     Liite
