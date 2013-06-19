@@ -16,7 +16,7 @@ Feature: send mail to members
 
     Given the following members exist:
       | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
-      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com | 12345        | 1              | 2013           | true          | 2013.01.01  | true   |
+      | 1  | Janne      | Jäsen   | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | example@example.com | 12345        | 1              | 2013           | true          | 2013.01.01  | true   |
 
 
     When I am on the login page
@@ -47,4 +47,28 @@ Feature: send mail to members
     And I upload an exact file
     And I press "Lähetä sähköposti"
     Then I should see "Sähköposti ja liitetiedosto lähetetty"
+
+
+  Scenario: I send an e-mail to a member
+    And I should see "Lähtevä viesti"
+    And I fill in "subject" with "Otsikko tässä"
+    And I fill in "additional_message" with "Tämä on viesti"
+    And I press "Lähetä sähköposti"
+    And I should receive an email
+    When I open the email with subject "Otsikko tässä"
+    Then I should see "Otsikko tässä" in the email subject
+    Then I should see "Tämä on viesti" in the email body
+    Then I should see no attachment with the email
+
+  Scenario: I send an e-mail to a member with an attachment
+    And I should see "Lähtevä viesti"
+    And I fill in "subject" with "Otsikko tässä"
+    And I fill in "additional_message" with "Tämä on viesti"
+    And I upload an exact file
+    And I press "Lähetä sähköposti"
+    And I should receive an email
+    When I open the email with subject "Otsikko tässä"
+    Then I should see "Otsikko tässä" in the email subject
+    Then I should see "Tämä on viesti" in the email body
+    Then I should see an attachment with the email
 

@@ -15,7 +15,7 @@ Feature: Invoice members
 
     Given the following members exist:
       | id | firstnames         | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
-      | 1  | Maksamatonnormaali | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 2              | 2013           | false         | 2013.01.01  | true   |
+      | 1  | Maksamatonnormaali | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | example@example.com        | 12345        | 2              | 2013           | false         | 2013.01.01  | true   |
       | 2  | Maksanutainais     | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   |
       | 3  | Maksanutnormaali   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12467        | 2              | 2013           | true          | 2013.01.01  | true   |
       | 4  | Maksamatonainais   | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12468        | 1              | 2013           | false         | 2013.01.01  | true   |
@@ -37,6 +37,10 @@ Feature: Invoice members
     And I press "Lähetä laskut"
     Then I should see "Valitse sarakkeet"
     And I should see "Laskut lähetetty"
+    And I should receive an email
+    When I open the email with subject "Kantoliinayhdistyksen jäsenmaksu - lasku"
+    Then I should see "Kantoliinayhdistyksen jäsenmaksu - lasku" in the email subject
+    Then I should see "20.0" in the email body
 
   Scenario: Select all members and remove one in the invoice page
     And I check "check_all"
