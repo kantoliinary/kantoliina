@@ -30,17 +30,11 @@ $(document).ready ->
     un_select_all_mmembers(e)
   )
 
-  invoice.find("#members").find(".delete_button").click (e) ->
+  $(".delete_row_button").click (e) ->
     e.preventDefault
     id = $(this).data("id")
-    parent = $(this).parent("td").parent("tr").remove()
-    invoice.find("#invoice_form").find(".member_" + id).remove()
-
-  mailer.find("#members").find(".delete_button").click (e) ->
-    e.preventDefault
-    id = $(this).data("id")
-    parent = $(this).parent("td").parent("tr").remove()
-    mailer.find("#mailer_form").find(".member_" + id).remove()
+    $($(this).parent("td").parent("tr").parent("tbody").parent("table").data("form")).find(".member_" + id).remove()
+    $(this).parent("td").parent("tr").remove()
 
   mailer.find("#mailer_form").find(".send").click (e) ->
     e.preventDefault

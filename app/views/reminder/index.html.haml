@@ -24,7 +24,7 @@
     %div{:id => "preview-view"}
       = @preview
 
-  %table{:class => "center", :id => "members"}
+  %table{:class => "center", :id => "members", "data-form" => "#reminder_invoice_form"}
     %tr
       %th Jäsennro.
       %th Nimi
@@ -43,4 +43,4 @@
         %td= member.membergroup.name
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
-        %td= button_tag "Poista", :type => 'button', :class => "delete_button", :id => "member_#{member.id}", 'data-id' => "#{member.id}"
+        %td= button_tag "Poista", :type => 'button', :class => "delete_row_button", :id => "member_#{member.id}", 'data-id' => "#{member.id}"

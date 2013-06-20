@@ -29,14 +29,6 @@
             = membergroup
           %div{:class => "floatleft data"}
             = value
-    %h4 Aikavälillä rekisteröityneet
-
-    %div{:class => "information"}
-      %form
-        %div
-          %input{:type => "date", :name => "fromdate"}
-        %div
-          %input{:type => "date", :name => "todate"}
 
   %div{:class => "floatright"}
     %h4 Kunnat
@@ -47,4 +39,31 @@
             = municipality
           %div{:class => "floatleft data"}
             = value
+
+  %h4 Aikavälillä rekisteröityneet
+  %div
+    %form{:method => "get"}
+      %div
+        %input{:type => "date", :name => "startdate"}
+        = "-"
+        %input{:type => "date", :name => "enddate"}
+        %button{:name => "search", :type => "submit"} Hae
+  %div
+    - if params[:startdate]
+      %table{:class => "center", :id => "random_page"}
+        %tr
+          %th Jäsennro.
+          %th Nimi
+          %th Sähköposti
+          %th Osoite
+          %th Postinumero
+        - @membersdate.each do |member|
+          %tr
+            %td= link_to member.membernumber, edit_member_path(member)
+            %td
+              = member.firstnames
+              = member.surname
+            %td= member.email
+            %td= member.address
+            %td= member.zipcode
 
