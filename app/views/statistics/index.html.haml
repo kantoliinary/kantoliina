@@ -29,16 +29,6 @@
             = membergroup
           %div{:class => "floatleft data"}
             = value
-    %h4 Aikavälillä rekisteröityneet
-
-    %div{:class => "information"}
-      %form{:method => "get"}
-        %div
-          %input{:type => "date", :name => "startdate"}
-        %div
-          %input{:type => "date", :name => "enddate"}
-        %div
-          %button{:name => "search", :type => "submit"} Hae
 
   %div{:class => "floatright"}
     %h4 Kunnat
@@ -49,6 +39,15 @@
             = municipality
           %div{:class => "floatleft data"}
             = value
+
+  %h4 Aikavälillä rekisteröityneet
+  %div
+    %form{:method => "get"}
+      %div
+        %input{:type => "date", :name => "startdate"}
+        = "-"
+        %input{:type => "date", :name => "enddate"}
+        %button{:name => "search", :type => "submit"} Hae
   %div
     - if params[:startdate]
       %table{:class => "center", :id => "random_page"}
