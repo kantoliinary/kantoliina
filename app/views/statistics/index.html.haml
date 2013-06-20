@@ -32,11 +32,13 @@
     %h4 Aikavälillä rekisteröityneet
 
     %div{:class => "information"}
-      %form
+      %form{:method => "get"}
         %div
-          %input{:type => "date", :name => "fromdate"}
+          %input{:type => "date", :name => "startdate"}
         %div
-          %input{:type => "date", :name => "todate"}
+          %input{:type => "date", :name => "enddate"}
+        %div
+          %button{:name => "search", :type => "submit"} Hae
 
   %div{:class => "floatright"}
     %h4 Kunnat
@@ -47,4 +49,22 @@
             = municipality
           %div{:class => "floatleft data"}
             = value
+  %div
+    - if params[:startdate]
+      %table{:class => "center", :id => "random_page"}
+        %tr
+          %th Jäsennro.
+          %th Nimi
+          %th Sähköposti
+          %th Osoite
+          %th Postinumero
+        - @membersdate.each do |member|
+          %tr
+            %td= link_to member.membernumber, edit_member_path(member)
+            %td
+              = member.firstnames
+              = member.surname
+            %td= member.email
+            %td= member.address
+            %td= member.zipcode
 
