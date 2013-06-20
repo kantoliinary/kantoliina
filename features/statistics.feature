@@ -9,9 +9,9 @@ Feature: See statistics about members
       | admin    | qwerty123 | testi@testi.fi |
 
     Given the following membergroups exist:
-      | id | name        | fee  |
-      | 1  | Ainaisjäsen | 10.0 |
-      | 2  | Perhejäsen  | 20.0 |
+      | id | name        | fee  | onetimefee |
+      | 1  | Ainaisjäsen | 10.0 | true       |
+      | 2  | Perhejäsen  | 20.0 | false      |
 
     Given the following members exist:
       | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
@@ -29,7 +29,7 @@ Feature: See statistics about members
   Scenario: I should see basic data
     Then I should see "Jäseniä: 3"
     Then I should see "Poistettuja: 1"
-    Then I should see "Tulot vuodessa (€): 50.0"
+    Then I should see "Tulot vuodessa (€): 40.0"
 
   Scenario: I should see membergroups
     Then I should see "Perhejäsen 2"
