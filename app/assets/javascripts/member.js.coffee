@@ -1,8 +1,12 @@
-index_page = "#index_member_page"
-invoice = $("#invoice_member_page")
-mailer = $("#mailer_member_page")
-reminder = $("#reminder_member_page")
+index_page = ""
+invoice = ""
+mailer = ""
+reminder = ""
 $(document).ready ->
+  index_page = "#index_member_page"
+  invoice = $("#invoice_member_page")
+  mailer = $("#mailer_member_page")
+  reminder = $("#reminder_member_page")
   $(index_page).find(".send").click (e) ->
     e.preventDefault()
     if $(this).hasClass("confirm") && !confirm("Oletko varma?")
