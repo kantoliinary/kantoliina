@@ -17,7 +17,7 @@ Feature: reset password
 
   Scenario: I submit the correct e-mail address
     When I am on the new_password_reset page
-    And I fill in "Otsikko" with "example@example.com"
+    And I fill in "Sähköposti" with "example@example.com"
     And I press "Palauta"
     And I should receive an email
     When I open the email

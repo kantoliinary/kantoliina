@@ -26,9 +26,9 @@ class StatisticsController < ApplicationController
     @total = 0
     @members.each do |member|
       if member.active
+        @active += 1
         if !member.membergroup.onetimefee
           @total += member.membergroup.fee
-          @active += 1
         end
         if @membergroups[member.membergroup.name.to_sym]
           @membergroups[member.membergroup.name.to_sym] =  @membergroups[member.membergroup.name.to_sym] + 1

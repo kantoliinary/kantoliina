@@ -1,6 +1,6 @@
 When /^(?:|I )click a text "([^"]*)"$/ do |selector|
 
-  page.all(selector).click
+  find(selector).click
 end
 
 When /^I click on "([^\"]+)"$/ do |text|
@@ -11,4 +11,3 @@ When /^I click on "([^\"]+)"$/ do |text|
   end
   element.click
 end
-y

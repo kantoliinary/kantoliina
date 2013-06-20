@@ -2,7 +2,7 @@
 %html
   %head
     %title Kantoliina
-    = stylesheet_link_tag "member"
+    = stylesheet_link_tag "application", :media => "all"
   %body
     %div{:id => "addressdata"}
       - @members.each do |member|
