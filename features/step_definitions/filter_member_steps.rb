@@ -11,4 +11,3 @@ When /^I click on "([^\"]+)"$/ do |text|
   end
   element.click
 end
-y
