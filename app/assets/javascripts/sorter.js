@@ -1,4 +1,4 @@
-var sorter = (function (options) {
+var sorter = (function () {
     var defaults = {
         table: "",
         previous: -1,

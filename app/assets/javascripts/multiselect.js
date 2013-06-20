@@ -1,48 +1,81 @@
-var multiselect = function (options, itemcallback, callback) {
+var multiselect = (function () {
     var defaults = {
         elements: [],
         contextmenu: false,
-        callback: function (checkbox) {
+        initItemCallback: function (checkbox) {
+        },
+        itemCallback: function (checkbox) {
+        },
+        callback: function (menu) {
         }
     }
-    var settings = $.extend({}, defaults, options)
-    var bind = (settings.contextmenu ? "contextmenu" : "click")
-    $(settings.elements).each(function (index, item) {
-        var checboxs = $(item).find(".choices").find(":checkbox").not(":has(#select_all")
-        $(checboxs).each(function (index, checkbox) {
-            if (readCookie($(checkbox).attr("name")) != undefined) {
-                $(checkbox).attr("checked", readCookie($(checkbox).attr("name")) == 1)
-            }
-            settings.callback(checkbox)
-            $(checkbox).click(function (e) {
-                setcookie(e.target)
-                if (itemcallback != null) {
-                    itemcallback(e.target)
-                }
-            })
+    var settings = {}
+
+    function init(options) {
+        settings = $.extend({}, defaults, options)
+
+        loopElements()
+    }
+
+    function loopElements(bind) {
+        $(settings.elements).each(function (index, item) {
+            loopCheckbox(item)
+            setSelectAll(item)
+            bindOpen(item)
         })
-        $(item).find(".header").bind(bind, function (e) {
+    }
+
+    function bindOpen(menu) {
+        $(menu).find(".header").bind((settings.contextmenu ? "contextmenu" : "click"), function (e) {
             e.preventDefault()
             choices = $(this).parent().find(".choices")
             choices.toggle()
-            if (choices.css("display") == "none" && callback != null) {
-                callback(this)
+            if (choices.css("display") == "none") {
+                settings.callback(menu)
             }
         })
-        var select_all = $(item).find(".choices").find("#select_all")
-        if(select_all)
-            select_all.click(function(){
-            select_Un_All(select_all)
-        })
-    })
+    }
 
-    function select_Un_All(element){
-        check_state = element.is(":checked")
-        element.parent().parent().find(":checkbox").not(":has(#select_all").each(function(index, checkbox){
+    function loopCheckbox(menu) {
+        var checboxs = findCheckboxs(menu)
+        $(checboxs).each(function (index, checkbox) {
+            var check = readCookie($(checkbox).attr("name"))
+            if (check != undefined) {
+                $(checkbox).attr("checked", check == 1)
+            }
+            $(checkbox).click(function (e) {
+                setcookie(e.target)
+                settings.itemCallback(e.target)
+            })
+            settings.initItemCallback(checkbox)
+        })
+    }
+
+    function setSelectAll(menu) {
+        var select_all = $(menu).find(".choices").find("#select_all")
+        if (select_all) {
+            select_all.click(function () {
+                select_Un_All(select_all)
+            })
+        }
+    }
+
+    function findCheckboxs(menu) {
+        return $(menu).find(".choices").find(":checkbox").not(":has(#select_all")
+    }
+
+    function select_Un_All(sACheckbox) {
+        check_state = sACheckbox.is(":checked")
+        sACheckbox.parent().parent().find(":checkbox").not(":has(#select_all").each(function (index, checkbox) {
             $(checkbox).attr("checked", check_state)
         })
     }
+
     function setcookie(e) {
         SetCookie($(e).attr("name"), ($(e).is(":checked") ? "1" : "0"))
     }
-}
+
+    return {
+        init: init
+    }
+})

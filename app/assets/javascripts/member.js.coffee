@@ -1,13 +1,13 @@
+index_page = "#index_member_page"
+invoice = $("#invoice_member_page")
+mailer = $("#mailer_member_page")
+reminder = $("#reminder_member_page")
 $(document).ready ->
-  index = $("#index_member_page")
-  invoice = $("#invoice_member_page")
-  mailer = $("#mailer_member_page")
-  reminder = $("#reminder_member_page")
-  index.find(".send").click (e) ->
+  $(index_page).find(".send").click (e) ->
     e.preventDefault()
     if $(this).hasClass("confirm") && !confirm("Oletko varma?")
       return false
-    checkboxs = index.find("#members").find("table").find("td").find(":checkbox")
+    checkboxs = $(index_page).find("#members").find("table").find("td").find(":checkbox")
     ids = []
     $(checkboxs).each (index, value) ->
       checkbox = $(value)
@@ -26,7 +26,7 @@ $(document).ready ->
     else
       alert("Valitse ensin jäseniä")
 
-  index.find("#members").find("#check_all").click( (e) ->
+  $(index_page).find("#members").find("#check_all").click( (e) ->
     un_select_all_mmembers(e)
   )
 
@@ -59,26 +59,18 @@ $(document).ready ->
     parent = $(this).parent("td").parent("tr").remove()
     reminder.find("#reminder_form").find(".member_" + id).remove()
 
-  multiselect({
+  multiselect().init({
       contextmenu: true,
-      elements: ["#index_member_page .column_menu"],
-      callback: (checkbox) ->
-        th = index.find("#members").find("table").find("."+$(checkbox).attr("name"))
-        if $(checkbox).is(":checked")
-          th.removeClass("hidden")
-        else
-          th.addClass("hidden")
-    }, (element) ->
-      $("#members").find("table").find("." + $(element).attr("name")).each (index, item) ->
-        if $(item).hasClass("hidden")
-          $(item).removeClass("hidden")
-        else
-          $(item).addClass("hidden")
-  , null)
+      elements: [index_page + " .column_menu"],
+      initItemCallback: (checkbox) ->
+        setTableColumns(checkbox)
+      ,itemCallback: (checkbox) ->
+        showHideColumn(checkbox)
+    })
 
-  multiselect({
+  multiselect().init({
       contextmenu: true,
-      elements: ["#index_member_page .membergroup_menu", "#index_member_page .paymentstatus_menu", "#index_member_page .support_menu", "#index_member_page .lender_menu", "#index_member_page .municipality_menu", "#index_member_page .active_menu"]
+      elements: [index_page + " .membergroup_menu", index_page + " .paymentstatus_menu", index_page + " .support_menu", index_page + " .lender_menu", index_page + " .municipality_menu", index_page + " .active_menu"]
     }, null, (element) ->
       do_search()
   )
@@ -101,15 +93,29 @@ do_search = ->
     selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".active_menu", "active"]],
     outputtable: "#members_table",
     column_menu: ".column_menu",
-    outputlengthfield: "#index_member_page #amount_of_results #amount",
+    outputlengthfield: index_page + " #amount_of_results #amount",
     callback: ->
       sorter.sort(undefined, true)
       changeRemoveActiveButton()
   })
 
 changeRemoveActiveButton = ->
-  button = $("#index_member_page").find("#delete_active_form").find("button")
-  if $("#index_member_page").find(".active_menu").find("input").is(":checked")
+  button = $(index_page).find("#delete_active_form").find("button")
+  if $(index_page).find(".active_menu").find("input").is(":checked")
     button.text("Aktivoi")
   else
      button.text("Poista")
+
+setTableColumns = (checkbox)->
+  th = $(index_page).find("#members").find("table").find("."+$(checkbox).attr("name"))
+  if $(checkbox).is(":checked")
+    th.removeClass("hidden")
+  else
+    th.addClass("hidden")
+
+showHideColumn = (checkbox) ->
+  $(index_page).find("#members").find("table").find("." + $(checkbox).attr("name")).each (index, item) ->
+    if $(item).hasClass("hidden")
+      $(item).removeClass("hidden")
+    else
+      $(item).addClass("hidden")
