@@ -1,31 +1,31 @@
 = simple_form_for @member, defaults:{label:false} do |f|
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
       = f.label "firstnames", "Etunimet", :class => "label"
     %div{:class => "left right_field"}
       = f.input :firstnames
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
       = f.label "surname", "Sukunimi"
     %div{:class => "left right_field"}
       = f.input :surname
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
       = f.label "municipality", "Kunta"
     %div{:class => "left right_field"}
       = f.input :municipality
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
       = f.label "address", "Katuosoite"
     %div{:class => "left right_field"}
       = f.input :address
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
       = f.label "zipcode", "Postinumero"
     %div{:class => "left right_field"}
       = f.input :zipcode
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
       = f.label "postoffice", "Postitoimipaikka"
     %div{:class => "left right_field"}
       = f.input :postoffice
@@ -36,13 +36,13 @@
       = f.input :country, priority: [ "Suomi" ]
 
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
       = f.label "email", "Sähköposti"
     %div{:class => "left right_field"}
       = f.input :email
   - if @isnew #Hides field for membernumber on editpage
     %div{:class => "row"}
-      %div{:class => "left"}
+      %div{:class => "left name"}
         = f.label "membernumber", "Jäsennumero"
       %div{:class => "left right_field"}
         = f.input :membernumber, as: :string
@@ -60,32 +60,32 @@
   -#    = f.input :membershipyear, as: :string
 
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
     %div{:class => "left right_field"}
       = f.input :lender, label: "Lainaamo"
 
   %div{:class => "row"}
-    %div{:class => "left"}
+    %div{:class => "left name"}
     %div{:class => "left right_field"}
       = f.input :support, label: "Tukihenkilö"
 
   - if @isnew #Hides following fields on editpage
     %div{:class => "row"}
-      %div{:class => "left"}
+      %div{:class => "left name"}
       %div{:class => "left right_field"}
         = check_box_tag :sendinvoice, :id => "checkbox2"
         = hidden_field_tag "ids"
         = label_tag :sendinvoice, "Lähetä lasku"
 
     %div{:class => "row"}
-      %div{:class => "left"}
+      %div{:class => "left name"}
       %div{:class => "left right_field"}
         = check_box_tag :nextyear, :id => "checkbox2"
         = hidden_field_tag "ids"
         = label_tag :nextyear, "Jäsenyys ensi vuodelle"
 
     %div{:class => "row"}
-      %div{:class => "left"}
+      %div{:class => "left name"}
       %div{:class => "left right_field"}
         = f.input :paymentstatus, label: "Maksanut"
 
