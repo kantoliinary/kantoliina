@@ -30,6 +30,7 @@ Feature: send mail to members
 
   Scenario: Select all to mail page and send mail
     And I should see "Lähtevä viesti"
+    And I fill in "sender" with "kantoliinatesti@gmail.com"
     And I fill in "subject" with "Otsikko"
     And I fill in "additional_message" with "viestia"
     And I press "Lähetä sähköposti"
@@ -42,6 +43,7 @@ Feature: send mail to members
 
   Scenario: Add an attachment to the email
     And I should see "Lähtevä viesti"
+    And I fill in "sender" with "kantoliinatesti@gmail.com"
     And I fill in "subject" with "Attachment by kantopiina"
     And I fill in "additional_message" with "a valid message"
     And I upload an exact file
@@ -51,6 +53,7 @@ Feature: send mail to members
 
   Scenario: I send an e-mail to a member
     And I should see "Lähtevä viesti"
+    And I fill in "sender" with "kantoliinatesti@gmail.com"
     And I fill in "subject" with "Otsikko tässä"
     And I fill in "additional_message" with "Tämä on viesti"
     And I press "Lähetä sähköposti"
@@ -62,6 +65,7 @@ Feature: send mail to members
 
   Scenario: I send an e-mail to a member with an attachment
     And I should see "Lähtevä viesti"
+    And I fill in "sender" with "kantoliinatesti@gmail.com"
     And I fill in "subject" with "Otsikko tässä"
     And I fill in "additional_message" with "Tämä on viesti"
     And I upload an exact file

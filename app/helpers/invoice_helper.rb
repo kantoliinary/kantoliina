@@ -1,7 +1,10 @@
 #encoding: utf-8
-
+##
+# The helper for the invoice and reminder confirmation pages
 module InvoiceHelper
 
+  ##
+  # Creates a template from a parameter file and gives it to a preview subroutine
   def self.preview top, bottom, file
 
     template = ""

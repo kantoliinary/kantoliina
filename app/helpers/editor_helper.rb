@@ -1,6 +1,16 @@
 #encoding: utf-8
-
+##
+# The helper for the reminder and invoice editors
 module EditorHelper
+
+  ##
+  #params:
+  # +function+:: The parameter for selecting between the save and preview functions
+  # template The edited template that is validated for preview or save
+  # file The file where the template is to be saved
+  # f The flash for the validation errors
+  # Validates and saves a template or previews it
+  #@return The flash where the error messages are located
 
   def self.update function, template, file, f
 
@@ -20,7 +30,8 @@ module EditorHelper
 
 
 
-
+  ##
+  # Validates the preview and renders it to a flash object
   def self.preview template, f, top, bottom
 
     if EditorHelper.validate_invoice_template template, f
@@ -39,7 +50,8 @@ module EditorHelper
 
   end
 
-
+  ##
+  # Gets a file as a parameter and renders it to a flash object
   def self.load_default file, f
 
     template = ''
@@ -52,7 +64,8 @@ module EditorHelper
     end
   end
 
-
+  ##
+  # Validates a template and renders the possible errors in a flash object
   def self.validate_invoice_template template, f
 
 

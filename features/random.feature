@@ -13,10 +13,10 @@ Feature: random members
       | 1  | Ainaisjäsen | 10.0 |
 
     Given the following members exist:
-      | id | firstnames | surname    | municipality | country | address       | zipcode | postoffice | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
-      | 1  | Janne      | Jäsen      | Vantaa       | Finland | Jokiniementie | 54321   | Stadi      | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | true   |
-      | 2  | Liisa      | Mehiläinen | Espoo        | Finland | Jokintie      | 12345   | Stadi      | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   |
-      | 3  | Jaana      | Jäsen      | Espoo        | Finland | Jokintie      | 12345   | Stadi      | jaana.jasen@hotmail.com    | 12543        | 1              | 2013           | false         | 2013.01.01  | true   |
+      | id | firstnames | surname    | municipality | country | address       | zipcode | postoffice | email                  | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
+      | 1  | Janne      | Jäsen      | Vantaa       | Finland | Jokiniementie | 54321   | Stadi      | example@example.com    | 12345        | 1              | 2013           | true          | 2013.01.01  | true   |
+      | 2  | Liisa      | Mehiläinen | Espoo        | Finland | Jokintie      | 12345   | Stadi      | example@example.com    | 12466        | 1              | 2013           | true          | 2013.01.01  | true   |
+      | 3  | Jaana      | Jäsen      | Espoo        | Finland | Jokintie      | 12345   | Stadi      | example@example.com    | 12543        | 1              | 2013           | false         | 2013.01.01  | true   |
 
 
     When I am on the login page
@@ -29,5 +29,7 @@ Feature: random members
     And I check "check_all"
     And I press "Arvo jäsen"
     And I press "Lähetä sähköpostia"
+    And I fill in "sender" with "kantoliinatesti@gmail.com"
     And I press "Lähetä sähköposti"
     And I should see "Sähköposti lähetetty"
+    And I should receive an email

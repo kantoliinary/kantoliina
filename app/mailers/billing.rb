@@ -17,13 +17,14 @@ class Billing < ActionMailer::Base
   end
 
 
-  def mailer member, message, subject, filename, filepath
+  def mailer member, message, subject, sender, filename, filepath
+
     @message2 = message
     @member = member
     if filepath
       attachments[filename] = File.read(filepath)
     end
-    mail(:to => member.email, :subject => subject)
+    mail(:from => sender, :to => member.email, :subject => subject)
   end
 
 end

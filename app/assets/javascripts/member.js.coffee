@@ -14,10 +14,14 @@ $(document).ready ->
       if !!checkbox.is(":checked") && checkbox.attr("name") != "check_all"
         ids.push checkbox.val()
     form = $(this).parent("form")
-    form.children("#ids").val(JSON.stringify({
-      ids: ids
-    }))
     if ids.length != 0
+      $("<input/>",{
+        type: "hidden",
+        name: "ids"
+        value: JSON.stringify({
+          ids: ids
+        })
+      }).appendTo(form)
       form.submit()
     else
       alert("Valitse ensin jäseniä")
@@ -37,6 +41,17 @@ $(document).ready ->
     id = $(this).data("id")
     parent = $(this).parent("td").parent("tr").remove()
     mailer.find("#mailer_form").find(".member_" + id).remove()
+
+  mailer.find("#mailer_form").find(".send").click (e) ->
+    e.preventDefault
+    sender =  $(mailer.find("#mailer_form").find("#senderarea").find("#sender")).val()
+
+    if sender.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+      $(mailer.find("#mailer_form")).submit()
+
+    else
+      alert("Sähköposti väärin")
+      return false
 
   reminder.find("#members").find(".delete_button").click (e) ->
     e.preventDefault

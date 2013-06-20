@@ -22,6 +22,10 @@ class MailerController < ApplicationController
   ##
   # Selects a group of members by chosen ID and sends a mail to their e-mails.
   def create
+
+    sender = params[:sender]
+
+
     if params[:attachment]
       filename = params[:attachment].original_filename
       filepath = params[:attachment].path
@@ -29,7 +33,7 @@ class MailerController < ApplicationController
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
       member.save(:validate => false)
-      Billing.mailer(member, params[:additional_message], params[:subject], filename, filepath).deliver
+      Billing.mailer(member, params[:additional_message], params[:subject], sender, filename, filepath).deliver
     end
     if params[:attachment]
       flash[:notice] = "Sähköposti ja liitetiedosto lähetetty"
@@ -39,3 +43,4 @@ class MailerController < ApplicationController
     redirect_to members_path
   end
 end
+
