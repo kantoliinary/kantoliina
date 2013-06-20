@@ -28,63 +28,73 @@ Feature: send mail to members
     And I press "Lähetä sähköpostia"
 
 
-  Scenario: Select all to mail page and send mail
+#  Scenario: Select all to mail page and send mail
+#    And I should see "Lähtevä viesti"
+#    And I fill in "sender" with "kantoliinatesti@gmail.com"
+#    And I fill in "subject" with "Otsikko"
+#    And I fill in "additional_message" with "viestia"
+#    And I press "Lähetä sähköposti"
+#    Then I should see "Sähköposti lähetetty"
+#
+#  Scenario: Delete one on mail page
+#    And I should see "Lähtevä viesti"
+#    And I press "Poista"
+#    Then I should not see "Janne"
+#
+#  Scenario: Add an attachment to the email
+#    And I should see "Lähtevä viesti"
+#    And I fill in "sender" with "kantoliinatesti@gmail.com"
+#    And I fill in "subject" with "Attachment by kantopiina"
+#    And I fill in "additional_message" with "a valid message"
+#    And I upload an exact file
+#    And I press "Lähetä sähköposti"
+#    Then I should see "Sähköposti ja liitetiedosto lähetetty"
+#
+#
+#  Scenario: I send an e-mail to a member
+#    And I should see "Lähtevä viesti"
+#    And I fill in "sender" with "kantoliinatesti@gmail.com"
+#    And I fill in "subject" with "Otsikko tässä"
+#    And I fill in "additional_message" with "Tämä on viesti"
+#    And I press "Lähetä sähköposti"
+#    And I should receive an email
+#    When I open the email with subject "Otsikko tässä"
+#    Then I should see "Otsikko tässä" in the email subject
+#    Then I should see "Tämä on viesti" in the email body
+#    Then I should see no attachment with the email
+#
+#  Scenario: I send an e-mail to a member with an attachment
+#    And I should see "Lähtevä viesti"
+#    And I fill in "sender" with "kantoliinatesti@gmail.com"
+#    And I fill in "subject" with "Otsikko tässä"
+#    And I fill in "additional_message" with "Tämä on viesti"
+#    And I upload an exact file
+#    And I press "Lähetä sähköposti"
+#    And I should receive an email
+#    When I open the email with subject "Otsikko tässä"
+#    Then I should see "Otsikko tässä" in the email subject
+#    Then I should see "Tämä on viesti" in the email body
+#    Then I should see an attachment with the email
+
+  @javascript
+  Scenario: I send an e-mail from an invalid address 1
     And I should see "Lähtevä viesti"
-    And I fill in "sender" with "kantoliinatesti@gmail.com"
-    And I fill in "subject" with "Otsikko"
-    And I fill in "additional_message" with "viestia"
+    And I fill in "sender" with "kantoliinatestigmail.com"
+    Given I expect to click "Jei" on an alert box
     And I press "Lähetä sähköposti"
-    Then I should see "Sähköposti lähetetty"
+    Then I should receive no emails
 
-  Scenario: Delete one on mail page
+  @javascript
+  Scenario: I send an e-mail from an invalid address 2
     And I should see "Lähtevä viesti"
-    And I press "Poista"
-    Then I should not see "Janne"
-
-  Scenario: Add an attachment to the email
-    And I should see "Lähtevä viesti"
-    And I fill in "sender" with "kantoliinatesti@gmail.com"
-    And I fill in "subject" with "Attachment by kantopiina"
-    And I fill in "additional_message" with "a valid message"
-    And I upload an exact file
+    And I fill in "sender" with "kantoliinatesti@gmailcom"
+    Given I expect to click "OK" on an alert box
     And I press "Lähetä sähköposti"
-    Then I should see "Sähköposti ja liitetiedosto lähetetty"
+    Then I should receive no emails
 
-
-  Scenario: I send an e-mail to a member
+  @javascript
+  Scenario: I send an e-mail from an empty address
     And I should see "Lähtevä viesti"
-    And I fill in "sender" with "kantoliinatesti@gmail.com"
-    And I fill in "subject" with "Otsikko tässä"
-    And I fill in "additional_message" with "Tämä on viesti"
+    Given I expect to click "OK" on an alert box
     And I press "Lähetä sähköposti"
-    And I should receive an email
-    When I open the email with subject "Otsikko tässä"
-    Then I should see "Otsikko tässä" in the email subject
-    Then I should see "Tämä on viesti" in the email body
-    Then I should see no attachment with the email
-
-  Scenario: I send an e-mail to a member with an attachment
-    And I should see "Lähtevä viesti"
-    And I fill in "sender" with "kantoliinatesti@gmail.com"
-    And I fill in "subject" with "Otsikko tässä"
-    And I fill in "additional_message" with "Tämä on viesti"
-    And I upload an exact file
-    And I press "Lähetä sähköposti"
-    And I should receive an email
-    When I open the email with subject "Otsikko tässä"
-    Then I should see "Otsikko tässä" in the email subject
-    Then I should see "Tämä on viesti" in the email body
-    Then I should see an attachment with the email
-
-  Scenario: I send an e-mail from a different address
-    And I should see "Lähtevä viesti"
-    And I fill in "subject" with "Otsikko tässä"
-    And I fill in "additional_message" with "Tämä on viesti"
-    And I upload an exact file
-    And I press "Lähetä sähköposti"
-    And I should receive an email
-    When I open the email with subject "Otsikko tässä"
-    Then I should see "Otsikko tässä" in the email subject
-    Then I should see "Tämä on viesti" in the email body
-    Then I should see an attachment with the email
-
+    Then I should receive no emails
