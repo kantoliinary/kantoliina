@@ -13,7 +13,6 @@ var multiselect = (function () {
 
     function init(options) {
         settings = $.extend({}, defaults, options)
-
         loopElements()
     }
 

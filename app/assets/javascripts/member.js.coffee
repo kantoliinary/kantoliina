@@ -71,9 +71,9 @@ $(document).ready ->
   multiselect().init({
       contextmenu: true,
       elements: [index_page + " .membergroup_menu", index_page + " .paymentstatus_menu", index_page + " .support_menu", index_page + " .lender_menu", index_page + " .municipality_menu", index_page + " .active_menu"]
-    }, null, (element) ->
-      do_search()
-  )
+      callback: (element) ->
+        do_search()
+  })
 
   $("#search_button").click( (e) ->
     do_search()
