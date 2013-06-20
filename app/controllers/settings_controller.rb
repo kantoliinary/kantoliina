@@ -1,10 +1,10 @@
 #encoding: utf-8
 ##
-# The controller for editing the invoice template
-
+# The controller for the settings page
 class SettingsController < ApplicationController
 
-
+  ##
+  # The default index method
   def index
 
   end

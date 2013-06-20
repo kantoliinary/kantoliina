@@ -5,6 +5,8 @@
 class PasswordResetsController < ApplicationController
   skip_before_filter :require_login, :only => [:new, :create]
 
+  ##
+  # The default new-method
   def new
   end
 

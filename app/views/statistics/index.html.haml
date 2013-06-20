@@ -29,7 +29,14 @@
             = membergroup
           %div{:class => "floatleft data"}
             = value
+    %h4 Aikavälillä rekisteröityneet
 
+    %div{:class => "information"}
+      %form
+        %div
+          %input{:type => "date", :name => "fromdate"}
+        %div
+          %input{:type => "date", :name => "todate"}
 
   %div{:class => "floatright"}
     %h4 Kunnat

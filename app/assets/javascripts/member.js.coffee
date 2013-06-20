@@ -50,7 +50,7 @@ $(document).ready ->
       $(mailer.find("#mailer_form")).submit()
 
     else
-      alert("Sähköposti väärin")
+      alert("Antamasi sähköpostiosoite on virheellinen")
       return false
 
   reminder.find("#members").find(".delete_button").click (e) ->

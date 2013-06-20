@@ -1,7 +1,6 @@
 #encoding: utf-8
 ##
 # The controller for Partner class.
-
 class PartnersController < ApplicationController
   before_filter :require_partner_login
   skip_before_filter :require_login, :only => [:index, :partner_logout, :loginform, :login]
