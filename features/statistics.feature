@@ -38,3 +38,11 @@ Feature: See statistics about members
   Scenario: I should see municipalities
     Then I should see "Espoo 2"
     Then I should see "Vantaa 1"
+
+#  Scenario: Then I should see members created between march-april
+#    And I fill in "startdate" with "01.03.2013"
+#    And I fill in "enddate" with "01.04.2013"
+#    Then I should see "12345"
+#    Then I should see "12543"
+#    Then I should not see "99999"
+#    Then I should not see "12466"
