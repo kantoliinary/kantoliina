@@ -53,9 +53,6 @@ var search = function (options) {
                 id: "member_"+member.id,
                 name: "member_"+member.id,
                 value: member.id,
-                click: function(e){
-                    member_bottom_form_show(e)
-                }
             }).appendTo(td)
             $(columns).each(function(index, column){
                 td = jQuery("<td/>",{
