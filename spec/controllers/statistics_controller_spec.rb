@@ -16,7 +16,7 @@ describe StatisticsController do
         FactoryGirl.create(:member)
         FactoryGirl.create(:member, id: "2", membernumber: "20003", membergroup_id: "2")
         FactoryGirl.create(:member, id: "3", membernumber: "20004", membergroup_id: "1")
-        get :index
+        get :index, :startdate => "2013.03.12", :enddate => "2013.03.12"
         response.should_not be nil
       end
       it "calls index method with non-active member" do
