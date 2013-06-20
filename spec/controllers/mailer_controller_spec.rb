@@ -50,5 +50,20 @@ describe MailerController do
       flash[:notice].should == "Sähköposti ja liitetiedosto lähetetty"
 
     end
+
+    it "sends mail from different senders" do
+      FactoryGirl.create(:membergroup)
+      member = FactoryGirl.create(:member)
+      member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
+      members = [member, member2]
+      Member.stub(:find_all_by_id).and_return(members)
+      @file = fixture_file_upload('/files/test.xml', 'text/xml')
+      post :create, :attachment => @file, :sender => "testi@mail.com"
+      flash[:notice].should == "Sähköposti ja liitetiedosto lähetetty"
+
+      post :create, :sender => "testi2@mail.com"
+      flash[:notice].should == "Sähköposti lähetetty"
+
+    end
   end
 end
