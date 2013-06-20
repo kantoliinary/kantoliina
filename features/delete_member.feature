@@ -37,7 +37,7 @@ Feature: Delete a new member
     When I am on the members page
     Then I should see "Matti"
     And I check "check_all"
-    Given I expect to click "OK" on a confirmation box
+    Given I expect to click "cancel" on a confirmation box
     When I press "Poista"
     Then I should not see "Jäsen poistettu"
 
