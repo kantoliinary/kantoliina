@@ -72,3 +72,15 @@ Feature: send mail to members
     Then I should see "Tämä on viesti" in the email body
     Then I should see an attachment with the email
 
+  Scenario: I send an e-mail from a different address
+    And I should see "Lähtevä viesti"
+    And I fill in "subject" with "Otsikko tässä"
+    And I fill in "additional_message" with "Tämä on viesti"
+    And I upload an exact file
+    And I press "Lähetä sähköposti"
+    And I should receive an email
+    When I open the email with subject "Otsikko tässä"
+    Then I should see "Otsikko tässä" in the email subject
+    Then I should see "Tämä on viesti" in the email body
+    Then I should see an attachment with the email
+
