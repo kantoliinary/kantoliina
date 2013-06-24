@@ -295,7 +295,7 @@ input[type = "radio"]{
     display: inline;
 }
 
-#header-content li a {
+#header-content li a, #header-content li span {
     float: left;
     display: block;
     padding: 3px 10px;
@@ -307,6 +307,7 @@ input[type = "radio"]{
     border-right-style: solid;
     border-size: 1px;
     border-color: #74a846;
+    cursor: pointer;
 }
 
 #header-content li a:hover {
