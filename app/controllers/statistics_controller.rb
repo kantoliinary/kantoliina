@@ -17,7 +17,9 @@ class StatisticsController < ApplicationController
     count_stuff
 
     if params[:startdate]
-      @membersdate = Member.where("created_at > :a AND created_at < :b AND active = 't'", :a => params[:startdate], :b=> params[:enddate])
+      @startdate = params[:startdate]
+      @enddate = params[:enddate]
+      @membersdate = Member.where("created_at > :a AND created_at < :b AND active = 't'", :a => @startdate, :b=> @enddate)
     end
 
   end

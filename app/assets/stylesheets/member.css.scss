@@ -77,6 +77,11 @@
 }
 
 #invoice_member_page, #mailer_member_page, #reminder_member_page {
+
+  #subject {
+    width: 700px;
+  }
+
   #additional_message {
     display: inline-block;
     width: 700px;

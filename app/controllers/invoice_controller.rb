@@ -17,8 +17,14 @@ class InvoiceController < ApplicationController
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => ['paymentstatus = ? OR membergroups.onetimefee = ?', false, false], :joins => [:membergroup])
     end
 
+    if @members.count == 0
+      flash[:notice] = "EI TULLUT YHTÄÄN JÄSENIÄ"
+    end
+
     if params[:function] == 'preview'
-      @preview = InvoiceHelper.preview params[:top_message], params[:bottom_message], Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s
+      @top_message = params[:top_message]
+      @bottom_message = params[:bottom_message]
+      @preview = InvoiceHelper.preview @top_message, @bottom_message, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s
     end
   end
 
@@ -59,7 +65,7 @@ class InvoiceController < ApplicationController
       member.invoicedate = Time.now
       member.paymentstatus = false;
       member.save(:validate => false)
-      Billing.bill_email(member, params[:top_message], params[:bottom_message]).deliver
+      Billing.bill_email(member, params[:top_message], params[:bottom_message], params[:subject]).deliver
     end
     flash[:notice] = "Laskut lähetetty"
     redirect_to members_path

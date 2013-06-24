@@ -18,7 +18,9 @@ class ReminderController < ApplicationController
     end
 
     if params[:function] == 'preview'
-      @preview = InvoiceHelper.preview params[:top_message], params[:bottom_message], Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s
+      @top_message = params[:top_message]
+      @bottom_message = params[:bottom_message]
+      @preview = InvoiceHelper.preview @top_message, @bottom_message, Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s
     end
   end
 
@@ -43,7 +45,7 @@ class ReminderController < ApplicationController
       member.invoicedate = Time.now
       member.paymentstatus = false;
       member.save(:validate => false)
-      Billing.reminder_email(member, params[:top_message], params[:bottom_message]).deliver
+      Billing.reminder_email(member, params[:top_message], params[:bottom_message], params[:subject]).deliver
     end
     flash[:notice] = "Maksumuistutukset lähetetty"
     redirect_to members_path

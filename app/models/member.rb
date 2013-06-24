@@ -24,7 +24,7 @@ class Member < ActiveRecord::Base
   validates :membershipyear, :numericality => {:only_integer => true}, :length => {:is => 4}
   validates :paymentstatus, :inclusion => {:in => [true, false]}
   validates :lender, :inclusion => {:in => [true, false]}
-  validates :support,:inclusion => {:in => [true, false]}
+  validates :support, :inclusion => {:in => [true, false]}
 
   @@refernumberprefix = '6004'
 
@@ -53,21 +53,22 @@ class Member < ActiveRecord::Base
   end
 
   def as_json(options={})
-    { :id => self.id,
-      :membernumber => self.membernumber,
-      :name => "#{self.firstnames} #{self.surname}",
-      :municipality => self.municipality,
-      :address => self.address,
-      :zipcode => self.zipcode,
-      :postoffice => self.postoffice,
-      :country => self.country,
-      :membergroup => self.membergroup.name,
-      :membershipyear => self.membershipyear,
-      :paymentstatus => self.paymentstatus,
-      :active => self.active,
-      :support => self.support,
-      :lender => self.lender,
-      :invoicedate => (self.invoicedate ? self.invoicedate.strftime("%d.%m.%Y") : "")
+    {:id => self.id,
+     :membernumber => self.membernumber,
+     :name => "#{self.surname} #{self.firstnames}",
+     :email => self.email,
+     :municipality => self.municipality,
+     :address => self.address,
+     :zipcode => self.zipcode,
+     :postoffice => self.postoffice,
+     :country => self.country,
+     :membergroup => self.membergroup.name,
+     :membershipyear => self.membershipyear,
+     :paymentstatus => self.paymentstatus,
+     :active => self.active,
+     :support => self.support,
+     :lender => self.lender,
+     :invoicedate => (self.invoicedate ? self.invoicedate.strftime("%d.%m.%Y") : "")
     }
   end
 end

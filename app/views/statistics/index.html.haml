@@ -44,10 +44,14 @@
   %div
     %form{:method => "get"}
       %div
-        %input{:type => "date", :name => "startdate"}
+
+        %input{:type => "date", :name => "startdate", :id => "startdate", :value => @startdate}
         = "-"
-        %input{:type => "date", :name => "enddate"}
+        %input{:type => "date", :name => "enddate", :id => "enddate", :value => @enddate}
+
         %button{:name => "search", :type => "submit"} Hae
+
+
   %div
     - if params[:startdate]
       %table{:class => "center", :id => "random_page"}

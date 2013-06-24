@@ -7,7 +7,7 @@ Feature: send mail to members
 
     Given the following admins exist:
       | username | password  | email          |
-      | admin    | qwerty123 | testi@testi.fi |
+      | admin    | qwerty123 | example@example.com |
 
     Given the following membergroups exist:
       | id | name           | fee  |
@@ -76,3 +76,25 @@ Feature: send mail to members
     Then I should see "Tämä on viesti" in the email body
     Then I should see an attachment with the email
 
+  @javascript
+  Scenario: I send an e-mail from an invalid address 1
+    And I should see "Lähtevä viesti"
+    And I fill in "sender" with "kantoliinatestigmail.com"
+    Given I expect to click "Jei" on an alert box
+    And I press "Lähetä sähköposti"
+    Then I should receive no emails
+
+  @javascript
+  Scenario: I send an e-mail from an invalid address 2
+    And I should see "Lähtevä viesti"
+    And I fill in "sender" with "kantoliinatesti@gmailcom"
+    Given I expect to click "OK" on an alert box
+    And I press "Lähetä sähköposti"
+    Then I should receive no emails
+
+  @javascript
+  Scenario: I send an e-mail from an empty address
+    And I should see "Lähtevä viesti"
+    Given I expect to click "OK" on an alert box
+    And I press "Lähetä sähköposti"
+    Then I should receive no emails

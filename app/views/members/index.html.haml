@@ -30,6 +30,9 @@
               = check_box_tag "name", "1", true
               Nimi
             %label
+              = check_box_tag "email", "1", true
+              Sähköposti
+            %label
               = check_box_tag "municipality", "1", true
               Kunta
             %label
@@ -41,7 +44,6 @@
             %label
               = check_box_tag "postoffice", "1", false
               Postitoimipaikka
-
             %label
               = check_box_tag "country", "1", false
               Maa
@@ -79,6 +81,7 @@
               = check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
             %th{:class => "membernumber"} Jäsennumero
             %th{:class => "name"} Nimi
+            %th{:class => "email"} Sähköposti
             %th{:class => "municipality"}
               %span
                 Kunta
@@ -134,6 +137,7 @@
                   %label
                     = check_box_tag "active_yes", "1", false
                     Näytä poistetut jäsenet
+
             %th{:class => "support hidden"}
               %span
                 Tukihenkilö
@@ -160,6 +164,7 @@
                   %label
                     = check_box_tag "lender_no", "0", true
                     Ei
+
           %tbody
       = action_form random_index_path, :form_id => "random_form", :button_text => "Arvo jäsen"
       = action_form delete_path, :form_id => "delete_active_form", :button_text => "", :confirm => true
