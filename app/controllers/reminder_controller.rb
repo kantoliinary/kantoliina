@@ -59,7 +59,6 @@ class ReminderController < ApplicationController
   def edit
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
-
     @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
       template = ""
       while line = f.gets

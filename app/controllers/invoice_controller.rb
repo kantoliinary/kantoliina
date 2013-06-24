@@ -43,6 +43,7 @@ class InvoiceController < ApplicationController
   #  render "settings/invoice_edit"
   #end
 
+  ##
   # Loads the default invoice template to the editor
   def load_default
     @f= Hash.new
