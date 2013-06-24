@@ -6,7 +6,7 @@
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
 
-    = label_tag("subject", "Otsikko")
+    %h3 Otsikko
     %div{:id => "subjectfield"}
       = text_field_tag "subject", "", :id => "subject", :value => "Kantoliinayhdistyksen jäsenmaksulasku"
 
