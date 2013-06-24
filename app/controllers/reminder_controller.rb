@@ -9,17 +9,17 @@ class ReminderController < ApplicationController
   def index
 
     @ids = params[:ids] || params[:id]
-    parsed_json = ActiveSupport::JSON.decode(params[:ids])
 
     if params[:id]
       @members = [Member.find_by_id(params[:id])]
     else
+      parsed_json = ActiveSupport::JSON.decode(params[:ids])
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => {:paymentstatus => false}, :joins => [:membergroup])
+      if @members.count < parsed_json["ids"].length
+        flash[:error] = "Laskunsa jo maksaneita ei otettu listaan"
+      end
     end
 
-    if @members.count < parsed_json["ids"].length
-      flash[:error] = "Laskunsa jo maksaneita ei otettu listaan"
-    end
 
     if params[:function] == 'preview'
       @top_message = params[:top_message]
@@ -59,7 +59,6 @@ class ReminderController < ApplicationController
   def edit
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
-
     @template = flash[:template] || File.open(Rails.root.join("app", "views", "billing", "reminder_email.html.haml").to_s, 'r') do |f|
       template = ""
       while line = f.gets

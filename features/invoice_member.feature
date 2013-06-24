@@ -29,7 +29,7 @@ Feature: Invoice members
   Scenario: Select all members and send an invoice to those applicable
     And I check "check_all"
     And I press "Luo laskut"
-#    Then I should see "Laskun varmistus"
+    And I should see "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should see "Maksanutnormaali"
@@ -45,7 +45,6 @@ Feature: Invoice members
   Scenario: Select all members and remove one in the invoice page
     And I check "check_all"
     And I press "Luo laskut"
-#    Then I should see "Laskun varmistus"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
     And I should see "Maksanutnormaali"
