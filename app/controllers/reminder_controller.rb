@@ -43,7 +43,7 @@ class ReminderController < ApplicationController
       member.invoicedate = Time.now
       member.paymentstatus = false;
       member.save(:validate => false)
-      Billing.reminder_email(member, params[:top_message], params[:bottom_message]).deliver
+      Billing.reminder_email(member, params[:top_message], params[:bottom_message], params[:subject]).deliver
     end
     flash[:notice] = "Maksumuistutukset lähetetty"
     redirect_to members_path
