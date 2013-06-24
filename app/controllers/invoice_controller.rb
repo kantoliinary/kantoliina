@@ -18,7 +18,9 @@ class InvoiceController < ApplicationController
     end
 
     if params[:function] == 'preview'
-      @preview = InvoiceHelper.preview params[:top_message], params[:bottom_message], Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s
+      @top_message = params[:top_message]
+      @bottom_message = params[:bottom_message]
+      @preview = InvoiceHelper.preview @top_message, @bottom_message, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s
     end
   end
 

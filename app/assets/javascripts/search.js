@@ -42,7 +42,7 @@ var search = function (options) {
                 $(item).remove()
             }
         })
-        var columns = ["membernumber", "name", "email", "municipality", "address", "zipcode", "postoffice", "country", "membergroup", "membershipyear", "invoicedate", "paymentstatus", "active", "lender", "support"]
+        var columns = ["membernumber", "name", "email", "municipality", "address", "zipcode", "postoffice", "country", "membergroup", "membershipyear", "invoicedate", "paymentstatus", "active", "support", "lender"]
         var images= ["paymentstatus", "active", "lender", "support"]
         $(data).each(function (index, member) {
             var tr = jQuery("<tr/>")
