@@ -2,18 +2,18 @@
 class Billing < ActionMailer::Base
   default :from => "kantoliinatesti@gmail.com"
 
-  def bill_email member, top_message, bottom_message
+  def bill_email member, top_message, bottom_message, subject
     @top_additional_message = top_message
     @bottom_additional_message = bottom_message
     @member = member
-    mail(:to => member.email, :subject => "Kantoliinayhdistyksen jäsenmaksu - lasku")
+    mail(:to => member.email, :subject => subject)
   end
 
-  def reminder_email member, top_message, bottom_message
+  def reminder_email member, top_message, bottom_message, subject
     @top_additional_message = top_message
     @bottom_additional_message = bottom_message
     @member = member
-    mail(:to => member.email, :subject => "Kantoliinayhdistyksen jäsenmaksu - Maksumuistutus")
+    mail(:to => member.email, :subject => subject)
   end
 
 

@@ -4,6 +4,10 @@
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
 
+    = label_tag("subject", "Otsikko")
+    %div{:id => "subjectfield"}
+      = text_field_tag "subject", "", :id => "subject", :value => "Kantoliinayhdistyksen jäsenmaksulasku"
+
     %h3 Lisätietoa laskun yläosaan
     %div{:id => "textarea"}
       = text_area_tag "top_message", @top_message, :class => "top_message"

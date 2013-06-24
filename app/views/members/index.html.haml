@@ -30,6 +30,9 @@
               = check_box_tag "name", "1", true
               Nimi
             %label
+              = check_box_tag "email", "1", true
+              Sähköposti
+            %label
               = check_box_tag "municipality", "1", true
               Kunta
             %label
@@ -79,6 +82,7 @@
               = check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
             %th{:class => "membernumber"} Jäsennumero
             %th{:class => "name"} Nimi
+            %th{:class => "email"} Sähköposti
             %th{:class => "municipality"}
               %div{:class => "municipality_menu multiselectmenu"}
                 %div{:class => "header"}
