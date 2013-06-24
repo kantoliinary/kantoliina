@@ -181,7 +181,7 @@ class MembersController < ApplicationController
   # Filters members by selected radio buttons. Values are active and payment status with OR operation.
   # If member has the field represented by the selected button, the subroutine searches for matching character combinations.
   def search_with_filters filters
-    all_search_fields = ["firstnames", "surname", "municipality", "address", "zipcode", "postoffice", "membernumber", "country"]
+    all_search_fields = ["firstnames", "surname", "email", "municipality", "address", "zipcode", "postoffice", "membernumber", "country"]
     keywords = (filters[:keyword] ? filters[:keyword].split("|") : "")
     members = Member.includes(:membergroup)
     if keywords.length > 0
