@@ -29,7 +29,7 @@ Feature: See statistics about members
   Scenario: I should see basic data
     Then I should see "Jäseniä: 3"
     Then I should see "Poistettuja: 1"
-    Then I should see "Tulot vuodessa (€): 40.0"
+    Then I should see "Tulot vuodessa (€): 50.0"
 
   Scenario: I should see membergroups
     Then I should see "Perhejäsen 2"

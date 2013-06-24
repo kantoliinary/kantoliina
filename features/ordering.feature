@@ -79,7 +79,7 @@ Feature: order members
   Scenario: I order members by membership year
     When I am on the members page
     And I click a text "#members_table thead #membershipyear"
-    Then I should see "Mehiläinen" before "Jäsen"
+    Then I should see "Liisa" before "Janne"
     And I should see "2013" before "2014"
     And I click a text "#members_table thead #membershipyear"
     Then I should see "Janne" before "Liisa"
