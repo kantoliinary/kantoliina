@@ -9,16 +9,17 @@ class InvoiceController < ApplicationController
   def index
 
     @ids = params[:ids] || params[:id]
-    parsed_json = ActiveSupport::JSON.decode(params[:ids])
+
     if params[:id]
       @members = [Member.find_by_id(params[:id])]
     else
+      parsed_json = ActiveSupport::JSON.decode(params[:ids])
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => ['paymentstatus = ? OR membergroups.onetimefee = ?', false, false], :joins => [:membergroup])
+      if @members.count < parsed_json["ids"].length
+        flash[:error] = "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
+      end
     end
 
-    if @members.count < parsed_json["ids"].length
-      flash[:error] = "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
-    end
 
     if params[:function] == 'preview'
       @top_message = params[:top_message]
