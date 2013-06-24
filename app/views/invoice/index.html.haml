@@ -1,11 +1,12 @@
 %div{:id => "invoice_member_page"}
   -#%h1 Laskun varmistus
-  = flash[:notice]
+  %span{:class => "error"}
+    = flash[:error]
   = form_tag invoice_path, :id => "invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
 
-    = label_tag("subject", "Otsikko")
+    %h3 Otsikko
     %div{:id => "subjectfield"}
       = text_field_tag "subject", "", :id => "subject", :value => "Kantoliinayhdistyksen jäsenmaksulasku"
 
