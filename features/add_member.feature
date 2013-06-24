@@ -39,7 +39,7 @@ Feature: Add a new member
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
     And I follow "Jäsenten hallinta"
-    Then I should see "jasen aaa"
+    Then I should see "aaa jasen"
     Then I should see "2013"
 
   Scenario: Add a new member with wrongly formatted e-mail

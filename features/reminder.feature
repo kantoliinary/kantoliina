@@ -38,8 +38,8 @@ Feature: Reminder members
     Then I should see "Valitse sarakkeet"
     And I should see "Maksumuistutukset lähetetty"
     And I should receive an email
-    When I open the email with subject "Kantoliinayhdistyksen jäsenmaksu - Maksumuistutus"
-    Then I should see "Kantoliinayhdistyksen jäsenmaksu - Maksumuistutus" in the email subject
+    When I open the email with subject "Kantoliinayhdistyksen jäsenmaksumuistutus"
+    Then I should see "Kantoliinayhdistyksen jäsenmaksumuistutus" in the email subject
     Then I should see "20.0" in the email body
 
   Scenario: Select all members and remove one in the reminder page
@@ -73,3 +73,21 @@ Feature: Reminder members
     Then I should see "Kantoliinayhdistyksen jäsenmaksu - maksumuistutus"
     And I should see "Ala viesti"
     And I should see "Ylä viesti"
+
+  Scenario: Edit topic of the reminder and see the change in mail
+    And I check "check_all"
+    And I press "Luo maksumuistutukset"
+    And I should see "Maksamatonnormaali"
+    And I should see "Maksamatonainais"
+    And I fill in "top_message" with "Ylä viesti"
+    And I fill in "bottom_message" with "Ala viesti"
+    And I fill in "subject" with "Otsikko"
+    And I press "Lähetä maksumuistutukset"
+    Then I should see "Valitse sarakkeet"
+    And I should see "Maksumuistutukset lähetetty"
+    And I should receive an email
+    When I open the email with subject "Otsikko"
+    Then I should see "Otsikko" in the email subject
+    Then I should see "20.0" in the email body
+
+

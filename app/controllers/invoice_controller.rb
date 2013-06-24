@@ -42,14 +42,10 @@ class InvoiceController < ApplicationController
   #  render "settings/invoice_edit"
   #end
 
-  ##
   # Loads the default invoice template to the editor
   def load_default
-
     @f= Hash.new
-
     EditorHelper.load_default Rails.root.join("app", "views", "billing", "default_bill.html.haml").to_s, @f
-
     @f.each do |key, value|
       flash[key] = value
     end
@@ -87,17 +83,12 @@ class InvoiceController < ApplicationController
   ##
   # Sends an invoice template submitted by the user and uses the helper update method to validate and save it
   def update
-
     template = params[:template]
     @f= Hash.new
     EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
-
-
     @f.each do |key, value|
       flash[key] = value
     end
-
     redirect_to invoice_edit_path
-
   end
 end
