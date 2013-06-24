@@ -36,11 +36,11 @@ Feature: order members
   @javascript
   Scenario: I order members by first name
     When I am on the members page
-    And I click a text "#members_table thead .name"
+    And I click a text "#members_table thead #name"
     Then I should see "Jaana" before "Janne"
     And I should see "Janne" before "Liisa"
     And I should see "12543" before "12345"
-    Then I click a text "#members_table thead .name"
+    Then I click a text "#members_table thead #name"
     Then I should see "Janne" before "Jaana"
     And I should see "Liisa" before "Janne"
     And I should see "12345" before "12543"
@@ -57,10 +57,10 @@ Feature: order members
   @javascript
   Scenario: I order members by municipality
     When I am on the members page
-    And I click a text "#members_table thead .municipality"
+    And I click a text "#members_table thead #municipality"
     And I should see "Liisa" before "Janne"
     And I should see "Espoo</td" before "Vantaa</td"
-    And I click a text "#members_table thead .municipality"
+    And I click a text "#members_table thead #municipality"
     And I should see "Janne" before "Liisa"
     And I should see "Vantaa</td" before "Espoo</td"
 
@@ -68,30 +68,30 @@ Feature: order members
   @javascript
   Scenario: I order members by membergroup
     When I am on the members page
-    And I click a text "#members_table thead .membergroup"
+    And I click a text "#members_table thead #membergroup"
     Then I should see "Liisa" before "Janne"
     And I should see "Ainaisjäsen</td" before "Varsinaisjäsen</td"
-    And I click a text "#members_table thead .membergroup"
+    And I click a text "#members_table thead #membergroup"
     Then I should see "Janne" before "Liisa"
     And I should see "Varsinaisjäsen</td" before "Ainaisjäsen</td"
 
   @javascript
   Scenario: I order members by membership year
     When I am on the members page
-    And I click a text "#members_table thead .membershipyear"
-    Then I should see "Liisa" before "Janne"
+    And I click a text "#members_table thead #membershipyear"
+    Then I should see "Mehiläinen" before "Jäsen"
     And I should see "2013" before "2014"
-    And I click a text "#members_table thead .membershipyear"
+    And I click a text "#members_table thead #membershipyear"
     Then I should see "Janne" before "Liisa"
     And I should see "2014" before "2013"
 
   @javascript
   Scenario: I order members by the date of the last invoice
     When I am on the members page
-    And I click a text "#members_table thead .invoicedate"
+    And I click a text "#members_table thead #invoicedate"
     Then I should see "01.01.2013" before "01.01.2014"
     And I should see "Liisa" before "Janne"
-    And I click a text "#members_table thead .invoicedate"
+    And I click a text "#members_table thead #invoicedate"
     Then I should see "Janne" before "Liisa"
     And I should see "01.01.2014" before "01.01.2013"
 

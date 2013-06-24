@@ -80,16 +80,16 @@
             %th{:class => "checkboxs"}
               = check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
             %th{:class => "membernumber"}
-              %span
+              %span{:id => "membernumber"}
                 Jäsennumero
             %th{:class => "name"}
-              %span
+              %span{:id => "name"}
                 Nimi
             %th{:class => "email"}
-              %span
+              %span{:id => "email"}
                 Sähköposti
             %th{:class => "municipality"}
-              %span
+              %span{:id => "minicipality"}
                 Kunta
               %div{:class => "municipality_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -104,19 +104,19 @@
                       = check_box_tag "municipality_#{municipality}", member.municipality, true, :id => "municipality_#{municipality}"
                       = member.municipality
             %th{:class => "address hidden"}
-              %span
+              %span{:id => "address"}
                 Osoite
             %th{:class => "zipcode hidden"}
-              %span
+              %span{:id => "zipcode"}
                 Postinumero
             %th{:class => "postoffice hidden"}
-              %span
+              %span{:id => "postoffice"}
                 Postitoimipaikka
             %th{:class => "country hidden"}
-              %span
+              %span{:id => "country"}
                 Maa
             %th{:class => "membergroup"}
-              %span
+              %span{:id => "membergroup"}
                 Jäsenryhmä
               %div{:class => "membergroup_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -127,13 +127,13 @@
                       = check_box_tag "membergroup_#{membergroup.id}", membergroup.id, true, :id => "membergroup_#{membergroup.id}"
                       = membergroup.name
             %th{:class => "membershipyear"}
-              %span
+              %span{:id => "membershipyear"}
                 Jäsenyys voimassa
             %th{:class => "invoicedate"}
-              %span
+              %span{:id => "invoicedate"}
                 Laskun lähetyspäivä
             %th{:class => "paymentstatus"}
-              %span
+              %span{:id => "paymentstatus"}
                 Maksustatus
               %div{:class => "paymentstatus_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -146,7 +146,7 @@
                     = check_box_tag "paymentstatus_no", "0", true
                     Ei
             %th{:class => "active hidden"}
-              %span
+              %span{:id => "active"}
                 Aktiivisuus
               %div{:class => "active_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -157,7 +157,7 @@
                     Näytä poistetut jäsenet
 
             %th{:class => "support hidden"}
-              %span
+              %span{:id => "support"}
                 Tukihenkilö
               %div{:class => "support_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -170,7 +170,7 @@
                     = check_box_tag "support_no", "0", true
                     Ei
             %th{:class => "lender hidden"}
-              %span
+              %span{:id => "lender"}
                 Lainaamo
               %div{:class => "lender_menu multiselectmenu"}
                 %div{:class => "header"}
