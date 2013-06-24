@@ -80,9 +80,11 @@
             %th{:class => "membernumber"} Jäsennumero
             %th{:class => "name"} Nimi
             %th{:class => "municipality"}
+              %span
+                Kunta
               %div{:class => "municipality_menu multiselectmenu"}
                 %div{:class => "header"}
-                  Kunta
+                  %img{:src => "/assets/arrow-down.png"}
                 %div{:class => "choices"}
                   %label
                     = check_box_tag "select_all", "1", false, :id => "select_all"
@@ -97,9 +99,11 @@
             %th{:class => "postoffice hidden"} Postitoimipaikka
             %th{:class => "country hidden"} Maa
             %th{:class => "membergroup"}
+              %span
+                Jäsenryhmä
               %div{:class => "membergroup_menu multiselectmenu"}
                 %div{:class => "header"}
-                  Jäsenryhmä
+                  %img{:src => "/assets/arrow-down.png"}
                 %div{:class => "choices"}
                   -@membergroups.each do |membergroup|
                     %label
@@ -108,9 +112,11 @@
             %th{:class => "membershipyear"} Jäsenyys voimassa
             %th{:class => "invoicedate"} Laskun lähetyspäivä
             %th{:class => "paymentstatus"}
+              %span
+                Maksustatus
               %div{:class => "paymentstatus_menu multiselectmenu"}
                 %div{:class => "header"}
-                  Maksustatus
+                  %img{:src => "/assets/arrow-down.png"}
                 %div{:class => "choices"}
                   %label
                     = check_box_tag "paymentstatus_yes", "1", true
@@ -119,17 +125,21 @@
                     = check_box_tag "paymentstatus_no", "0", true
                     Ei
             %th{:class => "active hidden"}
+              %span
+                Aktiivisuus
               %div{:class => "active_menu multiselectmenu"}
                 %div{:class => "header"}
-                  Aktiivisuus
+                  %img{:src => "/assets/arrow-down.png"}
                 %div{:class => "choices"}
                   %label
                     = check_box_tag "active_yes", "1", false
                     Näytä poistetut jäsenet
             %th{:class => "support hidden"}
+              %span
+                Tukihenkilö
               %div{:class => "support_menu multiselectmenu"}
                 %div{:class => "header"}
-                  Tukihenkilö
+                  %img{:src => "/assets/arrow-down.png"}
                 %div{:class => "choices"}
                   %label
                     = check_box_tag "support_yes", "1", true
@@ -138,9 +148,11 @@
                     = check_box_tag "support_no", "0", true
                     Ei
             %th{:class => "lender hidden"}
+              %span
+                Lainaamo
               %div{:class => "lender_menu multiselectmenu"}
                 %div{:class => "header"}
-                  Lainaamo
+                  %img{:src => "/assets/arrow-down.png"}
                 %div{:class => "choices"}
                   %label
                     = check_box_tag "lender_yes", "1", true

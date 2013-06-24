@@ -10,7 +10,7 @@ var sorter = (function () {
     function init(options) {
         settings = $.extend({}, defaults, options)
         readcookies();
-        $(settings.table).find("tr:first").find("th").each(function (index, item) {
+        $(settings.table).find("tr:first").find("th").find("span").each(function (index, item) {
             if(settings.except.contains($(item).attr("class"))){
                 return
             }

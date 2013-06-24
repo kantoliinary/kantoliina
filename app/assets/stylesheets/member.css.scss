@@ -5,7 +5,7 @@
 
   #centered {
     display: inline-block;
-    #keyword_field{
+    #keyword_field {
       text-align: left;
       margin-left: 10px;
       float: left;
@@ -13,7 +13,7 @@
         margin: 0;
       }
 
-      input[type="submit"]{
+      input[type="submit"] {
         width: 70px;
       }
 
@@ -22,25 +22,27 @@
         width: 70px;
       }
     }
-    #members{
+    #members {
       display: inline-block;
       text-align: left;
     }
-    #notice{
+    #notice {
       padding-top: 5px;
       padding-left: 10px;
       float: left;
     }
-    table{
+    table {
       margin-top: 0px;
       text-align: center;
-      th{
-        cursor: pointer;
+      th {
+        span {
+          cursor: pointer;
+        }
       }
     }
-    #column_menu_content{
+    #column_menu_content {
       float: left;
-      .header{
+      .header {
         background-color: #74A846;
         border: 1px solid #bbbbbb;
         margin: 0;
@@ -48,7 +50,7 @@
         color: #ffffff;
       }
     }
-    #right{
+    #right {
       float: right;
     }
     #forms {
@@ -60,16 +62,17 @@
         float: right;
         margin: 0;
       }
-      input ,button {
+      input, button {
         margin: 5px;
       }
     }
     #amount_of_results {
-      float:right;
+      float: right;
     }
   }
 }
-.delete_row_button{
+
+.delete_row_button {
   width: 70px;
 }
 
@@ -88,7 +91,7 @@
   }
 }
 
-#new_member_page, #edit_member_page, #edit_membergroup_page,  #new_membergroup_page {
+#new_member_page, #edit_member_page, #edit_membergroup_page, #new_membergroup_page {
   #form {
     width: auto;
     display: inline-table;
@@ -118,7 +121,6 @@
     text-align: left;
     min-height: 1px;
 
-
   }
   .name {
     line-height: 40px;
@@ -128,7 +130,7 @@
   .right_field {
     width: 214px;
     text-align: left;
-    input[type = "checkbox"]{
+    input[type = "checkbox"] {
       margin-right: 10px;
     }
   }
@@ -142,7 +144,7 @@
     height: 40px;
   }
 
-  #update, #delete{
+  #update, #delete {
     //margin: 20px 0px;
     width: 344px;
   }
@@ -158,8 +160,9 @@
     //margin-top: 10px;
   }
 }
-#addressdata{
-  .member{
+
+#addressdata {
+  .member {
     float: left;
     padding: 30px;
     min-width: 260px;
