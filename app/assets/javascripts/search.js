@@ -74,6 +74,7 @@ var search = function (options) {
             tr.appendTo(table)
         })
         $(settings.outputlengthfield).html(data.length)
+//        console.log("ok")
         settings.callback()
     }
 }

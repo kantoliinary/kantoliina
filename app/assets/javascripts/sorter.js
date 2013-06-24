@@ -21,16 +21,16 @@ var sorter = (function () {
     }
 
     function sort(column, same) {
-        if(!column){
+        if(column == undefined){
             column = settings.previous
         }
-        if(!column){
+        if(column == undefined){
             return;
         }
-
+        column++
         var rows = []
         $(settings.table).find("tr").not(":first").each(function (index, tr) {
-            rows.push([$(tr).find("td:eq(" + column + ")").text(), tr])
+            rows.push([$(tr).find("td:eq(" + (column) + ")").text(), tr])
         })
         if ((same && !settings.reversed) || (!same && (settings.previous != column || settings.reversed))) {
             rows.columnsort()

@@ -9,16 +9,15 @@ class InvoiceController < ApplicationController
   def index
 
     @ids = params[:ids] || params[:id]
-
+    parsed_json = ActiveSupport::JSON.decode(params[:ids])
     if params[:id]
       @members = [Member.find_by_id(params[:id])]
     else
-      parsed_json = ActiveSupport::JSON.decode(params[:ids])
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => ['paymentstatus = ? OR membergroups.onetimefee = ?', false, false], :joins => [:membergroup])
     end
 
-    if @members.count == 0
-      flash[:notice] = "EI TULLUT YHTÄÄN JÄSENIÄ"
+    if @members.count < parsed_json["ids"].length
+      flash[:error] = "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
     end
 
     if params[:function] == 'preview'
@@ -43,14 +42,10 @@ class InvoiceController < ApplicationController
   #  render "settings/invoice_edit"
   #end
 
-  ##
   # Loads the default invoice template to the editor
   def load_default
-
     @f= Hash.new
-
     EditorHelper.load_default Rails.root.join("app", "views", "billing", "default_bill.html.haml").to_s, @f
-
     @f.each do |key, value|
       flash[key] = value
     end
@@ -88,17 +83,12 @@ class InvoiceController < ApplicationController
   ##
   # Sends an invoice template submitted by the user and uses the helper update method to validate and save it
   def update
-
     template = params[:template]
     @f= Hash.new
     EditorHelper.update params[:function], template, Rails.root.join("app", "views", "billing", "bill_email.html.haml").to_s, @f
-
-
     @f.each do |key, value|
       flash[key] = value
     end
-
     redirect_to invoice_edit_path
-
   end
 end
