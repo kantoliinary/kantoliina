@@ -17,7 +17,7 @@ class InvoiceController < ApplicationController
     end
 
     if @members.count < parsed_json["ids"].length
-      flash[:notice] = "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
+      flash[:error] = "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
     end
 
     if params[:function] == 'preview'

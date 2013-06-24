@@ -1,5 +1,7 @@
 %div{:id => "reminder_member_page"}
   -#%h1 Maksumuistutuksen varmistus
+  %span{:class => "error"}
+    = flash[:error]
   = form_tag reminder_path, :id => "reminder_invoice_form" do
     -@members.each do |member|
       = hidden_field_tag "member[]", member.id, :class => "member_#{member.id}"
