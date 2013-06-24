@@ -78,7 +78,9 @@ class MembersController < ApplicationController
     @members.each do |member|
       if member.paymentstatus == false
         member.paymentstatus = true
-        member.membershipyear = (Time.now.year).to_i
+        if member.membershipyear.to_i < (Time.now.year).to_i
+          member.membershipyear = (Time.now.year).to_i
+        end
         member.save!(:validate => false)
         flash[:notice] = "Maksustatus muutettu maksaneeksi"
       else
