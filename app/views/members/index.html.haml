@@ -126,8 +126,12 @@
                     %label
                       = check_box_tag "membergroup_#{membergroup.id}", membergroup.id, true, :id => "membergroup_#{membergroup.id}"
                       = membergroup.name
-            %th{:class => "membershipyear"} Jäsenyys voimassa
-            %th{:class => "invoicedate"} Laskun lähetyspäivä
+            %th{:class => "membershipyear"}
+              %span
+                Jäsenyys voimassa
+            %th{:class => "invoicedate"}
+              %span
+                Laskun lähetyspäivä
             %th{:class => "paymentstatus"}
               %span
                 Maksustatus
