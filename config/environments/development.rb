@@ -49,18 +49,18 @@ Kantoliina::Application.configure do
   # Rest of file omitted.
 
 
-  require 'tlsmail'
-  config.assets.debug = true
-  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
-  ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.perform_deliveries = true
-  ActionMailer::Base.raise_delivery_errors = true
-  ActionMailer::Base.smtp_settings = {
-      :address => "smtp.pikkasenkuti.com",
-      :port => "587",
-      :domain => "kantoliinauhdistys.fi",
-      :enable_starttls_auto => true,
-      :authentication => :login,
-      :user_name => "jasensihteeri",
-      :password => "" }
+  #require 'tlsmail'
+  #config.assets.debug = true
+  #Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+  #ActionMailer::Base.delivery_method = :smtp
+  #ActionMailer::Base.perform_deliveries = true
+  #ActionMailer::Base.raise_delivery_errors = true
+  #ActionMailer::Base.smtp_settings = {
+  #    :address => "smtp.pikkasenkuti.com",
+  #    :port => "587",
+  #    :domain => "kantoliinauhdistys.fi",
+  #    :enable_starttls_auto => true,
+  #    :authentication => :login,
+  #    :user_name => "jasensihteeri",
+  #    :password => "" }
 end

@@ -20,5 +20,6 @@
 /coverage/
 /db/.nfs*
 /doc/
+/config/mail_config.yml
 
 *.*̃
