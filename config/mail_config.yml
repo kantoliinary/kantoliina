@@ -12,7 +12,7 @@ development:
         :enable_starttls_auto: true,
         :authentication: :login,
         :user_name: "jasensihteeri",
-        :password: "Wj47KZIG" }
+        :password: "" }
 
 
 production:
@@ -28,4 +28,4 @@ production:
         :enable_starttls_auto: true,
         :authentication: :login,
         :user_name: "jasensihteeri",
-        :password: "Wj47KZIG" }
+        :password: "" }
