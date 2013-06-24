@@ -28,11 +28,20 @@ var multiselect = (function () {
         $(menu).find(".header").bind((settings.contextmenu ? "contextmenu" : "click"), function (e) {
             e.preventDefault()
             choices = $(this).parent().find(".choices")
-            choices.toggle()
-            if (choices.css("display") == "none") {
-                settings.callback(menu)
-            }
+            $("<div />", {
+                id: "hide_layout"
+            }).appendTo($("body")).click(function (e) {
+                    closeMenu(menu)
+                })
+            choices.show()
         })
+    }
+
+    function closeMenu(menu) {
+        choices = $(menu).find(".choices")
+        choices.hide()
+        $("#hide_layout").remove()
+        settings.callback(menu)
     }
 
     function loopCheckbox(menu) {
