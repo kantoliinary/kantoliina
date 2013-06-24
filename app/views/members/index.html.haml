@@ -126,6 +126,7 @@
                   %label
                     = check_box_tag "active_yes", "1", false
                     Näytä poistetut jäsenet
+
             %th{:class => "support hidden"}
               %div{:class => "support_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -148,6 +149,7 @@
                   %label
                     = check_box_tag "lender_no", "0", true
                     Ei
+
           %tbody
       = action_form random_index_path, :form_id => "random_form", :button_text => "Arvo jäsen"
       = action_form delete_path, :form_id => "delete_active_form", :button_text => "", :confirm => true
