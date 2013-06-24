@@ -70,6 +70,7 @@
               Lainaamo
       %div{:id => "keyword_field"}
         = text_field_tag "searchfield", "#{@keyword}"
+        = submit_tag "Hae", :class => "submit", :id => "search_button"
       %div{:id => "notice"}
         = flash[:notice]
       %div{:class => "clear"}
