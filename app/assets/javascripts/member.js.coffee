@@ -82,7 +82,9 @@ $(document).ready ->
   $("#random_button").click( (e) ->
     do_random()
   )
-
+  $(index_page).find("#searchfield").keypress((e) ->
+    enterSearch(e)
+  )
   do_search()
 do_search = ->
   search({
@@ -115,3 +117,7 @@ showHideColumn = (checkbox) ->
       $(item).removeClass("hidden")
     else
       $(item).addClass("hidden")
+
+enterSearch = (e) ->
+  if e.which == 13
+    do_search()
