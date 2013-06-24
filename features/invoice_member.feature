@@ -38,8 +38,8 @@ Feature: Invoice members
     Then I should see "Valitse sarakkeet"
     And I should see "Laskut lähetetty"
     And I should receive an email
-    When I open the email with subject "Kantoliinayhdistyksen jäsenmaksu - lasku"
-    Then I should see "Kantoliinayhdistyksen jäsenmaksu - lasku" in the email subject
+    When I open the email with subject "Kantoliinayhdistyksen jäsenmaksulasku"
+    Then I should see "Kantoliinayhdistyksen jäsenmaksulasku" in the email subject
     Then I should see "20.0" in the email body
 
   Scenario: Select all members and remove one in the invoice page
@@ -76,3 +76,19 @@ Feature: Invoice members
     And I should see "Ala viesti"
     And I should see "Ylä viesti"
 
+  Scenario: Edit topic of the invoice and see the change in mail
+    And I check "check_all"
+    And I press "Luo laskut"
+    And I should see "Maksamatonnormaali"
+    And I should see "Maksanutnormaali"
+    And I should see "Maksamatonainais"
+    And I fill in "top_message" with "Ylä viesti"
+    And I fill in "bottom_message" with "Ala viesti"
+    And I fill in "subject" with "Otsikko"
+    And I press "Lähetä laskut"
+    Then I should see "Valitse sarakkeet"
+    And I should see "Laskut lähetetty"
+    And I should receive an email
+    When I open the email with subject "Otsikko"
+    Then I should see "Otsikko" in the email subject
+    Then I should see "20.0" in the email body
