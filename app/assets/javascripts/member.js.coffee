@@ -86,7 +86,7 @@ $(document).ready ->
     enterSearch(e)
   )
   do_search()
-  setTimeout(hideNotice, 5000)
+  setTimeout(hideNotice, 10000)
 do_search = ->
   search({
     selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".active_menu", "active"]],
