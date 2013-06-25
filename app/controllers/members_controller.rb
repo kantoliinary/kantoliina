@@ -51,6 +51,9 @@ class MembersController < ApplicationController
       @member.membershipyear = (Time.now.year + 1).to_i
     end
 
+    Member
+    Member
+
     if @member.save
       flash[:notice] = "Jäsen lisätty"
     else
@@ -144,7 +147,7 @@ class MembersController < ApplicationController
   def search
     @members = search_with_filters params
     respond_to do |format|
-      format.json { render :json => @members }
+      format.json { render :json => @members}
     end
   end
 
@@ -238,5 +241,4 @@ class MembersController < ApplicationController
     end
     members
   end
-
 end

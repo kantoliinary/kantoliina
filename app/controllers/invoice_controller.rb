@@ -15,7 +15,10 @@ class InvoiceController < ApplicationController
     else
       parsed_json = ActiveSupport::JSON.decode(params[:ids])
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => ['paymentstatus = ? OR membergroups.onetimefee = ?', false, false], :joins => [:membergroup])
-      if @members.count < parsed_json["ids"].length
+      if @members.count == 0
+        flash[:error] = "Laskunsa jo maksaneille ainaisjäsenille ei voi lähettää laskua"
+        redirect_to members_path
+      elsif @members.count < parsed_json["ids"].length
         flash[:error] = "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
       end
     end
