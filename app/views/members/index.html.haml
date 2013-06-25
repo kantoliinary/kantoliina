@@ -57,6 +57,9 @@
               =check_box_tag "invoicedate", "1", true
               Laskun lähetyspäivä
             %label
+              =check_box_tag "reminderdate", "1", false
+              Maksumuistutuksen lähetyspäivä
+            %label
               = check_box_tag "paymentstatus", "1", true
               Maksustatus
             %label
@@ -137,6 +140,9 @@
             %th{:class => "invoicedate"}
               %span{:id => "invoicedate", :class => "underline"}
                 Laskun lähetyspäivä
+            %th{:class => "reminderdate"}
+              %span{:id => "reminderdate", :class => "underline"}
+                Maksumuistutuksen lähetyspäivä
             %th{:class => "paymentstatus"}
               %span{:id => "paymentstatus"}
                 Maksustatus
