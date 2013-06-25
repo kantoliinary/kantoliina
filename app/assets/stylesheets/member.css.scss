@@ -27,6 +27,7 @@
       text-align: left;
     }
     #notice {
+      height: 29px;
       padding-top: 5px;
       padding-left: 10px;
       float: left;
@@ -104,6 +105,8 @@
     margin: 0 auto;
     //margin-top: 30px;
   }
+
+
   form {
     margin: 0;
     padding: 0;
@@ -120,6 +123,8 @@
   .label {
 
   }
+
+
 
   .left {
     display: inline;
@@ -153,6 +158,12 @@
   #update, #delete {
     //margin: 20px 0px;
     width: 344px;
+  }
+
+
+  #member_info{
+    min-width: 300px;
+    max-width: 300px;
   }
 
   #delete {

@@ -71,9 +71,6 @@ div.right {
     float: right;
     /*margin-top: 8px;*/
 }
-.clear {
-    clear: both;
-}
 
 table {
     border-collapse: collapse;
