@@ -82,16 +82,16 @@
             %th{:class => "checkboxs"}
               = check_box_tag "check_all", 1, false, :id => "check_all", :class => "checkbox"
             %th{:class => "membernumber"}
-              %span{:id => "membernumber"}
+              %span{:id => "membernumber", :class => "underline"}
                 Jäsennumero
             %th{:class => "name"}
-              %span{:id => "name"}
+              %span{:id => "name", :class => "underline"}
                 Nimi
             %th{:class => "email"}
-              %span{:id => "email"}
+              %span{:id => "email", :class => "underline"}
                 Sähköposti
             %th{:class => "municipality"}
-              %span{:id => "municipality"}
+              %span{:id => "municipality", :class => "underline"}
                 Kunta
               %div{:class => "municipality_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -106,19 +106,19 @@
                       = check_box_tag "municipality_#{municipality}", member.municipality, true, :id => "municipality_#{municipality}"
                       = member.municipality
             %th{:class => "address hidden"}
-              %span{:id => "address"}
+              %span{:id => "address", :class => "underline"}
                 Osoite
             %th{:class => "zipcode hidden"}
-              %span{:id => "zipcode"}
+              %span{:id => "zipcode", :class => "underline"}
                 Postinumero
             %th{:class => "postoffice hidden"}
-              %span{:id => "postoffice"}
+              %span{:id => "postoffice", :class => "underline"}
                 Postitoimipaikka
             %th{:class => "country hidden"}
-              %span{:id => "country"}
+              %span{:id => "country", :class => "underline"}
                 Maa
             %th{:class => "membergroup"}
-              %span{:id => "membergroup"}
+              %span{:id => "membergroup", :class => "underline"}
                 Jäsenryhmä
               %div{:class => "membergroup_menu multiselectmenu"}
                 %div{:class => "header"}
@@ -129,10 +129,10 @@
                       = check_box_tag "membergroup_#{membergroup.id}", membergroup.id, true, :id => "membergroup_#{membergroup.id}"
                       = membergroup.name
             %th{:class => "membershipyear"}
-              %span{:id => "membershipyear"}
+              %span{:id => "membershipyear", :class => "underline"}
                 Jäsenyys voimassa
             %th{:class => "invoicedate"}
-              %span{:id => "invoicedate"}
+              %span{:id => "invoicedate", :class => "underline"}
                 Laskun lähetyspäivä
             %th{:class => "paymentstatus"}
               %span{:id => "paymentstatus"}
