@@ -15,7 +15,10 @@ class ReminderController < ApplicationController
     else
       parsed_json = ActiveSupport::JSON.decode(params[:ids])
       @members = Member.find_all_by_id(parsed_json["ids"], :conditions => {:paymentstatus => false}, :joins => [:membergroup])
-      if @members.count < parsed_json["ids"].length
+      if @members.count == 0
+        flash[:error] = "Laskunsa jo maksaneille ei voi lähettää maksumuistutusta"
+        redirect_to members_path
+      elsif @members.count < parsed_json["ids"].length
         flash[:error] = "Laskunsa jo maksaneita ei otettu listaan"
       end
     end
