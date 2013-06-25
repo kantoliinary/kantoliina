@@ -126,6 +126,7 @@ showHideColumn = (checkbox) ->
 enterSearch = (e) ->
   if e.which == 13
     do_search()
+
 hideNoticeAndError = ->
   $("#notice").hide().text("")
   $(index_page).find(".error").hide().text("")
