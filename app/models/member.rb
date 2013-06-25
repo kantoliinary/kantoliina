@@ -68,7 +68,8 @@ class Member < ActiveRecord::Base
      :active => self.active,
      :support => self.support,
      :lender => self.lender,
-     :invoicedate => (self.invoicedate ? self.invoicedate.strftime("%d.%m.%Y") : "")
+     :invoicedate => (self.invoicedate ? self.invoicedate.strftime("%d.%m.%Y") : ""),
+     :reminderdate => (self.reminderdate ? self.reminderdate.strftime("%d.%m.%Y") : "")
     }
   end
 end

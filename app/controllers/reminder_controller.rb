@@ -14,7 +14,7 @@ class ReminderController < ApplicationController
       @members = [Member.find_by_id(params[:id])]
     else
       parsed_json = ActiveSupport::JSON.decode(params[:ids])
-      @members = Member.find_all_by_id(parsed_json["ids"], :conditions => {:paymentstatus => false, :invoicedate => !nil}, :joins => [:membergroup])
+      @members = Member.find_all_by_id(parsed_json["ids"], :conditions => {:paymentstatus => false, :invoicedate => false}, :joins => [:membergroup])
       if @members.count == 0
         flash[:error] = "Laskunsa jo maksaneille ei voi lähettää maksumuistutusta eikä niille keille ei ole vielä lähetetty laskua"
         redirect_to members_path
