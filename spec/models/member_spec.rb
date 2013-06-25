@@ -6,8 +6,8 @@ describe Member do
     FactoryGirl.create(:member).should be_valid
   end
 
-  it "is invalid without a name" do
-    FactoryGirl.build(:member, firstnames: nil).should_not be_valid
+  it "is valid without a name" do
+    FactoryGirl.build(:member, firstnames: nil).should be_valid
   end
 
   it "is invalid without a surname" do
