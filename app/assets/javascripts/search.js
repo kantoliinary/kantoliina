@@ -15,7 +15,7 @@ var search = function (options) {
     }
     $(settings.selectgroups).each(function (index, item) {
         var selected = []
-        $(item[0]).find(":checkbox").each(function (index, checkbox) {
+        $(item[0]).find(":checkbox").not("#select_all").each(function (index, checkbox) {
             if ($(checkbox).attr("checked")) {
                 selected.push($(checkbox).val())
             }
