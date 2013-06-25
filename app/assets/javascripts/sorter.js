@@ -23,13 +23,15 @@ var sorter = (function () {
     function sort(column, same) {
         if(column == undefined){
             column = settings.previous
+        }  else {
+            column++
         }
         if(column == undefined){
             return;
         }
-        column++
         var rows = []
         $(settings.table).find("tr").not(":first").each(function (index, tr) {
+//            console.log($(tr).find("td:eq(" + (column) + ")").text().toLowerCase())
             rows.push([$(tr).find("td:eq(" + (column) + ")").text().toLowerCase(), tr])
         })
         if ((same && !settings.reversed) || (!same && (settings.previous != column || settings.reversed))) {
@@ -72,6 +74,11 @@ var sorter = (function () {
         }
     }
 
+//    function print(rows){
+//        $(rows).each(function (index, item){
+//            console.log(item[0])
+//        })
+//    }
     return {
         init: init,
         sort: sort
