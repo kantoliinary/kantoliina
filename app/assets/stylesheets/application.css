@@ -71,9 +71,6 @@ div.right {
     float: right;
     /*margin-top: 8px;*/
 }
-.clear {
-    clear: both;
-}
 
 table {
     border-collapse: collapse;
@@ -653,6 +650,7 @@ ul#SearchResults li {
     padding: 10px;
 }
 .notice{
+    height: 29px;
     color: #00FF00;
 }
 .hidden{
