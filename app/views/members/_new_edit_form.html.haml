@@ -90,12 +90,17 @@
         = f.input :paymentstatus, label: "Maksanut"
 
 
+  %div
+    = f.label "info", "Lisätietoa"
+  %div
+    = f.input :info, as: :text
+
   -#%div{:class => "row"}
   -#  %div{:class => "left"}
   -#    = f.label "membergroup_id", 'Jäsenryhmä'
   -#  %div{:class => "left right_field"}
   -#    = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
   %div{:class => "clear"}
-  %div{:class => "left"}
+  %div
     = f.submit @submit_text, id:"update"
   %div{:class => "clear"}
