@@ -127,6 +127,9 @@
                 %div{:class => "header"}
                   %img{:src => "/assets/arrow-down.png"}
                 %div{:class => "choices"}
+                  %label
+                    = check_box_tag "select_all", "1", false, :id => "select_all"
+                    Valitse kaikki
                   -@membergroups.each do |membergroup|
                     %label
                       = check_box_tag "membergroup_#{membergroup.id}", membergroup.id, true, :id => "membergroup_#{membergroup.id}"

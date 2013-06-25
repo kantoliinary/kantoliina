@@ -5,7 +5,7 @@
  *      %div{:class => "header"}
  *          #Valikon avaava elementti
  *      %div{:class => "choices"}
-            #Lista checkboxeista
+ #Lista checkboxeista
  * Checkboxeihin voi lisätä checkboxin id:llä "select_all", joka valitsee tai poistaa valinnat kaikista checkboxeista
  * @type {Function}
  */
@@ -66,8 +66,9 @@ var multiselect = (function () {
     }
 
     function loopCheckbox(menu) {
-        var checboxs = findCheckboxs(menu)
-        $(checboxs).each(function (index, checkbox) {
+        var checkboxs = findCheckboxs(menu)
+//        console.log(checkboxs)
+        $(checkboxs).each(function (index, checkbox) {
             var check = readCookie($(checkbox).attr("name"))
             if (check != undefined) {
                 $(checkbox).attr("checked", check == 1)
@@ -78,6 +79,18 @@ var multiselect = (function () {
             })
             settings.initItemCallback(checkbox)
         })
+        if ($(menu).find("#select_all").length > 0) {
+            var all_checked = true
+            $(checkboxs).each(function (index, checkbox) {
+                if (!$(checkbox).is(":checked")) {
+//                    console.log(checkbox)
+                    all_checked = false
+                }
+            })
+            if (all_checked) {
+                $(menu).find("#select_all").attr("checked", true)
+            }
+        }
     }
 
     function setSelectAll(menu) {
@@ -90,12 +103,12 @@ var multiselect = (function () {
     }
 
     function findCheckboxs(menu) {
-        return $(menu).find(".choices").find(":checkbox").not(":has(#select_all")
+        return $(menu).find(".choices").find(":checkbox").not("#select_all")
     }
 
     function select_Un_All(sACheckbox) {
         check_state = sACheckbox.is(":checked")
-        sACheckbox.parent().parent().find(":checkbox").not(":has(#select_all").each(function (index, checkbox) {
+        sACheckbox.parent().parent().find(":checkbox").not("#select_all").each(function (index, checkbox) {
             $(checkbox).attr("checked", check_state)
         })
     }
