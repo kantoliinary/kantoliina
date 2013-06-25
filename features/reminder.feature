@@ -29,7 +29,7 @@ Feature: Reminder members
   Scenario: Select all members and send a reminder to those applicable
     And I check "check_all"
     And I press "Luo maksumuistutukset"
-    And I should see "Laskunsa jo maksaneita ei otettu listaan"
+    And I should see "Laskuttamattomia tai laskunsa jo maksaneita ei otettu listaan"
     Then I should see "Lisätietoa maksumuistutuksen yläosaan"
     And I should not see "Maksanutainais"
     And I should see "Maksamatonnormaali"
