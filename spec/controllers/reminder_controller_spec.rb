@@ -7,6 +7,7 @@ describe ReminderController do
   before(:each) do
     admin = FactoryGirl.create(:admin)
     session[:admin_id] = admin.id
+    FactoryGirl.create(:member)
   end
 
   describe "POST #index" do
@@ -46,9 +47,8 @@ describe ReminderController do
     context "with valid attributes" do
       it "mail will be created" do
         FactoryGirl.create(:membergroup)
-        member = FactoryGirl.create(:member)
         member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
-        members = [member, member2]
+        members = [member2]
         Member.stub(:find_all_by_id).and_return(members)
         post :create, :additional_message => "fa"
         response.should_not be_success
