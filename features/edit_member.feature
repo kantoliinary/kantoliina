@@ -62,7 +62,7 @@ Feature: edit member
     And I fill in "member[email]" with ""
   #    And I fill in "member[membernumber]" with ""
     And I press "Tallenna muutokset"
-    Then I should see "Etunimi puuttuu"
+#    Then I should see "Etunimi puuttuu"
     Then I should see "Sukunimi puuttuu"
     Then I should see "Kunta puuttuu"
     Then I should see "Osoite puuttuu"
