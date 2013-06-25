@@ -9,14 +9,16 @@ class Member < ActiveRecord::Migration
       t.string      :postoffice
       t.string      :country
       t.string      :email
-      t.string     :membernumber
+      t.string      :membernumber
       t.references  :membergroup
-      t.string     :membershipyear
+      t.string      :membershipyear
       t.boolean     :paymentstatus
       t.date        :invoicedate
+      t.date        :reminderdate
       t.boolean     :active, :default => true
       t.boolean     :lender, :default => false
       t.boolean     :support, :default => false
+      t.string      :info
       t.timestamps
     end
   end
