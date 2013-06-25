@@ -38,13 +38,31 @@ function readCookie(name) {
         if (!ca[i].indexOf(name))
             return ca[i].replace(name, '');
 }
-Array.prototype.columnsort = function(){
-    this.sort(function(a,b){
+Array.prototype.sorter = function (comparisor) {
+    for (var i = 1; i < this.length; i++) {
+        var u = i
+        while (u > 0 && comparisor(this[u - 1], this[u])) {
+            u--
+            var help = this[u]
+            this[u] = this[u + 1]
+            this[u + 1] = help
+        }
+    }
+}
+Array.prototype.columnsort = function (comparisor) {
+    this.sorter(function (a, b) {
         return a[0] > b[0]
     })
 }
-Array.prototype.columnsortreverse = function(){
-    this.sort(function(a,b){
+Array.prototype.columnsortreverse = function () {
+    this.sorter(function (a, b) {
         return a[0] < b[0]
     })
 }
+//function print(rows) {
+//    var x = ""
+//    $(rows).each(function (index, item) {
+//        x += " " + item[0]
+//    })
+//    console.log(x)
+//}
