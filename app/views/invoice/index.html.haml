@@ -57,7 +57,9 @@
             = member.membershipyear
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
-        %td= member.invoicedate.strftime("%d.%m.%Y")
+        %td
+          -if member.invoicedate
+            = member.invoicedate.strftime("%d.%m.%Y")
         %td= button_tag "Poista", :type => 'button', :class => "delete_row_button", :id => "member_#{member.id}", 'data-id' => "#{member.id}"
 
 
