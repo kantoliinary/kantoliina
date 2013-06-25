@@ -1,4 +1,16 @@
+/**
+ * Näytää ja piilottaa listan checkboxeista.
+ * Pohjan tulee olla seuraavassa muodossa:
+ *  %div{:class => "municipality_menu multiselectmenu"}
+ *      %div{:class => "header"}
+ *          #Valikon avaava elementti
+ *      %div{:class => "choices"}
+            #Lista checkboxeista
+ * Checkboxeihin voi lisätä checkboxin id:llä "select_all", joka valitsee tai poistaa valinnat kaikista checkboxeista
+ * @type {Function}
+ */
 var multiselect = (function () {
+
     var defaults = {
         elements: [],
         contextmenu: false,
@@ -9,6 +21,15 @@ var multiselect = (function () {
         callback: function (menu) {
         }
     }
+    /**
+     * Asetukset
+     * Elementit joista valikko avataan asetetaan elements muuttujaan. Default: tyhjä.
+     * contextmenu kertoo avataanko valikko oikealla vai vasemmalla hiiren klikkauksella. Dedault: vasen.
+     * initItemCallback on funktio jota kutsutaan jokaisen checkboxin asetusten latauksen jälkeen.
+     * itemCallback on funktion jota kutsutaan kun jotain checkboxia klikataan. Paitsi select all.
+     * callback on funktio jota kutsutaan kun valikko suljetaan.
+     * @type {{elements: Array, contextmenu: boolean, initItemCallback: Function, itemCallback: Function, callback: Function}}
+     */
     var settings = {}
 
     function init(options) {
