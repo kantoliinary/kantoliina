@@ -120,7 +120,7 @@ describe MembersController do
     end
 
     it "doesn't change paymentstatus" do
-      member = FactoryGirl.create(:member)
+      member = FactoryGirl.create(:member, membershipyear: 2012)
       Member.stub(:find).and_return(member)
       post :payment, :ids => "{\"ids\":[\"1\"]}"
       post :payment, :ids => "{\"ids\":[\"1\"]}"

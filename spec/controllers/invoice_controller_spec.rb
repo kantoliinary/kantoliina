@@ -7,19 +7,21 @@ describe InvoiceController do
   before(:each) do
     admin = FactoryGirl.create(:admin)
     session[:admin_id] = admin.id
-    FactoryGirl.create(:member)
   end
 
   describe "POST #index" do
     it 'finds members with given id' do
       FactoryGirl.create(:membergroup)
+      FactoryGirl.create(:member)
       post :index, :id => 1
       response.should render_template :index
       response.should be_success
     end
     it 'finds members with given ids' do
       FactoryGirl.create(:membergroup)
-      post :index, :ids => "{\"ids\":[\"1\"]}"
+      FactoryGirl.create(:member)
+      FactoryGirl.create(:member, membernumber: 54322, id: 2, paymentstatus: true)
+      post :index, :ids => "{\"ids\":[\"1\", \"2\"]}"
       response.should render_template :index
       response.should be_success
     end
@@ -28,6 +30,7 @@ describe InvoiceController do
   describe 'POST #index preview' do
     it 'should direct to preview method' do
       FactoryGirl.create(:membergroup)
+      FactoryGirl.create(:member)
       post :index, :ids => "{\"ids\":[\"1\"]}", :function => 'preview'
       response.should be_success
 
@@ -46,8 +49,9 @@ describe InvoiceController do
     context "with valid attributes" do
       it "mail will be created" do
         FactoryGirl.create(:membergroup)
-        member2 = FactoryGirl.create(:member, membernumber: 54321, id: 2)
-        members = [member2]
+        member1 = FactoryGirl.create(:member)
+        member2 = FactoryGirl.create(:member, membernumber: 54322, id: 2)
+        members = [member1, member2]
         Member.stub(:find_all_by_id).and_return(members)
         post :create, :additional_message => "fa"
         response.should_not be_success
