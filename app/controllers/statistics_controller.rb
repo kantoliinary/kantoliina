@@ -11,6 +11,7 @@ class StatisticsController < ApplicationController
     @members = Member.includes(:membergroup)
     @active = 0
     @deleted = 0
+    @total = 0
     @membersdate
     @membergroups = Hash.new
     @municipalities = Hash.new
@@ -29,11 +30,10 @@ class StatisticsController < ApplicationController
   ##
   # Counts the statistics shown in the statistics page
   def count_stuff
-    @total = 0
     @members.each do |member|
       if member.active
         @active += 1
-        if !member.membergroup.onetimefee
+        if !member.membergroup.onetimefee || member.membershipyear.to_i == Time.now.year.to_i
           @total += member.membergroup.fee
         end
         if @membergroups[member.membergroup.name.to_sym]

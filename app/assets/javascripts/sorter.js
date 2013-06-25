@@ -30,7 +30,7 @@ var sorter = (function () {
         column++
         var rows = []
         $(settings.table).find("tr").not(":first").each(function (index, tr) {
-            rows.push([$(tr).find("td:eq(" + (column) + ")").text(), tr])
+            rows.push([$(tr).find("td:eq(" + (column) + ")").text().toLowerCase(), tr])
         })
         if ((same && !settings.reversed) || (!same && (settings.previous != column || settings.reversed))) {
             rows.columnsort()
