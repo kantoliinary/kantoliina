@@ -12,7 +12,6 @@ class MembersController < ApplicationController
   def new
     @member = flash[:member] || Member.new
     @member.membernumber = get_smallest_available_membernumber
-    @member.paymentstatus = false
     @submit_text = "Lisää"
     @isnew = true
   end
