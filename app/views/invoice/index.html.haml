@@ -36,6 +36,7 @@
       %th Nimi
       %th Sähköposti
       %th Jäsenryhmä
+      %th Jäsenyys voimassa
       %th Laskun summa
       %th Viitenumero
       %th
@@ -47,6 +48,12 @@
           = member.surname
         %td= member.email
         %td= member.membergroup.name
+        %td
+          -if member.membershipyear.to_i >= Time.now.year.to_i
+            %span{:class => "error"}
+              = member.membershipyear
+          -else
+            = member.membershipyear
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
         %td= button_tag "Poista", :type => 'button', :class => "delete_row_button", :id => "member_#{member.id}", 'data-id' => "#{member.id}"
