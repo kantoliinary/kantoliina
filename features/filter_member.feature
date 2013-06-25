@@ -218,13 +218,29 @@ Feature: filter members
     And I click a text "#hide_layout"
     Then I should not see "Maksustatus"
 
-  Scenario: I try to hide the active status column
+  Scenario: I try to show the active status column
     When I am on the members page
-    Then I should see "Aktiivinen"
+    Then I should not see "Aktiivisuus"
     And I click a text "#column_select"
-    And I uncheck "Maksustatus"
+    And I check "Aktiivisuus"
     And I click a text "#hide_layout"
-    Then I should not see "Maksustatus"
+    Then I should see "Aktiivisuus"
+
+  Scenario: I try to show the support status column
+    When I am on the members page
+    Then I should not see "Tukihenkilö"
+    And I click a text "#column_select"
+    And I check "Tukihenkilö"
+    And I click a text "#hide_layout"
+    Then I should see "Tukihenkilö"
+
+  Scenario: I try to show the lender status column
+    When I am on the members page
+    Then I should not see "Lainaamo"
+    And I click a text "#column_select"
+    And I check "Lainaamo"
+    And I click a text "#hide_layout"
+    Then I should see "Lainaamo"
 
   Scenario: I try to search with two parameters
     When I am on the members page
