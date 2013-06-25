@@ -14,12 +14,11 @@ Feature: order members
       | 2  | Varsinaisjäsen | 100.0 |
 
     Given the following members exist:
-      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
-      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 2              | 2015           | true          | 2015.01.01  | true   |
-      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2014           | true          | 2014.01.01  | true   |
-      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | Finland | jaana.jasen@hotmail.com    | 12543        | 1              | 2013           | false         | 2013.01.01  | true   |
-      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  |
-
+      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active | support | lender |
+      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
+      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
+      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | Finland | jaana.jasen@hotmail.com    | 12543        | 2              | 2013           | false         | 2013.01.01  | true   | true    | true   |
+      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  | false   | false  |
 
     When I am on the login page
     And I fill in "username" with "admin"
@@ -34,30 +33,33 @@ Feature: order members
     And I should see "Janne" before "Jaana"
 
   @javascript
-  Scenario: I order members by first name
+  Scenario: I order members by name
     When I am on the members page
     And I click a text "#members_table thead #name"
     Then I should see "Jaana" before "Janne"
-    And I should see "Janne" before "Liisa"
+    And I should see "Jäsen" before "Mehiläinen"
     And I should see "12543" before "12345"
     Then I click a text "#members_table thead #name"
     Then I should see "Janne" before "Jaana"
-    And I should see "Liisa" before "Janne"
+    And I should see "Mehiläinen" before "Jäsen"
     And I should see "12345" before "12543"
-
-  #kokeilu
-#  @javascript
-#  Scenario: I order members by first name
-#    When I am on the members page
-#    And I click a text "#members_table thead .name"
-#    And row 2 column 3 of table "members_table" should be "Jaana"
-#    Then I click a text "#members_table thead .name"
-
 
   @javascript
   Scenario: I order members by municipality
     When I am on the members page
     And I click a text "#members_table thead #municipality"
+    And I should see "Liisa" before "Janne"
+    And I should see "Espoo</td" before "Vantaa</td"
+    And I click a text "#members_table thead #municipality"
+    And I should see "Janne" before "Liisa"
+    And I should see "Vantaa</td" before "Espoo</td"
+
+  Scenario: I order members by address
+    When I am on the members page
+    And I click a text "#column_select"
+    And I check "Osoite"
+    And I click a text "#hide_layout"
+    And I click a text "#members_table thead #address"
     And I should see "Liisa" before "Janne"
     And I should see "Espoo</td" before "Vantaa</td"
     And I click a text "#members_table thead #municipality"
