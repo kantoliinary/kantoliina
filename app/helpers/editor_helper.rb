@@ -37,8 +37,22 @@ module EditorHelper
     if EditorHelper.validate_invoice_template template, f
       member = Member.new
       member.membernumber = 90000
+      member.firstnames = "Jaana"
+      member.surname = "Jäsen"
+      member.address = "Kantajankatu 12"
+      member.zipcode = "00260"
+      member.postoffice = "Helsinki"
+      member.municipality = "Helsinki"
+      member.country = "Suomi"
+      member.email = "Jaana.Jäsen@example.com"
+      member.active = "t"
+      member.membershipyear = "2013"
+      member.paymentstatus = "t"
+      member.lender = "t"
+      member.support = "f"
       member.invoicedate = Time.now
       member.membergroup_id = 1
+
       #top_additional_message = top
       #bottom_additional_message = bottom
 
