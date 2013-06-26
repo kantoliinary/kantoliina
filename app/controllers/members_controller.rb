@@ -133,12 +133,21 @@ class MembersController < ApplicationController
   # Lists all members to @members and shows the list page.
 
   def index
-    @membergroups = Membergroup.all
-    @active = params[:active] || "1"
-    s_membergroups = params[:membergroups]
-    @municipalitys = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
+    require 'csv'
+
+    @members = Member.order(:id)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @members.as_csv }
+
+      @membergroups = Membergroup.all
+      @active = params[:active] || "1"
+      s_membergroups = params[:membergroups]
+      @municipalitys = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
               AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
-    @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
+      @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
+    end
   end
 
   ##
@@ -146,7 +155,7 @@ class MembersController < ApplicationController
   def search
     @members = search_with_filters params
     respond_to do |format|
-      format.json { render :json => @members}
+      format.json { render :json => @members }
     end
   end
 
