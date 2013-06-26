@@ -39,6 +39,7 @@
       %th Jäsenyys voimassa
       %th Laskun summa
       %th Viitenumero
+      %th Laskun lähetyspäivä
       %th Muistutuksen lähetyspäivä
       %th
     - @members.each do |member|
@@ -52,6 +53,9 @@
         %td= member.membershipyear
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
+        %td
+          -if member.invoicedate
+            = member.invoicedate.strftime("%d.%m.%Y")
         %td
           -if member.reminderdate
             = member.reminderdate.strftime("%d.%m.%Y")
