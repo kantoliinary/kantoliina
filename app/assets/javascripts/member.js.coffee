@@ -3,6 +3,7 @@ invoice = ""
 mailer = ""
 reminder = ""
 multiselect_search = {}
+searcher = {}
 $(document).ready ->
   index_page = "#index_member_page"
   invoice = $("#invoice_member_page")
@@ -89,10 +90,8 @@ $(document).ready ->
   $(index_page).find("#searchfield").keypress((e) ->
     enterSearch(e)
   )
-  do_search()
-  setTimeout(hideNoticeAndError, 10000)
-do_search = ->
-  search({
+  searcher = search()
+  searcher.init({
     selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".active_menu", "active"]],
     outputtable: "#members_table",
     column_menu: ".column_menu",
@@ -101,6 +100,10 @@ do_search = ->
       sorter.sort(undefined, true)
       changeRemoveActiveButton()
   })
+  do_search()
+  setTimeout(hideNoticeAndError, 10000)
+do_search = ->
+  searcher.search()
 
 changeRemoveActiveButton = ->
   button = $(index_page).find("#delete_active_form").find("button")
