@@ -1,6 +1,6 @@
 #encoding: utf-8
 class Billing < ActionMailer::Base
-  default :from => "kantoliinatesti@gmail.com"
+  default :from => "jasensihteeri@kantoliinayhdistys.fi"
 
   def bill_email member, top_message, bottom_message, subject
     @top_additional_message = top_message
