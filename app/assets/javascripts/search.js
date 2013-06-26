@@ -1,4 +1,11 @@
+/**
+ * Tekee haun serveriltä annetuilla tiedoilla.
+ * @type {Function}
+ */
 var search = (function (){
+    /**
+     * Dedault asetukset
+     */
     var defaults = {
         url: "/members/search",
         searchfield: "searchfield",
@@ -9,11 +16,22 @@ var search = (function (){
         callback: function(){}
     }
 
+    /**
+     * Asetukset.
+     */
     var settings = {}
+
+    /**
+     * Asettaa options muuttujasta tiedot settings muuttujaan ja lisää defaultit jos jotain puuttui.
+     * @param options
+     */
     function init(options){
         settings = $.extend({}, defaults, options)
     }
 
+    /**
+     * Tekee haun kutsuu hakee haettavat tiedot getData funktiolla ja kutsuu insertData funktiota kun serveri palauttaa tiedot.
+     */
     function search(){
         $.ajax({
             type: "GET",
@@ -26,6 +44,10 @@ var search = (function (){
         })
     }
 
+    /**
+     * Hakee datan joka lähetetään severille. Hakusana haetaan searchfieldistä mikä annetaan asetuksissa. Asetusten selectgroups käydään läpi ja näistä otetaan mukaan kaikki valitut, paitse select all.
+     * @returns {{keyword: (*|jQuery)}}
+     */
     function getData(){
         var data = {
             keyword: $("#" + settings.searchfield).val()
@@ -42,10 +64,19 @@ var search = (function (){
         return data
     }
 
+    /**
+     * Valitsee kaikki annetun menun checkboxit paitsi select all.
+     * @param menu
+     * @returns {*|jQuery}
+     */
     function findCheckboxs(menu){
         return $(menu).find(":checkbox").not("#select_all")
     }
 
+    /**
+     * Asettaa datan asetuksissa annettuun tableen. Sekä määrän asetuksissa annettuun outputlengthfieldiin.
+     * @param data
+     */
     function insertData(data){
         var columns = ["membernumber", "name", "email", "municipality", "address", "zipcode", "postoffice", "country", "membergroup", "membershipyear", "invoicedate", "reminderdate", "paymentstatus", "active", "support", "lender"]
         var images= ["paymentstatus", "active", "lender", "support"]
@@ -84,6 +115,10 @@ var search = (function (){
         settings.callback()
     }
 
+    /**
+     * Hakee kaikkien näkyvissä olevien sarakkeitten nimet.
+     * @returns {Array}
+     */
     function getVisibleColumns(){
         var visible_columns = []
         $(settings.column_menu).find(":checkbox").each(function(index, item){
@@ -94,6 +129,9 @@ var search = (function (){
         return visible_columns
     }
 
+    /**
+     * Tyhjentään vanhan datan taulukosta.
+     */
     function clearOldData(){
         $(settings.outputtable).find("tr").each(function (index, item) {
             if (!$(item).has("th").length) {
@@ -101,6 +139,10 @@ var search = (function (){
             }
         })
     }
+
+    /**
+     * Palauttaa init funktion ja search funktion.
+     */
     return {
         init: init,
         search: search
