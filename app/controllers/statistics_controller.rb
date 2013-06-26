@@ -13,6 +13,7 @@ class StatisticsController < ApplicationController
     @deleted = 0
     @total = 0
     @membersdate
+    @paidthisyear = 0
     @membergroups = Hash.new
     @municipalities = Hash.new
     count_stuff
@@ -33,9 +34,14 @@ class StatisticsController < ApplicationController
     @members.each do |member|
       if member.active
         @active += 1
+        if member.paymentstatus && member.membershipyear.to_i == Time.now.year.to_i
+          @paidthisyear += 1
+        end
+
         if !member.membergroup.onetimefee || member.membershipyear.to_i == Time.now.year.to_i
           @total += member.membergroup.fee
         end
+
         if @membergroups[member.membergroup.name.to_sym]
           @membergroups[member.membergroup.name.to_sym] =  @membergroups[member.membergroup.name.to_sym] + 1
         else

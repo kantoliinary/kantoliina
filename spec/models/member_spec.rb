@@ -130,5 +130,10 @@ describe Member do
     Member.as_json.should be_true
   end
 
+  #it "generates .csv" do
+  #  member = FactoryGirl.build(:member)
+  #  Member.as_csv.should be_true
+  #end
+
 
 end

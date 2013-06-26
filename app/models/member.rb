@@ -5,7 +5,7 @@
 #
 
 class Member < ActiveRecord::Base
-  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :country, :email, :membergroup_id, :membernumber, :active, :membershipyear, :paymentstatus, :invoicedate, :reminderdate, :lender, :support, :info
+  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :country, :email, :membergroup_id, :membernumber, :active, :membershipyear, :paymentstatus, :invoicedate, :reminderdate, :paymentdate, :lender, :support, :info
   belongs_to :membergroup
   #validates :firstnames, :presence => {:message => "Etunimi puuttuu"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu"}
@@ -72,13 +72,31 @@ class Member < ActiveRecord::Base
      :reminderdate => (self.reminderdate ? self.reminderdate.strftime("%d.%m.%Y") : "")
     }
   end
+
   def self.as_csv
+
     CSV.generate do |csv|
       csv << column_names
       all.each do |item|
         csv << item.attributes.values_at(*column_names)
+
       end
     end
   end
+
+
+  def self.import(file)
+    begin
+      CSV.foreach(file.path, headers: true) do |row|
+        Member.create! row.to_hash
+        notice = "Tiedoston tuonti onnistui"
+      end
+    rescue
+      notice = "Virheellinen tiedosto tai tiedostossa on jo lisäytyjä jäseniä"
+    end
+    return notice
+  end
+
+
 end
 

@@ -53,6 +53,7 @@ Kantoliina::Application.routes.draw do
   get 'members/search' => "members#search"
   post 'members/addressdata' => "members#addressdata"
 
+
   put 'settings' => 'settings#update'
 
   resources :settings, :only => [:index]
@@ -60,7 +61,9 @@ Kantoliina::Application.routes.draw do
   resources :admins, :only => [:update]
   resources :partners, :only => [:index, :update]
   resources :password_resets, :only => [:new, :create]
-  resources :members
+  resources :members do
+    collection { post :import }
+  end
   resources :membergroups
   resources :reminder
   resources :random
