@@ -18,6 +18,13 @@ var search = (function (){
 
     /**
      * Asetukset.
+     * url, johon lähetetään hakutiedot.
+     * serarcfield josta haetaan hakusana.
+     * selectgroups lista checkbox ryhmistä mitkä otetaan hakuun mukaan
+     * outputtable table jossa haun tulokset näytettään
+     * outputlengthfield paikka johon haun tulosten määrä laitetaan.
+     * column_menu column menun id.
+     * callback funktio jota kutsutaan kun ollaan saatu uuden haun tulokset asetettua tauluun.
      */
     var settings = {}
 
