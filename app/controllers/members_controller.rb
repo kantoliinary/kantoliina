@@ -84,6 +84,7 @@ class MembersController < ApplicationController
     @members.each do |member|
       if member.paymentstatus == false
         member.paymentstatus = true
+        member.paymentdate = Time.now
         if member.membershipyear.to_i < (Time.now.year).to_i
           member.membershipyear = (Time.now.year).to_i
         end
