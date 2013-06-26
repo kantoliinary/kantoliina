@@ -174,7 +174,13 @@ class MembersController < ApplicationController
 
 
   def import
-    Member.import(params[:file])
+    if (params[:file])
+      flash[:notice] = Member.import(params[:file])
+
+    else
+     flash[:notice] = "Valitse ensin tiedosto"
+    end
+
     redirect_to members_path
   end
 
