@@ -42,6 +42,11 @@ Feature: Invoice members
     Then I should see "Kantoliinayhdistyksen jäsenmaksulasku" in the email subject
     Then I should see "20.0" in the email body
 
+  Scenario: I try to send an invoice to a permanen member who has already paid
+    And I check "member_2"
+    And I press "Luo laskut"
+    And I should see "Laskunsa jo maksaneille ainaisjäsenille ei voi lähettää laskua"
+
   Scenario: Select all members and remove one in the invoice page
     And I check "check_all"
     And I press "Luo laskut"

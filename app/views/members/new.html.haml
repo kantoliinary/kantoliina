@@ -1,6 +1,8 @@
 %div{:id => "new_member_page"}
   %div{:id => "notice"}
     = flash[:notice]
+  %div{:class => "error"}
+    = flash[:error]
   -#%h1 Jäsenen lisäys
 
   %div{:id => "form"}
