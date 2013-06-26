@@ -1,4 +1,4 @@
-var search = function (options) {
+var search = (function (){
     var defaults = {
         url: "/members/search",
         searchfield: "searchfield",
@@ -8,42 +8,49 @@ var search = function (options) {
         column_menu: "",
         callback: function(){}
     }
-    var settings = $.extend({}, defaults, options)
-    $("#" + settings.searchfield).val()
-    var data = {
-        keyword: $("#" + settings.searchfield).val()
+
+    var settings = {}
+    function init(options){
+        settings = $.extend({}, defaults, options)
     }
-    $(settings.selectgroups).each(function (index, item) {
-        var selected = []
-        $(item[0]).find(":checkbox").not("#select_all").each(function (index, checkbox) {
-            if ($(checkbox).attr("checked")) {
-                selected.push($(checkbox).val())
+
+    function search(){
+        $.ajax({
+            type: "GET",
+            url: settings.url,
+            dataType: "json",
+            data: getData(),
+            success: function(data, textStatus, jqXHR){
+                insertData(data)
             }
         })
-        data[item[1]] = selected
-    })
-    $.ajax({
-        type: "GET",
-        url: settings.url,
-        dataType: "json",
-        data: data,
-        success: insertdata
-    })
-    function insertdata(data, textStatus, jqXHR) {
-        var visible_columns = []
-        $(settings.column_menu).find(":checkbox").each(function(index, item){
-            if($(item).attr("checked")){
-                visible_columns.push($(item).attr("name"))
-            }
+    }
+
+    function getData(){
+        var data = {
+            keyword: $("#" + settings.searchfield).val()
+        }
+        $(settings.selectgroups).each(function (index, item) {
+            var selected = []
+            findCheckboxs(item[0]).each(function (index, checkbox) {
+                if ($(checkbox).is(":checked")) {
+                    selected.push($(checkbox).val())
+                }
+            })
+            data[item[1]] = selected
         })
-        table = $(settings.outputtable)
-        table.find("tr").each(function (index, item) {
-            if (!$(item).has("th").length) {
-                $(item).remove()
-            }
-        })
+        return data
+    }
+
+    function findCheckboxs(menu){
+        return $(menu).find(":checkbox").not("#select_all")
+    }
+
+    function insertData(data){
         var columns = ["membernumber", "name", "email", "municipality", "address", "zipcode", "postoffice", "country", "membergroup", "membershipyear", "invoicedate", "reminderdate", "paymentstatus", "active", "support", "lender"]
         var images= ["paymentstatus", "active", "lender", "support"]
+        var visible_columns = getVisibleColumns()
+        clearOldData()
         $(data).each(function (index, member) {
             var tr = jQuery("<tr/>")
             var td = jQuery("<td/>").appendTo(tr)
@@ -71,10 +78,31 @@ var search = function (options) {
                     td.html(member[column])
                 }
             })
-            tr.appendTo(table)
+            tr.appendTo($(settings.outputtable))
         })
         $(settings.outputlengthfield).html(data.length)
-//        console.log("ok")
         settings.callback()
     }
-}
+
+    function getVisibleColumns(){
+        var visible_columns = []
+        $(settings.column_menu).find(":checkbox").each(function(index, item){
+            if($(item).is(":checked")){
+                visible_columns.push($(item).attr("name"))
+            }
+        })
+        return visible_columns
+    }
+
+    function clearOldData(){
+        $(settings.outputtable).find("tr").each(function (index, item) {
+            if (!$(item).has("th").length) {
+                $(item).remove()
+            }
+        })
+    }
+    return {
+        init: init,
+        search: search
+    }
+})
