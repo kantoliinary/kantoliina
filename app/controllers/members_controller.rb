@@ -40,7 +40,7 @@ class MembersController < ApplicationController
     #@member.membershipyear = (Time.now.year).to_i
     membernumber = @member.membernumber
 
-    @other = Member.where(:firstnames => @member.firstnames, :surname => @member.surname, :address => @member.address)
+    @other = Member.where(:firstnames => @member.firstnames, :surname => @member.surname, :address => @member.address, :zipcode => @member.zipcode, :municipality => @member.municipality)
 
     if !@other.empty?
       flash[:notice] = "Jäsen samalla etu-, sukunimi ja osoitetiedoilla on jo olemassa"
@@ -84,6 +84,7 @@ class MembersController < ApplicationController
     @members.each do |member|
       if member.paymentstatus == false
         member.paymentstatus = true
+        member.paymentdate = Time.now
         if member.membershipyear.to_i < (Time.now.year).to_i
           member.membershipyear = (Time.now.year).to_i
         end
