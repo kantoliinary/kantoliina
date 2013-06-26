@@ -21,9 +21,18 @@
           = @total
       %div
         %div{:class => "floatleft left"}
-          Tänä vuonna maksaneita:
+          Maksaneita:
         %div{:class => "floatleft data"}
+
           = @paidthisyear
+
+      %div
+        %div{:class => "floatleft left"}
+          Maksamattomia:
+        %div{:class => "floatleft data"}
+
+          = @active - @paidthisyear
+
 
     %h4 Jäsenryhmät
 

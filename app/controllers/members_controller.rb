@@ -134,6 +134,23 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
+  def from_csv
+
+  end
+
+  def open_spreadsheet(file)
+    case File.extname(file.original_filename)
+      when ".csv" then
+        Csv.new(file.path, nil, :ignore)
+      when ".xls" then
+        Excel.new(file.path, nil, :ignore)
+      when ".xlsx" then
+        Excelx.new(file.path, nil, :ignore)
+      else
+        raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
   ##
   # Lists all members to @members and shows the list page.
 
@@ -150,10 +167,23 @@ class MembersController < ApplicationController
       @active = params[:active] || "1"
       s_membergroups = params[:membergroups]
       @municipalitys = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
-              AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
+                        AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
       @selected_membergroups = (s_membergroups ? s_membergroups.keys : nil) || @membergroups.collect { |g| "#{g.id}" }
     end
   end
+
+
+  def import
+    if (params[:file])
+      flash[:notice] = Member.import(params[:file])
+
+    else
+     flash[:notice] = "Valitse ensin tiedosto"
+    end
+
+    redirect_to members_path
+  end
+
 
   ##
   # Searches members by given parameters and updates the main page
