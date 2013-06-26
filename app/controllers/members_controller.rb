@@ -43,7 +43,7 @@ class MembersController < ApplicationController
     @other = Member.where(:firstnames => @member.firstnames, :surname => @member.surname, :address => @member.address)
 
     if !@other.empty?
-      flash[:member] = "Jäsen samalla etu-, sukunimi ja osoitetiedoilla on jo olemassa"
+      flash[:notice] = "Jäsen samalla etu-, sukunimi ja osoitetiedoilla on jo olemassa"
       redirect_to new_member_path and return
     end
 
