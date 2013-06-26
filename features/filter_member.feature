@@ -14,11 +14,11 @@ Feature: filter members
       | 2  | Varsinaisjäsen | 10.0  |
 
     Given the following members exist:
-      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active | support | lender |
-      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
-      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
-      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | Finland | jaana.jasen@hotmail.com    | 12543        | 2              | 2013           | false         | 2013.01.01  | true   | true    | true   |
-      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  | false   | false  |
+      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country     | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active | support | lender |
+      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland     | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
+      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland     | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
+      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | South Korea | jaana.jasen@hotmail.com    | 12543        | 2              | 2013           | false         | 2013.01.01  | true   | true    | true   |
+      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | Finland     | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  | false   | false  |
 
 
     When I am on the login page
@@ -186,10 +186,13 @@ Feature: filter members
     Then I should see "Liisa"
     Then I should not see "Pelle"
 
-  Scenario: I try to show countries
+
+  Scenario: I try to show countries and block a country
     When I am on the members page
     Then I should not see "Finland"
-    And I click a text "#column_select"
+    And I should see "Janne"
+    And I should see "Jaana"
+    Then I click a text "#column_select"
     And I check "Maa"
     And I click a text "#hide_layout"
     Then I should see "Finland"
