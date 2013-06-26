@@ -37,9 +37,9 @@ var multiselect = (function () {
         loopElements()
     }
 
-    function loopElements(bind) {
+    function loopElements() {
         $(settings.elements).each(function (index, item) {
-            loopCheckbox(item)
+            loopCheckboxs(item)
             setSelectAll(item)
             bindOpen(item)
         })
@@ -65,9 +65,8 @@ var multiselect = (function () {
         settings.callback(menu)
     }
 
-    function loopCheckbox(menu) {
+    function loopCheckboxs(menu) {
         var checkboxs = findCheckboxs(menu)
-//        console.log(checkboxs)
         $(checkboxs).each(function (index, checkbox) {
             var check = readCookie($(checkbox).attr("name"))
             if (check != undefined) {
@@ -79,23 +78,20 @@ var multiselect = (function () {
             })
             settings.initItemCallback(checkbox)
         })
-        if ($(menu).find("#select_all").length > 0) {
+    }
+
+    function setSelectAll(menu) {
+        var select_all = $(menu).find("#select_all")
+        if (select_all.length > 0) {
             var all_checked = true
-            $(checkboxs).each(function (index, checkbox) {
+            $(findCheckboxs()).each(function (index, checkbox) {
                 if (!$(checkbox).is(":checked")) {
-//                    console.log(checkbox)
                     all_checked = false
                 }
             })
             if (all_checked) {
                 $(menu).find("#select_all").attr("checked", true)
             }
-        }
-    }
-
-    function setSelectAll(menu) {
-        var select_all = $(menu).find(".choices").find("#select_all")
-        if (select_all) {
             select_all.click(function () {
                 select_Un_All(select_all)
             })

@@ -26,12 +26,11 @@ var sorter = (function () {
         }  else {
             column++
         }
-        if(column == undefined){
+        if(column == -1){
             return;
         }
         var rows = []
         $(settings.table).find("tr").not(":first").each(function (index, tr) {
-//            console.log($(tr).find("td:eq(" + (column) + ")").text().toLowerCase())
             rows.push([$(tr).find("td:eq(" + (column) + ")").text().toLowerCase(), tr])
         })
         if ((same && !settings.reversed) || (!same && (settings.previous != column || settings.reversed))) {
@@ -70,7 +69,7 @@ var sorter = (function () {
             settings.previous = previous
         }
         if (reverse) {
-            settings.reverse = reverse
+            settings.reversed = reverse == "true"
         }
     }
 

@@ -2,6 +2,7 @@ index_page = ""
 invoice = ""
 mailer = ""
 reminder = ""
+multiselect_search = {}
 $(document).ready ->
   index_page = "#index_member_page"
   invoice = $("#invoice_member_page")
@@ -65,13 +66,16 @@ $(document).ready ->
         showHideColumn(checkbox)
     })
 
-  multiselect().init({
+  multiselect_search = multiselect().init({
       elements: [index_page + " .membergroup_menu", index_page + " .paymentstatus_menu", index_page + " .support_menu", index_page + " .lender_menu", index_page + " .municipality_menu", index_page + " .active_menu"]
       callback: (element) ->
         do_search()
   })
-
   $("#search_button").click( (e) ->
+    do_search()
+  )
+  $("#clear_search").click( (e) ->
+    $("#searchfield").val("")
     do_search()
   )
   sorter.init({
@@ -122,6 +126,7 @@ showHideColumn = (checkbox) ->
 enterSearch = (e) ->
   if e.which == 13
     do_search()
+
 hideNoticeAndError = ->
   $("#notice").hide().text("")
   $(index_page).find(".error").hide().text("")

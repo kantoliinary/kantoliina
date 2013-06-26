@@ -74,6 +74,7 @@
       %div{:id => "keyword_field"}
         = text_field_tag "searchfield", "#{@keyword}"
         = submit_tag "Hae", :class => "submit", :id => "search_button"
+        = submit_tag "Tyhjennä", :id => "clear_search"
       %div{:id => "notice"}
         = flash[:notice]
       %span{:class => "error"}
@@ -198,5 +199,6 @@
       = action_form random_index_path, :form_id => "random_form", :button_text => "Arvo jäsen"
       = action_form delete_path, :form_id => "delete_active_form", :button_text => "", :confirm => true
       %div{:class => "clear"}
+      = link_to "Lataa .csv -tiedostona", "/members.csv"
 
 
