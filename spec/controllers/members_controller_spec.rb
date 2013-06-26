@@ -57,6 +57,12 @@ describe MembersController do
         flash[:notice].should == @member
 
       end
+      it "doesn't create two times" do
+        FactoryGirl.create(:membergroup)
+        post :create, :member => {:firstnames => "John", :surname => "Doe", :municipality => "f", :zipcode => "00540", :address => "street 7", :postoffice => "Helsinki", :country => "Suomi", :email => "sgafd@gmaik.com", :membergroup_id => "1", :membernumber => "33333", :membershipyear => "2014", :paymentstatus => "t", :invoicedate => "08/08/2013", :active => "t", :lender => "f", :support => "f"}, :nextyear => true, :sendinvoice => false
+        post :create, :member => {:firstnames => "John", :surname => "Doe", :municipality => "f", :zipcode => "00540", :address => "street 7", :postoffice => "Vantaa", :country => "Algeria", :email => "other@gmaik.com", :membergroup_id => "1", :membernumber => "33334", :membershipyear => "2014", :paymentstatus => "t", :invoicedate => "09/08/2013", :active => "t", :lender => "f", :support => "f"}, :nextyear => true, :sendinvoice => false
+        flash[:notice].should == "Jäsen samalla etu-, sukunimi ja osoitetiedoilla on jo olemassa"
+      end
     end
   end
 
