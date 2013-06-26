@@ -75,6 +75,7 @@
         = text_field_tag "searchfield", "#{@keyword}"
         = submit_tag "Hae", :class => "submit", :id => "search_button"
         = submit_tag "Tyhjennä", :id => "clear_search"
+        = submit_tag "Alkunäkymä"
       %div{:id => "notice"}
         = flash[:notice]
       %span{:class => "error"}
