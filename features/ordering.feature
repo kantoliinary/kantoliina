@@ -14,11 +14,11 @@ Feature: order members
       | 2  | Varsinaisjäsen | 100.0 |
 
     Given the following members exist:
-      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active | support | lender |
-      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 65432   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
-      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 23456   | Espoo      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   | false   | false  |
-      | 3  | Jaana      | Jäsen      | Espoo        | Kantajantie   | 23456   | Turku      | Zaire   | jaana.jasen@hotmail.com    | 12543        | 2              | 2013           | false         | 2013.01.01  | true   | true    | true   |
-      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 65432   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  | false   | false  |
+      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active | support | lender | reminderdate |
+      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 65432   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 1              | 2015           | true          | 2015.01.01  | true   | false   | false  | 2015.01.01   |
+      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 23456   | Espoo      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2014           | true          | 2014.01.01  | true   | false   | false  | 2014.01.01   |
+      | 3  | Jaana      | Jäsen      | Espoo        | Kantajantie   | 23456   | Turku      | Zaire   | jaana.jasen@hotmail.com    | 12543        | 2              | 2013           | false         | 2013.01.01  | true   | true    | true   | 2013.01.01   |
+      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 65432   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  | false   | false  | 2013.01.01   |
 
     When I am on the login page
     And I fill in "username" with "admin"
@@ -89,6 +89,17 @@ Feature: order members
     Then I click a text "#members_table thead #country"
     And I should see "Zaire" before "Finland"
     And I should see "Jaana" before "Janne"
+
+  Scenario: I order members by the date of the last reminder
+    And I click a text "#column_select"
+    And I check "Maksumuistutuksen lähetyspäivä"
+    And I click a text "#hide_layout"
+    And I click a text "#members_table thead #reminderdate"
+    Then I should see "01.01.2013" before "01.01.2014"
+    And I should see "Liisa" before "Janne"
+    And I click a text "#members_table thead #reminderdate"
+    Then I should see "Janne" before "Liisa"
+    And I should see "01.01.2014" before "01.01.2013"
 #
 #  Scenario: I order members by zipcode
 #    When I am on the members page
