@@ -3,7 +3,7 @@ Feature: Add a new member
   I want to add a new member and see if it was successfully created
 
 
-  Background: admins in database
+  Background: An admin and a membergroup exist in the database
 
     Given the following admins exist:
       | username | password  | email          |
@@ -80,9 +80,14 @@ Feature: Add a new member
       | Jäsennumero      | 12345      |
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
+    And I should see "Etunimet"
+    Then I follow "Jäsenten hallinta"
+    Then I should see "aaa jasen"
+    And I should see "12345"
+    Then I follow "Lisää jäsen"
     When I fill in the following:
-      | Etunimet         | jasen      |
-      | Sukunimi         | aaa        |
+      | Etunimet         | huba      |
+      | Sukunimi         | haba        |
       | Kunta            | gfdal      |
       | Katuosoite       | gda        |
       | Postinumero      | 12345      |
