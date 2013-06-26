@@ -3,7 +3,7 @@ Feature: Add a new member
   I want to add a new member and see if it was successfully created
 
 
-  Background: admins in database
+  Background: An admin and a membergroup exist in the database
 
     Given the following admins exist:
       | username | password  | email          |
@@ -21,52 +21,52 @@ Feature: Add a new member
     And I press "Login"
     And I follow "Lisää jäsen"
 
-#  Scenario: add new member
-#    When I fill in the following:
-#      | Etunimet         | jasen    |
-#      | Sukunimi         | aaa      |
-#      | Kunta            | gfdal    |
-#      | Katuosoite       | gda      |
-#      | Postinumero      | 12345    |
-#      | Postitoimipaikka | gda      |
-#      | Sähköposti       | gf@a.com |
-#
-#    And I select "Ainaisjäsen" from "member[membergroup_id]"
-#    And I select "Andorra" from "member_country"
-#    And I check "member_lender"
-#    And I check "member_support"
-#    And I check "member[paymentstatus]"
-#    And I press "Lisää"
-#    Then I should see "Jäsen lisätty"
-#    And I follow "Jäsenten hallinta"
-#    Then I should see "aaa jasen"
-#    Then I should see "2013"
-#
-#  Scenario: Add a new member with wrongly formatted e-mail
-#    When I fill in the following:
-#      | Etunimet         | jasen  |
-#      | Sukunimi         | aaa    |
-#      | Kunta            | gfdal  |
-#      | Katuosoite       | gda    |
-#      | Postinumero      | 12345  |
-#      | Postitoimipaikka | gda    |
-#      | Sähköposti       | gf.com |
-#    And I press "Lisää"
-#    And I check "member_lender"
-#    Then I should see "Sähköpostiosoitteen muoto on väärä"
-#
-#  Scenario: Add a new member with too short member number
-#    When I fill in the following:
-#      | Etunimet         | jasen  |
-#      | Sukunimi         | aaa    |
-#      | Kunta            | gfdal  |
-#      | Katuosoite       | gda    |
-#      | Postinumero      | 12345  |
-#      | Postitoimipaikka | gda    |
-#      | Sähköposti       | gf.com |
-#      | Jäsennumero      | 12     |
-#    And I press "Lisää"
-#    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"
+  Scenario: add new member
+    When I fill in the following:
+      | Etunimet         | jasen    |
+      | Sukunimi         | aaa      |
+      | Kunta            | gfdal    |
+      | Katuosoite       | gda      |
+      | Postinumero      | 12345    |
+      | Postitoimipaikka | gda      |
+      | Sähköposti       | gf@a.com |
+
+    And I select "Ainaisjäsen" from "member[membergroup_id]"
+    And I select "Andorra" from "member_country"
+    And I check "member_lender"
+    And I check "member_support"
+    And I check "member[paymentstatus]"
+    And I press "Lisää"
+    Then I should see "Jäsen lisätty"
+    And I follow "Jäsenten hallinta"
+    Then I should see "aaa jasen"
+    Then I should see "2013"
+
+  Scenario: Add a new member with wrongly formatted e-mail
+    When I fill in the following:
+      | Etunimet         | jasen  |
+      | Sukunimi         | aaa    |
+      | Kunta            | gfdal  |
+      | Katuosoite       | gda    |
+      | Postinumero      | 12345  |
+      | Postitoimipaikka | gda    |
+      | Sähköposti       | gf.com |
+    And I press "Lisää"
+    And I check "member_lender"
+    Then I should see "Sähköpostiosoitteen muoto on väärä"
+
+  Scenario: Add a new member with too short member number
+    When I fill in the following:
+      | Etunimet         | jasen  |
+      | Sukunimi         | aaa    |
+      | Kunta            | gfdal  |
+      | Katuosoite       | gda    |
+      | Postinumero      | 12345  |
+      | Postitoimipaikka | gda    |
+      | Sähköposti       | gf.com |
+      | Jäsennumero      | 12     |
+    And I press "Lisää"
+    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"
 
   Scenario: Add a new member with a membernumber already in use
     When I fill in the following:
@@ -81,9 +81,13 @@ Feature: Add a new member
     And I press "Lisää"
     Then I should see "Jäsen lisätty"
     And I should see "Etunimet"
+    Then I follow "Jäsenten hallinta"
+    Then I should see "aaa jasen"
+    And I should see "12345"
+    Then I follow "Lisää jäsen"
     When I fill in the following:
-      | Etunimet         | jasen      |
-      | Sukunimi         | aaa        |
+      | Etunimet         | huba      |
+      | Sukunimi         | haba        |
       | Kunta            | gfdal      |
       | Katuosoite       | gda        |
       | Postinumero      | 12345      |
