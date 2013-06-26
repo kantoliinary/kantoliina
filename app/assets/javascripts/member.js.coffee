@@ -1,9 +1,11 @@
+#Globaalit muuttujat
 index_page = ""
 invoice = ""
 mailer = ""
 reminder = ""
 multiselect_search = {}
 searcher = {}
+#Asitat mitkä suoritetaan kun sivu on ladattu kokonaan.
 $(document).ready ->
   index_page = "#index_member_page"
   invoice = $("#invoice_member_page")
@@ -102,9 +104,11 @@ $(document).ready ->
   })
   do_search()
   setTimeout(hideNoticeAndError, 10000)
+#Tekee searchin
 do_search = ->
   searcher.search()
 
+#Vaihtaa remove buttonin ja active buttonin
 changeRemoveActiveButton = ->
   button = $(index_page).find("#delete_active_form").find("button")
   if $(index_page).find(".active_menu").find("input").is(":checked")
@@ -112,6 +116,7 @@ changeRemoveActiveButton = ->
   else
      button.text("Poista")
 
+#Asettaa tablen th:n näkyviin tai pois näkyvistä checkboxin mukaan.
 setTableColumns = (checkbox)->
   th = $(index_page).find("#members").find("table").find("."+$(checkbox).attr("name"))
   if $(checkbox).is(":checked")
@@ -119,6 +124,7 @@ setTableColumns = (checkbox)->
   else
     th.addClass("hidden")
 
+#Asettaa tablen columin näkyviin tai pois näkyvistä checkboxin mukaan.
 showHideColumn = (checkbox) ->
   $(index_page).find("#members").find("table").find("." + $(checkbox).attr("name")).each (index, item) ->
     if $(item).hasClass("hidden")
@@ -126,10 +132,20 @@ showHideColumn = (checkbox) ->
     else
       $(item).addClass("hidden")
 
+#Tekee haun jos e on enter
 enterSearch = (e) ->
   if e.which == 13
     do_search()
 
+#Piilottaa kaikki noticet ja index sivun errorit.
 hideNoticeAndError = ->
   $("#notice").hide().text("")
   $(index_page).find(".error").hide().text("")
+
+#Valitsee tai poistaa valinnat kaikista jäsenistä.
+un_select_all_mmembers = (e) ->
+  checkboxs = $("#index_member_page").children("#centered").children("#members").find("table").find("tr").find("td").find(":checkbox")
+  check_state = $(e.target).is(":checked")
+  $(checkboxs).each( (index, value) ->
+    $(value).attr("checked", check_state)
+  )

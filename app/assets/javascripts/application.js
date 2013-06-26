@@ -13,6 +13,24 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+/**
+ * Asettaa annetun parin cookiesiin.
+ */
+function SetCookie(name, value) {
+    document.cookie = name + "=" + value
+}
+/**
+ * Lukee annetulla nimellä olevan cookien.
+ */
+function readCookie(name) {
+    name += '=';
+    for (var ca = document.cookie.split(/;\s*/), i = ca.length - 1; i >= 0; i--)
+        if (!ca[i].indexOf(name))
+            return ca[i].replace(name, '');
+}
+/**
+ * Luo prototypen arraylle joka etsii annettua oliota arraysta.
+ */
 Array.prototype.contains = function (obj) {
     var i = this.length;
     while (i--) {
@@ -22,22 +40,10 @@ Array.prototype.contains = function (obj) {
     }
     return false;
 }
-function un_select_all_mmembers(e) {
-    checkboxs = $("#index_member_page").children("#centered").children("#members").find("table").find("tr").find("td").find(":checkbox")
-    check_state = $(e.target).is(":checked")
-    $(checkboxs).each(function (index, value) {
-        $(value).attr("checked", check_state)
-    })
-}
-function SetCookie(name, value) {
-    document.cookie = name + "=" + value
-}
-function readCookie(name) {
-    name += '=';
-    for (var ca = document.cookie.split(/;\s*/), i = ca.length - 1; i >= 0; i--)
-        if (!ca[i].indexOf(name))
-            return ca[i].replace(name, '');
-}
+/**
+ * Luo prototypen joka sorttaa arrayn. Käyttää annettua funktiota vertailuun.
+ * @param comparisor
+ */
 Array.prototype.sorter = function (comparisor) {
     for (var i = 1; i < this.length; i++) {
         var u = i
@@ -49,20 +55,21 @@ Array.prototype.sorter = function (comparisor) {
         }
     }
 }
+/**
+ * Luo prototypen, joka sorttaa kaksiulotteisen taulukon ensimmäisten arvojen mukaan.
+ * @param comparisor
+ */
 Array.prototype.columnsort = function (comparisor) {
     this.sorter(function (a, b) {
         return a[0] > b[0]
     })
 }
+/**
+ * Luo prototypen, joka sorttaa kaksiulotteisen taulukon ensimmäisten arvojen mukaan käänteisessä järjestyksessä.
+ * @param comparisor
+ */
 Array.prototype.columnsortreverse = function () {
     this.sorter(function (a, b) {
         return a[0] < b[0]
     })
 }
-//function print(rows) {
-//    var x = ""
-//    $(rows).each(function (index, item) {
-//        x += " " + item[0]
-//    })
-//    console.log(x)
-//}
