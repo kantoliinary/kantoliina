@@ -146,7 +146,7 @@ describe MembersController do
       member = FactoryGirl.create(:member, paymentstatus: false)
       Member.stub(:find).and_return(member)
       post :unpayment, :ids => "{\"ids\":[\"1\"]}"
-      flash[:notice].should == "Jäsen on jo maksamaton!"
+      flash[:error].should == "Jäsen on jo maksamaton"
     end
   end
 
