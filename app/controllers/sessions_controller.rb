@@ -40,4 +40,12 @@ class SessionsController < ApplicationController
     flash[:notice] = "Kirjauduttu ulos"
     redirect_to login_path
   end
+
+  def reset
+    cookies.each do |k|
+      cookies.delete(k.at(0))
+    end
+    flash[:notice] = "Alkunäkymä palautettu"
+    redirect_to members_path
+  end
 end
