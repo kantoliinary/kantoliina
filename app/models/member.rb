@@ -5,7 +5,7 @@
 #
 
 class Member < ActiveRecord::Base
-  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :country, :email, :membergroup_id, :membernumber, :active, :membershipyear, :paymentstatus, :invoicedate, :reminderdate, :paymentdate, :lender, :support, :info
+  attr_accessible :firstnames, :surname, :municipality, :address, :zipcode, :postoffice, :country, :email, :membergroup_id, :membernumber, :active, :membershipyear, :paymentstatus, :invoicedate, :reminderdate, :paymentdate, :lender, :support, :info, :created_at, :updated_at
   belongs_to :membergroup
   #validates :firstnames, :presence => {:message => "Etunimi puuttuu"}
   validates :surname, :presence => {:message => "Sukunimi puuttuu"}
