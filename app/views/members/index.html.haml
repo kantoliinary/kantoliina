@@ -204,7 +204,7 @@
       %div{:id => "csv"}
         = link_to "Lataa .csv -tiedostona", "/members.csv"
         = form_tag import_members_path, multipart: true do
-          = file_field_tag :file
+          = file_field_tag :file, :id => "csvimport"
           = submit_tag "Import"
 
 
