@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 /**
- * Asettaa annetun parin cookiesiin.
+ * Sets a given name-value variable to cookies
  */
 function SetCookie(name, value) {
     document.cookie = name + "=" + value
