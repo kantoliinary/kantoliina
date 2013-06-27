@@ -14,11 +14,11 @@ Feature: See statistics about members
       | 2  | Perhejäsen  | 20.0 | false      |
 
     Given the following members exist:
-      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active |
-      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 2              | 2013           | true          | 2013.01.01  | true   |
-      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   |
-      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | Finland | jaana.jasen@hotmail.com    | 12543        | 2              | 2013           | false         | 2013.01.01  | true   |
-      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  |
+      | id | firstnames | surname    | municipality | address       | zipcode | postoffice | country | email                      | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active | created_at |
+      | 1  | Janne      | Jäsen      | Vantaa       | Jokiniementie | 54321   | Stadi      | Finland | janne.jasen@yahoo.com      | 12345        | 2              | 2013           | true          | 2013.01.01  | true   | 2010.01.01 |
+      | 2  | Liisa      | Mehiläinen | Espoo        | Jokintie      | 12345   | Stadi      | Finland | liisa.mehilainen@gmail.com | 12466        | 1              | 2013           | true          | 2013.01.01  | true   | 2010.01.02 |
+      | 3  | Jaana      | Jäsen      | Espoo        | Jokintie      | 12345   | Stadi      | Finland | jaana.jasen@hotmail.com    | 12543        | 2              | 2013           | false         | 2013.01.01  | true   | 2011.01.01 |
+      | 4  | Pelle      | Poistettu  | Limbo        | Olematontie   | 54321   | Poissa     | Finland | pelle.poistettu@eioo.com   | 99999        | 1              | 2013           | true          | 2013.01.01  | false  | 2011.02.01 |
 
     When I am on the login page
     And I fill in "username" with "admin"
@@ -43,10 +43,17 @@ Feature: See statistics about members
     Then I should see "Maksaneita: 2"
     Then I should see "Maksamattomia: 1"
 
-#  Scenario: Then I should see members created between march-april
-#    And I fill in "startdate" with "2013/01/01"
-#    And I fill in "enddate" with "2014/01/01"
-#    Then I should see "12345"
-#    Then I should see "12543"
-#    Then I should not see "99999"
-#    Then I should not see "12466"
+  Scenario: I try to filter members by creation time
+    When I fill in "startdate" with "2010/01/01"
+    And I fill in "enddate" with "2011/02/10"
+    And I press "Hae"
+    Then I should see "12345"
+    Then I should see "12543"
+    Then I should see "12466"
+    Then I should not see "99999"
+    When I fill in "startdate" with "2010/01/02"
+    And I fill in "enddate" with "2011/01/01"
+    And I press "Hae"
+    Then I should see "12543"
+    Then I should see "12466"
+    Then I should not see "99999"
