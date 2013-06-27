@@ -49,10 +49,6 @@ Feature: edit member
   #    And I fill in "member[membernumber]" with "1"
     And I press "Tallenna muutokset"
     Then I should see "Sähköpostiosoitteen muoto on väärä"
-    Then I should see "Jäsennumeron tulee olla tasan 5 merkkiä pitkä"
-    And I fill in "member[membernumber]" with "aaa"
-    And I press "Tallenna"
-    Then I should see "Jäsennumerossa tulee olla vain numeroita"
 
   Scenario: edit member with incorrect values2
     When I am on the members page
