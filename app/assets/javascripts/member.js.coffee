@@ -1,11 +1,11 @@
-#Globaalit muuttujat
+#Global variables
 index_page = ""
 invoice = ""
 mailer = ""
 reminder = ""
 multiselect_search = {}
 searcher = {}
-#Asitat mitkä suoritetaan kun sivu on ladattu kokonaan.
+#Subroutines which are run when the page has been loaded completely
 $(document).ready ->
   index_page = "#index_member_page"
   invoice = $("#invoice_member_page")
@@ -74,11 +74,11 @@ $(document).ready ->
   do_search()
   setTimeout(hideNoticeAndError, 10000)
 
-#Tekee searchin
+#Makes a search
 do_search = ->
   searcher.search()
 
-#Vaihtaa remove buttonin ja active buttonin
+#Changes the places between the remove and active buttons depending on whether deleted or active members are being shown
 changeRemoveActiveButton = ->
   button = $(index_page).find("#delete_active_form").find("button")
   if $(index_page).find(".active_menu").find("input").is(":checked")

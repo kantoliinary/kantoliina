@@ -14,6 +14,8 @@ class MembersController < ApplicationController
     @member.membernumber = get_smallest_available_membernumber
     @submit_text = "Lisää"
     @isnew = true
+    @checked_invoice = flash[:sendinvoice] || false
+    @checked_nextyear = flash[:nextyear] || false
   end
 
 
@@ -30,12 +32,17 @@ class MembersController < ApplicationController
     return number
   end
 
+
   ##
   # Creates a new member with params[:member] and tries to save it.
   # If save succeeds, adds flash[:notice] message, otherwise adds members information to flash[:member].
   # Redirects to new member page.
 
   def create
+
+    flash[:sendinvoice] = !!params[:sendinvoice]
+    flash[:nextyear] = !!params[:nextyear]
+
     @member = Member.new(params[:member])
     #@member.membershipyear = (Time.now.year).to_i
     membernumber = @member.membernumber
@@ -103,13 +110,14 @@ class MembersController < ApplicationController
   def unpayment
     parsed_json = ActiveSupport::JSON.decode(params[:ids])
     @members = Member.find_all_by_id(parsed_json["ids"])
+    @members = Member.find_all_by_id(parsed_json["ids"])
     @members.each do |member|
       if member.paymentstatus == true
         member.paymentstatus = false
         member.save!(:validate => false)
         flash[:notice] = "Maksustatus muutettu maksamattomaksi"
       else
-        flash[:notice] = "Jäsen on jo maksamaton!"
+        flash[:error] = "Jäsen on jo maksamaton"
       end
     end
     redirect_to members_path
@@ -175,10 +183,10 @@ class MembersController < ApplicationController
 
   def import
     if (params[:file])
-      flash[:notice] = Member.import(params[:file])
 
+      flash[:notice] = Member.import(params[:file])
     else
-     flash[:notice] = "Valitse ensin tiedosto"
+      flash[:error] = "Valitse ensin tiedosto"
     end
 
     redirect_to members_path

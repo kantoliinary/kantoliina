@@ -92,3 +92,10 @@ Feature: Reminder members
     Then I should see "20.0" in the email body
 
 
+  Scenario: I try to send a reminder to a paid member
+    When I am on the members page
+    And I check "member_3"
+    And I press "Luo maksumuistutukset"
+    Then I should see "Vain laskunsa maksamatta jättäneille jäsenille voi lähettää maksumuistutuksen"
+
+

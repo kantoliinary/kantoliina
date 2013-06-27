@@ -293,3 +293,12 @@ Feature: filter members
     Then I should not see "Jaana"
     Then I should see "Janne"
     Then I should not see "Liisa"
+
+  Scenario: I reset session
+    When I am on the members page
+    And I click a text "#column_select"
+    And I check "Sähköposti"
+    And I click a text "#hide_layout"
+    Then I should see "janne.jasen@yahoo.com"
+    And I press "Oletusnäkymä"
+    Then I should not see "janne.jasen@yahoo.com"

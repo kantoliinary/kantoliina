@@ -146,7 +146,7 @@ describe MembersController do
       member = FactoryGirl.create(:member, paymentstatus: false)
       Member.stub(:find).and_return(member)
       post :unpayment, :ids => "{\"ids\":[\"1\"]}"
-      flash[:notice].should == "Jäsen on jo maksamaton!"
+      flash[:error].should == "Jäsen on jo maksamaton"
     end
   end
 
@@ -247,6 +247,35 @@ describe MembersController do
         FactoryGirl.create(:membergroup)
         post :addressdata, :ids => "{\"ids\":[\"1\", \"2\"]}"
         expect(assigns(:members)).to match_array([member, member2])
+      end
+    end
+  end
+
+  describe "POST #import" do
+    context "with valid file" do
+      it "saves members to db" do
+
+        @file = fixture_file_upload('/files/members.csv', 'members/csv')
+        post :import, :file => @file
+        flash[:notice].should == "Tiedoston tuonti onnistui"
+
+      end
+    end
+    context "with invalid file" do
+      it "doesn't work" do
+
+
+        post :import, :file => "invalid_file.txt"
+        flash[:notice].should == "Virheellinen tiedosto tai tiedostossa on jo lisäytyjä jäseniä"
+
+      end
+    end
+    context "without selected file" do
+      it "doesn't work" do
+
+        post :import
+        flash[:error].should == "Valitse ensin tiedosto"
+
       end
     end
   end
