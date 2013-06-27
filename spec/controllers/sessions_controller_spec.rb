@@ -58,14 +58,15 @@ describe SessionsController do
       response.should redirect_to login_path
     end
   end
-  #
-  #describe "GET #reset" do
-  #  it "resets cookies" do
-  #    admin = FactoryGirl.create(:admin)
-  #    Admin.stub(:find_by_username).and_return(admin)
-  #    get :reset
-  #    session[:admin].should_not == nil
-  #  end
-  #end
+
+  describe "GET #reset" do
+    it "resets cookies" do
+      admin = FactoryGirl.create(:admin)
+      Admin.stub(:find_by_username).and_return(admin)
+      post :create, FactoryGirl.attributes_for(:admin)
+      get :reset
+      response.should redirect_to members_path
+    end
+  end
 
 end
