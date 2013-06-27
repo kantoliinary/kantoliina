@@ -7,7 +7,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Admin.create!([username: 'admin', password: 'qwerty123', email: "kantoliinatesti@gmail.com"])
+Admin.create!([username: 'admin', password: 'qwerty123', email: "jasensihteeri@kantoliinayhdistys.fi"])
 Partner.create!([username: 'partner', password: 'qwerty123'])
 Membergroup.create!([name: 'Varsinainen jäsen', fee: 10, onetimefee: false])
 Membergroup.create!([name: 'Perhejäsen', fee: 5, onetimefee: false])
