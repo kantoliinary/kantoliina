@@ -255,7 +255,7 @@ describe MembersController do
     context "with valid file" do
       it "saves members to db" do
 
-        @file = fixture_file_upload('/files/test.xml', 'test/xml')
+        @file = fixture_file_upload('/files/members.csv', 'members/csv')
         post :import, :file => @file
         flash[:notice].should == "Tiedoston tuonti onnistui"
 
