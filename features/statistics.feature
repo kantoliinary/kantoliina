@@ -39,9 +39,13 @@ Feature: See statistics about members
     Then I should see "Espoo 2"
     Then I should see "Vantaa 1"
 
+  Scenario: I should see paid and indebted members
+    Then I should see "Maksaneita: 2"
+    Then I should see "Maksamattomia: 1"
+
 #  Scenario: Then I should see members created between march-april
-#    And I fill in "startdate" with "01.03.2013"
-#    And I fill in "enddate" with "01.04.2013"
+#    And I fill in "startdate" with "2013/01/01"
+#    And I fill in "enddate" with "2014/01/01"
 #    Then I should see "12345"
 #    Then I should see "12543"
 #    Then I should not see "99999"
