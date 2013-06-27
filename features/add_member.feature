@@ -13,7 +13,9 @@ Feature: Add a new member
       | id | name        | fee  |
       | 1  | Ainaisjäsen | 10.0 |
 
-
+    Given the following members exist:
+      | id | firstnames | surname | municipality | address       | zipcode | postoffice | country | email                 | membernumber | membergroup_id | membershipyear | paymentstatus | invoicedate | active | support | lender | reminderdate |
+      | 1  | Janne      | Jaesen  | Vantaa       | Jokiniementie | 65432   | Stadi      | Finland | janne.jasen@yahoo.com | 10000        | 1              | 2015           | true          | 2015.01.01  | true   | false   | false  | 2015.01.01   |
 
     When I am on the login page
     And I fill in "username" with "admin"
@@ -70,29 +72,25 @@ Feature: Add a new member
 
   Scenario: Add a new member with a membernumber already in use
     When I fill in the following:
-      | Etunimet         | jasen      |
-      | Sukunimi         | aaa        |
-      | Kunta            | gfdal      |
-      | Katuosoite       | gda        |
-      | Postinumero      | 12345      |
-      | Postitoimipaikka | gda        |
-      | Sähköposti       | gf@kkk.com |
-      | Jäsennumero      | 12345      |
-    And I press "Lisää"
-    Then I should see "Jäsen lisätty"
-    And I should see "Etunimet"
-    Then I follow "Jäsenten hallinta"
-    Then I should see "aaa jasen"
-    And I should see "12345"
-    Then I follow "Lisää jäsen"
-    When I fill in the following:
-      | Etunimet         | huba      |
-      | Sukunimi         | haba        |
+      | Etunimet         | huba       |
+      | Sukunimi         | haba       |
       | Kunta            | gfdal      |
       | Katuosoite       | gda        |
       | Postinumero      | 12345      |
       | Postitoimipaikka | gda        |
       | Sähköposti       | gf@ggg.com |
-      | Jäsennumero      | 12345      |
+      | Jäsennumero      | 10000      |
     And I press "Lisää"
     Then I should see "Jäsennumero on jo käytössä"
+
+  Scenario: I try to add a member with a name-address combination already in use
+    And I fill in the following:
+      | Etunimet         | Janne         |
+      | Sukunimi         | Jaesen        |
+      | Kunta            | Vantaa        |
+      | Katuosoite       | Jokiniementie |
+      | Postinumero      | 65432         |
+      | Postitoimipaikka | gda           |
+      | Sähköposti       | gf@ggg.com    |
+    And I press "Lisää"
+    Then I should see "Jäsen samoilla nimi- ja osoitetiedoilla on jo olemassa"

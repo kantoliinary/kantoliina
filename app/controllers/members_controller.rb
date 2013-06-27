@@ -43,7 +43,7 @@ class MembersController < ApplicationController
     @other = Member.where(:firstnames => @member.firstnames, :surname => @member.surname, :address => @member.address, :zipcode => @member.zipcode, :municipality => @member.municipality)
 
     if !@other.empty?
-      flash[:notice] = "Jäsen samalla etu-, sukunimi ja osoitetiedoilla on jo olemassa"
+      flash[:error] = "Jäsen samoilla nimi- ja osoitetiedoilla on jo olemassa"
       redirect_to new_member_path and return
     end
 
@@ -91,7 +91,7 @@ class MembersController < ApplicationController
         member.save!(:validate => false)
         flash[:notice] = "Maksustatus muutettu maksaneeksi"
       else
-        flash[:notice] = "Jäsen on jo maksanut!"
+        flash[:error] = "Jäsen on jo maksanut"
       end
     end
     redirect_to members_path
