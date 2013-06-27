@@ -10,6 +10,7 @@ Kantoliina::Application.routes.draw do
   get 'login' => 'sessions#new', :as => 'login'
   post 'login' => 'sessions#create', :as =>'login'
   get 'logout' => 'sessions#destroy', :as => 'logout'
+  get 'resetcookies' => 'sessions#reset'
 
   get 'partnerlogin' => 'partner_sessions#new', :as => 'partner_login'
   post 'partnerlogin' => 'partner_sessions#create', :as =>'partner_login'
