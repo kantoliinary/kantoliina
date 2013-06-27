@@ -14,6 +14,8 @@ class MembersController < ApplicationController
     @member.membernumber = get_smallest_available_membernumber
     @submit_text = "Lisää"
     @isnew = true
+    @checked_invoice = flash[:sendinvoice] || false
+    @checked_nextyear = flash[:nextyear] || false
   end
 
 
@@ -30,12 +32,17 @@ class MembersController < ApplicationController
     return number
   end
 
+
   ##
   # Creates a new member with params[:member] and tries to save it.
   # If save succeeds, adds flash[:notice] message, otherwise adds members information to flash[:member].
   # Redirects to new member page.
 
   def create
+
+    flash[:sendinvoice] = !!params[:sendinvoice]
+    flash[:nextyear] = !!params[:nextyear]
+
     @member = Member.new(params[:member])
     #@member.membershipyear = (Time.now.year).to_i
     membernumber = @member.membernumber
@@ -179,7 +186,7 @@ class MembersController < ApplicationController
       flash[:notice] = Member.import(params[:file])
 
     else
-     flash[:error] = "Valitse ensin tiedosto"
+      flash[:error] = "Valitse ensin tiedosto"
     end
 
     redirect_to members_path
