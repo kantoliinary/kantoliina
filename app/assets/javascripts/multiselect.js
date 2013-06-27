@@ -1,19 +1,19 @@
 /**
- * Näytää ja piilottaa listan checkboxeista.
- * Pohjan tulee olla seuraavassa muodossa:
+ * Shows and hides a list of checkboxes
+ * The template must be in a following form:
  *  %div{:class => "multiselectmenu"}
  *      %div{:class => "header"}
- *          #Valikon avaava elementti
+ *          #The element opening the dropdown menu
  *      %div{:class => "choices"}
- *          #Lista checkboxeista
- * Checkboxeihin voi lisätä checkboxin id:llä "select_all", joka valitsee tai poistaa valinnat kaikista checkboxeista
- * Palauttaa olion jolla init funktio.
+ *          #A list of checkboxes
+ * It is possible to add a new checkbox to the list with an id "select_all", which enables the user to check or uncheck the new checkbox along with every other checkbox
+ * Returns an object which has an init-function
  * @type {Function}
  */
 var multiselect = (function () {
 
     /**
-     * Default asetukset.
+     * Default settings
      */
     var defaults = {
         elements: [],
@@ -26,18 +26,18 @@ var multiselect = (function () {
         }
     }
     /**
-     * Asetukset
-     * Elementit joista valikko avataan asetetaan elements muuttujaan. Default: tyhjä.
-     * contextmenu kertoo avataanko valikko oikealla vai vasemmalla hiiren klikkauksella. Dedault: vasen.
-     * initItemCallback on funktio jota kutsutaan jokaisen checkboxin asetusten latauksen jälkeen.
-     * itemCallback on funktion jota kutsutaan kun jotain checkboxia klikataan. Paitsi select all.
-     * callback on funktio jota kutsutaan kun valikko suljetaan.
+     * Settings
+     * Elements that open a dropdown menu when they are clicked are set in variable "elements". The default is empty
+     * contextmenu tells whether a dropdown menu is opened with a left or right mouse click. The default is left
+     * initItemCallback is a function which is called individually for every checkbox after loading the settings of the checkbox
+     * itemCallback is a function which is called when any checkbox is checked or unchecked, except select_all
+     * callback is a function which is called when a dropdown menu is closed
      * @type {{elements: Array, contextmenu: boolean, initItemCallback: Function, itemCallback: Function, callback: Function}}
      */
     var settings = {}
 
     /**
-     * Asettaa oikeat asetukset ja kutsuu loopMenus. Asetukset otetaan options muuttujasta ja loput dedaults muuttujasta.
+     * Sets the right settings and calls loopMenus-method. Settings are taken from the options-variable and the rest from defaults-variable
      * @param options
      */
     function init(options) {
@@ -46,7 +46,7 @@ var multiselect = (function () {
     }
 
     /**
-     * Käy läpi asetuksiin annetut valikot. Kutsuu loopCheckboxs, setSelectAll ja bindOpen kaikille valikoille.
+     * Goes through the menus given in settings, calls loopCheckboxs, setSelectAll and bindOpen for all menus
      */
     function loopMenus() {
         $(settings.elements).each(function (index, item) {
@@ -57,7 +57,7 @@ var multiselect = (function () {
     }
 
     /**
-     * Asettaa valikon avautumaan joko vasemmalla tai oikealla klikkauksella. Luo koko sivun täyttävän läpi näkyvän pohjan jota klikkaamalla valikko sulkeutuu.
+     * Sets the dropdown menu to open on a left or right click. Creates a transparent template covering the whole page, which closes the menu when clicked
      * @param menu
      */
     function bindOpen(menu) {
@@ -74,7 +74,7 @@ var multiselect = (function () {
     }
 
     /**
-     * Piilottaa valikon ja poistaa sivun kattavan läpinäkyvän pohjan. Kutsuu settingsin callback funktiota.
+     * Hides the menu and removes the transparent template that covers the page. Calls the callback function of settings
      * @param menu
      */
     function closeMenu(menu) {
@@ -85,8 +85,8 @@ var multiselect = (function () {
     }
 
     /**
-     * Käy läpi annetun valikon checkboxit ja asettaa niille vasemman klikkauksen. Jos löytää cookiesista vastaavan asettaa sen mukaan valituksi tai ei valituksi.
-     * Klikattaessa kutsuu itemCallback funktiota. Ja asetuksten jälkeen kutsuu initItemCallback.
+     * Goes through all checkboxes in a given menu and sets them the right click. If a matching checkbox is found from cookies, sets the checkbox checked or unchecked according to cookies
+     * Calls the itemCallback function when the checkbox is checked or unchecked and after that ? Ja asetuksten jälkeen kutsuu initItemCallback.
      * @param menu
      */
     function loopCheckboxs(menu) {
@@ -105,7 +105,7 @@ var multiselect = (function () {
     }
 
     /**
-     * Jos valikolla on select all checkbox, käy valinnat läpi ja asettaa kentän valituksi tai ei valituksi sen mukaan. Asettaa select all kentälle vasemman klikkauksen joka kutsuu selectUnAll.
+     * If a menu has a select_all -type checkboxes, goes through the checkboxes and sets fields as chosen or not chosen according to them. Sets left click to select_all field which calls selectUnAll
      * @param menu
      */
     function setSelectAll(menu) {
@@ -125,7 +125,7 @@ var multiselect = (function () {
     }
 
     /**
-     * Etsii kaikki menun checkboxsit lukuunottamatta select all.
+     * Searches all checkboxes from the menu except select_all
      * @param menu
      * @returns {*|jQuery}
      */
@@ -134,7 +134,7 @@ var multiselect = (function () {
     }
 
     /**
-     * Valitsee tai poistaa valinnat kaikista valikon checkboxeista riippuen select all checkboxin tilasta.
+     * Checks or unchecks all checkboxes depending whether the select_all checkbox is checked
      * @param sACheckbox
      */
     function selectUnAll(menu) {
@@ -145,7 +145,7 @@ var multiselect = (function () {
     }
 
     /**
-     * Kutsuu setCookie annetun checkboxin tiedoilla.
+     * Calls setCookie with the state of a given checkbox given as a parameter
      * @param e
      */
     function setcookie(e) {

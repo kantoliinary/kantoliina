@@ -132,17 +132,17 @@ showHideColumn = (checkbox) ->
     else
       $(item).addClass("hidden")
 
-#Tekee haun jos e on enter
+#Makes a search if e is enter
 enterSearch = (e) ->
   if e.which == 13
     do_search()
 
-#Piilottaa kaikki noticet ja index sivun errorit.
+#Hides all notices everywhere and all errors on the index page
 hideNoticeAndError = ->
   $("#notice").hide().text("")
   $(index_page).find(".error").hide().text("")
 
-#Valitsee tai poistaa valinnat kaikista jäsenistä.
+#Checks or unchecks all checkboxes for all members
 un_select_all_mmembers = (e) ->
   checkboxs = $("#index_member_page").children("#centered").children("#members").find("table").find("tr").find("td").find(":checkbox")
   check_state = $(e.target).is(":checked")
