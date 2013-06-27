@@ -21,6 +21,7 @@ class InvoiceController < ApplicationController
       elsif @members.count < parsed_json["ids"].length
         flash[:error] = "Laskunsa jo maksaneita ainaisjäseniä ei otettu listaan"
       end
+
     end
 
 
