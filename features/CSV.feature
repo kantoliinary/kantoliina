@@ -15,5 +15,5 @@ Feature: CSV functionality
 
     Scenario: I try to import a CSV with no file chosen
       When I am on the members page
-      And I press "Import"
+      And I press "Tuo jäseniä .CSV-muodossa"
       Then I should see "Valitse ensin tiedosto"
