@@ -86,15 +86,20 @@ class Member < ActiveRecord::Base
 
 
   def self.import(file)
+
     begin
       CSV.foreach(file.path, headers: true) do |row|
+
         Member.create! row.to_hash
-        notice = "Tiedoston tuonti onnistui"
+
+
       end
+      return "Tiedoston tuonti onnistui"
     rescue
-      notice = "Virheellinen tiedosto tai tiedostossa on jo lisäytyjä jäseniä"
+
+      return "Virheellinen tiedosto tai tiedostossa on jo lisäytyjä jäseniä"
     end
-    return notice
+
   end
 
 

@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 # spec/models/contact_spec.rb
 require 'spec_helper'
 
