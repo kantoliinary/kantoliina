@@ -2,7 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'csv'
-require 'iconv'
+
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -37,6 +37,7 @@ module Kantoliina
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+    config.encoding("utf-8", :invalid => :replace, :undef => :replace, :replace => "?")
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
