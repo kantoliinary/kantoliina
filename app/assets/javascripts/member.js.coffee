@@ -1,11 +1,11 @@
-#Globaalit muuttujat
+#Global variables
 index_page = ""
 invoice = ""
 mailer = ""
 reminder = ""
 multiselect_search = {}
 searcher = {}
-#Asitat mitkä suoritetaan kun sivu on ladattu kokonaan.
+#Subroutines which are run  Asitat mitkä suoritetaan kun sivu on ladattu kokonaan.
 $(document).ready ->
   index_page = "#index_member_page"
   invoice = $("#invoice_member_page")

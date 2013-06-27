@@ -20,7 +20,7 @@ function SetCookie(name, value) {
     document.cookie = name + "=" + value
 }
 /**
- * Lukee annetulla nimellä olevan cookien.
+ * Reads a cookie with a name matching the given parameter
  */
 function readCookie(name) {
     name += '=';
@@ -41,7 +41,7 @@ Array.prototype.contains = function (obj) {
     return false;
 }
 /**
- * Luo prototypen joka sorttaa arrayn. Käyttää annettua funktiota vertailuun.
+ * Creates a prototype that sorts an array. Uses a given function for comparison
  * @param comparisor
  */
 Array.prototype.sorter = function (comparisor) {
@@ -56,7 +56,7 @@ Array.prototype.sorter = function (comparisor) {
     }
 }
 /**
- * Luo prototypen, joka sorttaa kaksiulotteisen taulukon ensimmäisten arvojen mukaan.
+ * Creates a prototype that sorts a two-dimensional array based on the first values
  * @param comparisor
  */
 Array.prototype.columnsort = function (comparisor) {
@@ -65,7 +65,7 @@ Array.prototype.columnsort = function (comparisor) {
     })
 }
 /**
- * Luo prototypen, joka sorttaa kaksiulotteisen taulukon ensimmäisten arvojen mukaan käänteisessä järjestyksessä.
+ * Creates a prototype that sorts a two-dimensional array in a reverse order based on the first values
  * @param comparisor
  */
 Array.prototype.columnsortreverse = function () {
