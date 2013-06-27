@@ -183,8 +183,8 @@ class MembersController < ApplicationController
 
   def import
     if (params[:file])
-      flash[:notice] = Member.import(params[:file])
 
+      flash[:notice] = Member.import(params[:file])
     else
       flash[:error] = "Valitse ensin tiedosto"
     end
