@@ -136,12 +136,6 @@ describe Member do
     member = FactoryGirl.create(:member)
     Member.as_csv.should be_true
   end
-  #
-  #it "imports .csv" do
-  #  member = FactoryGirl.create(:member)
-  #  @file = fixture_file_upload('/files/test.xml', 'text/xml')
-  #  Member.import(@file).should be_true
-  #end
 
 
 end
