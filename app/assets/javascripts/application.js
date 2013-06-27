@@ -28,6 +28,9 @@ function readCookie(name) {
         if (!ca[i].indexOf(name))
             return ca[i].replace(name, '');
 }
+function resetCookie(){
+    document.cookie = ""
+}
 /**
  * Luo prototypen arraylle joka etsii annettua oliota arraysta.
  */

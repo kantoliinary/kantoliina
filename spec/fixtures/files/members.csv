@@ -1,0 +1,2 @@
+firstnames,surname,municipality,address,zipcode,postoffice,country,email,membernumber,membergroup_id,membershipyear,paymentstatus,invoicedate,reminderdate,active,lender,support,info,created_at,updated_at
+Testi,Testaaja,Vihti,Vihdintie 8,43211,Vihti,Suomi,testi@testi.com,55555,1,2013,false,2013-06-26,,true,false,false,,2013-06-27 07:56:56 UTC,2013-06-27 07:56:56 UTC

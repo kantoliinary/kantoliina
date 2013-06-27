@@ -12,54 +12,20 @@ $(document).ready ->
   mailer = $("#mailer_member_page")
   reminder = $("#reminder_member_page")
   $(index_page).find(".send").click (e) ->
-    e.preventDefault()
-    if $(this).hasClass("confirm") && !confirm("Oletko varma?")
-      return false
-    checkboxs = $(index_page).find("#members").find("table").find("td").find(":checkbox")
-    ids = []
-    $(checkboxs).each (index, value) ->
-      checkbox = $(value)
-      if !!checkbox.is(":checked") && checkbox.attr("name") != "check_all"
-        ids.push checkbox.val()
-    form = $(this).parent("form")
-    if ids.length != 0
-      $("<input/>",{
-        type: "hidden",
-        name: "ids"
-        value: JSON.stringify({
-          ids: ids
-        })
-      }).appendTo(form)
-      form.submit()
-    else
-      alert("Valitse ensin jäseniä")
+    sendForm(e)
 
   $(index_page).find("#members").find("#check_all").click( (e) ->
     un_select_all_mmembers(e)
   )
 
   $(".delete_row_button").click (e) ->
-    e.preventDefault
-    id = $(this).data("id")
-    $($(this).parent("td").parent("tr").parent("tbody").parent("table").data("form")).find(".member_" + id).remove()
-    $(this).parent("td").parent("tr").remove()
+    deleteRow(e)
 
   mailer.find("#mailer_form").find(".send").click (e) ->
-    e.preventDefault
-    sender =  $(mailer.find("#mailer_form").find("#senderarea").find("#sender")).val()
-
-    if sender.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
-      $(mailer.find("#mailer_form")).submit()
-
-    else
-      alert("Antamasi sähköpostiosoite on virheellinen")
-      return false
+    checkEmail(e)
 
   reminder.find("#members").find(".delete_button").click (e) ->
-    e.preventDefault
-    id = $(this).data("id")
-    parent = $(this).parent("td").parent("tr").remove()
-    reminder.find("#reminder_form").find(".member_" + id).remove()
+    deleteRow2(e)
 
   multiselect().init({
       elements: [index_page + " .column_menu"],
@@ -104,6 +70,7 @@ $(document).ready ->
   })
   do_search()
   setTimeout(hideNoticeAndError, 10000)
+
 #Makes a search
 do_search = ->
   searcher.search()
@@ -149,3 +116,53 @@ un_select_all_mmembers = (e) ->
   $(checkboxs).each( (index, value) ->
     $(value).attr("checked", check_state)
   )
+
+#Lähettää lomakkeen jonka sisällä painettu nappi on. Jos napilla on confirm kenttä vahvistetaan käyttäjältä toiminto. Kerää valitut jäsenet lomakkeeseen hidden fieldiin json muodossa ennen lähetystä. Jos jäseniä ei ole valittuna ei lomaketta lähetetä ja annetaan ilmoitus asiasta.
+sendForm = (e) ->
+  e.preventDefault()
+  if $(e.target).hasClass("confirm") && !confirm("Oletko varma?")
+    return false
+  checkboxs = $(index_page).find("#members").find("table").find("td").find(":checkbox")
+  ids = []
+  $(checkboxs).each (index, value) ->
+    checkbox = $(value)
+    if !!checkbox.is(":checked") && checkbox.attr("name") != "check_all"
+      ids.push checkbox.val()
+  form = $(e.target).parent("form")
+  if ids.length != 0
+    $("<input/>",{
+      type: "hidden",
+      name: "ids"
+      value: JSON.stringify({
+        ids: ids
+      })
+    }).appendTo(form)
+    form.submit()
+  else
+    alert("Valitse ensin jäseniä")
+
+#Poistaa rivin jolla painettu nappi on taulusta. Sekä formista joka on taulun data-form kentäs.
+deleteRow = (e) ->
+  e.preventDefault
+  id = $(e.target).data("id")
+  $($(e.target).parent("td").parent("tr").parent("tbody").parent("table").data("form")).find(".member_" + id).remove()
+  $(e.target).parent("td").parent("tr").remove()
+
+#Poistaa rivin reminder sivun taulusta. Sekä reminder_form:ista
+deleteRow2 = (e) ->
+  e.preventDefault
+  id = $(e.target).data("id")
+  $(e.target).parent("td").parent("tr").remove()
+  reminder.find("#reminder_form").find(".member_" + id).remove()
+
+#Tarkastaa, että email osoite on oikeassa muodossa. Jos ei annetaan ilmoitus siitä.
+checkEmail = (e) ->
+  e.preventDefault
+  sender =  $(mailer.find("#mailer_form").find("#senderarea").find("#sender")).val()
+
+  if sender.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
+    $(mailer.find("#mailer_form")).submit()
+
+  else
+    alert("Antamasi sähköpostiosoite on virheellinen")
+  return false

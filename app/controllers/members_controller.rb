@@ -142,23 +142,6 @@ class MembersController < ApplicationController
     redirect_to members_path
   end
 
-  def from_csv
-
-  end
-
-  def open_spreadsheet(file)
-    case File.extname(file.original_filename)
-      when ".csv" then
-        Csv.new(file.path, nil, :ignore)
-      when ".xls" then
-        Excel.new(file.path, nil, :ignore)
-      when ".xlsx" then
-        Excelx.new(file.path, nil, :ignore)
-      else
-        raise "Unknown file type: #{file.original_filename}"
-    end
-  end
-
   ##
   # Lists all members to @members and shows the list page.
 
@@ -183,8 +166,8 @@ class MembersController < ApplicationController
 
   def import
     if (params[:file])
-      flash[:notice] = Member.import(params[:file])
 
+      flash[:notice] = Member.import(params[:file])
     else
       flash[:error] = "Valitse ensin tiedosto"
     end
