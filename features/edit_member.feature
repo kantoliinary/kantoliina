@@ -25,7 +25,6 @@ Feature: edit member
   Scenario: edit member with correct values
     When I am on the members page
     And I follow "11111"
-#    Then I should see "Jäsenen tietojen muokkaus"
     And I uncheck "member_lender"
     And I fill in "member[firstnames]" with "Janne"
     And I fill in "member[surname]" with "Jäsen"
@@ -52,7 +51,6 @@ Feature: edit member
   Scenario: edit member with incorrect values2
     When I am on the members page
     And I follow "11111"
-#    Then I should see "Jäsenen tietojen muokkaus"
     And I fill in "member[firstnames]" with ""
     And I fill in "member[surname]" with ""
     And I fill in "member[municipality]" with ""
@@ -60,13 +58,12 @@ Feature: edit member
     And I fill in "member[zipcode]" with ""
     And I fill in "member[postoffice]" with ""
     And I fill in "member[email]" with ""
-  #    And I fill in "member[membernumber]" with ""
     And I press "Tallenna muutokset"
-#    Then I should see "Etunimi puuttuu"
     Then I should see "Sukunimi puuttuu"
     Then I should see "Kunta puuttuu"
     Then I should see "Osoite puuttuu"
     Then I should see "Postinumero puuttuu"
     Then I should see "Postitoimipaikka puuttuu"
     Then I should see "Sähköpostiosoite puuttuu"
-#    Then I should see "Jäsennumero puuttuu"
+
+#  Scenario: I try to tag a member
