@@ -54,10 +54,10 @@
       = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
 
   -#%div{:class => "row"}
-  -#  %div{:class => "left"}
-  -#    = f.label "membershipyear", "Jäsenyysvuosi"
-  -#  %div{:class => "left right_field"}
-  -#    = f.input :membershipyear, as: :string
+  -# %div{:class => "left"}
+  -# = f.label "membershipyear", "Jäsenyysvuosi"
+  -# %div{:class => "left right_field"}
+  -# = f.input :membershipyear, as: :string
 
   %div{:class => "row"}
     %div{:class => "left name"}
@@ -96,10 +96,10 @@
     = f.input :info, as: :text
 
   -#%div{:class => "row"}
-  -#  %div{:class => "left"}
-  -#    = f.label "membergroup_id", 'Jäsenryhmä'
-  -#  %div{:class => "left right_field"}
-  -#    = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
+  -# %div{:class => "left"}
+  -# = f.label "membergroup_id", 'Jäsenryhmä'
+  -# %div{:class => "left right_field"}
+  -# = f.collection_select(:membergroup_id, Membergroup.all, :id, :name)
   %div{:class => "clear"}
   %div
     = f.submit @submit_text, id:"update"
