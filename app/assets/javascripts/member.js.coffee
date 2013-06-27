@@ -116,7 +116,7 @@ changeRemoveActiveButton = ->
   else
      button.text("Poista")
 
-#Asettaa tablen th:n näkyviin tai pois näkyvistä checkboxin mukaan.
+#Sets a table's th as visible or hidden depending on whether a checkbox is checked
 setTableColumns = (checkbox)->
   th = $(index_page).find("#members").find("table").find("."+$(checkbox).attr("name"))
   if $(checkbox).is(":checked")
@@ -124,7 +124,7 @@ setTableColumns = (checkbox)->
   else
     th.addClass("hidden")
 
-#Asettaa tablen columin näkyviin tai pois näkyvistä checkboxin mukaan.
+#Sets a table column as visible or hidden based on whether a checkbox is checked
 showHideColumn = (checkbox) ->
   $(index_page).find("#members").find("table").find("." + $(checkbox).attr("name")).each (index, item) ->
     if $(item).hasClass("hidden")
