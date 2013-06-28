@@ -21,9 +21,10 @@ class StatisticsController < ApplicationController
     if params[:startdate]
       @startdate = params[:startdate]
       @enddate = params[:enddate]
+      enddateQ = params[:enddate] + " 23:59" || Time.now
       #@membersdate = Member.where("created_at >= :a AND created_at <= :b AND active = 't'", :a => @startdate, :b => @enddate)
-      @membersdate = Member.where("created_at BETWEEN :a AND :b", :a => @startdate + "", :b => @enddate + "23:59")
-      @membersdate = Member.all(:conditions => ["created_at >= ? AND created_at <= ?", @startdate, @enddate])
+      #@membersdate = Member.where("created_at BETWEEN :a AND :b", :a => @startdate + "", :b => @enddate + "23:59")
+      @membersdate = Member.all(:conditions => ["created_at >= ? AND created_at <= ?", @startdate, enddateQ])
 
     end
 
@@ -46,13 +47,13 @@ class StatisticsController < ApplicationController
         end
 
         if @membergroups[member.membergroup.name.to_sym]
-          @membergroups[member.membergroup.name.to_sym] =  @membergroups[member.membergroup.name.to_sym] + 1
+          @membergroups[member.membergroup.name.to_sym] = @membergroups[member.membergroup.name.to_sym] + 1
         else
           @membergroups[member.membergroup.name.to_sym] = 1
         end
 
         if @municipalities[member.municipality.to_sym]
-          @municipalities[member.municipality.to_sym] =  @municipalities[member.municipality.to_sym] + 1
+          @municipalities[member.municipality.to_sym] = @municipalities[member.municipality.to_sym] + 1
         else
           @municipalities[member.municipality.to_sym] = 1
         end
@@ -62,7 +63,7 @@ class StatisticsController < ApplicationController
       end
 
     end
-     @municipalities = @municipalities.sort_by {|key,value| value}.reverse
+    @municipalities = @municipalities.sort_by { |key, value| value }.reverse
     #@municipalities = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
     #                  AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
   end
