@@ -53,7 +53,7 @@
         %td= member.email
         %td= member.membergroup.name
         %td
-          -if member.membershipyear.to_i >= Time.now.year.to_i && member.paymentstatus == true
+          -if (member.membershipyear.to_i >= Time.now.year.to_i && member.paymentstatus == true) || (member.invoicedate != nil && member.invoicedate.year.to_i == Time.now.year.to_i)
             %span{:class => "error"}
               = member.membershipyear
           -else
