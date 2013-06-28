@@ -146,21 +146,21 @@ sendForm = (e) ->
   else
     alert("Valitse ensin jäseniä")
 
-#Removes a row where     Poistaa rivin jolla painettu nappi on taulusta. Sekä formista joka on taulun data-form kentäs.
+#Removes a row from a table when a button is pressed, and from a form in the table's data-form field
 deleteRow = (e) ->
   e.preventDefault
   id = $(e.target).data("id")
   $($(e.target).parent("td").parent("tr").parent("tbody").parent("table").data("form")).find(".member_" + id).remove()
   $(e.target).parent("td").parent("tr").remove()
 
-#Poistaa rivin reminder sivun taulusta. Sekä reminder_form:ista
+#Removes a row from a table in the reminder page and reminder_form
 deleteRow2 = (e) ->
   e.preventDefault
   id = $(e.target).data("id")
   $(e.target).parent("td").parent("tr").remove()
   reminder.find("#reminder_form").find(".member_" + id).remove()
 
-#Tarkastaa, että email osoite on oikeassa muodossa. Jos ei annetaan ilmoitus siitä.
+#Ensures that the e-mail address is in the right format and shows an error message if not
 checkEmail = (e) ->
   e.preventDefault
   sender =  $(mailer.find("#mailer_form").find("#senderarea").find("#sender")).val()

@@ -1,5 +1,5 @@
 /**
- * Järjestää annetun taulukon. Lataa järjestyksen cookieseista.
+ *  Orders a given table and loads the order from cookies
  */
 var sorter = (function () {
     /**
@@ -13,9 +13,9 @@ var sorter = (function () {
     }
 
     /**
-     * Asetukset
-     * table joka järjestetään.
-     * previous minkä mukaan edellisellä kertaa järjestettiin.
+     * Settings
+     * table, which is to be ordered
+     * previous, according to which the last ordering was made
      * reversed järjestettiinkö edellisellä kertaa väärinpäin.
      * except listaa tulee ne th:n classit minkä mukaan ei haluta järjestää.
      */
