@@ -36,7 +36,8 @@ $(document).ready ->
     })
 
   multiselect_search = multiselect().init({
-      elements: [index_page + " .membergroup_menu", index_page + " .paymentstatus_menu", index_page + " .support_menu", index_page + " .lender_menu", index_page + " .municipality_menu", index_page + " .active_menu"]
+      elements: [index_page + " .membergroup_menu", index_page + " .paymentstatus_menu", index_page +
+      " .support_menu", index_page + " .lender_menu", index_page + " .municipality_menu", index_page + " .active_menu"]
       callback: (element) ->
         do_search()
   })
@@ -60,7 +61,8 @@ $(document).ready ->
   )
   searcher = search()
   searcher.init({
-    selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"], [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".active_menu", "active"]],
+    selectgroups: [[".municipality_menu", "municipalitys"], [".membergroup_menu", "membergroups"],
+                   [".paymentstatus_menu", "paymentstatus"], [".support_menu", "support"], [".lender_menu", "lender"], [".active_menu", "active"]],
     outputtable: "#members_table",
     column_menu: ".column_menu",
     outputlengthfield: index_page + " #amount_of_results #amount",
@@ -117,7 +119,10 @@ un_select_all_mmembers = (e) ->
     $(value).attr("checked", check_state)
   )
 
-#Lähettää lomakkeen jonka sisällä painettu nappi on. Jos napilla on confirm kenttä vahvistetaan käyttäjältä toiminto. Kerää valitut jäsenet lomakkeeseen hidden fieldiin json muodossa ennen lähetystä. Jos jäseniä ei ole valittuna ei lomaketta lähetetä ja annetaan ilmoitus asiasta.
+#Sends a form inside which the pressed button is.
+# If the button has a confirm-field, the action has to be confirmed by the user.
+# Collects the chosen members in a form in a hidden field in JSON-form before sending.
+# If no members has been chosen, the form is not sent and a notice of this is shown
 sendForm = (e) ->
   e.preventDefault()
   if $(e.target).hasClass("confirm") && !confirm("Oletko varma?")
@@ -141,21 +146,21 @@ sendForm = (e) ->
   else
     alert("Valitse ensin jäseniä")
 
-#Poistaa rivin jolla painettu nappi on taulusta. Sekä formista joka on taulun data-form kentäs.
+#Removes a row from a table when a button is pressed, and from a form in the table's data-form field
 deleteRow = (e) ->
   e.preventDefault
   id = $(e.target).data("id")
   $($(e.target).parent("td").parent("tr").parent("tbody").parent("table").data("form")).find(".member_" + id).remove()
   $(e.target).parent("td").parent("tr").remove()
 
-#Poistaa rivin reminder sivun taulusta. Sekä reminder_form:ista
+#Removes a row from a table in the reminder page and reminder_form
 deleteRow2 = (e) ->
   e.preventDefault
   id = $(e.target).data("id")
   $(e.target).parent("td").parent("tr").remove()
   reminder.find("#reminder_form").find(".member_" + id).remove()
 
-#Tarkastaa, että email osoite on oikeassa muodossa. Jos ei annetaan ilmoitus siitä.
+#Ensures that the e-mail address is in the right format and shows an error message if not
 checkEmail = (e) ->
   e.preventDefault
   sender =  $(mailer.find("#mailer_form").find("#senderarea").find("#sender")).val()

@@ -1,10 +1,10 @@
 /**
- * Tekee haun serveriltä annetuilla tiedoilla.
+ * Makes a search from the server with given information
  * @type {Function}
  */
 var search = (function (){
     /**
-     * Dedault asetukset
+     * Default settings
      */
     var defaults = {
         url: "/members/search",
@@ -17,19 +17,19 @@ var search = (function (){
     }
 
     /**
-     * Asetukset.
-     * url, johon lähetetään hakutiedot.
-     * serarcfield josta haetaan hakusana.
-     * selectgroups lista checkbox ryhmistä mitkä otetaan hakuun mukaan
-     * outputtable table jossa haun tulokset näytettään
-     * outputlengthfield paikka johon haun tulosten määrä laitetaan.
-     * column_menu column menun id.
-     * callback funktio jota kutsutaan kun ollaan saatu uuden haun tulokset asetettua tauluun.
+     * Settings
+     * url, where the search information is sent to
+     * searchfield, where the keyword is taken from
+     * Selectgroups, list of checkbox groups that are included in the search
+     * outputtable, a table where the search results are shown
+     * outputlengthfield, a variable where the amount of search results is put
+     * column_menu, the ID of the column menu
+     * callback, a function which is called when the new search results have been set in the table
      */
     var settings = {}
 
     /**
-     * Asettaa options muuttujasta tiedot settings muuttujaan ja lisää defaultit jos jotain puuttui.
+     * Sets the data from the options-variable to the settings-variable and adds defaults, if something is missing
      * @param options
      */
     function init(options){
@@ -37,7 +37,7 @@ var search = (function (){
     }
 
     /**
-     * Tekee haun kutsuu hakee haettavat tiedot getData funktiolla ja kutsuu insertData funktiota kun serveri palauttaa tiedot.
+     *  Makes a search that calls the search data with a getData-function and calls insertData-function when the server returns the data
      */
     function search(){
         $.ajax({
@@ -52,7 +52,8 @@ var search = (function (){
     }
 
     /**
-     * Hakee datan joka lähetetään severille. Hakusana haetaan searchfieldistä mikä annetaan asetuksissa. Asetusten selectgroups käydään läpi ja näistä otetaan mukaan kaikki valitut, paitse select all.
+     * Fetches the data that is sent to the server. The keyword is taken from the searchfield given in the settings.
+     * The function goes through the selectgroups-variable of the settings, and all matching membergroups are chosen, except select_all
      * @returns {{keyword: (*|jQuery)}}
      */
     function getData(){
@@ -72,7 +73,7 @@ var search = (function (){
     }
 
     /**
-     * Valitsee kaikki annetun menun checkboxit paitsi select all.
+     * Chooses all checkboxes in a given menu except select_all
      * @param menu
      * @returns {*|jQuery}
      */
@@ -81,7 +82,7 @@ var search = (function (){
     }
 
     /**
-     * Asettaa datan asetuksissa annettuun tableen. Sekä määrän asetuksissa annettuun outputlengthfieldiin.
+     * Sets the data to the table given in the settings and the size of the table in the outputlength given in the settings
      * @param data
      */
     function insertData(data){
@@ -123,7 +124,7 @@ var search = (function (){
     }
 
     /**
-     * Hakee kaikkien näkyvissä olevien sarakkeitten nimet.
+     * Fetches the names of all visible columns
      * @returns {Array}
      */
     function getVisibleColumns(){
@@ -137,7 +138,7 @@ var search = (function (){
     }
 
     /**
-     * Tyhjentään vanhan datan taulukosta.
+     * Deletes the old data from a table
      */
     function clearOldData(){
         $(settings.outputtable).find("tr").each(function (index, item) {
@@ -148,7 +149,7 @@ var search = (function (){
     }
 
     /**
-     * Palauttaa init funktion ja search funktion.
+     * Returns the init- and search-functions
      */
     return {
         init: init,
