@@ -30,6 +30,9 @@
     %div{:id => "preview-view"}
       = @preview
 
+  %span{:class => "error"}
+    Punainen väri viimeisen voimassa olevan jäsenyysvuoden kohdalla kertoo jäsenen jo maksaneen joko tämän tai ensi vuoden jäsenmaksun.
+
   %table{:class => "center", :id => "members", "data-form" => "#invoice_form"}
     %tr
       %th Jäsennro.
@@ -50,7 +53,7 @@
         %td= member.email
         %td= member.membergroup.name
         %td
-          -if member.membershipyear.to_i >= Time.now.year.to_i && member.paymentstatus == true
+          -if (member.membershipyear.to_i >= Time.now.year.to_i && member.paymentstatus == true) || (member.invoicedate != nil && member.invoicedate.year.to_i == Time.now.year.to_i)
             %span{:class => "error"}
               = member.membershipyear
           -else
