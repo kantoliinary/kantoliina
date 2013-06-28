@@ -163,7 +163,8 @@ class MembersController < ApplicationController
     end
   end
 
-
+  ##
+  # Gets a file as a parameter, sends the file to the model and sets notices and errors
   def import
     if (params[:file])
 

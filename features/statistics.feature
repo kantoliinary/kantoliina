@@ -43,19 +43,19 @@ Feature: See statistics about members
     Then I should see "Maksaneita: 2"
     Then I should see "Maksamattomia: 1"
 
-# Fails due to Firefox not using the latest version of HTML 5 yet
+# Fails in Firefox
 #
-#  Scenario: I try to filter members by creation time
-#    When I fill in "startdate" with "2010/01/01"
-#    And I fill in "enddate" with "2011/02/10"
-#    And I press "Hae"
-#    Then I should see "12345"
-#    Then I should see "12466"
-#    Then I should see "12543"
-#    Then I should not see "99999"
-#    When I fill in "startdate" with "2010/01/02"
-#    And I fill in "enddate" with "2011/01/01"
-#    And I press "Hae"
-#    Then I should see "12543"
-#    Then I should see "12466"
-#    Then I should not see "99999"
+  Scenario: I try to filter members by creation time
+    When I fill in "startdate" with "2010/01/01"
+    And I fill in "enddate" with "2011/02/10"
+    And I press "Hae"
+    Then I should see "12345"
+    Then I should see "12466"
+    Then I should see "12543"
+    Then I should not see "99999"
+    When I fill in "startdate" with "2010/01/02"
+    And I fill in "enddate" with "2011/01/01"
+    And I press "Hae"
+    Then I should see "12543"
+    Then I should see "12466"
+    Then I should not see "99999"
