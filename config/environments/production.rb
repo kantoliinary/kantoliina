@@ -89,5 +89,5 @@ Kantoliina::Application.configure do
       :enable_starttls_auto => true,
       :authentication => :login,
       :user_name => "jasensihteeri",
-      :password => "Wj47KZIG" }
+      :password => "" }
 end
