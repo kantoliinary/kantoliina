@@ -32,7 +32,7 @@ function resetCookie(){
     document.cookie = ""
 }
 /**
- * Luo prototypen arraylle joka etsii annettua oliota arraysta.
+ *  Creates a prototype that searches for a given object from an array
  */
 Array.prototype.contains = function (obj) {
     var i = this.length;
