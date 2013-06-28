@@ -97,7 +97,7 @@ class Member < ActiveRecord::Base
       return "Tiedoston tuonti onnistui"
     rescue
 
-      return "Virheellinen tiedosto tai tiedostossa on jo lisäytyjä jäseniä"
+      return "Virheellinen tiedosto tai tiedostossa on jo lisättyjä jäseniä"
     end
 
   end
