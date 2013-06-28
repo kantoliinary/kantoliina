@@ -23,6 +23,7 @@ class StatisticsController < ApplicationController
       @enddate = params[:enddate]
       #@membersdate = Member.where("created_at >= :a AND created_at <= :b AND active = 't'", :a => @startdate, :b => @enddate)
       @membersdate = Member.where("created_at BETWEEN :a AND :b", :a => @startdate + "", :b => @enddate + "23:59")
+      @membersdate = Member.all(:conditions => ["created_at >= ? AND created_at <= ?", @startdate, @enddate])
 
     end
 
