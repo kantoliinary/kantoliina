@@ -66,8 +66,13 @@
         %button{:name => "search", :type => "submit"} Hae
 
 
+
   %div
     - if params[:startdate]
+      %div
+        Hakutuloksia:
+        = @membersdate.count
+
       %table{:class => "center", :id => "random_page"}
         %tr
           %th Jäsennro.
