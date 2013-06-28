@@ -15,14 +15,14 @@ var sorter = (function () {
     /**
      * Settings
      * table, which is to be ordered
-     * previous, according to which the last ordering was made
-     * reversed järjestettiinkö edellisellä kertaa väärinpäin.
-     * except listaa tulee ne th:n classit minkä mukaan ei haluta järjestää.
+     * previous, according to which the last sort was made
+     * reversed, tells if the last sort was made in the reverse order
+     * except, lists those table header's classes according to which the elements should not be sorted
      */
     var settings = {}
 
     /**
-     * Asettaa settingsit oikein. Kutsuu readcookies ja käy kaikki tablen ensimmäisen tr:n th:t läpi ja asettaa vasenmman klikkauksen niille jotka eivät ole except listassa.
+     * Sets the settings correctly: calls readcookies and goes through all headers in the first row of the table and sets the left click for those headers not in the except-list
      * @param options
      */
     function init(options) {
@@ -39,9 +39,11 @@ var sorter = (function () {
     }
 
     /**
-     * Järjestää tablen. Saa joko parametrinä tai hakee asetuksista minkä sarakkeen mukaan table järjestetään. Lataa kaikki tablen rivit taulukkoon ja käyttää arrayn columnsort tai columnsortreverseä
-     * Jos same parametri on true järjestetään taulu samaan järjestykseen kuin edellisellä kertaa. Jos taas same on false niin rivit järjestetään käänteisesti jos järjestävä sarake ei vaihtunut taas jos sarake vaihtui niin järjestys on normaali.
-     * column parametri vaikuttaa aina siihen minkä sarakkeen mukaan table järjestetään.
+     * Sorts a table: the column according to which the sort is made is taken from the parameters or the settings
+     * Loads all table rows to a table and uses the columnsort or columnsortreverse of an array
+     * If a matching parameter is true, the table is sorted as it was sorted in the last time
+     * If the same-variable is false the rows are sorted in a standard or reverse order according to whether the column dominating the sort has changed
+     * column, the parameter defining according to which column the sort is made
      * @param column
      * @param same
      */
@@ -72,7 +74,7 @@ var sorter = (function () {
     }
 
     /**
-     * Asettaa jäjrjestetyn arrayn tableen. Poistaa ensin vanhat tiedot tablesta.
+     * Deletes the old data from the table and sets the sorted array in the table
      * @param array
      */
     function insertsortedarray(array) {
@@ -87,7 +89,7 @@ var sorter = (function () {
     }
 
     /**
-     * Kutsuu setCookie funktiota settingsin previous ja reversed muuttujilla.
+     *  Calls SetCookie-function with the previous- and reversed-variables of the settings as parameters
      */
     function setcookies() {
         SetCookie("sortprevious", settings.previous)
@@ -95,7 +97,7 @@ var sorter = (function () {
     }
 
     /**
-     * Lukee previous ja reversed muuttujat cookiesista.
+     * Reads the previous- and reversed-variables from cookies
      */
     function readcookies() {
         previous = readCookie("sortprevious")
@@ -109,7 +111,7 @@ var sorter = (function () {
     }
 
     /**
-     * Palauttaa olion jossa on init ja sort funktiot.
+     * Returns the object that includes the init- and sort-functions
      */
     return {
         init: init,
