@@ -73,6 +73,8 @@ $(document).ready ->
   do_search()
   setTimeout(hideNoticeAndError, 10000)
 
+  $(index_page).find("#csvsubmit").click(sendCsvForm)
+
 #Makes a search
 do_search = ->
   searcher.search()
@@ -145,6 +147,13 @@ sendForm = (e) ->
     form.submit()
   else
     alert("Valitse ensin jäseniä")
+
+sendCsvForm = (e) ->
+  e.preventDefault()
+  if $(index_page).find("#csvimport").val() == ""
+    alert("Valitse ensin tiedosto")
+    return false
+  $(e.target).parent().submit()
 
 #Removes a row from a table when a button is pressed, and from a form in the table's data-form field
 deleteRow = (e) ->
