@@ -8,6 +8,7 @@ class StatisticsController < ApplicationController
   # Initializes the statistics variables, calls the counting method and renders the statistics page
 
   def index
+
     @members = Member.includes(:membergroup)
     @active = 0
     @deleted = 0
@@ -33,9 +34,18 @@ class StatisticsController < ApplicationController
       else
         enddateQ = params[:enddate] + " 23:59"
       end
+      puts startdateQ
+      puts enddateQ
       #@membersdate = Member.where("created_at >= :a AND created_at <= :b AND active = 't'", :a => @startdate, :b => @enddate)
       #@membersdate = Member.where("created_at BETWEEN :a AND :b", :a => @startdate + "", :b => @enddate + "23:59")
-      @membersdate = Member.all(:conditions => ["active = 't' AND created_at >= ? AND created_at <= ?", startdateQ, enddateQ], :order => "membernumber")
+      @membersdate = Member.all(:conditions => ["active = 't' AND created_at BETWEEN ? AND ?", startdateQ, enddateQ], :order => "membernumber")
+
+      @membersdate.each do |member|
+        puts member.created_at
+      end
+      Member.all.each do |member|
+        puts member.created_at
+      end
     end
 
   end
