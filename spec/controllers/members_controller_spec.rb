@@ -266,7 +266,7 @@ describe MembersController do
 
 
         post :import, :file => "invalid_file.txt"
-        flash[:notice].should == "Virheellinen tiedosto tai tiedostossa on jo lisäytyjä jäseniä"
+        flash[:notice].should == "Virheellinen tiedosto tai tiedostossa on jo lisättyjä jäseniä"
 
       end
     end

@@ -2,7 +2,7 @@
  * Makes a search from the server with given information
  * @type {Function}
  */
-var search = (function (){
+var search = (function () {
     /**
      * Default settings
      */
@@ -13,7 +13,8 @@ var search = (function (){
         outputtable: "",
         outputlengthfield: "",
         column_menu: "",
-        callback: function(){}
+        callback: function () {
+        }
     }
 
     /**
@@ -32,20 +33,20 @@ var search = (function (){
      * Sets the data from the options-variable to the settings-variable and adds defaults, if something is missing
      * @param options
      */
-    function init(options){
+    function init(options) {
         settings = $.extend({}, defaults, options)
     }
 
     /**
      *  Makes a search that calls the search data with a getData-function and calls insertData-function when the server returns the data
      */
-    function search(){
+    function search() {
         $.ajax({
             type: "GET",
             url: settings.url,
             dataType: "json",
             data: getData(),
-            success: function(data, textStatus, jqXHR){
+            success: function (data, textStatus, jqXHR) {
                 insertData(data)
             }
         })
@@ -56,7 +57,7 @@ var search = (function (){
      * The function goes through the selectgroups-variable of the settings, and all matching membergroups are chosen, except select_all
      * @returns {{keyword: (*|jQuery)}}
      */
-    function getData(){
+    function getData() {
         var data = {
             keyword: $("#" + settings.searchfield).val()
         }
@@ -77,7 +78,7 @@ var search = (function (){
      * @param menu
      * @returns {*|jQuery}
      */
-    function findCheckboxs(menu){
+    function findCheckboxs(menu) {
         return $(menu).find(":checkbox").not("#select_all")
     }
 
@@ -85,33 +86,33 @@ var search = (function (){
      * Sets the data to the table given in the settings and the size of the table in the outputlength given in the settings
      * @param data
      */
-    function insertData(data){
+    function insertData(data) {
         var columns = ["membernumber", "name", "email", "municipality", "address", "zipcode", "postoffice", "country", "membergroup", "membershipyear", "invoicedate", "reminderdate", "paymentstatus", "active", "support", "lender"]
-        var images= ["paymentstatus", "active", "lender", "support"]
+        var images = ["paymentstatus", "active", "lender", "support"]
         var visible_columns = getVisibleColumns()
         clearOldData()
         $(data).each(function (index, member) {
             var tr = jQuery("<tr/>")
             var td = jQuery("<td/>").appendTo(tr)
-            jQuery("<input/>",{
+            jQuery("<input/>", {
                 type: "checkbox",
                 class: "member_select_checkbox",
-                id: "member_"+member.id,
-                name: "member_"+member.id,
+                id: "member_" + member.id,
+                name: "member_" + member.id,
                 value: member.id,
             }).appendTo(td)
-            $(columns).each(function(index, column){
-                td = jQuery("<td/>",{
-                    class: column+(visible_columns.contains(column) ? "" : " hidden")
+            $(columns).each(function (index, column) {
+                td = jQuery("<td/>", {
+                    class: column + (visible_columns.contains(column) ? "" : " hidden")
                 }).appendTo(tr)
-                if(images.contains(column)){
-                    jQuery("<img/>",{
-                        src: "/assets/"+(!!member[column] ? "green-mark" : "x-mark")+".png"
+                if (images.contains(column)) {
+                    jQuery("<img/>", {
+                        src: "/assets/" + (!!member[column] ? "green-mark" : "x-mark") + ".png"
                     }).appendTo(td)
-                } else if(column == "membernumber") {
-                    jQuery("<a/>",{
-                        href: "/members/"+member.id+"/edit",
-                        text: member[column]
+                } else if (column == "membernumber") {
+                    jQuery("<a/>", {
+                        href: "/members/" + member.id + "/edit",
+                        text: member[column] + (member["info"] != "" ? "*" : "")
                     }).appendTo(td)
                 } else {
                     td.html(member[column])
@@ -127,10 +128,10 @@ var search = (function (){
      * Fetches the names of all visible columns
      * @returns {Array}
      */
-    function getVisibleColumns(){
+    function getVisibleColumns() {
         var visible_columns = []
-        $(settings.column_menu).find(":checkbox").each(function(index, item){
-            if($(item).is(":checked")){
+        $(settings.column_menu).find(":checkbox").each(function (index, item) {
+            if ($(item).is(":checked")) {
                 visible_columns.push($(item).attr("name"))
             }
         })
@@ -140,7 +141,7 @@ var search = (function (){
     /**
      * Deletes the old data from a table
      */
-    function clearOldData(){
+    function clearOldData() {
         $(settings.outputtable).find("tr").each(function (index, item) {
             if (!$(item).has("th").length) {
                 $(item).remove()

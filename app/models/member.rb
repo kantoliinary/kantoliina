@@ -68,6 +68,7 @@ class Member < ActiveRecord::Base
      :active => self.active,
      :support => self.support,
      :lender => self.lender,
+     :info => self.info,
      :invoicedate => (self.invoicedate ? self.invoicedate.strftime("%d.%m.%Y") : ""),
      :reminderdate => (self.reminderdate ? self.reminderdate.strftime("%d.%m.%Y") : "")
     }
@@ -97,7 +98,7 @@ class Member < ActiveRecord::Base
       return "Tiedoston tuonti onnistui"
     rescue
 
-      return "Virheellinen tiedosto tai tiedostossa on jo lisäytyjä jäseniä"
+      return "Virheellinen tiedosto tai tiedostossa on jo lisättyjä jäseniä"
     end
 
   end

@@ -8,5 +8,5 @@ class Membergroup < ActiveRecord::Base
   has_many :members
 
   validates :name, :uniqueness => {:message => "Jäsenryhmä on jo olemassa"}, :presence => {:message => "Ryhmän nimi puuttuu"}
-  validates :fee, :presence => {:message => "Hinta puuttuu"}, :numericality => {:message => "Hinnan tulee olla numero"}
+  validates :fee, :presence => {:message => "Hinta puuttuu"}, :numericality => {:message => "Hinnan tulee olla numero ja positiivinen", :greater_than_or_equal_to => 0}
 end

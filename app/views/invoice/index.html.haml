@@ -55,7 +55,7 @@
         %td= member.email
         %td= member.membergroup.name
         %td
-          -if member.membershipyear.to_i >= Time.now.year.to_i && member.paymentstatus == true
+          -if member.membershipyear.to_i >= Time.now.year.to_i && member.paymentstatus
             %span{:class => "error"}
               = member.membershipyear
           -else
@@ -63,7 +63,7 @@
         %td= member.membergroup.fee
         %td= Member.generate_refnumber(member.membernumber)
         %td
-          -if member.invoicedate != nil && member.invoicedate.year.to_i == Time.now.year.to_i
+          -if member.invoicedate != nil && member.invoicedate.year.to_i == Time.now.year.to_i && !member.paymentstatus
             %span{:class => "error"}
               = member.invoicedate.strftime("%d.%m.%Y")
           -elsif member.invoicedate
