@@ -272,7 +272,7 @@ class MembersController < ApplicationController
         query_keywords[counter.chr.to_sym] = municipality
         counter += 1
       end
-      members = members.where(query, query_keywords)
+      members = members.where(query, query_keywords).order(:membernumber)
     end
     members
   end
