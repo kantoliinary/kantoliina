@@ -41,11 +41,13 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 
+  ##
+  # Resets the default view
   def reset
     cookies.each do |k|
       cookies.delete(k.at(0))
     end
-    flash[:notice] = "Alkunäkymä palautettu"
+    flash[:notice] = "Oletusnäkymä palautettu"
     redirect_to members_path
   end
 end

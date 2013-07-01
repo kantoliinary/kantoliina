@@ -203,7 +203,7 @@
         = action_form delete_path, :form_id => "delete_active_form", :button_text => "", :confirm => true
       %div{:id => "csv"}
         %a{:href => "/members.csv"}
-          = button_tag "Lataa .csv-tiedostona", :id => "load_default"
+          = button_tag "Lataa .CSV-tiedostona", :id => "load_default"
         = form_tag import_members_path, multipart: true do
           = file_field_tag :file, :id => "csvimport"
           = submit_tag "Tuo jäseniä .CSV-muodossa", :id => "csvsubmit"
