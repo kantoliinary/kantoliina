@@ -148,6 +148,7 @@ sendForm = (e) ->
   else
     alert("Valitse ensin jäseniä")
 
+# Sends csv import form. Shows alert if file not chosen and not send form
 sendCsvForm = (e) ->
   e.preventDefault()
   if $(index_page).find("#csvimport").val() == ""
