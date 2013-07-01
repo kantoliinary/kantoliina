@@ -32,7 +32,7 @@ class ReminderController < ApplicationController
   end
 
   ##
-  #
+  # Loads the default reminder template to the editor
   def load_default
 
     @f= Hash.new
@@ -45,7 +45,8 @@ class ReminderController < ApplicationController
     redirect_to  reminder_edit_path
   end
 
-
+  ##
+  # Selects a group of members by chosen ID and sends an reminder to their e-mails.
   def create
     @members = Member.find_all_by_id(params[:member])
     @members.each do |member|
@@ -58,7 +59,8 @@ class ReminderController < ApplicationController
     redirect_to members_path
   end
 
-
+  ##
+  #  Loads the saved reminder template to the editor page and sends error messages to the editor page
   def edit
     @error = flash[:error] || ""
     @errorline = flash[:errorline] || 0
@@ -71,6 +73,8 @@ class ReminderController < ApplicationController
     end
   end
 
+  ##
+  # Sends a reminder template submitted by the user and uses the helper update method to validate and save it
   def update
     template = params[:template]
     @f= Hash.new

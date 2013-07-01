@@ -35,7 +35,7 @@ class StatisticsController < ApplicationController
       end
       #@membersdate = Member.where("created_at >= :a AND created_at <= :b AND active = 't'", :a => @startdate, :b => @enddate)
       #@membersdate = Member.where("created_at BETWEEN :a AND :b", :a => @startdate + "", :b => @enddate + "23:59")
-      @membersdate = Member.all(:conditions => ["created_at >= ? AND created_at <= ?", startdateQ, enddateQ])
+      @membersdate = Member.all(:conditions => ["active = 't' AND created_at >= ? AND created_at <= ?", startdateQ, enddateQ])
 
     end
 
@@ -75,8 +75,6 @@ class StatisticsController < ApplicationController
 
     end
     @municipalities = @municipalities.sort_by { |key, value| value }.reverse
-    #@municipalities = Member.find_by_sql("SELECT municipality, counter FROM (SELECT municipality, count(*)
-    #                  AS counter FROM members GROUP BY municipality) a ORDER BY counter desc").uniq
   end
 
 

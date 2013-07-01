@@ -11,11 +11,3 @@ When /^I click on "([^\"]+)"$/ do |text|
   end
   element.click
 end
-
-#Then /^I should see the image "(.+)"$/ do |imagename|
-#  page.should have_selector("img[src$='#{imagename}']")
-#end
-#
-#Then /^I should not see the image "(.+)"$/ do |imagename|
-#  page.should_not have_selector("img[src$='#{imagename}']")
-#end

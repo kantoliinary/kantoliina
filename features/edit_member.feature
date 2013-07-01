@@ -46,7 +46,6 @@ Feature: edit member
     When I am on the members page
     And I follow "11111"
     And I fill in "member[email]" with "google"
-  #    And I fill in "member[membernumber]" with "1"
     And I press "Tallenna muutokset"
     Then I should see "Sähköpostiosoitteen muoto on väärä"
 

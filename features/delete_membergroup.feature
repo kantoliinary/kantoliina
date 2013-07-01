@@ -49,6 +49,5 @@ Feature: Edit a membergroup
     Given I follow "Bilejäsen"
     And I expect to click "cancel" on a confirmation box
     When I press "Poista jäsenryhmä"
-  #    Then I should see "Lisää jäsenryhmä"
     And I am on the membergroups page
     And I should see "Rivijäsen"

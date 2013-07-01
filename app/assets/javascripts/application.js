@@ -28,6 +28,9 @@ function readCookie(name) {
         if (!ca[i].indexOf(name))
             return ca[i].replace(name, '');
 }
+/**
+ *  Deletes cookies
+ */
 function resetCookie(){
     document.cookie = ""
 }
@@ -76,3 +79,4 @@ Array.prototype.columnsortreverse = function () {
         return a[0] < b[0]
     })
 }
+console.log(document.cookie)

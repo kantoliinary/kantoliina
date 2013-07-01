@@ -52,6 +52,7 @@ class Member < ActiveRecord::Base
 
   end
 
+
   def as_json(options={})
     {:id => self.id,
      :membernumber => self.membernumber,
@@ -74,6 +75,8 @@ class Member < ActiveRecord::Base
     }
   end
 
+  ##
+  #
   def self.as_csv
 
     CSV.generate do |csv|
@@ -85,7 +88,8 @@ class Member < ActiveRecord::Base
     end
   end
 
-
+  ##
+  # Imports a .CSV file
   def self.import(file)
 
     begin

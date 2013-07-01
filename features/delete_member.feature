@@ -40,10 +40,3 @@ Feature: Delete a new member
     Given I expect to click "cancel" on a confirmation box
     When I press "Poista"
     Then I should not see "Jäsen poistettu"
-
-#  Scenario: deleting by main button
-#    When I am on the members page
-#    Then I should see "jasen"
-#    And I check "check_all"
-#    And I press "Poista Valitut"
-#    Then I should not see "jasen"

@@ -63,13 +63,10 @@ div.center{
 }
 div.left {
     float: left;
-    /*margin-top: 7px;*/
-    /*margin-bottom: 8px;*/
 }
 
 div.right {
     float: right;
-    /*margin-top: 8px;*/
 }
 
 table {
@@ -99,7 +96,6 @@ tr {
 td {
     padding-left: 11px;
     padding-right: 11px;
-    /* border-left: 1px solid #FFE1C3; */
     border-left: 1px solid #FFF;
     border-bottom: solid 1px #ffffff;
 }
@@ -216,12 +212,10 @@ input[type = "radio"]{
     background-color: #e1c45f; /*#f3a85f;*/
     border-bottom: 3px solid #74a846;
     margin-bottom: 20px;
-    /*margin: 5px;*/
 }
 
 #header-content {
     margin: 0 auto;
-    /*padding: 10px;*/
     position: relative;
 }
 
