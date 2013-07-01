@@ -32,7 +32,6 @@ Kantoliina::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
-  require 'tlsmail'
   config.assets.debug = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
