@@ -43,8 +43,7 @@ Feature: See statistics about members
     Then I should see "Maksaneita: 2"
     Then I should see "Maksamattomia: 1"
 
-# Fails in Firefox
-#
+
   Scenario: I try to filter members by creation time
     When I fill in "startdate" with "2010/01/01"
     And I fill in "enddate" with "2011/02/10"
