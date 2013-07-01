@@ -30,22 +30,15 @@ class StatisticsController < ApplicationController
       end
 
       if params[:enddate] == ""
-        enddateQ = Time.now
+        enddateQ = Time.now.to_s
       else
         enddateQ = params[:enddate] + " 23:59"
       end
-      puts startdateQ
-      puts enddateQ
+      startdateQ = startdateQ.gsub(/[\/]/, '-')
+      enddateQ = enddateQ.gsub(/[\/]/, '-')
       #@membersdate = Member.where("created_at >= :a AND created_at <= :b AND active = 't'", :a => @startdate, :b => @enddate)
       #@membersdate = Member.where("created_at BETWEEN :a AND :b", :a => @startdate + "", :b => @enddate + "23:59")
       @membersdate = Member.all(:conditions => ["active = 't' AND created_at BETWEEN ? AND ?", startdateQ, enddateQ], :order => "membernumber")
-
-      @membersdate.each do |member|
-        puts member.created_at
-      end
-      Member.all.each do |member|
-        puts member.created_at
-      end
     end
 
   end
