@@ -13,7 +13,7 @@ Feature: CSV functionality
     And I fill in "password" with "qwerty123"
     And I press "Login"
 
-    Scenario: I try to import a CSV with no file chosen
-      When I am on the members page
-      And I press "Tuo jäseniä .CSV-muodossa"
-      Then I should see "Valitse ensin tiedosto"
+  Scenario: I try to import a CSV with no file chosen
+    When I am on the members page
+    Given I expect to click "OK" on an alert box
+    And I press "Tuo jäseniä .CSV-muodossa"
