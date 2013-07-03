@@ -229,10 +229,21 @@ class MembersController < ApplicationController
         query = ""
         query_keywords = {}
         counter = 65;
+        amount = 1
         all_search_fields.each do |field|
-          query += (query.empty? ? "" : " OR ") + "LOWER(#{field}) LIKE :#{counter.chr}"
-          query_keywords[counter.chr.to_sym] = "#{word.strip.downcase}%"
+          i = 0
+          symbol = ""
+          while i < amount
+            symbol += counter.chr
+            i += 1
+          end
+          query += (query.empty? ? "" : " OR ") + "LOWER(#{field}) LIKE :#{symbol}"
+          query_keywords[symbol.to_sym] = "#{word.strip.downcase}%"
           counter += 1
+          if counter > 90
+            amount += 1
+            counter = 65
+          end
         end
         query += " OR LOWER(membergroups.name) LIKE :membergroup"
         query_keywords[:membergroup] = "#{word.strip.downcase}%"
@@ -256,10 +267,21 @@ class MembersController < ApplicationController
       query = ""
       query_keywords = {}
       counter = 65;
+      amount = 1
       filters[:membergroups].each do |id|
-        query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{counter.chr}"
-        query_keywords[counter.chr.to_sym] = id
+        i = 0
+        symbol = ""
+        while i < amount
+          symbol += counter.chr
+          i += 1
+        end
+        query += (query.empty? ? "" : " OR ") + "membergroup_id = :#{symbol}"
+        query_keywords[symbol.to_sym] = id
         counter += 1
+        if counter > 90
+          amount += 1
+          counter = 65
+        end
       end
       members = members.where(query, query_keywords)
     end
@@ -267,10 +289,21 @@ class MembersController < ApplicationController
       query = ""
       query_keywords = {}
       counter = 65;
+      amount = 1
       filters[:municipalitys].each do |municipality|
-        query += (query.empty? ? "" : " OR ") + "municipality = :#{counter.chr}"
-        query_keywords[counter.chr.to_sym] = municipality
+        i = 0
+        symbol = ""
+        while i < amount
+          symbol += counter.chr
+          i += 1
+        end
+        query += (query.empty? ? "" : " OR ") + "municipality = :#{symbol}"
+        query_keywords[symbol.to_sym] = municipality
         counter += 1
+        if counter > 90
+          amount += 1
+          counter = 65
+        end
       end
       members = members.where(query, query_keywords).order(:membernumber)
     end
